@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 90 36" fill="none">
+  <rect width="90" height="36" rx="4" fill="#8B1A4A"/>
+  <text x="45" y="22" font-family="Georgia, 'Times New Roman', serif" font-size="13" font-weight="400" fill="white" text-anchor="middle" letter-spacing="3" font-style="italic">Eudora</text>
+  <line x1="20" y1="27" x2="70" y2="27" stroke="white" stroke-width="0.5" opacity="0.4"/>
+</svg>

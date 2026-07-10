@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 90 36" fill="none">
+  <rect width="90" height="36" rx="4" fill="#1A1A2E"/>
+  <rect x="1" y="1" width="88" height="34" rx="3" fill="none" stroke="#9A7B50" stroke-width="0.8"/>
+  <text x="45" y="16" font-family="Arial, sans-serif" font-size="7" font-weight="700" fill="#9A7B50" text-anchor="middle" letter-spacing="3">MULTI</text>
+  <text x="45" y="28" font-family="Georgia, serif" font-size="12" font-weight="700" fill="white" text-anchor="middle" letter-spacing="1">B</text>
+</svg>
