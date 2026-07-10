@@ -210,3 +210,13 @@
 @utility animate-bottle-float {
   animation: bottle-float 3.5s ease-in-out infinite alternate;
 }
+
+/* ── Gold Foil Text ── */
+
+@utility text-gold-foil {
+  background-image: linear-gradient(135deg, #8B6914 0%, #C9972A 20%, #F3E5AB 40%, #FFFDD0 50%, #F3E5AB 60%, #C9972A 80%, #8B6914 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.5));
+}

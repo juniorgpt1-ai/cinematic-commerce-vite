@@ -54,7 +54,7 @@ function FloatingBadge({ children, className = "" }: { children: React.ReactNode
         repeat: Infinity,
         ease: "easeInOut",
       }}
-      className={`inline-flex flex-wrap items-center justify-center gap-2.5 border border-luxe-gold/60 bg-luxe-bg/90 backdrop-blur-xs px-4 py-2 shadow-md max-w-full text-[11px] tracking-wider ${className}`}
+      className={`inline-flex flex-wrap items-center justify-center gap-2.5 border border-luxe-gold/60 bg-luxe-bg/90 backdrop-blur-xs px-4 py-2 shadow-md max-w-full text-[14px] tracking-wider ${className}`}
     >
       {children}
     </motion.span>
@@ -89,16 +89,16 @@ function Nav() {
   return (
 
     <header className="absolute top-0 inset-x-0 z-30">
-      <div className="mx-auto max-w-7xl px-4 md:px-6 py-4 md:py-5 flex items-center justify-between text-white">
+      <div className="mx-auto max-w-7xl px-2 sm:px-4 md:px-6 py-3 md:py-5 flex items-center justify-between text-white">
 
 
         <div className="leading-tight">
-          <div className="font-sans text-xl md:text-2xl lg:text-3xl font-semibold tracking-[0.18em] md:tracking-[0.22em] uppercase">
+          <div className="font-sans text-2xl md:text-2xl lg:text-3xl font-semibold tracking-[0.18em] md:tracking-[0.22em] uppercase">
             <span className="text-luxe-gold-soft">Maison</span>
             <span className="text-luxe-gold/50 mx-1"> · </span>
             <span className="text-white/90">Parfum</span>
           </div>
-          <div className="mt-1 text-[9px] md:text-[10px] tracking-[0.22em] md:tracking-[0.32em] uppercase font-sans font-semibold" style={{color:"var(--color-luxe-gold-soft)",opacity:0.8}}>
+          <div className="mt-1 text-[11px] md:text-[10px] tracking-[0.22em] md:tracking-[0.32em] uppercase font-sans font-semibold" style={{color:"var(--color-luxe-gold-soft)",opacity:0.8}}>
             Revendedor Oficial Grupo Boticário
           </div>
           <div className="mt-2.5 flex flex-col gap-1.5">
@@ -113,7 +113,7 @@ function Nav() {
                   src={brand.logo}
                   alt={brand.name}
                   title={brand.name}
-                  className="h-6 md:h-8 lg:h-9 w-auto rounded-sm opacity-90 hover:opacity-100 transition-opacity duration-200"
+                  className="h-7 sm:h-8 md:h-8 lg:h-9 w-auto rounded-sm opacity-90 hover:opacity-100 transition-opacity duration-200"
                 />
               ))}
             </div>
@@ -128,7 +128,7 @@ function Nav() {
                   src={brand.logo}
                   alt={brand.name}
                   title={brand.name}
-                  className="h-6 md:h-8 lg:h-9 w-auto rounded-sm opacity-90 hover:opacity-100 transition-opacity duration-200"
+                  className="h-7 sm:h-8 md:h-8 lg:h-9 w-auto rounded-sm opacity-90 hover:opacity-100 transition-opacity duration-200"
                 />
               ))}
             </div>
@@ -179,14 +179,14 @@ function Hero() {
           <div className="mb-8">
             <FloatingBadge className="border-white/30 bg-white/95">
               <Timer className="size-3.5 text-luxe-black" />
-              <span className="text-[10px] tracking-[0.32em] uppercase text-luxe-black font-semibold">
+              <span className="text-[12px] tracking-[0.32em] uppercase text-luxe-black font-semibold">
                 Entrega VIP · Em até 1h para BH e Região
               </span>
             </FloatingBadge>
           </div>
 
           <h1 className="font-display text-[11vw] md:text-[7rem] leading-[0.95] md:leading-[1.0] tracking-tight font-bold">
-            <span className="text-luxe-gold-cream drop-shadow-[0_2px_18px_rgba(0,0,0,0.6)]">
+            <span className="text-gold-foil">
               Luxo Acessível
             </span>
             <br />
@@ -195,7 +195,7 @@ function Hero() {
             </span>
           </h1>
 
-          <p className="mt-8 max-w-xl text-base md:text-lg text-luxe-gold-light/95 font-sans font-normal leading-relaxed drop-shadow-[0_1px_8px_rgba(0,0,0,0.6)]">
+          <p className="mt-8 max-w-xl text-lg md:text-lg text-luxe-gold-light/95 font-sans font-normal leading-relaxed drop-shadow-[0_1px_8px_rgba(0,0,0,0.6)]">
             Perfumaria e hair care premium do Grupo Boticário com entrega expressa para <strong className="text-white font-semibold">BH e regiões</strong>.
             Peça agora pelo WhatsApp e receba seu pedido em minutos, com segurança e preço justo.
           </p>
@@ -271,8 +271,8 @@ function TrustBar() {
             >
               <it.icon className="size-6 text-luxe-gold group-hover:scale-110 transition-transform duration-300" strokeWidth={1.4} />
               <span className="gold-rule" />
-              <h3 className="font-section text-2xl md:text-3xl leading-tight font-semibold tracking-wide break-words">{it.title}</h3>
-              <p className="text-sm text-luxe-ink/85 leading-relaxed font-sans font-light">
+              <h3 className="font-section text-[22px] md:text-3xl leading-tight font-semibold tracking-wide break-words">{it.title}</h3>
+              <p className="text-base text-luxe-ink/85 leading-relaxed font-sans font-light">
                 {it.desc}
               </p>
             </motion.div>
@@ -292,7 +292,7 @@ function HairCareSuite() {
       <div className="mx-auto max-w-7xl px-6 py-24 md:py-36 relative z-10">
         <motion.div {...fade} className="max-w-3xl mb-20 text-center mx-auto">
           <span className="eyebrow">Alta Performance Capilar</span>
-          <h2 className="mt-4 font-section text-4xl md:text-6xl font-semibold leading-tight">
+          <h2 className="mt-4 font-section text-5xl md:text-6xl font-semibold leading-tight">
             A Arte do Cuidado Absoluto
           </h2>
           <span className="gold-rule mt-6 mx-auto" />
@@ -322,7 +322,7 @@ function HairCareSuite() {
             <div className="absolute -bottom-4 -right-2 md:-bottom-6 md:-right-4 z-20">
               <FloatingBadge className="rounded-xs shadow-xl">
                 <Award className="size-4 text-luxe-gold" />
-                <span className="text-[11px] tracking-wider uppercase font-bold text-luxe-gold-soft">Best Seller</span>
+                <span className="text-[14px] tracking-wider uppercase font-bold text-luxe-gold-soft">Best Seller</span>
               </FloatingBadge>
             </div>
           </motion.div>
@@ -333,7 +333,7 @@ function HairCareSuite() {
             className="lg:col-span-6"
           >
             <span className="eyebrow text-luxe-gold">Hair Care · Volume & Densidade</span>
-            <h3 className="mt-4 font-section text-3xl md:text-5xl font-semibold leading-tight">
+            <h3 className="mt-4 font-section text-5xl md:text-5xl font-semibold leading-tight">
               Cabelos encorpados com conforto e resultado visível.
             </h3>
             <span className="gold-rule mt-6" />
@@ -373,7 +373,7 @@ function HairCareSuite() {
                 href={waLink("Olá! Quero o Combo de Encorpamento Inteligente de Alta Performance com entrega rápida.")}
                 target="_blank"
                 rel="noreferrer"
-                className="group inline-flex flex-wrap items-center justify-center gap-3 bg-luxe-ink hover:bg-whatsapp text-white hover:text-black transition-all px-5 py-3 md:px-7 md:py-4 text-sm font-semibold tracking-wide shadow-md"
+                className="group inline-flex flex-wrap items-center justify-center gap-3 bg-luxe-ink hover:bg-whatsapp text-white hover:text-black transition-all px-5 py-3 md:px-7 md:py-4 text-base font-semibold tracking-wide shadow-md"
               >
                 <MessageCircle className="size-4" />
                 Eu Quero Fios Encorpados
@@ -385,13 +385,13 @@ function HairCareSuite() {
 
         {/* 2. Cauterização Suite */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
-          <motion.div {...fade} className="lg:col-span-6 lg:order-2 relative">
-            <div className="relative aspect-[4/5] overflow-hidden bg-[#121212] shadow-2xl border border-luxe-line/30 group">
+          <motion.div {...fade} className="lg:col-span-7 lg:order-2 relative">
+            <div className="relative aspect-[6/5] overflow-hidden bg-[#121212] shadow-2xl border border-luxe-line/30 group">
               <img
                 src={hairCareLisoImg}
                 alt="Modelo com cabelo liso e alinhado sob fluxo de água"
                 loading="lazy"
-                className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                className="h-full w-full object-cover object-[75%]"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20" />
               <div className="absolute top-4 md:top-6 left-4 md:left-6 right-4 md:right-6 flex flex-wrap items-center justify-between gap-2 text-white/80 text-[10px] tracking-[0.24em] md:tracking-[0.32em] uppercase font-semibold">
@@ -404,7 +404,7 @@ function HairCareSuite() {
             <div className="absolute -bottom-4 -left-2 md:-bottom-6 md:-left-4 z-20">
               <FloatingBadge className="rounded-xs shadow-xl">
                 <Sparkles className="size-4 text-luxe-gold" />
-                <span className="text-[11px] tracking-wider uppercase font-bold text-luxe-gold-soft">Alta Performance</span>
+                <span className="text-[14px] tracking-wider uppercase font-bold text-luxe-gold-soft">Alta Performance</span>
               </FloatingBadge>
             </div>
           </motion.div>
@@ -412,10 +412,10 @@ function HairCareSuite() {
           <motion.div
             {...fade}
             transition={{ ...fade.transition, delay: 0.12 }}
-            className="lg:col-span-6 lg:order-1"
+            className="lg:col-span-5 lg:order-1"
           >
             <span className="eyebrow text-luxe-gold">Hair Care · Blindagem & Cauterização</span>
-            <h3 className="mt-4 font-section text-3xl md:text-5xl font-semibold leading-tight">
+            <h3 className="mt-4 font-section text-5xl md:text-5xl font-semibold leading-tight">
               Liso de Salão em Casa.
             </h3>
             <span className="gold-rule mt-6" />
@@ -455,7 +455,7 @@ function HairCareSuite() {
                 href={waLink("Olá! Quero o Combo de Cauterização e Liso Absoluto de Alta Performance com entrega rápida.")}
                 target="_blank"
                 rel="noreferrer"
-                className="group inline-flex flex-wrap items-center justify-center gap-3 bg-luxe-ink hover:bg-whatsapp text-white hover:text-black transition-all px-5 py-3 md:px-7 md:py-4 text-sm font-semibold tracking-wide shadow-md"
+                className="group inline-flex flex-wrap items-center justify-center gap-3 bg-luxe-ink hover:bg-whatsapp text-white hover:text-black transition-all px-5 py-3 md:px-7 md:py-4 text-base font-semibold tracking-wide shadow-md"
               >
                 <MessageCircle className="size-4" />
                 Sinta o Poder do Liso Absoluto
@@ -478,7 +478,7 @@ function PerfumesHeader() {
       <div className="mx-auto max-w-7xl px-6 relative z-10 text-center">
         <motion.div {...fade} className="max-w-3xl mx-auto">
           <span className="eyebrow">Fragrâncias de Sucesso</span>
-          <h2 className="mt-4 font-section text-4xl md:text-6xl font-semibold leading-tight">
+          <h2 className="mt-4 font-section text-5xl md:text-6xl font-semibold leading-tight">
             Encontre Sua Assinatura de Sucesso
           </h2>
           <p className="mt-6 text-lg text-luxe-ink/85 font-sans font-light">
@@ -553,7 +553,7 @@ function EditorialShowcase({
             <div className={`absolute -bottom-3 ${reverse ? "-left-2 md:-left-4" : "-right-2 md:-right-4"} z-20`}>
               <FloatingBadge className="shadow-lg border-luxe-gold-soft/30">
                 <Sparkles className="size-3.5 text-luxe-gold" />
-                <span className="text-[11px] tracking-wider uppercase font-bold text-luxe-gold-soft">{sealText}</span>
+                <span className="text-[14px] tracking-wider uppercase font-bold text-luxe-gold-soft">{sealText}</span>
               </FloatingBadge>
             </div>
           </motion.div>
@@ -654,7 +654,7 @@ function MalbecShowcase() {
             <div className="absolute -top-2 -left-2 md:-top-3 md:-left-3 z-20">
               <FloatingBadge className="shadow-lg border-luxe-gold-soft/30 bg-black/90">
                 <Award className="size-3.5 text-luxe-gold" />
-                <span className="text-[11px] tracking-wider uppercase font-bold text-luxe-gold-soft">Mais Procurado</span>
+                <span className="text-[14px] tracking-wider uppercase font-bold text-luxe-gold-soft">Mais Procurado</span>
               </FloatingBadge>
             </div>
           </motion.div>
@@ -892,7 +892,7 @@ function BoticarioCarousel() {
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16">
           <motion.div {...fade} className="max-w-2xl">
             <span className="eyebrow text-luxe-gold-soft">Seleção dos Favoritos</span>
-            <h2 className="mt-4 font-section text-4xl md:text-5xl font-semibold leading-tight">
+            <h2 className="mt-4 font-section text-5xl md:text-5xl font-semibold leading-tight">
               Mais Amados do Grupo Boticário
             </h2>
             <p className="mt-4 text-white/60 font-sans font-light">
@@ -942,7 +942,7 @@ function BoticarioCarousel() {
                 <h3 className="mt-6 font-sans text-2xl font-bold leading-tight group-hover:text-luxe-gold-soft transition-colors">
                   {prod.name}
                 </h3>
-                <p className="mt-4 text-white/70 text-sm font-sans font-light leading-relaxed min-h-[72px]">
+                <p className="mt-4 text-white/70 text-base font-sans font-light leading-relaxed min-h-[72px]">
                   {prod.desc}
                 </p>
               </div>
@@ -1005,7 +1005,7 @@ function KitsGrid() {
       <div className="mx-auto max-w-7xl px-6 py-24 md:py-32 relative z-10">
         <motion.div {...fade} className="max-w-2xl mb-16">
           <span className="eyebrow text-luxe-gold-soft">Curadoria de Presentes</span>
-          <h2 className="mt-4 font-section text-4xl md:text-5xl font-semibold leading-tight">
+          <h2 className="mt-4 font-section text-5xl md:text-5xl font-semibold leading-tight">
             Kits & Combos Inteligentes
           </h2>
           <p className="mt-4 text-white/60 text-lg font-sans font-light leading-relaxed max-w-xl">
@@ -1095,7 +1095,7 @@ function Consultoria() {
             <div className="absolute top-6 left-6 z-20">
               <FloatingBadge className="shadow-lg bg-black/85 border-luxe-gold-soft/40">
                 <Sparkles className="size-3.5 text-luxe-gold" />
-                <span className="text-[11px] tracking-wider uppercase font-bold text-luxe-gold-soft">Atendimento VIP</span>
+                <span className="text-[14px] tracking-wider uppercase font-bold text-luxe-gold-soft">Atendimento VIP</span>
               </FloatingBadge>
             </div>
           </motion.div>
@@ -1106,7 +1106,7 @@ function Consultoria() {
             className="lg:col-span-6"
           >
             <span className="eyebrow">Atendimento Humanizado</span>
-            <h2 className="mt-6 font-section text-4xl md:text-5xl font-semibold leading-tight">
+            <h2 className="mt-6 font-section text-5xl md:text-5xl font-semibold leading-tight">
               Escolha Inteligente Sem Complicações
             </h2>
             <span className="gold-rule mt-8" />
@@ -1170,7 +1170,7 @@ function Depoimentos() {
       <div className="mx-auto max-w-7xl px-6 py-24 md:py-32 relative z-10">
         <motion.div {...fade} className="max-w-2xl text-center mx-auto mb-20">
           <span className="eyebrow">Opinião de Clientes</span>
-          <h2 className="mt-4 font-section text-4xl md:text-5xl font-semibold leading-tight">
+          <h2 className="mt-4 font-section text-5xl md:text-5xl font-semibold leading-tight">
             A Experiência do Luxo Inteligente
           </h2>
           <span className="gold-rule mt-6 mx-auto" />
@@ -1306,13 +1306,13 @@ function CtaFinal() {
           <div className="mb-8">
             <FloatingBadge className="border-luxe-gold-soft/30 bg-black/85">
               <Timer className="size-3.5 text-luxe-gold-soft" />
-              <span className="text-[10px] tracking-[0.32em] uppercase text-luxe-gold-soft font-semibold">
+              <span className="text-[12px] tracking-[0.32em] uppercase text-luxe-gold-soft font-semibold">
                 Última saída VIP do dia às 21h
               </span>
             </FloatingBadge>
           </div>
           
-          <h2 className="mt-8 font-section text-4xl md:text-7xl font-semibold leading-[1.05]">
+          <h2 className="mt-8 font-section text-5xl md:text-7xl font-semibold leading-[1.05]">
             A Indulgência Inteligente
             <br />
             <span className="font-light italic text-luxe-gold-soft">ao Seu Alcance.</span>
