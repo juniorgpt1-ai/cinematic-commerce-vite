@@ -54,7 +54,7 @@ function FloatingBadge({ children, className = "" }: { children: React.ReactNode
         repeat: Infinity,
         ease: "easeInOut",
       }}
-      className={`inline-flex flex-wrap items-center justify-center gap-2 border border-luxe-gold/60 bg-luxe-bg/90 backdrop-blur-xs px-3.5 py-1.5 shadow-md max-w-full ${className}`}
+      className={`inline-flex flex-wrap items-center justify-center gap-2.5 border border-luxe-gold/60 bg-luxe-bg/90 backdrop-blur-xs px-4 py-2 shadow-md max-w-full text-[11px] tracking-wider ${className}`}
     >
       {children}
     </motion.span>
@@ -64,7 +64,6 @@ function FloatingBadge({ children, className = "" }: { children: React.ReactNode
 function LandingPage() {
   return (
     <main className="min-h-screen bg-luxe-bg text-luxe-ink overflow-x-hidden relative font-sans">
-      <GrupoBoticarioBar />
       <Nav />
       <Hero />
       <TrustBar />
@@ -84,43 +83,6 @@ function LandingPage() {
   );
 }
 
-/* ------------------------- GRUPO BOTICÁRIO BAR -------------------------- */
-
-const marcasGrupoBoticario = [
-  { nome: "O Boticário", cor: "#1a1a1a" },
-  { nome: "Eudora", cor: "#8B7355" },
-  { nome: "Quem Disse, Berenice?", cor: "#D4457A" },
-  { nome: "Vult", cor: "#FF6B00" },
-  { nome: "Beautybox", cor: "#C49B6C" },
-  { nome: "O.U.i", cor: "#2D2D2D" },
-  { nome: "Dr. JONES", cor: "#1B3B3B" },
-  { nome: "Truss", cor: "#5C4033" },
-  { nome: "Beleza na Web", cor: "#E85D8C" },
-];
-
-function GrupoBoticarioBar() {
-  return (
-    <div className="relative z-40 bg-[#070707] border-b border-white/[0.06]">
-      <div className="mx-auto max-w-7xl px-6 py-3 flex items-center justify-between">
-        <span className="text-[10px] tracking-[0.22em] uppercase text-white/50 font-sans font-medium whitespace-nowrap">
-          Grupo Boticário
-        </span>
-        <div className="flex items-center gap-5 overflow-x-auto scrollbar-none ml-6">
-          {marcasGrupoBoticario.map((marca) => (
-            <span
-              key={marca.nome}
-              className="text-[9px] tracking-[0.14em] uppercase text-white/35 font-sans font-medium whitespace-nowrap hover:text-white/70 transition-colors cursor-default"
-              title={marca.nome}
-            >
-              {marca.nome}
-            </span>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
-
 /* -------------------------------- NAV ------------------------------------ */
 
 function Nav() {
@@ -131,10 +93,10 @@ function Nav() {
 
 
         <div className="leading-tight">
-          <div className="font-display text-xl md:text-2xl lg:text-3xl font-semibold tracking-[0.18em] md:tracking-[0.22em] uppercase">
+          <div className="font-sans text-xl md:text-2xl lg:text-3xl font-semibold tracking-[0.18em] md:tracking-[0.22em] uppercase">
             <span className="text-luxe-gold-soft">Maison</span>
             <span className="text-luxe-gold/50 mx-1"> · </span>
-            <span className="text-white/90">Fragrance</span>
+            <span className="text-white/90">Parfum</span>
           </div>
           <div className="mt-1 text-[9px] md:text-[10px] tracking-[0.22em] md:tracking-[0.32em] uppercase font-sans font-semibold" style={{color:"var(--color-luxe-gold-soft)",opacity:0.8}}>
             Revendedor Oficial Grupo Boticário
@@ -310,7 +272,7 @@ function TrustBar() {
               <it.icon className="size-6 text-luxe-gold group-hover:scale-110 transition-transform duration-300" strokeWidth={1.4} />
               <span className="gold-rule" />
               <h3 className="font-section text-2xl md:text-3xl leading-tight font-semibold tracking-wide break-words">{it.title}</h3>
-              <p className="text-sm text-luxe-ink-soft leading-relaxed font-sans font-light">
+              <p className="text-sm text-luxe-ink/85 leading-relaxed font-sans font-light">
                 {it.desc}
               </p>
             </motion.div>
@@ -334,7 +296,7 @@ function HairCareSuite() {
             A Arte do Cuidado Absoluto
           </h2>
           <span className="gold-rule mt-6 mx-auto" />
-          <p className="mt-6 text-lg text-luxe-ink-soft font-sans font-light leading-relaxed">
+          <p className="mt-6 text-lg text-luxe-ink/85 font-sans font-light leading-relaxed">
             Tecnologia de salão adaptada para a sua rotina diária. A sofisticação da alta performance agora acessível na sua casa.
           </p>
         </motion.div>
@@ -360,7 +322,7 @@ function HairCareSuite() {
             <div className="absolute -bottom-4 -right-2 md:-bottom-6 md:-right-4 z-20">
               <FloatingBadge className="rounded-xs shadow-xl">
                 <Award className="size-4 text-luxe-gold" />
-                <span className="text-[10px] tracking-wider uppercase font-bold text-luxe-gold-soft">Best Seller</span>
+                <span className="text-[11px] tracking-wider uppercase font-bold text-luxe-gold-soft">Best Seller</span>
               </FloatingBadge>
             </div>
           </motion.div>
@@ -376,11 +338,11 @@ function HairCareSuite() {
             </h3>
             <span className="gold-rule mt-6" />
             
-            <p className="mt-6 text-lg text-luxe-ink-soft font-sans font-light leading-relaxed">
+            <p className="mt-6 text-lg text-luxe-ink/85 font-sans font-light leading-relaxed">
               Tecnologia de ponta preenche sua fibra. Volumiza, hidrata e elimina a porosidade de forma rápida e confortável — fios encorpados com brilho tridimensional e balanço natural.
             </p>
 
-            <ul className="mt-8 space-y-3.5 text-luxe-ink-soft font-sans font-light">
+            <ul className="mt-8 space-y-3.5 text-luxe-ink/85 font-sans font-light">
               <li className="flex items-center gap-3">
                 <span className="h-1.5 w-1.5 bg-luxe-gold rounded-full shrink-0" />
                 <span>Preenchimento de porosidade com ácido hialurônico inteligente.</span>
@@ -400,7 +362,7 @@ function HairCareSuite() {
                 <span className="text-[10px] tracking-[0.28em] uppercase text-luxe-ink-soft/70 font-semibold">
                   Tratamento Completo
                 </span>
-                <div className="font-display text-3xl font-bold mt-1 text-luxe-ink">R$ 159,90</div>
+                <div className="font-sans text-3xl font-bold mt-1 text-luxe-ink">R$ 159,90</div>
                 <div className="mt-1 text-[13px] text-luxe-ink-soft font-medium">
                   ou <span className="font-semibold text-luxe-ink">3x sem juros</span>
                   <span className="mx-2 text-luxe-gold">·</span>
@@ -442,7 +404,7 @@ function HairCareSuite() {
             <div className="absolute -bottom-4 -left-2 md:-bottom-6 md:-left-4 z-20">
               <FloatingBadge className="rounded-xs shadow-xl">
                 <Sparkles className="size-4 text-luxe-gold" />
-                <span className="text-[10px] tracking-wider uppercase font-bold text-luxe-gold-soft">Alta Performance</span>
+                <span className="text-[11px] tracking-wider uppercase font-bold text-luxe-gold-soft">Alta Performance</span>
               </FloatingBadge>
             </div>
           </motion.div>
@@ -458,11 +420,11 @@ function HairCareSuite() {
             </h3>
             <span className="gold-rule mt-6" />
             
-            <p className="mt-6 text-lg text-luxe-ink-soft font-sans font-light leading-relaxed">
+            <p className="mt-6 text-lg text-luxe-ink/85 font-sans font-light leading-relaxed">
               Repõe Massa e Blinda os Fios. Sua inteligência escolhe o liso absoluto, 3x mais eficaz. Alta performance para todos através de um ritual de cauterização lipídica que sela as cutículas instantaneamente.
             </p>
 
-            <ul className="mt-8 space-y-3.5 text-luxe-ink-soft font-sans font-light">
+            <ul className="mt-8 space-y-3.5 text-luxe-ink/85 font-sans font-light">
               <li className="flex items-center gap-3">
                 <span className="h-1.5 w-1.5 bg-luxe-gold rounded-full shrink-0" />
                 <span>Reconstrução profunda com queratina biomimética termo-ativada.</span>
@@ -482,7 +444,7 @@ function HairCareSuite() {
                 <span className="text-[10px] tracking-[0.28em] uppercase text-luxe-ink-soft/70 font-semibold">
                   Tratamento Completo
                 </span>
-                <div className="font-display text-3xl font-bold mt-1 text-luxe-ink">R$ 179,90</div>
+                <div className="font-sans text-3xl font-bold mt-1 text-luxe-ink">R$ 179,90</div>
                 <div className="mt-1 text-[13px] text-luxe-ink-soft font-medium">
                   ou <span className="font-semibold text-luxe-ink">3x sem juros</span>
                   <span className="mx-2 text-luxe-gold">·</span>
@@ -519,7 +481,7 @@ function PerfumesHeader() {
           <h2 className="mt-4 font-section text-4xl md:text-6xl font-semibold leading-tight">
             Encontre Sua Assinatura de Sucesso
           </h2>
-          <p className="mt-6 text-lg text-luxe-ink-soft font-sans font-light">
+          <p className="mt-6 text-lg text-luxe-ink/85 font-sans font-light">
             Com nossas fragrâncias mais vendidas, marcantes e recomendadas por especialistas olfativos.
           </p>
           <span className="gold-rule mt-8 mx-auto" />
@@ -591,7 +553,7 @@ function EditorialShowcase({
             <div className={`absolute -bottom-3 ${reverse ? "-left-2 md:-left-4" : "-right-2 md:-right-4"} z-20`}>
               <FloatingBadge className="shadow-lg border-luxe-gold-soft/30">
                 <Sparkles className="size-3.5 text-luxe-gold" />
-                <span className="text-[10px] tracking-wider uppercase font-bold text-luxe-gold-soft">{sealText}</span>
+                <span className="text-[11px] tracking-wider uppercase font-bold text-luxe-gold-soft">{sealText}</span>
               </FloatingBadge>
             </div>
           </motion.div>
@@ -606,17 +568,17 @@ function EditorialShowcase({
               {title}
             </h2>
             <span className="gold-rule mt-8" />
-            <p className="mt-8 text-lg text-luxe-ink-soft font-sans font-light leading-relaxed">
+            <p className="mt-8 text-lg text-luxe-ink/85 font-sans font-light leading-relaxed">
               {copy}
             </p>
 
             <dl className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-6 border-t border-luxe-line/30 pt-8 font-sans">
               {notes.map((n, i) => (
                 <div key={n}>
-                  <dt className="text-[10px] tracking-[0.28em] uppercase text-luxe-ink-soft/70 font-semibold">
+                  <dt className="text-xs tracking-[0.24em] uppercase text-luxe-ink-soft/80 font-semibold">
                     Nota {i === 0 ? "Topo" : i === 1 ? "Coração" : "Fundo"}
                   </dt>
-                  <dd className="mt-2 font-display text-base font-semibold text-luxe-ink">{n}</dd>
+                  <dd className="mt-2 font-display text-xl font-bold text-black">{n}</dd>
                 </div>
               ))}
             </dl>
@@ -633,7 +595,7 @@ function EditorialShowcase({
                 <span className="text-[10px] tracking-[0.28em] uppercase text-luxe-ink-soft/70 font-semibold">
                   Valor Acessível
                 </span>
-                <div className="font-display text-4xl font-bold mt-1 text-luxe-ink">{price}</div>
+                <div className="font-sans text-4xl font-bold mt-1 text-luxe-ink">{price}</div>
                 <div className="mt-2 text-[13px] text-luxe-ink-soft font-medium">
                   ou <span className="text-luxe-ink font-semibold">6x sem juros</span>
                   <span className="mx-2 text-luxe-gold">·</span>
@@ -681,18 +643,18 @@ function MalbecShowcase() {
               </div>
             </div>
             {/* Floating product bottle inset */}
-            <div className="absolute -bottom-2 -right-2 md:-bottom-4 md:-right-4 z-20 w-24 md:w-36">
+            <div className="absolute -bottom-3 -right-3 md:-bottom-5 md:-right-5 z-20 w-32 md:w-44 animate-bottle-in animate-bottle-float">
               <img
-                src="/malbec-signature.png"
+                src="/malbec.png"
                 alt="Frasco Malbec Signature O Boticário"
-                className="w-full h-full object-contain"
+                className="w-full h-full object-contain drop-shadow-xl"
                 style={{ mixBlendMode: "screen" }}
               />
             </div>
             <div className="absolute -top-2 -left-2 md:-top-3 md:-left-3 z-20">
               <FloatingBadge className="shadow-lg border-luxe-gold-soft/30 bg-black/90">
                 <Award className="size-3.5 text-luxe-gold" />
-                <span className="text-[10px] tracking-wider uppercase font-bold text-luxe-gold-soft">Mais Procurado</span>
+                <span className="text-[11px] tracking-wider uppercase font-bold text-luxe-gold-soft">Mais Procurado</span>
               </FloatingBadge>
             </div>
           </motion.div>
@@ -709,17 +671,17 @@ function MalbecShowcase() {
               <span className="font-light italic text-luxe-gold">presença marcante</span>.
             </h2>
             <span className="gold-rule mt-8" />
-            <p className="mt-8 text-lg text-luxe-ink-soft font-sans font-light leading-relaxed">
+            <p className="mt-8 text-lg text-luxe-ink/85 font-sans font-light leading-relaxed">
               Um clássico atemporal que une sofisticação e intensidade. Com álcool vinícola e madeiras nobres, é a assinatura olfativa do homem que sabe o que quer — luxo acessível com altíssima performance.
             </p>
 
             <dl className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-6 border-t border-luxe-line/30 pt-8 font-sans">
               {(["Lima da Pérsia", "Uvas Malbec", "Carvalho Francês"] as const).map((n, i) => (
                 <div key={n}>
-                  <dt className="text-[10px] tracking-[0.28em] uppercase text-luxe-ink-soft/70 font-semibold">
+                  <dt className="text-xs tracking-[0.24em] uppercase text-luxe-ink-soft/80 font-semibold">
                     Nota {i === 0 ? "Topo" : i === 1 ? "Coração" : "Fundo"}
                   </dt>
-                  <dd className="mt-2 font-display text-sm font-semibold text-luxe-ink">{n}</dd>
+                  <dd className="mt-2 font-display text-lg font-bold text-black">{n}</dd>
                 </div>
               ))}
             </dl>
@@ -734,7 +696,7 @@ function MalbecShowcase() {
             <div className="mt-10 flex items-end justify-between gap-6 flex-wrap">
               <div>
                 <span className="text-[10px] tracking-[0.28em] uppercase text-luxe-ink-soft/70 font-semibold">Valor Acessível</span>
-                <div className="font-display text-4xl font-bold mt-1 text-luxe-ink">R$ 289,90</div>
+                <div className="font-sans text-4xl font-bold mt-1 text-luxe-ink">R$ 289,90</div>
                 <div className="mt-2 text-[13px] text-luxe-ink-soft font-medium">
                   ou <span className="text-luxe-ink font-semibold">6x sem juros</span>
                   <span className="mx-2 text-luxe-gold">·</span>
@@ -759,24 +721,30 @@ function MalbecShowcase() {
         <motion.div
           {...fade}
           transition={{ ...fade.transition, delay: 0.2 }}
-          className="mt-16 md:mt-20 relative overflow-hidden rounded-xs shadow-2xl border border-luxe-line/20"
+          className="mt-20 md:mt-28 relative overflow-hidden rounded-xs shadow-2xl border border-luxe-line/20"
         >
           <img
-            src={malbecCollageImg}
+            src="/lifea.jpg"
             alt="Malbec O Boticário — ritual masculino de luxo: relógio, frasco, aplicação e espelho"
             loading="lazy"
-            className="w-full object-cover max-h-[420px] md:max-h-[500px]"
+            className="w-full object-cover h-[565px] md:h-[700px] block"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/10 to-transparent" />
           <div className="absolute bottom-6 left-6 right-6 flex items-center justify-between">
-            <p className="text-white font-display text-xl md:text-2xl font-bold max-w-sm leading-tight">
-              O ritual do homem que não abre mão do melhor.
+            <p
+              className="text-white text-2xl md:text-3xl font-bold max-w-sm leading-snug bg-black/30 backdrop-blur-sm rounded px-3 py-2 -mx-3"
+              style={{
+                fontFamily: "var(--font-fenix)",
+                textShadow: "0 2px 24px rgba(0,0,0,0.95), 0 0 60px rgba(0,0,0,0.5)",
+              }}
+            >
+              A marca de quem faz acontecer e não aceita menos que o melhor.
             </p>
             <a
               href={waLink("Olá! Quero o Malbec Cologne com entrega VIP em 1h em BH.")}
               target="_blank"
               rel="noreferrer"
-              className="hidden md:inline-flex shrink-0 items-center gap-2 text-xs font-bold tracking-widest uppercase text-luxe-gold-soft border-b border-luxe-gold-soft/60 pb-1 hover:text-white hover:border-white transition-all"
+              className="hidden md:inline-flex shrink-0 items-center gap-2 text-sm font-bold tracking-widest uppercase text-[#F8F6F0] border-b border-[#F8F6F0]/60 pb-1 hover:text-white hover:border-white transition-all"
             >
               Garantir Agora <ArrowRight className="size-3.5" />
             </a>
@@ -971,7 +939,7 @@ function BoticarioCarousel() {
                   </span>
                 </div>
                 
-                <h3 className="mt-6 font-display text-2xl font-bold leading-tight group-hover:text-luxe-gold-soft transition-colors">
+                <h3 className="mt-6 font-sans text-2xl font-bold leading-tight group-hover:text-luxe-gold-soft transition-colors">
                   {prod.name}
                 </h3>
                 <p className="mt-4 text-white/70 text-sm font-sans font-light leading-relaxed min-h-[72px]">
@@ -984,7 +952,7 @@ function BoticarioCarousel() {
                   {prod.oldPrice && (
                     <span className="text-xs text-white/40 line-through block mb-0.5">{prod.oldPrice}</span>
                   )}
-                  <span className="font-display text-xl font-bold text-luxe-gold-soft">{prod.price}</span>
+                  <span className="font-sans text-xl font-bold text-luxe-gold-soft">{prod.price}</span>
                 </div>
                 
                 <a
@@ -1063,7 +1031,7 @@ function KitsGrid() {
                   </span>
                 </div>
                 
-                <h3 className="mt-10 font-display text-2xl font-bold group-hover:text-luxe-gold-soft transition-colors">{k.name}</h3>
+                <h3 className="mt-10 font-sans text-2xl font-bold group-hover:text-luxe-gold-soft transition-colors">{k.name}</h3>
                 <span className="gold-rule mt-6" />
                 <p className="mt-6 text-white/70 font-sans font-light leading-relaxed">
                   {k.desc}
@@ -1080,7 +1048,7 @@ function KitsGrid() {
 
                 <div className="mt-10 pt-6 border-t border-white/10 flex flex-wrap items-end justify-between gap-4">
                   <div>
-                    <div className="font-display text-2xl font-bold text-luxe-gold-soft">{k.price}</div>
+                    <div className="font-sans text-2xl font-bold text-luxe-gold-soft">{k.price}</div>
                     <div className="mt-1 text-[12px] text-white/60">
                       6x sem juros <span className="text-luxe-gold-soft">·</span> Pix 5% OFF
                     </div>
@@ -1127,7 +1095,7 @@ function Consultoria() {
             <div className="absolute top-6 left-6 z-20">
               <FloatingBadge className="shadow-lg bg-black/85 border-luxe-gold-soft/40">
                 <Sparkles className="size-3.5 text-luxe-gold" />
-                <span className="text-[10px] tracking-wider uppercase font-bold text-luxe-gold-soft">Atendimento VIP</span>
+                <span className="text-[11px] tracking-wider uppercase font-bold text-luxe-gold-soft">Atendimento VIP</span>
               </FloatingBadge>
             </div>
           </motion.div>
@@ -1142,10 +1110,10 @@ function Consultoria() {
               Escolha Inteligente Sem Complicações
             </h2>
             <span className="gold-rule mt-8" />
-            <p className="mt-8 text-lg text-luxe-ink-soft font-sans font-light leading-relaxed max-w-lg">
+            <p className="mt-8 text-lg text-luxe-ink/85 font-sans font-light leading-relaxed max-w-lg">
               Evite frustrações ao comprar no escuro. Nossa consultoria de luxo inteligente ajuda você a selecionar a fragrância e o tratamento capilar sob medida para sua necessidade, com honestidade e empatia.
             </p>
-            <ul className="mt-8 space-y-3.5 text-luxe-ink-soft font-sans font-light">
+            <ul className="mt-8 space-y-3.5 text-luxe-ink/85 font-sans font-light">
               <li className="flex items-start gap-3">
                 <span className="mt-2.5 h-1.5 w-1.5 bg-luxe-gold rounded-full shrink-0" />
                 <span>Perfil de fragrância ou capilar personalizado em poucas mensagens.</span>
@@ -1307,7 +1275,7 @@ function Faq() {
                   }`}
                 >
                   <div className="overflow-hidden">
-                    <p className="text-luxe-ink-soft font-sans font-light leading-relaxed max-w-3xl">
+                    <p className="text-luxe-ink/85 font-sans font-light leading-relaxed max-w-3xl">
                       {it.a}
                     </p>
                   </div>
@@ -1379,18 +1347,18 @@ function Footer() {
       <div className="mx-auto max-w-7xl px-6 py-16">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 items-start">
           <div>
-            <div className="font-display text-xl font-semibold tracking-[0.18em] uppercase">
-              Maison<span className="text-luxe-gold"> · </span>Fragrance
+            <div className="font-sans text-xl font-semibold tracking-[0.18em] uppercase">
+              Maison<span className="text-luxe-gold"> · </span>Parfum
             </div>
             <div className="mt-1 text-[10px] tracking-[0.24em] uppercase text-luxe-ink-soft/80 font-sans">
               Revendedora autorizada Grupo Boticário e Eudora
             </div>
-            <p className="mt-4 text-sm text-luxe-ink-soft max-w-xs font-sans font-light leading-relaxed">
+            <p className="mt-4 text-sm text-luxe-ink/85 max-w-xs font-sans font-light leading-relaxed">
               Entrega rápida via Uber Flash em Belo Horizonte e região. O luxo inteligente e acessível na porta da sua casa.
             </p>
           </div>
           
-          <div className="text-sm text-luxe-ink-soft space-y-3 font-sans font-light">
+          <div className="text-sm text-luxe-ink/85 space-y-3 font-sans font-light">
             <div className="eyebrow text-luxe-ink font-semibold">Contato</div>
             <a
               href={waLink("Olá!")}
@@ -1403,14 +1371,14 @@ function Footer() {
             <div>Atendimento das 09h às 21h, todos os dias da semana.</div>
           </div>
           
-          <div className="text-sm text-luxe-ink-soft space-y-3 font-sans font-light md:text-right">
+          <div className="text-sm text-luxe-ink/85 space-y-3 font-sans font-light md:text-right">
             <div className="eyebrow text-luxe-ink md:text-right font-semibold">Acompanhe</div>
             <a
               href="#"
               aria-label="Instagram"
               className="inline-flex items-center gap-2 hover:text-luxe-gold transition-colors font-medium"
             >
-              <Instagram className="size-4" /> @maison.fragrance
+              <Instagram className="size-4" /> @maison.parfum
             </a>
             <div className="text-[11px] tracking-[0.2em] uppercase pt-4 text-luxe-ink-soft/60">
               CNPJ 00.000.000/0001-00
@@ -1419,7 +1387,7 @@ function Footer() {
         </div>
         
         <div className="mt-12 pt-8 border-t border-luxe-line/20 text-[10px] tracking-[0.22em] uppercase text-luxe-ink-soft/50 text-center font-semibold">
-          © {new Date().getFullYear()} Maison Fragrance · Todos os direitos reservados.
+          © {new Date().getFullYear()} Maison Parfum · Todos os direitos reservados.
         </div>
       </div>
     </footer>

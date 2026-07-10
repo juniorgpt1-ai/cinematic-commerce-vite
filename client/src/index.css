@@ -47,6 +47,7 @@
   --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
   --font-hero: "Cormorant Garamond", serif;
   --font-section: "Playfair Display", "Cormorant Garamond", serif;
+  --font-fenix: "Fenix", "Playfair Display", "Cormorant Garamond", serif;
 }
 
 :root {
@@ -178,4 +179,34 @@
 }
 .scrollbar-premium::-webkit-scrollbar-thumb:hover {
   background: var(--color-luxe-gold-soft);
+}
+
+/* ── Perfume Bottle Animations ── */
+
+@keyframes bottle-enter {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bottle-float {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-6px);
+  }
+}
+
+@utility animate-bottle-in {
+  animation: bottle-enter 600ms ease-out forwards;
+}
+
+@utility animate-bottle-float {
+  animation: bottle-float 3.5s ease-in-out infinite alternate;
 }
