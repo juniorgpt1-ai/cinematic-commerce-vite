@@ -220,3 +220,191 @@
   -webkit-text-fill-color: transparent;
   filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.5));
 }
+
+/* ═══════════════════════════════════════════
+   PREMIUM BRAND EMBLEMS — Glass / Brushed Metal
+   ═══════════════════════════════════════════ */
+
+.brand-emblem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  line-height: 1.2;
+  border-radius: 6px;
+  padding: 0.65rem 0.7rem;
+  font-size: 0.7rem;
+  min-height: 2.9rem;
+  cursor: default;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  /* Glass top sheen */
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Glass reflection overlay */
+.brand-emblem::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.15) 0%,
+    transparent 45%,
+    rgba(0, 0, 0, 0.2) 100%
+  );
+}
+
+.brand-emblem::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 10%;
+  width: 80%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  pointer-events: none;
+  z-index: 1;
+  border-radius: inherit;
+}
+
+.brand-emblem:hover {
+  transform: translateY(-2px);
+}
+
+@media (min-width: 640px) {
+  .brand-emblem {
+    font-size: 0.68rem;
+    padding: 0.55rem 0.8rem;
+    min-height: 2.8rem;
+    border-radius: 7px;
+  }
+}
+@media (min-width: 768px) {
+  .brand-emblem {
+    font-size: 0.72rem;
+    padding: 0.6rem 0.9rem;
+    min-height: 3rem;
+  }
+}
+
+/* ── Verde Esmeralda — O Boticário ── */
+.emblem-boticario {
+  background: linear-gradient(160deg, #0D5E38 0%, #046A38 35%, #023D20 100%);
+  color: #D4EDDA;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+  box-shadow:
+    0 2px 6px rgba(0, 0, 0, 0.5),
+    0 0 16px rgba(4, 106, 56, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+.emblem-boticario:hover {
+  box-shadow:
+    0 4px 14px rgba(0, 0, 0, 0.6),
+    0 0 24px rgba(4, 106, 56, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* ── Bordô Aveludado — Eudora ── */
+.emblem-eudora {
+  background: linear-gradient(160deg, #5C1520 0%, #3D0C11 40%, #200508 100%);
+  color: #F5DEE2;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+  box-shadow:
+    0 2px 6px rgba(0, 0, 0, 0.5),
+    0 0 16px rgba(61, 12, 17, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+.emblem-eudora:hover {
+  box-shadow:
+    0 4px 14px rgba(0, 0, 0, 0.6),
+    0 0 24px rgba(61, 12, 17, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.09);
+}
+
+/* ── Fúcsia Vibrante — Quem Disse, Berenice? ── */
+.emblem-qdb {
+  background: linear-gradient(160deg, #E91E8C 0%, #C21870 35%, #880E4F 100%);
+  color: #FCE4EC;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  box-shadow:
+    0 2px 6px rgba(0, 0, 0, 0.5),
+    0 0 16px rgba(194, 24, 112, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+.emblem-qdb:hover {
+  box-shadow:
+    0 4px 14px rgba(0, 0, 0, 0.6),
+    0 0 24px rgba(194, 24, 112, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.14);
+}
+
+/* ── Bronze Escovado — Multi B ── */
+.emblem-multib {
+  background: linear-gradient(160deg, #A0825C 0%, #7D6340 35%, #554228 100%);
+  color: #F5F0E8;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+  box-shadow:
+    0 2px 6px rgba(0, 0, 0, 0.5),
+    0 0 14px rgba(125, 99, 64, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+.emblem-multib:hover {
+  box-shadow:
+    0 4px 14px rgba(0, 0, 0, 0.6),
+    0 0 22px rgba(125, 99, 64, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+/* ── Azul Marinho Lacado — Vult ── */
+.emblem-vult {
+  background: linear-gradient(160deg, #1A3560 0%, #112244 40%, #0A162E 100%);
+  color: #D6E4F5;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+  box-shadow:
+    0 2px 6px rgba(0, 0, 0, 0.5),
+    0 0 16px rgba(17, 34, 68, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.07);
+}
+.emblem-vult:hover {
+  box-shadow:
+    0 4px 14px rgba(0, 0, 0, 0.6),
+    0 0 24px rgba(17, 34, 68, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* ── Dourado Metálico — O.U.i ── */
+.emblem-oui {
+  background: linear-gradient(160deg, #E0C060 0%, #C4A030 30%, #A68418 65%, #7D5E10 100%);
+  color: #FFFBE6;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  border-color: rgba(255, 220, 120, 0.25);
+  box-shadow:
+    0 2px 6px rgba(0, 0, 0, 0.5),
+    0 0 18px rgba(196, 160, 48, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+.emblem-oui:hover {
+  box-shadow:
+    0 4px 14px rgba(0, 0, 0, 0.6),
+    0 0 28px rgba(196, 160, 48, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* ── Header premium background ── */
+.header-premium {
+  background:
+    linear-gradient(180deg, #1a1a1a 0%, #141414 40%, #0f0f0f 100%);
+}

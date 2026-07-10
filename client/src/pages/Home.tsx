@@ -54,7 +54,7 @@ function FloatingBadge({ children, className = "" }: { children: React.ReactNode
         repeat: Infinity,
         ease: "easeInOut",
       }}
-      className={`inline-flex flex-wrap items-center justify-center gap-2.5 border border-luxe-gold/60 bg-luxe-bg/90 backdrop-blur-xs px-4 py-2 shadow-md max-w-full text-[14px] tracking-wider ${className}`}
+      className={`inline-flex flex-wrap items-center justify-center gap-2 sm:gap-2.5 border border-luxe-gold/60 bg-luxe-bg/90 backdrop-blur-xs px-3 py-1.5 sm:px-4 sm:py-2 shadow-md max-w-full text-[11px] sm:text-[14px] tracking-wider ${className}`}
     >
       {children}
     </motion.span>
@@ -87,69 +87,126 @@ function LandingPage() {
 
 function Nav() {
   return (
-
     <header className="absolute top-0 inset-x-0 z-30">
-      <div className="mx-auto max-w-7xl px-2 sm:px-4 md:px-6 py-3 md:py-5 flex items-center justify-between text-white">
 
+      {/* ═══════════════════ MOBILE: premium centered header ═══════════════════ */}
+      <div className="md:hidden header-premium text-white">
+        <div className="mx-auto max-w-7xl px-4 py-3">
 
-        <div className="leading-tight">
-          <div className="font-sans text-2xl md:text-2xl lg:text-3xl font-semibold tracking-[0.18em] md:tracking-[0.22em] uppercase">
-            <span className="text-luxe-gold-soft">Maison</span>
-            <span className="text-luxe-gold/50 mx-1"> · </span>
-            <span className="text-white/90">Parfum</span>
+          {/* Top bar: nav links + WhatsApp */}
+          <div className="grid grid-cols-[1fr_auto_1fr] items-center mb-2.5">
+            <div />
+            <nav className="flex items-center gap-3 text-[10px] tracking-[0.2em] uppercase font-sans justify-self-center">
+              <a href="#haircare" className="hover:text-luxe-gold-soft transition-colors font-medium">Hair</a>
+              <a href="#perfumes" className="hover:text-luxe-gold-soft transition-colors font-medium">Perfumes</a>
+              <a href="#kits" className="hover:text-luxe-gold-soft transition-colors font-medium">Kits</a>
+              <a href="#faq" className="hover:text-luxe-gold-soft transition-colors font-medium">FAQ</a>
+            </nav>
+            <a
+              href={waLink("Olá, vim pela página e quero atendimento de luxo inteligente.")}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-1.5 text-[12px] tracking-[0.12em] uppercase font-bold transition-colors justify-self-end"
+              style={{ color: "#25d366" }}
+            >
+              WhatsApp <ArrowRight className="size-3.5" />
+            </a>
           </div>
-          <div className="mt-1 text-[11px] md:text-[10px] tracking-[0.22em] md:tracking-[0.32em] uppercase font-sans font-semibold" style={{color:"var(--color-luxe-gold-soft)",opacity:0.8}}>
-            Revendedor Oficial Grupo Boticário
+
+          {/* Center: brand title */}
+          <div className="text-center mb-2.5">
+            <h2
+              className="font-display text-xl font-bold tracking-[0.14em] uppercase"
+              style={{
+                color: "#D4AF37",
+                textShadow: "0 0 14px rgba(212,175,55,0.35), 0 0 30px rgba(212,175,55,0.12)",
+              }}
+            >
+              Maison Parfum
+            </h2>
           </div>
-          <div className="mt-2.5 flex flex-col gap-1.5">
-            <div className="flex items-center gap-2">
-              {[
-                { name: "O Boticário", logo: "/brands/oboticario.svg" },
-                { name: "Eudora",      logo: "/brands/eudora.svg"     },
-                { name: "QDB",         logo: "/brands/qdb.svg"        },
-              ].map((brand) => (
-                <img
-                  key={brand.name}
-                  src={brand.logo}
-                  alt={brand.name}
-                  title={brand.name}
-                  className="h-7 sm:h-8 md:h-8 lg:h-9 w-auto rounded-sm opacity-90 hover:opacity-100 transition-opacity duration-200"
-                />
-              ))}
+
+          {/* Brand logos 2 rows */}
+          <div className="flex flex-col gap-1.5 items-center">
+            <div className="flex items-center justify-center gap-2.5">
+              <img src="/brands/oboticario.svg" alt="O Boticário" title="O Boticário" className="h-9 w-auto rounded-sm opacity-90" />
+              <img src="/brands/eudora.svg" alt="Eudora" title="Eudora" className="h-9 w-auto rounded-sm opacity-90" />
+              <img src="/brands/qdb.svg" alt="QDB" title="Quem Disse, Berenice?" className="h-9 w-auto rounded-sm opacity-90" />
             </div>
-            <div className="flex items-center gap-2">
-              {[
-                { name: "Multi B",     logo: "/brands/multib.svg"     },
-                { name: "Vult",        logo: "/brands/vult.svg"       },
-                { name: "O.U.i",       logo: "/brands/oui.svg"        },
-              ].map((brand) => (
-                <img
-                  key={brand.name}
-                  src={brand.logo}
-                  alt={brand.name}
-                  title={brand.name}
-                  className="h-7 sm:h-8 md:h-8 lg:h-9 w-auto rounded-sm opacity-90 hover:opacity-100 transition-opacity duration-200"
-                />
-              ))}
+            <div className="flex items-center justify-center gap-2.5">
+              <img src="/brands/multib.svg" alt="Multi B" title="Multi B" className="h-9 w-auto rounded-sm opacity-90" />
+              <img src="/brands/vult.svg" alt="Vult" title="Vult" className="h-9 w-auto rounded-sm opacity-90" />
+              <img src="/brands/oui.svg" alt="O.U.i" title="O.U.i" className="h-9 w-auto rounded-sm opacity-90" />
             </div>
           </div>
+
         </div>
-        <nav className="hidden md:flex items-center gap-10 text-[11px] tracking-[0.28em] uppercase font-sans">
-          <a href="#haircare" className="hover:text-luxe-gold-soft transition-colors font-medium">Hair Care</a>
-          <a href="#perfumes" className="hover:text-luxe-gold-soft transition-colors font-medium">Perfumes</a>
-          <a href="#mais-amados" className="hover:text-luxe-gold-soft transition-colors font-medium">Mais Amados</a>
-          <a href="#kits" className="hover:text-luxe-gold-soft transition-colors font-medium">Kits</a>
-          <a href="#faq" className="hover:text-luxe-gold-soft transition-colors font-medium">FAQ</a>
-        </nav>
-        <a
-          href={waLink("Olá, vim pela página e quero atendimento de luxo inteligente.")}
-          target="_blank"
-          rel="noreferrer"
-          className="hidden sm:inline-flex items-center gap-2 text-[11px] tracking-[0.28em] uppercase border-b border-luxe-gold-soft/60 pb-1 hover:text-luxe-gold-soft transition-colors font-semibold"
-        >
-          WhatsApp <ArrowRight className="size-3.5" />
-        </a>
       </div>
+
+      {/* ═══════════════════ DESKTOP: original layout ═══════════════════ */}
+      <div className="hidden md:block">
+        <div className="mx-auto max-w-7xl px-2 sm:px-4 md:px-6 py-3 md:py-5 flex items-center justify-between text-white">
+          <div className="leading-tight">
+            <div className="font-sans text-2xl md:text-2xl lg:text-3xl font-semibold tracking-[0.18em] md:tracking-[0.22em] uppercase">
+              <span className="text-luxe-gold-soft">Maison</span>
+              <span className="text-luxe-gold/50 mx-1"> · </span>
+              <span className="text-white/90">Parfum</span>
+            </div>
+            <div className="mt-1 text-[11px] md:text-[10px] tracking-[0.22em] md:tracking-[0.32em] uppercase font-sans font-semibold" style={{color:"var(--color-luxe-gold-soft)",opacity:0.8}}>
+              Revendedor Oficial Grupo Boticário
+            </div>
+            <div className="mt-2.5 flex flex-col gap-1.5">
+              <div className="flex items-center gap-2">
+                {[
+                  { name: "O Boticário", logo: "/brands/oboticario.svg" },
+                  { name: "Eudora",      logo: "/brands/eudora.svg"     },
+                  { name: "QDB",         logo: "/brands/qdb.svg"        },
+                ].map((brand) => (
+                  <img
+                    key={brand.name}
+                    src={brand.logo}
+                    alt={brand.name}
+                    title={brand.name}
+                    className="h-7 sm:h-8 md:h-8 lg:h-9 w-auto rounded-sm opacity-90 hover:opacity-100 transition-opacity duration-200"
+                  />
+                ))}
+              </div>
+              <div className="flex items-center gap-2">
+                {[
+                  { name: "Multi B",     logo: "/brands/multib.svg"     },
+                  { name: "Vult",        logo: "/brands/vult.svg"       },
+                  { name: "O.U.i",       logo: "/brands/oui.svg"        },
+                ].map((brand) => (
+                  <img
+                    key={brand.name}
+                    src={brand.logo}
+                    alt={brand.name}
+                    title={brand.name}
+                    className="h-7 sm:h-8 md:h-8 lg:h-9 w-auto rounded-sm opacity-90 hover:opacity-100 transition-opacity duration-200"
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+          <nav className="hidden md:flex items-center gap-10 text-[14px] tracking-[0.24em] uppercase font-sans">
+            <a href="#haircare" className="hover:text-luxe-gold-soft transition-colors font-semibold">Hair Care</a>
+            <a href="#perfumes" className="hover:text-luxe-gold-soft transition-colors font-semibold">Perfumes</a>
+            <a href="#mais-amados" className="hover:text-luxe-gold-soft transition-colors font-semibold">Mais Amados</a>
+            <a href="#kits" className="hover:text-luxe-gold-soft transition-colors font-semibold">Kits</a>
+            <a href="#faq" className="hover:text-luxe-gold-soft transition-colors font-semibold">FAQ</a>
+          </nav>
+          <a
+            href={waLink("Olá, vim pela página e quero atendimento de luxo inteligente.")}
+            target="_blank"
+            rel="noreferrer"
+            className="hidden sm:inline-flex items-center gap-2 text-[14px] tracking-[0.2em] uppercase font-bold transition-colors"
+            style={{ color: "#25d366" }}
+          >
+            WhatsApp <ArrowRight className="size-4" />
+          </a>
+        </div>
+      </div>
+
     </header>
   );
 }
@@ -174,18 +231,18 @@ function Hero() {
       <div className="absolute inset-0 bg-gradient-to-r from-black/95 via-black/70 to-transparent" />
       <div className="absolute inset-0 bg-gradient-to-t from-[#070707] via-transparent to-black/50" />
 
-      <div className="relative z-10 mx-auto max-w-7xl w-full px-4 md:px-6 pt-36 pb-20 md:pt-48 md:pb-32 flex flex-col justify-end">
+      <div className="relative z-10 mx-auto max-w-7xl w-full px-4 md:px-6 pt-40 pb-32 md:pt-48 md:pb-32 flex flex-col justify-end">
         <motion.div {...fade} className="max-w-3xl">
-          <div className="mb-8">
+          <div className="mb-2 sm:mb-8 hidden md:flex md:justify-start">
             <FloatingBadge className="border-white/30 bg-white/95">
-              <Timer className="size-3.5 text-luxe-black" />
-              <span className="text-[12px] tracking-[0.32em] uppercase text-luxe-black font-semibold">
+              <Timer className="size-3 sm:size-3.5 text-luxe-black" />
+              <span className="text-[9px] sm:text-[12px] tracking-[0.24em] sm:tracking-[0.32em] uppercase text-luxe-black font-semibold">
                 Entrega VIP · Em até 1h para BH e Região
               </span>
             </FloatingBadge>
           </div>
 
-          <h1 className="font-display text-[11vw] md:text-[7rem] leading-[0.95] md:leading-[1.0] tracking-tight font-bold">
+          <h1 className="font-display text-[19vw] md:text-[7rem] leading-[0.85] md:leading-[1.0] tracking-tight font-bold">
             <span className="text-gold-foil">
               Luxo Acessível
             </span>
@@ -207,11 +264,11 @@ function Hero() {
               )}
               target="_blank"
               rel="noreferrer"
-              className="group inline-flex flex-wrap items-center justify-center gap-3 bg-whatsapp hover:bg-whatsapp-hover text-black font-bold px-5 py-3 md:px-8 md:py-4 text-sm md:text-base tracking-wide transition-all shadow-[0_0_20px_rgba(37,211,102,0.2)] hover:shadow-[0_0_25px_rgba(37,211,102,0.4)]"
+              className="group inline-flex flex-wrap items-center justify-center gap-3 bg-whatsapp hover:bg-whatsapp-hover text-black font-bold px-6 py-3.5 md:px-8 md:py-4 text-base md:text-base tracking-wide transition-all shadow-[0_0_20px_rgba(37,211,102,0.2)] hover:shadow-[0_0_25px_rgba(37,211,102,0.4)]"
             >
-              <MessageCircle className="size-5" />
+              <MessageCircle className="size-6" />
               Peça Agora e Receba em Minutos
-              <ArrowRight className="size-4 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight className="size-5 group-hover:translate-x-1 transition-transform" />
             </a>
             <a
               href="#haircare"
@@ -225,6 +282,15 @@ function Hero() {
             <span>Grupo Boticário</span>
             <span className="h-px w-8 bg-luxe-gold/50" />
             <span>Eudora</span>
+          </div>
+
+          <div className="md:hidden mt-20">
+            <FloatingBadge className="border-white/30 bg-white/95 px-3.5 py-1.5">
+              <Timer className="size-4 text-luxe-black" />
+              <span className="text-[12px] tracking-[0.2em] uppercase text-luxe-black font-semibold">
+                Entrega VIP · Em até 1h para BH e Região
+              </span>
+            </FloatingBadge>
           </div>
         </motion.div>
       </div>
