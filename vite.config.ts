@@ -250,10 +250,16 @@ export default defineConfig({
     modulePreload: { polyfill: false },
     rollupOptions: {
       output: {
-        manualChunks: {
-          "vendor-framer": ["framer-motion"],
-          "vendor-icons": ["lucide-react"],
-          "vendor-router": ["wouter"],
+        manualChunks(id) {
+          if (id.includes("node_modules/framer-motion")) return "vendor-framer";
+          if (id.includes("node_modules/lucide-react")) return "vendor-icons";
+          if (id.includes("node_modules/wouter")) return "vendor-router";
+          if (id.includes("components/sections/")) {
+            if (id.includes("TrustBar") || id.includes("HairCareSuite")) return "sections-haircare";
+            if (id.includes("PerfumesHeader") || id.includes("EditorialShowcase") || id.includes("MalbecShowcase") || id.includes("FlorattaRedShowcase")) return "sections-perfumes";
+            if (id.includes("BoticarioCarousel") || id.includes("KitsGrid")) return "sections-products";
+            if (id.includes("Consultoria") || id.includes("Depoimentos") || id.includes("Faq") || id.includes("CtaFinal") || id.includes("Footer")) return "sections-bottom";
+          }
         },
       },
     },

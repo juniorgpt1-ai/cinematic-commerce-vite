@@ -1,0 +1,155 @@
+import { memo } from "react";
+import { motion } from "framer-motion";
+import { Timer, MessageCircle, ArrowRight, Award } from "lucide-react";
+import { waLink } from "@/lib/whatsapp";
+import { useFadeUp } from "@/hooks/useFadeUp";
+import FloatingBadge from "@/components/sections/FloatingBadge";
+
+const MalbecShowcase = memo(function MalbecShowcase({ lifestyleImg, collageImg }: { lifestyleImg: string; collageImg: string }) {
+  const fade = useFadeUp();
+  return (
+    <section id="malbec" className="relative bg-luxe-bg border-b border-luxe-line/30 overflow-hidden">
+      <div className="mx-auto max-w-7xl px-6 py-20 md:py-28 relative z-10">
+        {/* Top editorial split */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+          {/* Lifestyle hero image */}
+          <motion.div {...fade} className="lg:col-span-7 relative">
+            <div className="relative aspect-[4/5] overflow-hidden bg-black shadow-2xl border border-luxe-line/20 group">
+              <img
+                src={lifestyleImg}
+                alt="Homem sofisticado aplicando Malbec O Boticário"
+                loading="lazy"
+                className="h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
+              <div className="absolute top-4 md:top-6 left-4 md:left-6 right-4 md:right-6 flex flex-wrap items-center justify-between gap-2 text-white/80 text-[10px] tracking-[0.24em] md:tracking-[0.32em] uppercase font-semibold">
+                <span>O BOTICÁRIO · MASCULINO</span>
+                <span>MAISON PREMIUM</span>
+              </div>
+            </div>
+            {/* Floating product bottle inset */}
+            <div className="absolute -bottom-3 -right-3 md:-bottom-5 md:-right-5 z-20 w-32 md:w-44 animate-bottle-in animate-bottle-float">
+              <img
+                src="/malbec.webp"
+                alt="Frasco Malbec Signature O Boticário"
+                loading="lazy"
+                className="w-full h-full object-contain drop-shadow-xl"
+                style={{ mixBlendMode: "screen" }}
+              />
+            </div>
+            <div className="absolute -bottom-2 -left-2 md:-bottom-3 md:-left-3 z-20">
+              <FloatingBadge className="shadow-lg border-luxe-gold-soft/30 bg-black/90">
+                <Award className="size-3.5 text-luxe-gold" />
+                <span className="text-[14px] tracking-wider uppercase font-bold text-luxe-gold-soft">Mais Procurado</span>
+              </FloatingBadge>
+            </div>
+          </motion.div>
+
+          {/* Copy side */}
+          <motion.div
+            {...fade}
+            transition={{ ...fade.transition, delay: 0.12 }}
+            className="lg:col-span-5"
+          >
+            <span className="eyebrow text-luxe-gold">O Boticário · Perfumaria Masculina</span>
+            <h2 className="mt-6 font-section text-4xl md:text-5xl font-semibold leading-[1.08] tracking-tight">
+              Malbec Cologne. A elegância da{" "}
+              <span className="font-light italic text-luxe-gold">presença marcante</span>.
+            </h2>
+            <span className="gold-rule mt-8" />
+            <p className="mt-8 text-lg text-luxe-ink/85 font-sans font-light leading-relaxed">
+              Um clássico atemporal que une sofisticação e intensidade. Com álcool vinícola e madeiras nobres, é a assinatura olfativa do homem que sabe o que quer — luxo acessível com altíssima performance.
+            </p>
+
+            <dl className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-6 border-t border-luxe-line/30 pt-8 font-sans">
+              {(["Lima da Pérsia", "Uvas Malbec", "Carvalho Francês"] as const).map((n, i) => (
+                <div key={n}>
+                  <dt className="text-xs tracking-[0.24em] uppercase text-luxe-ink-soft/80 font-semibold">
+                    Nota {i === 0 ? "Topo" : i === 1 ? "Coração" : "Fundo"}
+                  </dt>
+                  <dd className="mt-2 font-display text-xl font-bold text-black">{n}</dd>
+                </div>
+              ))}
+            </dl>
+
+            <div className="mt-8 inline-flex flex-wrap items-center gap-2 border border-luxe-gold/40 bg-luxe-gold/5 px-3 py-1.5 rounded-xs max-w-full">
+              <Timer className="size-3.5 text-luxe-gold" />
+              <span className="text-[10px] tracking-[0.28em] uppercase text-luxe-gold font-semibold">
+                Entrega VIP em até 1h · BH e região
+              </span>
+            </div>
+
+            <div className="mt-10 flex items-end justify-between gap-6 flex-wrap">
+              <div>
+                <span className="text-[10px] tracking-[0.28em] uppercase text-luxe-ink-soft/70 font-semibold">Valor Acessível</span>
+                <div className="font-sans text-4xl font-bold mt-1 text-luxe-ink">R$ 289,90</div>
+                <div className="mt-2 text-[13px] text-luxe-ink-soft font-medium">
+                  ou <span className="text-luxe-ink font-semibold">6x sem juros</span>
+                  <span className="mx-2 text-luxe-gold">·</span>
+                  <span className="text-luxe-ink font-semibold">Pix com 5% OFF</span>
+                </div>
+              </div>
+              <a
+                href={waLink("Olá! Quero comprar o Malbec Cologne (O Boticário) com entrega VIP em 1h em BH.")}
+                target="_blank"
+                rel="noreferrer"
+                className="group inline-flex flex-wrap items-center justify-center gap-3 bg-luxe-ink hover:bg-whatsapp text-white hover:text-black transition-colors px-5 py-3 md:px-8 md:py-4 text-sm font-semibold tracking-wide shadow-md"
+              >
+                <MessageCircle className="size-4" />
+                Garantir meu Malbec
+                <ArrowRight className="size-4 group-hover:translate-x-1 transition-transform" />
+              </a>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Collage — full-width editorial image */}
+        <motion.div
+          {...fade}
+          transition={{ ...fade.transition, delay: 0.2 }}
+          className="mt-20 md:mt-28"
+        >
+          <div className="bg-[#fdf7f1] p-3 md:p-6 rounded-xs shadow-2xl border border-luxe-line/20">
+            {/* Full-width image */}
+            <div className="overflow-hidden rounded-xs">
+              <img
+                src={collageImg}
+                alt="Malbec O Boticário — relógio, frasco, aplicação e espelho"
+                loading="lazy"
+                className="w-full h-auto md:h-[600px] md:object-cover block"
+              />
+            </div>
+
+            {/* Title */}
+            <h2
+              className="mt-8 md:mt-10 text-center font-section text-2xl md:text-4xl font-semibold text-luxe-ink leading-snug px-2"
+              style={{ fontFamily: "var(--font-fenix)" }}
+            >
+              A marca de quem faz acontecer e não aceita menos que o melhor.
+            </h2>
+
+            {/* Gold metallic CTA button */}
+            <div className="mt-6 md:mt-8 flex justify-center">
+              <a
+                href={waLink("Olá! Quero o Malbec Cologne com entrega VIP em 1h em BH.")}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-3 px-8 py-4 text-sm md:text-base font-bold tracking-[0.2em] uppercase rounded-sm transition-all duration-300 hover:brightness-110 hover:shadow-xl"
+                style={{
+                  background: "linear-gradient(135deg, #c9a84c 0%, #e2c87a 30%, #c9a84c 50%, #b8942e 70%, #c9a84c 100%)",
+                  color: "#1a1a1a",
+                  boxShadow: "0 4px 15px rgba(201, 168, 76, 0.4)",
+                }}
+              >
+                Garantir Agora
+                <ArrowRight className="size-4" />
+              </a>
+            </div>
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
+});
+
+export default MalbecShowcase;

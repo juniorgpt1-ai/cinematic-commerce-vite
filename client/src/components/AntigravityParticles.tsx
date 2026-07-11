@@ -1,5 +1,5 @@
 import { memo, useEffect, useMemo, useState } from "react";
-import { motion, useMotionValue, useSpring, useTransform, MotionValue } from "framer-motion";
+import { motion, useMotionValue, useSpring, useTransform, useReducedMotion, MotionValue } from "framer-motion";
 
 interface Particle {
   id: number;
@@ -52,11 +52,11 @@ const ParticleElement = memo(function ParticleElement({ p, smoothMouseX, smoothM
 });
 
 export function AntigravityParticles() {
-  const [particles, setParticles] = useState<Particle[]>([]);
+  const prefersReducedMotion = useReducedMotion();
 
-  useEffect(() => {
+  const [particles] = useState<Particle[]>(() => {
     const types: ("bead" | "drop" | "spark")[] = ["bead", "drop", "spark"];
-    const generated: Particle[] = Array.from({ length: 25 }).map((_, i) => ({
+    return Array.from({ length: 18 }).map((_, i) => ({
       id: i,
       x: Math.random() * 100,
       y: Math.random() * 100,
@@ -66,8 +66,7 @@ export function AntigravityParticles() {
       floatDuration: Math.random() * 12 + 10,
       delay: Math.random() * -10,
     }));
-    setParticles(generated);
-  }, []);
+  });
 
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
@@ -86,6 +85,8 @@ export function AntigravityParticles() {
     window.addEventListener("mousemove", handleMouseMove, { passive: true });
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, [mouseX, mouseY]);
+
+  if (prefersReducedMotion) return null;
 
   return (
     <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">

@@ -1,0 +1,78 @@
+import { memo } from "react";
+import { motion } from "framer-motion";
+import { MessageCircle, ArrowRight, Sparkles } from "lucide-react";
+import { waLink } from "@/lib/whatsapp";
+import { useFadeUp } from "@/hooks/useFadeUp";
+import FloatingBadge from "@/components/sections/FloatingBadge";
+
+const Consultoria = memo(function Consultoria({ image }: { image: string }) {
+  const fade = useFadeUp();
+  return (
+    <section className="bg-luxe-bg border-b border-luxe-line/20 relative overflow-hidden">
+      <div className="mx-auto max-w-7xl px-6 py-24 md:py-36 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-14 lg:gap-20 items-center">
+          <motion.div {...fade} className="lg:col-span-6 relative">
+            <div className="relative aspect-[4/5] overflow-hidden shadow-2xl border border-luxe-line/30">
+              <img
+                src={image}
+                alt="Consultora premium sorrindo, atendimento personalizado e humanizado"
+                loading="lazy"
+                className="h-full w-full object-cover"
+              />
+              <div className="absolute inset-0 border border-luxe-gold/40 pointer-events-none m-4" />
+            </div>
+
+            {/* Absolute Floating Badges */}
+            <div className="absolute top-6 left-6 z-20">
+              <FloatingBadge className="shadow-lg bg-black/85 border-luxe-gold-soft/40">
+                <Sparkles className="size-3.5 text-luxe-gold" />
+                <span className="text-[14px] tracking-wider uppercase font-bold text-luxe-gold-soft">Atendimento VIP</span>
+              </FloatingBadge>
+            </div>
+          </motion.div>
+
+          <motion.div
+            {...fade}
+            transition={{ ...fade.transition, delay: 0.1 }}
+            className="lg:col-span-6"
+          >
+            <span className="eyebrow">Atendimento Humanizado</span>
+            <h2 className="mt-6 font-section text-5xl md:text-5xl font-semibold leading-tight">
+              Escolha Inteligente Sem Complicações
+            </h2>
+            <span className="gold-rule mt-8" />
+            <p className="mt-8 text-lg text-luxe-ink/85 font-sans font-light leading-relaxed max-w-lg">
+              Evite frustrações ao comprar no escuro. Nossa consultoria de luxo inteligente ajuda você a selecionar a fragrância e o tratamento capilar sob medida para sua necessidade, com honestidade e empatia.
+            </p>
+            <ul className="mt-8 space-y-3.5 text-luxe-ink/85 font-sans font-light">
+              <li className="flex items-start gap-3">
+                <span className="mt-2.5 h-1.5 w-1.5 bg-luxe-gold rounded-full shrink-0" />
+                <span>Perfil de fragrância ou capilar personalizado em poucas mensagens.</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="mt-2.5 h-1.5 w-1.5 bg-luxe-gold rounded-full shrink-0" />
+                <span>Alternativas sofisticadas com o melhor custo-benefício de mercado.</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="mt-2.5 h-1.5 w-1.5 bg-luxe-gold rounded-full shrink-0" />
+                <span>Zero scripts de vendas robóticos — contato de humano para humano.</span>
+              </li>
+            </ul>
+            <a
+              href={waLink("Olá, quero falar com a consultora premium para fazer minha seleção personalizada.")}
+              target="_blank"
+              rel="noreferrer"
+              className="mt-10 inline-flex flex-wrap items-center justify-center gap-3 bg-luxe-ink hover:bg-whatsapp hover:text-black text-white transition-colors px-5 py-3 md:px-8 md:py-4 text-sm font-semibold tracking-wide shadow-md"
+            >
+              <MessageCircle className="size-4" />
+              Falar com a Consultora
+              <ArrowRight className="size-4" />
+            </a>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+});
+
+export default Consultoria;

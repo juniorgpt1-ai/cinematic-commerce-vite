@@ -35,13 +35,14 @@
     <!-- Resource Hints -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="dns-prefetch" href="//wa.me" />
+    <link rel="preconnect" href="https://wa.me" crossorigin />
 
     <!-- Font CSS preload: high-priority download, non-blocking via existing media="print" link -->
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Fenix&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" />
 
     <!-- LCP Preload: hero image discovered before CSS/JS -->
-    <link rel="preload" as="image" href="/malbec-signatureA.webp" fetchpriority="high" type="image/webp" />
+    <link rel="preload" as="image" href="/malbec-signatureA.webp" fetchpriority="high" type="image/webp" media="(min-width: 768px)" />
+    <link rel="preload" as="image" href="/malbecSMOB.webp" fetchpriority="high" type="image/webp" media="(max-width: 767px)" />
 
     <!-- Critical inline CSS: prevents white flash before Tailwind loads -->
     <style>
