@@ -4,6 +4,7 @@ import react from "@vitejs/plugin-react";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { visualizer } from "rollup-plugin-visualizer";
 import { defineConfig, type Plugin, type ViteDevServer } from "vite";
 import { vitePluginManusRuntime } from "vite-plugin-manus-runtime";
 
@@ -154,6 +155,28 @@ function vitePluginManusDebugCollector(): Plugin {
   };
 }
 
+function vitePluginCssPreload(): Plugin {
+  return {
+    name: "css-preload",
+    enforce: "post",
+    transformIndexHtml: {
+      order: "post",
+      handler(html, ctx) {
+        if (!ctx.bundle) return html;
+        for (const [key, chunk] of Object.entries(ctx.bundle)) {
+          if (chunk.type === "asset" && key.endsWith(".css")) {
+            return html.replace(
+              "</head>",
+              `  <link rel="preload" as="style" crossorigin href="/${key}" />\n  </head>`,
+            );
+          }
+        }
+        return html;
+      },
+    },
+  };
+}
+
 function vitePluginStorageProxy(): Plugin {
   return {
     name: "manus-storage-proxy",
@@ -207,7 +230,7 @@ function vitePluginStorageProxy(): Plugin {
   };
 }
 
-const plugins = [react(), tailwindcss(), jsxLocPlugin(), vitePluginManusRuntime(), vitePluginManusDebugCollector(), vitePluginStorageProxy()];
+const plugins = [react(), tailwindcss(), jsxLocPlugin(), vitePluginManusRuntime(), vitePluginManusDebugCollector(), vitePluginStorageProxy(), vitePluginCssPreload(), visualizer({ filename: "dist/stats.html", open: false, gzipSize: true, brotliSize: true, template: "treemap" })];
 
 export default defineConfig({
   plugins,
@@ -221,7 +244,19 @@ export default defineConfig({
   build: {
     outDir: path.resolve(__dirname, "dist/public"),
     emptyOutDir: true,
-    chunkSizeWarningLimit: 600,
+    chunkSizeWarningLimit: 400,
+    target: "esnext",
+    cssMinify: true,
+    modulePreload: { polyfill: false },
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          "vendor-framer": ["framer-motion"],
+          "vendor-icons": ["lucide-react"],
+          "vendor-router": ["wouter"],
+        },
+      },
+    },
   },
   server: {
     port: 5000,

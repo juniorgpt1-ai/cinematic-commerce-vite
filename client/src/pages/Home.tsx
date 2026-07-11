@@ -12,24 +12,21 @@ import {
   ArrowRight,
   ChevronLeft,
   Award,
-  TrendingUp,
-  Flame,
-  Droplets,
 } from "lucide-react";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect, useMemo, memo, lazy, Suspense } from "react";
 import { waLink } from "@/lib/whatsapp";
-import { AntigravityParticles } from "@/components/AntigravityParticles";
+
+const AntigravityParticles = lazy(() => import("@/components/AntigravityParticles").then(m => ({ default: m.AntigravityParticles })));
 
 // Assets - URLs públicas
-const heroPerfume = "/malbec-signature.png";
-const malbecBottleImg = "/malbec-bottle.jpg";
-const malbecLifestyleImg = "/malbec-lifestyle.jpg";
-const malbecCollageImg = "/malbec-collage.jpg";
-const florattaRedImg = "/floratta-red-lifestyle.jpg";
-const lilyImg = "/lily.jpg";
-const hairCareVolumeImg = "/hair-care-volume.png";
-const hairCareLisoImg = "/hair-care-liso.png";
-const consultoraImg = "/consultora.jpg";
+const heroPerfume = "/malbec-signatureA.webp";
+const malbecLifestyleImg = "/malbec-lifestyle.webp";
+const malbecCollageImg = "/malbec-collage.webp";
+const florattaRedImg = "/floratta-red-lifestyle.webp";
+const lilyImg = "/lily.webp";
+const hairCareVolumeImg = "/hair-care-volume.webp";
+const hairCareLisoImg = "/hair-care-liso.webp";
+const consultoraImg = "/consultora.webp";
 
 // Removido: TanStack Router não é necessário no Vite simples
 
@@ -37,15 +34,15 @@ const consultoraImg = "/consultora.jpg";
 
 function useFadeUp() {
   const reduce = useReducedMotion();
-  return {
+  return useMemo(() => ({
     initial: reduce ? {} : { opacity: 0, y: 32 },
     whileInView: { opacity: 1, y: 0 },
     viewport: { once: true, margin: "-80px" },
     transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1] as const },
-  };
+  }), [reduce]);
 }
 
-function FloatingBadge({ children, className = "" }: { children: React.ReactNode; className?: string }) {
+const FloatingBadge = memo(function FloatingBadge({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return (
     <motion.span
       animate={{ y: [0, -6, 0] }}
@@ -59,33 +56,54 @@ function FloatingBadge({ children, className = "" }: { children: React.ReactNode
       {children}
     </motion.span>
   );
-}
+});
 
-function LandingPage() {
+const LazySection = memo(function LazySection({ children }: { children: React.ReactNode }) {
+  const [visible, setVisible] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          obs.disconnect();
+        }
+      },
+      { rootMargin: "800px" },
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+  return <div ref={ref}>{visible ? children : null}</div>;
+});
+
+const LandingPage = memo(function LandingPage() {
   return (
     <main className="min-h-screen bg-luxe-bg text-luxe-ink overflow-x-hidden relative font-sans">
       <Nav />
       <Hero />
-      <TrustBar />
-      <HairCareSuite />
-      <PerfumesHeader />
-      <MalbecShowcase />
-      <FlorattaRedShowcase />
-      <BoticarioCarousel />
-      <KitsGrid />
-      <Consultoria />
-      <Depoimentos />
-      <Faq />
-      <CtaFinal />
-      <Footer />
+      <LazySection><TrustBar /></LazySection>
+      <LazySection><HairCareSuite /></LazySection>
+      <LazySection><PerfumesHeader /></LazySection>
+      <LazySection><MalbecShowcase /></LazySection>
+      <LazySection><FlorattaRedShowcase /></LazySection>
+      <LazySection><BoticarioCarousel /></LazySection>
+      <LazySection><KitsGrid /></LazySection>
+      <LazySection><Consultoria /></LazySection>
+      <LazySection><Depoimentos /></LazySection>
+      <LazySection><Faq /></LazySection>
+      <LazySection><CtaFinal /></LazySection>
+      <LazySection><Footer /></LazySection>
       <WhatsappFloating />
     </main>
   );
-}
+});
 
 /* -------------------------------- NAV ------------------------------------ */
 
-function Nav() {
+const Nav = memo(function Nav() {
   return (
     <header className="absolute top-0 inset-x-0 z-30">
 
@@ -209,21 +227,27 @@ function Nav() {
 
     </header>
   );
-}
+});
 
 /* -------------------------------- HERO ----------------------------------- */
 
-function Hero() {
+const Hero = memo(function Hero() {
   const fade = useFadeUp();
+  const [showParticles, setShowParticles] = useState(false);
+  useEffect(() => {
+    const id = requestAnimationFrame(() => setShowParticles(true));
+    return () => cancelAnimationFrame(id);
+  }, []);
   return (
     <section className="relative min-h-screen w-full bg-[#070707] text-white overflow-hidden flex flex-col justify-end">
-      {/* Background Interactive Particles (Antigravity effect) */}
-      <AntigravityParticles />
+      {/* Background Interactive Particles (Antigravity effect) — deferred for LCP */}
+      {showParticles && <Suspense fallback={null}><AntigravityParticles /></Suspense>}
 
       <img
         src={heroPerfume}
         alt="Fragrância de luxo iluminada em fundo escuro com reflexos dinâmicos"
         fetchPriority="high"
+        loading="eager"
         width={1600}
         height={1200}
         className="absolute inset-0 h-full w-full object-cover opacity-60"
@@ -296,11 +320,11 @@ function Hero() {
       </div>
     </section>
   );
-}
+});
 
 /* ------------------------------ TRUSTBAR --------------------------------- */
 
-function TrustBar() {
+const TrustBar = memo(function TrustBar() {
   const items = [
     {
       icon: Timer,
@@ -347,11 +371,11 @@ function TrustBar() {
       </div>
     </section>
   );
-}
+});
 
 /* --------------------------- HAIR CARE SUITE ----------------------------- */
 
-function HairCareSuite() {
+const HairCareSuite = memo(function HairCareSuite() {
   const fade = useFadeUp();
   return (
     <section id="haircare" className="relative bg-luxe-bg overflow-hidden border-b border-luxe-line/40">
@@ -461,7 +485,7 @@ function HairCareSuite() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20" />
               <div className="absolute top-4 md:top-6 left-4 md:left-6 right-4 md:right-6 flex flex-wrap items-center justify-between gap-2 text-white/80 text-[10px] tracking-[0.24em] md:tracking-[0.32em] uppercase font-semibold">
-                <span>RITUAL DE ALINHAMENTO</span>
+                <span>ALINHAMENTO PREMIUM</span>
                 <span>Nº 02</span>
               </div>
             </div>
@@ -487,7 +511,7 @@ function HairCareSuite() {
             <span className="gold-rule mt-6" />
             
             <p className="mt-6 text-lg text-luxe-ink/85 font-sans font-light leading-relaxed">
-              Repõe Massa e Blinda os Fios. Sua inteligência escolhe o liso absoluto, 3x mais eficaz. Alta performance para todos através de um ritual de cauterização lipídica que sela as cutículas instantaneamente.
+              Repõe Massa e Blinda os Fios. Sua inteligência escolhe o liso absoluto, 3x mais eficaz. Alta performance para todos através da tecnologia de cauterização lipídica que sela as cutículas instantaneamente.
             </p>
 
             <ul className="mt-8 space-y-3.5 text-luxe-ink/85 font-sans font-light">
@@ -533,11 +557,11 @@ function HairCareSuite() {
       </div>
     </section>
   );
-}
+});
 
 /* ------------------------ PERFUMES HEADER -------------------------------- */
 
-function PerfumesHeader() {
+const PerfumesHeader = memo(function PerfumesHeader() {
   const fade = useFadeUp();
   return (
     <section id="perfumes" className="bg-luxe-bg pt-24 md:pt-32 pb-6 border-b border-luxe-line/20 relative overflow-hidden">
@@ -555,7 +579,7 @@ function PerfumesHeader() {
       </div>
     </section>
   );
-}
+});
 
 /* ---------------------------- SHOWCASE BASE ------------------------------ */
 
@@ -575,7 +599,7 @@ type ShowcaseProps = {
   sealText?: string;
 };
 
-function EditorialShowcase({
+const EditorialShowcase = memo(function EditorialShowcase({
   id,
   eyebrow,
   title,
@@ -684,9 +708,9 @@ function EditorialShowcase({
       </div>
     </section>
   );
-}
+});
 
-function MalbecShowcase() {
+const MalbecShowcase = memo(function MalbecShowcase() {
   const fade = useFadeUp();
   return (
     <section id="malbec" className="relative bg-luxe-bg border-b border-luxe-line/30 overflow-hidden">
@@ -698,7 +722,7 @@ function MalbecShowcase() {
             <div className="relative aspect-[4/5] overflow-hidden bg-black shadow-2xl border border-luxe-line/20 group">
               <img
                 src={malbecLifestyleImg}
-                alt="Homem sofisticado aplicando Malbec O Boticário em ritual de luxo"
+                alt="Homem sofisticado aplicando Malbec O Boticário"
                 loading="lazy"
                 className="h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
               />
@@ -711,13 +735,14 @@ function MalbecShowcase() {
             {/* Floating product bottle inset */}
             <div className="absolute -bottom-3 -right-3 md:-bottom-5 md:-right-5 z-20 w-32 md:w-44 animate-bottle-in animate-bottle-float">
               <img
-                src="/malbec.png"
+                src="/malbec.webp"
                 alt="Frasco Malbec Signature O Boticário"
+                loading="lazy"
                 className="w-full h-full object-contain drop-shadow-xl"
                 style={{ mixBlendMode: "screen" }}
               />
             </div>
-            <div className="absolute -top-2 -left-2 md:-top-3 md:-left-3 z-20">
+            <div className="absolute -bottom-2 -left-2 md:-bottom-3 md:-left-3 z-20">
               <FloatingBadge className="shadow-lg border-luxe-gold-soft/30 bg-black/90">
                 <Award className="size-3.5 text-luxe-gold" />
                 <span className="text-[14px] tracking-wider uppercase font-bold text-luxe-gold-soft">Mais Procurado</span>
@@ -747,7 +772,7 @@ function MalbecShowcase() {
                   <dt className="text-xs tracking-[0.24em] uppercase text-luxe-ink-soft/80 font-semibold">
                     Nota {i === 0 ? "Topo" : i === 1 ? "Coração" : "Fundo"}
                   </dt>
-                  <dd className="mt-2 font-display text-lg font-bold text-black">{n}</dd>
+                  <dd className="mt-2 font-display text-xl font-bold text-black">{n}</dd>
                 </div>
               ))}
             </dl>
@@ -783,45 +808,56 @@ function MalbecShowcase() {
           </motion.div>
         </div>
 
-        {/* Collage strip */}
+        {/* Collage — full-width editorial image */}
         <motion.div
           {...fade}
           transition={{ ...fade.transition, delay: 0.2 }}
-          className="mt-20 md:mt-28 relative overflow-hidden rounded-xs shadow-2xl border border-luxe-line/20"
+          className="mt-20 md:mt-28"
         >
-          <img
-            src="/lifea.jpg"
-            alt="Malbec O Boticário — ritual masculino de luxo: relógio, frasco, aplicação e espelho"
-            loading="lazy"
-            className="w-full object-cover h-[565px] md:h-[700px] block"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/10 to-transparent" />
-          <div className="absolute bottom-6 left-6 right-6 flex items-center justify-between">
-            <p
-              className="text-white text-2xl md:text-3xl font-bold max-w-sm leading-snug bg-black/30 backdrop-blur-sm rounded px-3 py-2 -mx-3"
-              style={{
-                fontFamily: "var(--font-fenix)",
-                textShadow: "0 2px 24px rgba(0,0,0,0.95), 0 0 60px rgba(0,0,0,0.5)",
-              }}
+          <div className="bg-[#fdf7f1] p-3 md:p-6 rounded-xs shadow-2xl border border-luxe-line/20">
+            {/* Full-width image */}
+            <div className="overflow-hidden rounded-xs">
+              <img
+                src="/malbec-collage.webp"
+                alt="Malbec O Boticário — relógio, frasco, aplicação e espelho"
+                loading="lazy"
+                className="w-full h-auto md:h-[600px] md:object-cover block"
+              />
+            </div>
+
+            {/* Title */}
+            <h2
+              className="mt-8 md:mt-10 text-center font-section text-2xl md:text-4xl font-semibold text-luxe-ink leading-snug px-2"
+              style={{ fontFamily: "var(--font-fenix)" }}
             >
               A marca de quem faz acontecer e não aceita menos que o melhor.
-            </p>
-            <a
-              href={waLink("Olá! Quero o Malbec Cologne com entrega VIP em 1h em BH.")}
-              target="_blank"
-              rel="noreferrer"
-              className="hidden md:inline-flex shrink-0 items-center gap-2 text-sm font-bold tracking-widest uppercase text-[#F8F6F0] border-b border-[#F8F6F0]/60 pb-1 hover:text-white hover:border-white transition-all"
-            >
-              Garantir Agora <ArrowRight className="size-3.5" />
-            </a>
+            </h2>
+
+            {/* Gold metallic CTA button */}
+            <div className="mt-6 md:mt-8 flex justify-center">
+              <a
+                href={waLink("Olá! Quero o Malbec Cologne com entrega VIP em 1h em BH.")}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-3 px-8 py-4 text-sm md:text-base font-bold tracking-[0.2em] uppercase rounded-sm transition-all duration-300 hover:brightness-110 hover:shadow-xl"
+                style={{
+                  background: "linear-gradient(135deg, #c9a84c 0%, #e2c87a 30%, #c9a84c 50%, #b8942e 70%, #c9a84c 100%)",
+                  color: "#1a1a1a",
+                  boxShadow: "0 4px 15px rgba(201, 168, 76, 0.4)",
+                }}
+              >
+                Garantir Agora
+                <ArrowRight className="size-4" />
+              </a>
+            </div>
           </div>
         </motion.div>
       </div>
     </section>
   );
-}
+});
 
-function FlorattaRedShowcase() {
+const FlorattaRedShowcase = memo(function FlorattaRedShowcase() {
   return (
     <EditorialShowcase
       id="floratta-red"
@@ -842,9 +878,9 @@ function FlorattaRedShowcase() {
       sealText="Melhor Custo-Benefício"
     />
   );
-}
+});
 
-function LilyShowcase() {
+const LilyShowcase = memo(function LilyShowcase() {
   return (
     <EditorialShowcase
       id="lily"
@@ -854,7 +890,7 @@ function LilyShowcase() {
           Lily Eau de Parfum. Sofisticação e <span className="font-light italic text-luxe-bordo">luxo absoluto</span>.
         </>
       }
-      copy="Uma das assinaturas olfativas mais famosas e cobiçadas. Lily é criado a partir do lírio e de um processo artesanal de enfleurage, resultando em uma fragrância floral opulenta e de fixação impecável. Indulgência inteligente para quem não abre mão do melhor."
+      copy="Uma das assinaturas olfativas mais famosas e cobiçadas. Lily é criado a partir do lírio e do método exclusivo de enfleurage, resultando em uma fragrância floral opulenta e de fixação impecável. Indulgência inteligente para quem não abre mão do melhor."
       notes={["Bergamota", "Lírio de Grasse", "Sândalo"]}
       price="R$ 349,90"
       cta="Garantir meu Lily"
@@ -865,7 +901,7 @@ function LilyShowcase() {
       sealText="Best Seller Absoluto"
     />
   );
-}
+});
 
 /* ---------------- BOTICÁRIO BEST SELLERS CAROUSEL ------------------------ */
 
@@ -880,7 +916,7 @@ interface CarouselProduct {
   waMsg: string;
 }
 
-function BoticarioCarousel() {
+const BoticarioCarousel = memo(function BoticarioCarousel() {
   const fade = useFadeUp();
   const carouselRef = useRef<HTMLDivElement>(null);
 
@@ -1036,11 +1072,11 @@ function BoticarioCarousel() {
       </div>
     </section>
   );
-}
+});
 
 /* -------------------------------- KITS ----------------------------------- */
 
-function KitsGrid() {
+const KitsGrid = memo(function KitsGrid() {
   const fade = useFadeUp();
   const kits = [
     {
@@ -1136,11 +1172,11 @@ function KitsGrid() {
       </div>
     </section>
   );
-}
+});
 
 /* ---------------------------- CONSULTORIA -------------------------------- */
 
-function Consultoria() {
+const Consultoria = memo(function Consultoria() {
   const fade = useFadeUp();
   return (
     <section className="bg-luxe-bg border-b border-luxe-line/20 relative overflow-hidden">
@@ -1194,7 +1230,7 @@ function Consultoria() {
               </li>
             </ul>
             <a
-              href={waLink("Olá, quero falar com a consultora premium para escolher meu ritual de luxo inteligente.")}
+              href={waLink("Olá, quero falar com a consultora premium para fazer minha seleção personalizada.")}
               target="_blank"
               rel="noreferrer"
               className="mt-10 inline-flex flex-wrap items-center justify-center gap-3 bg-luxe-ink hover:bg-whatsapp hover:text-black text-white transition-colors px-5 py-3 md:px-8 md:py-4 text-sm font-semibold tracking-wide shadow-md"
@@ -1208,11 +1244,11 @@ function Consultoria() {
       </div>
     </section>
   );
-}
+});
 
 /* ---------------------------- DEPOIMENTOS -------------------------------- */
 
-function Depoimentos() {
+const Depoimentos = memo(function Depoimentos() {
   const fade = useFadeUp();
   const items = [
     {
@@ -1259,7 +1295,7 @@ function Depoimentos() {
                   ))}
                 </div>
                 <Quote className="size-8 text-luxe-gold" strokeWidth={1} />
-                <blockquote className="mt-6 font-display text-xl leading-relaxed text-luxe-ink break-words">
+                <blockquote className="mt-6 font-display text-2xl md:text-3xl leading-relaxed text-luxe-ink break-words">
                   &ldquo;{t.quote}&rdquo;
                 </blockquote>
               </div>
@@ -1275,11 +1311,11 @@ function Depoimentos() {
       </div>
     </section>
   );
-}
+});
 
 /* -------------------------------- FAQ ------------------------------------ */
 
-function Faq() {
+const Faq = memo(function Faq() {
   const items = [
     {
       q: "O que significa 'Luxo Inteligente'?",
@@ -1326,7 +1362,7 @@ function Faq() {
                   aria-expanded={isOpen}
                   className="w-full flex items-center justify-between gap-4 py-6 text-left group cursor-pointer"
                 >
-                  <span className="font-display text-xl md:text-2xl text-luxe-ink group-hover:text-luxe-gold transition-colors font-bold min-w-0 break-words">
+                  <span className="font-fenix text-3xl text-luxe-ink group-hover:text-luxe-gold transition-colors font-normal min-w-0 break-words">
                     {it.q}
                   </span>
                   <ChevronDown
@@ -1353,11 +1389,11 @@ function Faq() {
       </div>
     </section>
   );
-}
+});
 
 /* ------------------------------ CTA FINAL -------------------------------- */
 
-function CtaFinal() {
+const CtaFinal = memo(function CtaFinal() {
   const fade = useFadeUp();
   return (
     <section className="relative bg-luxe-ink text-white overflow-hidden py-32 md:py-40">
@@ -1379,9 +1415,9 @@ function CtaFinal() {
           </div>
           
           <h2 className="mt-8 font-section text-5xl md:text-7xl font-semibold leading-[1.05]">
-            A Indulgência Inteligente
+            O Melhor do Grupo Boticário,
             <br />
-            <span className="font-light italic text-luxe-gold-soft">ao Seu Alcance.</span>
+            <span className="font-light italic text-luxe-gold-soft">Chegando Rápido Até Você.</span>
           </h2>
           <p className="mt-8 text-white/70 text-lg font-sans font-light max-w-xl mx-auto leading-relaxed">
             Nossos combos exclusivos têm estoque limitado. Fale com nosso atendimento agora mesmo e receba seus produtos preferidos com embalagem de luxo inclusa hoje em BH.
@@ -1403,11 +1439,11 @@ function CtaFinal() {
       </div>
     </section>
   );
-}
+});
 
 /* ------------------------------- FOOTER ---------------------------------- */
 
-function Footer() {
+const Footer = memo(function Footer() {
   return (
     <footer className="bg-luxe-bg border-t border-luxe-line/30">
       <div className="mx-auto max-w-7xl px-6 py-16">
@@ -1458,11 +1494,11 @@ function Footer() {
       </div>
     </footer>
   );
-}
+});
 
 /* ---------------------------- WHATSAPP FLOAT ----------------------------- */
 
-function WhatsappFloating() {
+const WhatsappFloating = memo(function WhatsappFloating() {
   return (
     <a
       href={waLink("Olá, vim pela página e quero atendimento de luxo inteligente.")}
@@ -1474,7 +1510,7 @@ function WhatsappFloating() {
       <MessageCircle className="size-6" strokeWidth={2} />
     </a>
   );
-}
+});
 
 export default function HomePage() {
   return <LandingPage />;

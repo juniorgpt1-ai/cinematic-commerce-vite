@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { memo, useEffect, useMemo, useState } from "react";
 import { motion, useMotionValue, useSpring, useTransform, MotionValue } from "framer-motion";
 
 interface Particle {
@@ -12,7 +12,9 @@ interface Particle {
   delay: number;
 }
 
-function ParticleElement({ p, smoothMouseX, smoothMouseY }: { p: Particle, smoothMouseX: MotionValue<number>, smoothMouseY: MotionValue<number> }) {
+const particleAnim = { y: [0, -20, 0], x: [0, 10, 0] };
+
+const ParticleElement = memo(function ParticleElement({ p, smoothMouseX, smoothMouseY }: { p: Particle, smoothMouseX: MotionValue<number>, smoothMouseY: MotionValue<number> }) {
   const xOffset = useTransform(smoothMouseX, (val: number) => val * p.parallaxFactor * 4);
   const yOffset = useTransform(smoothMouseY, (val: number) => val * p.parallaxFactor * 4);
 
@@ -25,6 +27,13 @@ function ParticleElement({ p, smoothMouseX, smoothMouseY }: { p: Particle, smoot
     bgStyle = "bg-luxe-gold-soft/50 rotate-45 rounded-xs shadow-[0_0_10px_rgba(223,200,138,0.6)]";
   }
 
+  const transition = useMemo(() => ({
+    duration: p.floatDuration,
+    repeat: Infinity,
+    ease: "easeInOut" as const,
+    delay: p.delay,
+  }), [p.floatDuration, p.delay]);
+
   return (
     <motion.div
       style={{
@@ -35,20 +44,12 @@ function ParticleElement({ p, smoothMouseX, smoothMouseY }: { p: Particle, smoot
         x: xOffset,
         y: yOffset,
       }}
-      animate={{
-        y: [0, -20, 0],
-        x: [0, 10, 0],
-      }}
-      transition={{
-        duration: p.floatDuration,
-        repeat: Infinity,
-        ease: "easeInOut",
-        delay: p.delay,
-      }}
+      animate={particleAnim}
+      transition={transition}
       className={`absolute ${bgStyle}`}
     />
   );
-}
+});
 
 export function AntigravityParticles() {
   const [particles, setParticles] = useState<Particle[]>([]);
@@ -82,7 +83,7 @@ export function AntigravityParticles() {
       mouseY.set((e.clientY / innerHeight) - 0.5);
     };
 
-    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, [mouseX, mouseY]);
 
