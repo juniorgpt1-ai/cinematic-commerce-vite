@@ -1,4 +1,4 @@
-import { memo } from "react";
+import { memo, useState, useEffect, useCallback } from "react";
 import { motion } from "framer-motion";
 import { Timer, MessageCircle, ArrowRight, Award } from "lucide-react";
 import { waLink } from "@/lib/whatsapp";
@@ -7,40 +7,82 @@ import FloatingBadge from "@/components/sections/FloatingBadge";
 
 const MalbecShowcase = memo(function MalbecShowcase({ lifestyleImg, collageImg }: { lifestyleImg: string; collageImg: string }) {
   const fade = useFadeUp();
+  const [slide, setSlide] = useState(0);
+
+  const nextSlide = useCallback(() => setSlide(s => (s + 1) % 2), []);
+
+  useEffect(() => {
+    const id = setInterval(nextSlide, 4000);
+    return () => clearInterval(id);
+  }, [nextSlide]);
+
   return (
     <section id="malbec" className="relative bg-luxe-bg border-b border-luxe-line/30 overflow-hidden">
       <div className="mx-auto max-w-7xl px-6 py-20 md:py-28 relative z-10">
         {/* Top editorial split */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
-          {/* Lifestyle hero image */}
+          {/* Carousel */}
           <motion.div {...fade} className="lg:col-span-7 relative">
-            <div className="relative aspect-[4/5] overflow-hidden bg-black shadow-2xl border border-luxe-line/20 group">
-              <img
-                src={lifestyleImg}
-                alt="Homem sofisticado aplicando Malbec O Boticário"
-                loading="lazy"
-                className="h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
-              <div className="absolute top-4 md:top-6 left-4 md:left-6 right-4 md:right-6 flex flex-wrap items-center justify-between gap-2 text-white/80 text-[10px] tracking-[0.24em] md:tracking-[0.32em] uppercase font-semibold">
-                <span>O BOTICÁRIO · MASCULINO</span>
-                <span>MAISON PREMIUM</span>
+            <div className="relative aspect-[4/5] overflow-hidden bg-black shadow-2xl border border-luxe-line/20">
+              <div
+                className="flex h-full transition-transform duration-700 ease-in-out"
+                style={{ transform: `translateX(-${slide * 100}%)` }}
+              >
+                {/* Slide 1: Lifestyle */}
+                <div className="min-w-full relative">
+                  <img
+                    src={lifestyleImg}
+                    alt="Homem sofisticado aplicando Malbec O Boticário"
+                    loading="lazy"
+                    className="h-full w-full object-cover object-top"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
+                  <div className="absolute top-4 md:top-6 left-4 md:left-6 right-4 md:right-6 flex flex-wrap items-center justify-between gap-2 text-white/80 text-[10px] tracking-[0.24em] md:tracking-[0.32em] uppercase font-semibold">
+                    <span>O BOTICÁRIO · MASCULINO</span>
+                    <span>MAISON PREMIUM</span>
+                  </div>
+                </div>
+
+                {/* Slide 2: Bottle */}
+                <div className="min-w-full relative flex items-center justify-center bg-gradient-to-b from-[#0a0a0a] via-[#111] to-black">
+                  <img
+                    src="/malbec1.webp"
+                    alt="Frasco Malbec Cologne O Boticário"
+                    loading="lazy"
+                    className="w-full h-full object-cover object-center"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+                  <div className="absolute top-4 md:top-6 left-4 right-4 text-center">
+                    <span className="text-white/80 text-[10px] tracking-[0.28em] md:tracking-[0.32em] uppercase font-semibold">
+                      Malbec Cologne
+                    </span>
+                  </div>
+                </div>
               </div>
             </div>
-            {/* Floating product bottle inset */}
-            <div className="absolute -bottom-3 -right-3 md:-bottom-5 md:-right-5 z-20 w-32 md:w-44 animate-bottle-in animate-bottle-float">
-              <img
-                src="/malbec.webp"
-                alt="Frasco Malbec Signature O Boticário"
-                loading="lazy"
-                className="w-full h-full object-contain drop-shadow-xl"
-                style={{ mixBlendMode: "screen" }}
+
+            {/* Dot indicators */}
+            <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-20 flex gap-2">
+              <button
+                onClick={() => setSlide(0)}
+                className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                  slide === 0 ? "bg-luxe-gold scale-110" : "bg-white/40 hover:bg-white/60"
+                }`}
+                aria-label="Slide 1"
+              />
+              <button
+                onClick={() => setSlide(1)}
+                className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                  slide === 1 ? "bg-luxe-gold scale-110" : "bg-white/40 hover:bg-white/60"
+                }`}
+                aria-label="Slide 2"
               />
             </div>
-            <div className="absolute -bottom-2 -left-2 md:-bottom-3 md:-left-3 z-20">
+
+            <div className="absolute -bottom-2 -left-2 md:-bottom-3 md:-left-3 z-20 scale-[0.85] md:scale-100 origin-bottom-left">
               <FloatingBadge className="shadow-lg border-luxe-gold-soft/30 bg-black/90">
-                <Award className="size-3.5 text-luxe-gold" />
-                <span className="text-[14px] tracking-wider uppercase font-bold text-luxe-gold-soft">Mais Procurado</span>
+                <Award className="size-3 text-luxe-gold" />
+                <span className="text-[12px] tracking-wider uppercase font-bold text-luxe-gold-soft">Mais Procurado</span>
               </FloatingBadge>
             </div>
           </motion.div>
@@ -116,6 +158,8 @@ const MalbecShowcase = memo(function MalbecShowcase({ lifestyleImg, collageImg }
                 src={collageImg}
                 alt="Malbec O Boticário — relógio, frasco, aplicação e espelho"
                 loading="lazy"
+                width="2400"
+                height="1792"
                 className="w-full h-auto md:h-[600px] md:object-cover block"
               />
             </div>
@@ -134,7 +178,7 @@ const MalbecShowcase = memo(function MalbecShowcase({ lifestyleImg, collageImg }
                 href={waLink("Olá! Quero o Malbec Cologne com entrega VIP em 1h em BH.")}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-3 px-8 py-4 text-sm md:text-base font-bold tracking-[0.2em] uppercase rounded-sm transition-all duration-300 hover:brightness-110 hover:shadow-xl"
+                className="inline-flex items-center gap-3 px-8 py-4 text-sm md:text-base font-bold tracking-[0.2em] uppercase rounded-sm hover:brightness-110 hover:shadow-xl [animation:luxe-glow-gold_2.5s_ease-in-out_infinite]"
                 style={{
                   background: "linear-gradient(135deg, #c9a84c 0%, #e2c87a 30%, #c9a84c 50%, #b8942e 70%, #c9a84c 100%)",
                   color: "#1a1a1a",

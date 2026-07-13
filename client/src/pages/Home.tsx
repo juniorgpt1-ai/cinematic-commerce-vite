@@ -65,9 +65,9 @@ const Nav = memo(function Nav() {
         <div className="mx-auto max-w-7xl px-4 py-3">
 
           {/* Top bar: nav links + WhatsApp */}
-          <div className="grid grid-cols-[1fr_auto_1fr] items-center mb-2.5">
+          <div className="grid grid-cols-[auto_1fr_auto] gap-x-5 items-center mb-2.5">
             <div />
-            <nav className="flex items-center gap-3 text-[10px] tracking-[0.2em] uppercase font-sans justify-self-center">
+            <nav className="flex items-center gap-3 text-[11px] tracking-[0.18em] uppercase font-sans justify-self-start ml-1">
               <a href="#haircare" className="hover:text-luxe-gold-soft transition-colors font-medium">Hair</a>
               <a href="#perfumes" className="hover:text-luxe-gold-soft transition-colors font-medium">Perfumes</a>
               <a href="#kits" className="hover:text-luxe-gold-soft transition-colors font-medium">Kits</a>
@@ -100,14 +100,14 @@ const Nav = memo(function Nav() {
           {/* Brand logos 2 rows */}
           <div className="flex flex-col gap-1.5 items-center">
             <div className="flex items-center justify-center gap-2.5">
-              <img src="/brands/oboticario.svg" alt="O Boticário" title="O Boticário" className="h-9 w-auto rounded-sm opacity-90" />
-              <img src="/brands/eudora.svg" alt="Eudora" title="Eudora" className="h-9 w-auto rounded-sm opacity-90" />
-              <img src="/brands/qdb.svg" alt="QDB" title="Quem Disse, Berenice?" className="h-9 w-auto rounded-sm opacity-90" />
+              <img src="/brands/oboticario.svg" alt="O Boticário" title="O Boticário" width="90" height="36" className="h-9 w-auto rounded-sm opacity-90" />
+              <img src="/brands/eudora.svg" alt="Eudora" title="Eudora" width="90" height="36" className="h-9 w-auto rounded-sm opacity-90" />
+              <img src="/brands/qdb.svg" alt="QDB" title="Quem Disse, Berenice?" width="90" height="36" className="h-9 w-auto rounded-sm opacity-90" />
             </div>
             <div className="flex items-center justify-center gap-2.5">
-              <img src="/brands/multib.svg" alt="Multi B" title="Multi B" className="h-9 w-auto rounded-sm opacity-90" />
-              <img src="/brands/vult.svg" alt="Vult" title="Vult" className="h-9 w-auto rounded-sm opacity-90" />
-              <img src="/brands/oui.svg" alt="O.U.i" title="O.U.i" className="h-9 w-auto rounded-sm opacity-90" />
+              <img src="/brands/multib.svg" alt="Multi B" title="Multi B" width="90" height="36" className="h-9 w-auto rounded-sm opacity-90" />
+              <img src="/brands/vult.svg" alt="Vult" title="Vult" width="90" height="36" className="h-9 w-auto rounded-sm opacity-90" />
+              <img src="/brands/oui.svg" alt="O.U.i" title="O.U.i" width="90" height="36" className="h-9 w-auto rounded-sm opacity-90" />
             </div>
           </div>
 
@@ -138,6 +138,8 @@ const Nav = memo(function Nav() {
                     src={brand.logo}
                     alt={brand.name}
                     title={brand.name}
+                    width="90"
+                    height="36"
                     className="h-7 sm:h-8 md:h-8 lg:h-9 w-auto rounded-sm opacity-90 hover:opacity-100 transition-opacity duration-200"
                   />
                 ))}
@@ -153,6 +155,8 @@ const Nav = memo(function Nav() {
                     src={brand.logo}
                     alt={brand.name}
                     title={brand.name}
+                    width="90"
+                    height="36"
                     className="h-7 sm:h-8 md:h-8 lg:h-9 w-auto rounded-sm opacity-90 hover:opacity-100 transition-opacity duration-200"
                   />
                 ))}
@@ -245,11 +249,11 @@ const Hero = memo(function Hero() {
               )}
               target="_blank"
               rel="noreferrer"
-              className="group inline-flex flex-wrap items-center justify-center gap-3 bg-whatsapp hover:bg-whatsapp-hover text-black font-bold px-6 py-3.5 md:px-8 md:py-4 text-base md:text-base tracking-wide transition-all shadow-[0_0_20px_rgba(37,211,102,0.2)] hover:shadow-[0_0_25px_rgba(37,211,102,0.4)]"
+              className="group inline-flex items-center justify-center gap-2 whitespace-nowrap bg-whatsapp hover:bg-whatsapp-hover text-black font-bold px-4 py-3 md:px-8 md:py-4 text-sm md:text-base tracking-wide [animation:luxe-glow_2.5s_ease-in-out_infinite] hover:shadow-[0_0_25px_rgba(37,211,102,0.4)]"
             >
-              <MessageCircle className="size-6" />
+              <MessageCircle className="size-5" />
               Peça Agora e Receba em Minutos
-              <ArrowRight className="size-5 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight className="size-4 group-hover:translate-x-1 transition-transform" />
             </a>
             <a
               href="#haircare"
@@ -265,10 +269,10 @@ const Hero = memo(function Hero() {
             <span>Eudora</span>
           </div>
 
-          <div className="md:hidden mt-20">
-            <FloatingBadge className="border-white/30 bg-white/95 px-3.5 py-1.5">
-              <Timer className="size-4 text-luxe-black" />
-              <span className="text-[12px] tracking-[0.2em] uppercase text-luxe-black font-semibold">
+          <div className="md:hidden mt-6">
+            <FloatingBadge className="border-white/30 bg-white/95 px-2.5 py-1">
+              <Timer className="size-3 text-luxe-black" />
+              <span className="text-[11px] tracking-[0.14em] uppercase text-luxe-black font-semibold">
                 Entrega VIP · Em até 1h para BH e Região
               </span>
             </FloatingBadge>

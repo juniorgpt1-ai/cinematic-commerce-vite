@@ -1,4 +1,4 @@
-import { memo } from "react";
+import { memo, useState, useEffect, useCallback } from "react";
 import { motion } from "framer-motion";
 import { Timer, MessageCircle, ArrowRight, Sparkles } from "lucide-react";
 import { waLink } from "@/lib/whatsapp";
@@ -19,6 +19,8 @@ type ShowcaseProps = {
   reverse?: boolean;
   tone?: "gold" | "bordo";
   sealText?: string;
+  secondImage?: string;
+  secondLabel?: string;
 };
 
 const EditorialShowcase = memo(function EditorialShowcase({
@@ -35,9 +37,20 @@ const EditorialShowcase = memo(function EditorialShowcase({
   reverse,
   tone = "gold",
   sealText = "Melhor Custo-Benefício",
+  secondImage,
+  secondLabel,
 }: ShowcaseProps) {
   const fade = useFadeUp();
   const accentText = tone === "bordo" ? "text-luxe-bordo" : "text-luxe-gold";
+  const [slide, setSlide] = useState(0);
+  const hasCarousel = !!secondImage;
+  const nextSlide = useCallback(() => setSlide(s => (s + 1) % 2), []);
+  useEffect(() => {
+    if (!hasCarousel) return;
+    const id = setInterval(nextSlide, 4000);
+    return () => clearInterval(id);
+  }, [hasCarousel, nextSlide]);
+
   return (
     <section id={id} className="relative bg-luxe-bg border-b border-luxe-line/30 overflow-hidden">
 
@@ -48,18 +61,64 @@ const EditorialShowcase = memo(function EditorialShowcase({
           }`}
         >
           <motion.div {...fade} className={reverse ? "lg:col-span-5 relative" : "lg:col-span-7 relative"}>
-            <div className="relative aspect-[4/5] overflow-hidden bg-black shadow-xl">
-              <img
-                src={image}
-                alt={imageAlt}
-                loading="lazy"
-                className="h-full w-full object-cover transition-transform duration-750 hover:scale-103"
-              />
-              <div className="absolute top-4 md:top-6 left-4 md:left-6 right-4 md:right-6 flex flex-wrap items-center justify-between gap-2 text-white/80 text-[10px] tracking-[0.24em] md:tracking-[0.32em] uppercase font-semibold">
-                <span>{eyebrow.split("·")[0].trim()}</span>
-                <span>MAISON PREMIUM</span>
+            {hasCarousel ? (
+              <>
+                <div className="relative aspect-[4/5] overflow-hidden bg-black shadow-xl">
+                  <div
+                    className="flex h-full transition-transform duration-700 ease-in-out"
+                    style={{ transform: `translateX(-${slide * 100}%)` }}
+                  >
+                    <div className="min-w-full relative">
+                      <img
+                        src={image}
+                        alt={imageAlt}
+                        loading="lazy"
+                        className="h-full w-full object-cover object-top"
+                      />
+                      <div className="absolute top-4 md:top-6 left-4 md:left-6 right-4 md:right-6 flex flex-wrap items-center justify-between gap-2 text-white/80 text-[10px] tracking-[0.24em] md:tracking-[0.32em] uppercase font-semibold">
+                        <span>{eyebrow.split("·")[0].trim()}</span>
+                        <span>MAISON PREMIUM</span>
+                      </div>
+                    </div>
+                    <div className="min-w-full relative flex items-center justify-center bg-gradient-to-b from-[#0a0a0a] via-[#111] to-black">
+                      <img
+                        src={secondImage}
+                        alt={secondLabel || imageAlt}
+                        loading="lazy"
+                        className="w-full h-full object-cover object-center"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+                      {secondLabel && (
+                        <div className="absolute top-4 md:top-6 left-4 right-4 text-center">
+                          {secondLabel.split("\n").map((line, i) => (
+                            <span key={i} className={`block ${i === 0 ? "text-white/80 text-[13px] tracking-[0.24em] md:tracking-[0.28em] uppercase font-semibold" : "text-white/60 text-[14px] leading-relaxed font-light italic mt-1"}`}>
+                              {line}
+                            </span>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+                <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-20 flex gap-2">
+                  <button onClick={() => setSlide(0)} className={`w-2 h-2 rounded-full transition-all duration-300 ${slide === 0 ? "bg-luxe-gold scale-110" : "bg-white/40 hover:bg-white/60"}`} aria-label="Slide 1" />
+                  <button onClick={() => setSlide(1)} className={`w-2 h-2 rounded-full transition-all duration-300 ${slide === 1 ? "bg-luxe-gold scale-110" : "bg-white/40 hover:bg-white/60"}`} aria-label="Slide 2" />
+                </div>
+              </>
+            ) : (
+              <div className="relative aspect-[4/5] overflow-hidden bg-black shadow-xl">
+                <img
+                  src={image}
+                  alt={imageAlt}
+                  loading="lazy"
+                  className="h-full w-full object-cover transition-transform duration-750 hover:scale-103"
+                />
+                <div className="absolute top-4 md:top-6 left-4 md:left-6 right-4 md:right-6 flex flex-wrap items-center justify-between gap-2 text-white/80 text-[10px] tracking-[0.24em] md:tracking-[0.32em] uppercase font-semibold">
+                  <span>{eyebrow.split("·")[0].trim()}</span>
+                  <span>MAISON PREMIUM</span>
+                </div>
               </div>
-            </div>
+            )}
 
             {/* Absolute Floating Seal */}
             <div className={`absolute -bottom-3 ${reverse ? "-left-2 md:-left-4" : "-right-2 md:-right-4"} z-20`}>

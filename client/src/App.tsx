@@ -1,5 +1,4 @@
 import { Suspense, lazy } from "react";
-import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/NotFound";
 import { Route, Switch } from "wouter";
@@ -7,6 +6,7 @@ import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 
 const Home = lazy(() => import("./pages/Home"));
+const Toaster = lazy(() => import("sonner").then(m => ({ default: m.Toaster })));
 
 
 function Router() {
@@ -45,7 +45,7 @@ function App() {
         // switchable
       >
         <TooltipProvider>
-          <Toaster />
+          <Suspense fallback={null}><Toaster /></Suspense>
           <Router />
         </TooltipProvider>
       </ThemeProvider>

@@ -40,8 +40,8 @@ const TrustBar = memo(function TrustBar() {
             >
               <it.icon className="size-6 text-luxe-gold group-hover:scale-110 transition-transform duration-300" strokeWidth={1.4} />
               <span className="gold-rule" />
-              <h3 className="font-section text-[22px] md:text-3xl leading-tight font-semibold tracking-wide break-words">{it.title}</h3>
-              <p className="text-base text-luxe-ink/85 leading-relaxed font-sans font-light">
+              <h3 className="font-section text-[26px] md:text-3xl leading-tight font-semibold tracking-wide break-words">{it.title}</h3>
+              <p className="text-[17px] md:text-base text-luxe-ink/85 leading-relaxed font-sans font-light">
                 {it.desc}
               </p>
             </motion.div>

@@ -163,6 +163,34 @@
 }
 @utility wa-pulse-strong { animation: luxe-pulse-strong 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
 
+@keyframes luxe-glow {
+  0%, 100% {
+    box-shadow: 0 0 16px rgba(37, 211, 102, 0.45), 0 0 0 0 rgba(37, 211, 102, 0.6), 0 8px 28px -4px rgba(37, 211, 102, 0.35);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 28px rgba(37, 211, 102, 0.2), 0 0 0 22px rgba(37, 211, 102, 0), 0 8px 40px -2px rgba(37, 211, 102, 0.1);
+    transform: scale(1.03);
+  }
+}
+@utility wa-glow {
+  animation: luxe-glow 2.5s ease-in-out infinite;
+  will-change: transform, box-shadow;
+}
+@keyframes luxe-glow-gold {
+  0%, 100% {
+    box-shadow: 0 0 16px rgba(201, 168, 76, 0.45), 0 0 0 0 rgba(201, 168, 76, 0.6), 0 8px 28px -4px rgba(201, 168, 76, 0.35);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 28px rgba(201, 168, 76, 0.2), 0 0 0 22px rgba(201, 168, 76, 0), 0 8px 40px -2px rgba(201, 168, 76, 0.1);
+    transform: scale(1.03);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .wa-glow { animation: none; }
+}
+
 .scrollbar-premium::-webkit-scrollbar {
   height: 6px;
 }
