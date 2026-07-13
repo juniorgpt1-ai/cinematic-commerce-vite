@@ -77,8 +77,7 @@ const Nav = memo(function Nav() {
               href={waLink("Olá, vim pela página e quero atendimento de luxo inteligente.")}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-1.5 text-[12px] tracking-[0.12em] uppercase font-bold transition-colors justify-self-end"
-              style={{ color: "#25d366" }}
+              className="inline-flex items-center gap-1.5 text-[12px] tracking-[0.12em] uppercase font-bold transition-colors justify-self-end text-luxe-gold-soft"
             >
               WhatsApp <ArrowRight className="size-3.5" />
             </a>
@@ -90,7 +89,7 @@ const Nav = memo(function Nav() {
               className="font-display text-xl font-bold tracking-[0.14em] uppercase"
               style={{
                 color: "#D4AF37",
-                textShadow: "0 0 14px rgba(212,175,55,0.35), 0 0 30px rgba(212,175,55,0.12)",
+                textShadow: "0 0 10px rgba(212,175,55,0.30), 0 0 20px rgba(212,175,55,0.08)",
               }}
             >
               Maison Parfum
@@ -174,8 +173,7 @@ const Nav = memo(function Nav() {
             href={waLink("Olá, vim pela página e quero atendimento de luxo inteligente.")}
             target="_blank"
             rel="noreferrer"
-            className="hidden sm:inline-flex items-center gap-2 text-[14px] tracking-[0.2em] uppercase font-bold transition-colors"
-            style={{ color: "#25d366" }}
+            className="hidden sm:inline-flex items-center gap-2 text-[14px] tracking-[0.2em] uppercase font-bold transition-colors text-luxe-gold-soft"
           >
             WhatsApp <ArrowRight className="size-4" />
           </a>
@@ -227,7 +225,7 @@ const Hero = memo(function Hero() {
             </FloatingBadge>
           </div>
 
-          <h1 className="font-display text-[19vw] md:text-[7rem] leading-[0.85] md:leading-[1.0] tracking-tight font-bold">
+          <h1 className="font-display text-[17vw] md:text-[7rem] leading-[0.85] md:leading-[1.0] tracking-tight font-bold">
             <span className="text-gold-foil">
               Luxo Acessível
             </span>
@@ -237,7 +235,7 @@ const Hero = memo(function Hero() {
             </span>
           </h1>
 
-          <p className="mt-8 max-w-xl text-lg md:text-lg text-luxe-gold-light/95 font-sans font-normal leading-relaxed drop-shadow-[0_1px_8px_rgba(0,0,0,0.6)]">
+          <p className="mt-8 max-w-xl text-lg md:text-lg text-white/70 font-sans font-normal leading-relaxed drop-shadow-[0_1px_8px_rgba(0,0,0,0.6)]">
             Perfumaria e hair care premium do Grupo Boticário com entrega expressa para <strong className="text-white font-semibold">BH e regiões</strong>.
             Peça agora pelo WhatsApp e receba seu pedido em minutos, com segurança e preço justo.
           </p>
@@ -249,7 +247,7 @@ const Hero = memo(function Hero() {
               )}
               target="_blank"
               rel="noreferrer"
-              className="group inline-flex items-center justify-center gap-2 whitespace-nowrap bg-whatsapp hover:bg-whatsapp-hover text-black font-bold px-4 py-3 md:px-8 md:py-4 text-sm md:text-base tracking-wide [animation:luxe-glow_2.5s_ease-in-out_infinite] hover:shadow-[0_0_25px_rgba(37,211,102,0.4)]"
+              className="group inline-flex items-center justify-center gap-2 whitespace-nowrap bg-whatsapp hover:bg-whatsapp-hover text-black font-bold px-4 py-3 md:px-8 md:py-4 text-sm md:text-base tracking-wide wa-glow"
             >
               <MessageCircle className="size-5" />
               Peça Agora e Receba em Minutos

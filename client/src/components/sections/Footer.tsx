@@ -5,8 +5,8 @@ import { waLink } from "@/lib/whatsapp";
 const Footer = memo(function Footer() {
   return (
     <footer className="bg-luxe-bg border-t border-luxe-line/30">
-      <div className="mx-auto max-w-7xl px-6 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 items-start">
+      <div className="mx-auto max-w-7xl px-6 py-24 md:py-32">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16 items-start">
           <div>
             <div className="font-sans text-xl font-semibold tracking-[0.18em] uppercase">
               Maison<span className="text-luxe-gold"> · </span>Parfum

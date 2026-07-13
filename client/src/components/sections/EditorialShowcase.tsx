@@ -52,9 +52,9 @@ const EditorialShowcase = memo(function EditorialShowcase({
   }, [hasCarousel, nextSlide]);
 
   return (
-    <section id={id} className="relative bg-luxe-bg border-b border-luxe-line/30 overflow-hidden">
+    <section id={id} className="relative bg-luxe-gradient border-b border-luxe-line/30 overflow-hidden">
 
-      <div className="mx-auto max-w-7xl px-6 py-20 md:py-28 relative z-10">
+      <div className="mx-auto max-w-7xl px-6 py-32 md:py-40 relative z-10">
         <div
           className={`grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center ${
             reverse ? "lg:[&>div:first-child]:order-2" : ""
@@ -63,7 +63,7 @@ const EditorialShowcase = memo(function EditorialShowcase({
           <motion.div {...fade} className={reverse ? "lg:col-span-5 relative" : "lg:col-span-7 relative"}>
             {hasCarousel ? (
               <>
-                <div className="relative aspect-[4/5] overflow-hidden bg-black shadow-xl">
+                <div className="relative aspect-[4/5] overflow-hidden bg-black shadow-2xl">
                   <div
                     className="flex h-full transition-transform duration-700 ease-in-out"
                     style={{ transform: `translateX(-${slide * 100}%)` }}
@@ -101,12 +101,12 @@ const EditorialShowcase = memo(function EditorialShowcase({
                   </div>
                 </div>
                 <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-20 flex gap-2">
-                  <button onClick={() => setSlide(0)} className={`w-2 h-2 rounded-full transition-all duration-300 ${slide === 0 ? "bg-luxe-gold scale-110" : "bg-white/40 hover:bg-white/60"}`} aria-label="Slide 1" />
-                  <button onClick={() => setSlide(1)} className={`w-2 h-2 rounded-full transition-all duration-300 ${slide === 1 ? "bg-luxe-gold scale-110" : "bg-white/40 hover:bg-white/60"}`} aria-label="Slide 2" />
+                  <button onClick={() => setSlide(0)} className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${slide === 0 ? "bg-luxe-gold scale-110" : "bg-white/40 hover:bg-white/60"}`} aria-label="Slide 1" />
+                  <button onClick={() => setSlide(1)} className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${slide === 1 ? "bg-luxe-gold scale-110" : "bg-white/40 hover:bg-white/60"}`} aria-label="Slide 2" />
                 </div>
               </>
             ) : (
-              <div className="relative aspect-[4/5] overflow-hidden bg-black shadow-xl">
+              <div className="relative aspect-[4/5] overflow-hidden bg-black shadow-2xl">
                 <img
                   src={image}
                   alt={imageAlt}
@@ -143,7 +143,7 @@ const EditorialShowcase = memo(function EditorialShowcase({
               {copy}
             </p>
 
-            <dl className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-6 border-t border-luxe-line/30 pt-8 font-sans">
+            <dl className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-8 border-t border-luxe-line/30 pt-10 font-sans">
               {notes.map((n, i) => (
                 <div key={n}>
                   <dt className="text-xs tracking-[0.24em] uppercase text-luxe-ink-soft/80 font-semibold">
@@ -154,7 +154,7 @@ const EditorialShowcase = memo(function EditorialShowcase({
               ))}
             </dl>
 
-            <div className="mt-8 inline-flex flex-wrap items-center gap-2 border border-luxe-gold/40 bg-luxe-gold/5 px-3 py-1.5 rounded-xs max-w-full">
+            <div className="mt-8 inline-flex flex-wrap items-center gap-2 border border-luxe-gold/30 bg-luxe-gold/5 px-3 py-1.5 rounded-xs max-w-full">
               <Timer className="size-3.5 text-luxe-gold" />
               <span className="text-[10px] tracking-[0.28em] uppercase text-luxe-gold font-semibold">
                 Entrega VIP em até 1h · BH e região
@@ -166,7 +166,7 @@ const EditorialShowcase = memo(function EditorialShowcase({
                 <span className="text-[10px] tracking-[0.28em] uppercase text-luxe-ink-soft/70 font-semibold">
                   Valor Acessível
                 </span>
-                <div className="font-sans text-4xl font-bold mt-1 text-luxe-ink">{price}</div>
+                <div className="font-sans text-4xl md:text-5xl font-bold mt-1 text-luxe-ink">{price}</div>
                 <div className="mt-2 text-[13px] text-luxe-ink-soft font-medium">
                   ou <span className="text-luxe-ink font-semibold">6x sem juros</span>
                   <span className="mx-2 text-luxe-gold">·</span>
@@ -177,7 +177,7 @@ const EditorialShowcase = memo(function EditorialShowcase({
                 href={waLink(waMessage)}
                 target="_blank"
                 rel="noreferrer"
-                className="group inline-flex flex-wrap items-center justify-center gap-3 bg-luxe-ink hover:bg-whatsapp text-white hover:text-black transition-colors px-5 py-3 md:px-8 md:py-4 text-sm font-semibold tracking-wide shadow-md"
+                className="group inline-flex flex-wrap items-center justify-center gap-3 bg-luxe-ink hover:bg-whatsapp text-white hover:text-black btn-hover-scale px-6 py-4 md:px-8 md:py-5 text-sm font-semibold tracking-wide shadow-md"
               >
                 <MessageCircle className="size-4" />
                 {cta}

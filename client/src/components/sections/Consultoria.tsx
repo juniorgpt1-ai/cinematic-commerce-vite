@@ -8,8 +8,8 @@ import FloatingBadge from "@/components/sections/FloatingBadge";
 const Consultoria = memo(function Consultoria({ image }: { image: string }) {
   const fade = useFadeUp();
   return (
-    <section className="bg-luxe-bg border-b border-luxe-line/20 relative overflow-hidden">
-      <div className="mx-auto max-w-7xl px-6 py-24 md:py-36 relative z-10">
+    <section className="bg-luxe-gradient border-b border-luxe-line/20 relative overflow-hidden">
+      <div className="mx-auto max-w-7xl px-6 py-32 md:py-40 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-14 lg:gap-20 items-center">
           <motion.div {...fade} className="lg:col-span-6 relative">
             <div className="relative aspect-[4/5] overflow-hidden shadow-2xl border border-luxe-line/30">
@@ -19,7 +19,7 @@ const Consultoria = memo(function Consultoria({ image }: { image: string }) {
                 loading="lazy"
                 className="h-full w-full object-cover"
               />
-              <div className="absolute inset-0 border border-luxe-gold/40 pointer-events-none m-4" />
+              <div className="absolute inset-0 border border-luxe-gold/30 pointer-events-none m-4" />
             </div>
 
             {/* Absolute Floating Badges */}
@@ -37,14 +37,14 @@ const Consultoria = memo(function Consultoria({ image }: { image: string }) {
             className="lg:col-span-6"
           >
             <span className="eyebrow">Atendimento Humanizado</span>
-            <h2 className="mt-6 font-section text-5xl md:text-5xl font-semibold leading-tight">
+            <h2 className="mt-6 font-section text-5xl md:text-5xl font-semibold leading-[1.08]">
               Escolha Inteligente Sem Complicações
             </h2>
             <span className="gold-rule mt-8" />
             <p className="mt-8 text-lg text-luxe-ink/85 font-sans font-light leading-relaxed max-w-lg">
               Evite frustrações ao comprar no escuro. Nossa consultoria de luxo inteligente ajuda você a selecionar a fragrância e o tratamento capilar sob medida para sua necessidade, com honestidade e empatia.
             </p>
-            <ul className="mt-8 space-y-3.5 text-luxe-ink/85 font-sans font-light">
+            <ul className="mt-8 space-y-4 text-luxe-ink/85 font-sans font-light">
               <li className="flex items-start gap-3">
                 <span className="mt-2.5 h-1.5 w-1.5 bg-luxe-gold rounded-full shrink-0" />
                 <span>Perfil de fragrância ou capilar personalizado em poucas mensagens.</span>
@@ -62,7 +62,7 @@ const Consultoria = memo(function Consultoria({ image }: { image: string }) {
               href={waLink("Olá, quero falar com a consultora premium para fazer minha seleção personalizada.")}
               target="_blank"
               rel="noreferrer"
-              className="mt-10 inline-flex flex-wrap items-center justify-center gap-3 bg-luxe-ink hover:bg-whatsapp hover:text-black text-white transition-colors px-5 py-3 md:px-8 md:py-4 text-sm font-semibold tracking-wide shadow-md"
+              className="mt-10 inline-flex flex-wrap items-center justify-center gap-3 bg-luxe-ink hover:bg-whatsapp hover:text-black text-white btn-hover-scale px-6 py-4 md:px-8 md:py-5 text-sm font-semibold tracking-wide shadow-md"
             >
               <MessageCircle className="size-4" />
               Falar com a Consultora

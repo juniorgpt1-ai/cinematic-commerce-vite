@@ -23,11 +23,11 @@ const Depoimentos = memo(function Depoimentos() {
     },
   ];
   return (
-    <section className="bg-luxe-bg border-b border-luxe-line/30 relative overflow-hidden">
-      <div className="mx-auto max-w-7xl px-6 py-24 md:py-32 relative z-10">
+    <section className="bg-luxe-gradient border-b border-luxe-line/30 relative overflow-hidden">
+      <div className="mx-auto max-w-7xl px-6 py-32 md:py-40 relative z-10">
         <motion.div {...fade} className="max-w-2xl text-center mx-auto mb-20">
           <span className="eyebrow">Opinião de Clientes</span>
-          <h2 className="mt-4 font-section text-5xl md:text-5xl font-semibold leading-tight">
+          <h2 className="mt-5 font-section text-5xl md:text-5xl font-semibold leading-[1.08]">
             A Experiência do Luxo Inteligente
           </h2>
           <span className="gold-rule mt-6 mx-auto" />
@@ -39,7 +39,7 @@ const Depoimentos = memo(function Depoimentos() {
               key={t.name}
               {...fade}
               transition={{ ...fade.transition, delay: i * 0.1 }}
-              className="flex flex-col justify-between p-8 border border-luxe-line/20 bg-white/40 backdrop-blur-xs rounded-xs"
+              className="flex flex-col justify-between p-8 rounded-xs card-premium bg-white/50 backdrop-blur-sm"
             >
               <div>
                 <div className="flex gap-0.5 mb-4">
@@ -50,7 +50,7 @@ const Depoimentos = memo(function Depoimentos() {
                   ))}
                 </div>
                 <Quote className="size-8 text-luxe-gold" strokeWidth={1} />
-                <blockquote className="mt-6 font-display text-2xl md:text-3xl leading-relaxed text-luxe-ink break-words">
+                <blockquote className="mt-6 font-display text-2xl md:text-3xl leading-relaxed text-luxe-ink/90 break-words">
                   &ldquo;{t.quote}&rdquo;
                 </blockquote>
               </div>

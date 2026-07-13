@@ -8,14 +8,14 @@ import FloatingBadge from "@/components/sections/FloatingBadge";
 const CtaFinal = memo(function CtaFinal({ heroImage }: { heroImage: string }) {
   const fade = useFadeUp();
   return (
-    <section className="relative bg-luxe-ink text-white overflow-hidden py-32 md:py-40">
+    <section className="relative bg-dark-deeper text-white overflow-hidden py-32 md:py-40">
 
       <div className="absolute inset-0 opacity-20">
         <picture>
           <source srcSet="/malbecSMOB.webp" media="(max-width: 767px)" />
           <img src={heroImage} alt="" className="h-full w-full object-cover" loading="lazy" decoding="async" />
         </picture>
-        <div className="absolute inset-0 bg-gradient-to-t from-luxe-ink via-luxe-ink/80 to-luxe-ink/65" />
+        <div className="absolute inset-0 bg-gradient-to-t from-luxe-ink via-luxe-ink/85 to-luxe-ink/70" />
       </div>
 
       <div className="relative mx-auto max-w-4xl px-6 text-center z-10">
@@ -43,7 +43,7 @@ const CtaFinal = memo(function CtaFinal({ heroImage }: { heroImage: string }) {
               href={waLink("Olá, quero garantir minha seleção de luxo inteligente com entrega expressa hoje.")}
               target="_blank"
               rel="noreferrer"
-              className="wa-pulse-strong inline-flex flex-wrap items-center justify-center gap-3 bg-whatsapp hover:bg-whatsapp-hover text-black font-bold px-6 py-4 md:px-12 md:py-6 text-base md:text-xl tracking-wider uppercase rounded-sm transition-all"
+              className="wa-pulse inline-flex flex-wrap items-center justify-center gap-3 bg-whatsapp hover:bg-whatsapp-hover text-black font-bold px-5 py-4 md:px-10 md:py-5 text-base md:text-lg tracking-wider uppercase rounded-sm btn-hover-scale"
             >
               <MessageCircle className="size-6" strokeWidth={2.4} />
               Garantir Combo no WhatsApp

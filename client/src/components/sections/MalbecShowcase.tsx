@@ -17,8 +17,8 @@ const MalbecShowcase = memo(function MalbecShowcase({ lifestyleImg, collageImg }
   }, [nextSlide]);
 
   return (
-    <section id="malbec" className="relative bg-luxe-bg border-b border-luxe-line/30 overflow-hidden">
-      <div className="mx-auto max-w-7xl px-6 py-20 md:py-28 relative z-10">
+    <section id="malbec" className="relative bg-luxe-gradient border-b border-luxe-line/30 overflow-hidden">
+      <div className="mx-auto max-w-7xl px-6 py-32 md:py-40 relative z-10">
         {/* Top editorial split */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
           {/* Carousel */}
@@ -79,7 +79,7 @@ const MalbecShowcase = memo(function MalbecShowcase({ lifestyleImg, collageImg }
               />
             </div>
 
-            <div className="absolute -bottom-2 -left-2 md:-bottom-3 md:-left-3 z-20 scale-[0.85] md:scale-100 origin-bottom-left">
+            <div className="absolute -bottom-3 -left-3 md:-bottom-4 md:-left-4 z-20 scale-100 md:scale-110 origin-bottom-left">
               <FloatingBadge className="shadow-lg border-luxe-gold-soft/30 bg-black/90">
                 <Award className="size-3 text-luxe-gold" />
                 <span className="text-[12px] tracking-wider uppercase font-bold text-luxe-gold-soft">Mais Procurado</span>
@@ -149,9 +149,9 @@ const MalbecShowcase = memo(function MalbecShowcase({ lifestyleImg, collageImg }
         <motion.div
           {...fade}
           transition={{ ...fade.transition, delay: 0.2 }}
-          className="mt-20 md:mt-28"
+          className="mt-24 md:mt-32"
         >
-          <div className="bg-[#fdf7f1] p-3 md:p-6 rounded-xs shadow-2xl border border-luxe-line/20">
+          <div className="bg-[#fdf9f4] p-3 md:p-6 rounded-xs shadow-2xl border border-luxe-line/20">
             {/* Full-width image */}
             <div className="overflow-hidden rounded-xs">
               <img
@@ -166,7 +166,7 @@ const MalbecShowcase = memo(function MalbecShowcase({ lifestyleImg, collageImg }
 
             {/* Title */}
             <h2
-              className="mt-8 md:mt-10 text-center font-section text-2xl md:text-4xl font-semibold text-luxe-ink leading-snug px-2"
+              className="mt-12 md:mt-16 text-center font-section text-2xl md:text-4xl font-semibold text-luxe-ink leading-snug px-2"
               style={{ fontFamily: "var(--font-fenix)" }}
             >
               A marca de quem faz acontecer e não aceita menos que o melhor.
@@ -178,11 +178,11 @@ const MalbecShowcase = memo(function MalbecShowcase({ lifestyleImg, collageImg }
                 href={waLink("Olá! Quero o Malbec Cologne com entrega VIP em 1h em BH.")}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-3 px-8 py-4 text-sm md:text-base font-bold tracking-[0.2em] uppercase rounded-sm hover:brightness-110 hover:shadow-xl [animation:luxe-glow-gold_2.5s_ease-in-out_infinite]"
+                className="inline-flex items-center gap-3 px-8 py-4 text-sm md:text-base font-bold tracking-[0.2em] uppercase rounded-sm hover:brightness-105 hover:shadow-xl [animation:luxe-glow-gold_2.5s_ease-in-out_infinite]"
                 style={{
                   background: "linear-gradient(135deg, #c9a84c 0%, #e2c87a 30%, #c9a84c 50%, #b8942e 70%, #c9a84c 100%)",
                   color: "#1a1a1a",
-                  boxShadow: "0 4px 15px rgba(201, 168, 76, 0.4)",
+                  boxShadow: "0 4px 20px rgba(201, 168, 76, 0.35)",
                 }}
               >
                 Garantir Agora

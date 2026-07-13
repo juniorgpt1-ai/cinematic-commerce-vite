@@ -88,15 +88,15 @@ const BoticarioCarousel = memo(function BoticarioCarousel() {
   };
 
   return (
-    <section id="mais-amados" className="bg-[#111111] text-white py-24 md:py-32 relative overflow-hidden border-b border-luxe-line/30">
+    <section id="mais-amados" className="bg-luxe-dark-gradient text-white py-32 md:py-40 relative overflow-hidden border-b border-luxe-line/30">
       <div className="mx-auto max-w-7xl px-6 relative z-10">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16">
           <motion.div {...fade} className="max-w-2xl">
             <span className="eyebrow text-luxe-gold-soft">Seleção dos Favoritos</span>
-            <h2 className="mt-4 font-section text-5xl md:text-5xl font-semibold leading-tight">
+            <h2 className="mt-5 font-section text-5xl md:text-5xl font-semibold leading-[1.08]">
               Mais Amados do Grupo Boticário
             </h2>
-            <p className="mt-4 text-white/60 font-sans font-light">
+            <p className="mt-6 text-white/60 font-sans font-light">
               Escolhas consagradas, luxo acessível e alta performance olfativa e de tratamento. A melhor seleção para você.
             </p>
           </motion.div>
@@ -105,14 +105,14 @@ const BoticarioCarousel = memo(function BoticarioCarousel() {
             <button
               onClick={() => scroll("left")}
               aria-label="Rolar para esquerda"
-              className="p-3 border border-white/20 hover:border-luxe-gold-soft hover:text-luxe-gold-soft rounded-full transition-all cursor-pointer bg-black/45"
+              className="p-3 rounded-full cursor-pointer glass-btn"
             >
               <ChevronLeft className="size-5" />
             </button>
             <button
               onClick={() => scroll("right")}
               aria-label="Rolar para direita"
-              className="p-3 border border-white/20 hover:border-luxe-gold-soft hover:text-luxe-gold-soft rounded-full transition-all cursor-pointer bg-black/45"
+              className="p-3 rounded-full cursor-pointer glass-btn"
             >
               <ArrowRight className="size-5" />
             </button>
@@ -130,7 +130,7 @@ const BoticarioCarousel = memo(function BoticarioCarousel() {
               key={prod.name}
               {...fade}
               transition={{ ...fade.transition, delay: idx * 0.05 }}
-              className="min-w-[260px] md:min-w-[340px] max-w-[340px] bg-black/35 backdrop-blur-xs border border-white/10 p-6 md:p-8 rounded-xs snap-start flex flex-col justify-between group hover:border-luxe-gold/50 transition-all duration-300 hover:translate-y-[-4px]"
+              className="min-w-[260px] md:min-w-[340px] max-w-[340px] bg-black/25 backdrop-blur-md border border-white/8 p-6 md:p-8 rounded-xs snap-start flex flex-col justify-between group hover:border-luxe-gold/50 duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:translate-y-[-2px]"
             >
               <div>
                 <div className="flex flex-wrap items-center justify-between gap-2">
@@ -160,7 +160,7 @@ const BoticarioCarousel = memo(function BoticarioCarousel() {
                   href={waLink(prod.waMsg)}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex flex-wrap items-center justify-center gap-1.5 text-xs font-semibold tracking-wider uppercase text-luxe-gold-soft hover:text-white border-b border-luxe-gold-soft/50 hover:border-white pb-1 transition-all"
+                  className="inline-flex flex-wrap items-center justify-center gap-1.5 text-xs font-semibold tracking-wider uppercase text-luxe-gold-soft/80 hover:text-luxe-gold-soft border-b border-luxe-gold-soft/50 hover:border-luxe-gold-soft pb-1 transition-all"
                 >
                   {prod.ctaText} <ArrowRight className="size-3.5" />
                 </a>

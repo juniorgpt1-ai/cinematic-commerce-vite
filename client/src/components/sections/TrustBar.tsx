@@ -28,9 +28,9 @@ const TrustBar = memo(function TrustBar() {
   ];
   const fade = useFadeUp();
   return (
-    <section className="relative border-y border-luxe-line/60 bg-luxe-bg/50 backdrop-blur-xs">
-      <div className="mx-auto max-w-7xl px-6 py-16 md:py-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-12">
+    <section className="relative border-y border-luxe-line/60 bg-luxe-gradient">
+      <div className="mx-auto max-w-7xl px-6 py-24 md:py-32">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 md:gap-16">
           {items.map((it, i) => (
             <motion.div
               key={it.title}
@@ -38,7 +38,7 @@ const TrustBar = memo(function TrustBar() {
               transition={{ ...fade.transition, delay: i * 0.08 }}
               className="flex flex-col gap-4 relative group"
             >
-              <it.icon className="size-6 text-luxe-gold group-hover:scale-110 transition-transform duration-300" strokeWidth={1.4} />
+              <it.icon className="size-7 text-luxe-gold group-hover:scale-110 transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]" strokeWidth={1.4} />
               <span className="gold-rule" />
               <h3 className="font-section text-[26px] md:text-3xl leading-tight font-semibold tracking-wide break-words">{it.title}</h3>
               <p className="text-[17px] md:text-base text-luxe-ink/85 leading-relaxed font-sans font-light">

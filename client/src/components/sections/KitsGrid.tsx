@@ -30,15 +30,15 @@ const KitsGrid = memo(function KitsGrid() {
     },
   ];
   return (
-    <section id="kits" className="bg-luxe-ink text-white relative overflow-hidden">
+    <section id="kits" className="bg-luxe-dark-gradient text-white relative overflow-hidden">
 
-      <div className="mx-auto max-w-7xl px-6 py-24 md:py-32 relative z-10">
+      <div className="mx-auto max-w-7xl px-6 py-32 md:py-40 relative z-10">
         <motion.div {...fade} className="max-w-2xl mb-16">
           <span className="eyebrow text-luxe-gold-soft">Curadoria de Presentes</span>
-          <h2 className="mt-4 font-section text-5xl md:text-5xl font-semibold leading-tight">
+          <h2 className="mt-5 font-section text-5xl md:text-5xl font-semibold leading-[1.08]">
             Kits & Combos Inteligentes
           </h2>
-          <p className="mt-4 text-white/60 text-lg font-sans font-light leading-relaxed max-w-xl">
+          <p className="mt-6 text-white/60 text-lg font-sans font-light leading-relaxed max-w-xl">
             Combinações desenvolvidas por especialistas para presentear com sofisticação ou reabastecer seu estoque de luxo com o melhor custo-benefício.
           </p>
         </motion.div>
@@ -49,7 +49,7 @@ const KitsGrid = memo(function KitsGrid() {
               key={k.name}
               {...fade}
               transition={{ ...fade.transition, delay: i * 0.1 }}
-              className="bg-luxe-ink p-10 flex flex-col justify-between group hover:bg-black transition-colors"
+              className="bg-luxe-ink p-10 flex flex-col justify-between group hover:bg-[#0d0d0d] transition-colors duration-300"
             >
               <div>
                 <div className="flex items-center justify-between gap-4">
@@ -61,9 +61,9 @@ const KitsGrid = memo(function KitsGrid() {
                   </span>
                 </div>
 
-                <h3 className="mt-10 font-sans text-2xl font-bold group-hover:text-luxe-gold-soft transition-colors">{k.name}</h3>
+                <h3 className="mt-12 font-sans text-2xl font-bold group-hover:text-luxe-gold-soft transition-colors">{k.name}</h3>
                 <span className="gold-rule mt-6" />
-                <p className="mt-6 text-white/70 font-sans font-light leading-relaxed">
+                <p className="mt-8 text-white/70 font-sans font-light leading-relaxed">
                   {k.desc}
                 </p>
               </div>
@@ -78,7 +78,7 @@ const KitsGrid = memo(function KitsGrid() {
 
                 <div className="mt-10 pt-6 border-t border-white/10 flex flex-wrap items-end justify-between gap-4">
                   <div>
-                    <div className="font-sans text-2xl font-bold text-luxe-gold-soft">{k.price}</div>
+                    <div className="font-sans text-3xl font-bold text-luxe-gold-soft">{k.price}</div>
                     <div className="mt-1 text-[12px] text-white/60">
                       6x sem juros <span className="text-luxe-gold-soft">·</span> Pix 5% OFF
                     </div>
@@ -88,7 +88,7 @@ const KitsGrid = memo(function KitsGrid() {
                     target="_blank"
                     rel="noreferrer"
                     aria-label={`Pedir ${k.name} no WhatsApp`}
-                    className="inline-flex flex-wrap items-center justify-center gap-2 text-xs font-semibold tracking-wider uppercase text-luxe-gold-soft border-b border-luxe-gold-soft/60 pb-1 group-hover:text-white group-hover:border-white transition-colors"
+                    className="inline-flex flex-wrap items-center justify-center gap-2 text-xs font-semibold tracking-wider uppercase text-luxe-gold-soft border-b border-luxe-gold-soft/60 pb-1 group-hover:text-luxe-gold-soft group-hover:border-luxe-gold-soft transition-colors"
                   >
                     Pedir Combo <ArrowRight className="size-3.5" />
                   </a>
