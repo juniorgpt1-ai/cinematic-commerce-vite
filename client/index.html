@@ -37,7 +37,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
     <!-- Font CSS preload: high-priority download, non-blocking via existing media="print" link -->
-    <link rel="preload" as="style" crossorigin href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Fenix&family=Lora:ital,wght@0,400;0,700&family=Playfair+Display:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&display=swap" />
+    <link rel="preload" as="style" crossorigin fetchpriority="high" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Fenix&family=Lora:ital,wght@0,400;0,700&family=Playfair+Display:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&display=swap" />
 
     <!-- LCP Preload: hero image discovered before CSS/JS -->
     <link rel="preload" as="image" href="/malbec-signatureA.webp" fetchpriority="high" type="image/webp" media="(min-width: 768px)" />
@@ -48,6 +48,9 @@
       html{scroll-behavior:smooth}
       body{margin:0;background:#070707;color:#fff;font-family:'Plus Jakarta Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
       #root{min-height:100vh}
+      #hero-fallback{position:absolute;inset:0;z-index:1;display:flex;align-items:center;justify-content:center;text-align:center;padding:2rem;pointer-events:none}
+      #hero-fallback .hero-fb-h1{font-family:'Cormorant Garamond',serif;font-weight:700;line-height:.88;font-size:clamp(2.5rem,12vw,5.5rem)}
+      #hero-fallback .hero-fb-p{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:1.05rem;max-width:36rem;margin:1rem auto 0;color:rgba(255,255,255,.7);line-height:1.55;font-weight:300}
       h1,h2,h3{font-family:'Cormorant Garamond',serif}
       .text-white\/95{color:rgba(255,255,255,.95)}
       .text-luxe-gold{color:#9A7B50}
@@ -124,7 +127,17 @@
   </head>
 
   <body>
+    <div id="hero-fallback">
+      <div>
+        <h1 class="hero-fb-h1">
+          <span class="text-luxe-gold">Luxo Acessível</span><br>
+          <span class="text-white/95 drop-shadow-[0_2px_18px_rgba(0,0,0,0.6)]">Para Todos.</span>
+        </h1>
+        <p class="hero-fb-p">Perfumaria e hair care premium do Grupo Boticário com entrega expressa para <strong style="color:#fff;font-weight:600">BH e regiões</strong>. Peça agora pelo WhatsApp e receba seu pedido em minutos, com segurança e preço justo.</p>
+      </div>
+    </div>
     <div id="root"></div>
+    <script>new MutationObserver(function(e,o){for(var r of e)for(var n of r.addedNodes)if(n.nodeType===1||(n.nodeType===3&&n.textContent.trim())){var d=document.getElementById("hero-fallback");d&&(d.style.display="none");o.disconnect();return}}).observe(document.getElementById("root"),{childList:!0,subtree:!0})</script>
     <script type="module" src="/src/main.tsx"></script>
 
   </body>

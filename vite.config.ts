@@ -165,10 +165,16 @@ function vitePluginCssPreload(): Plugin {
         if (!ctx.bundle) return html;
         for (const [key, chunk] of Object.entries(ctx.bundle)) {
           if (chunk.type === "asset" && key.endsWith(".css")) {
-            return html.replace(
+            let out = html.replace(
               '<script type="module"',
               `  <link rel="preload" as="style" crossorigin fetchpriority="high" href="/${key}" />\n  <script type="module"`,
             );
+            // Make the stylesheet non-render-blocking
+            out = out.replace(
+              `<link rel="stylesheet" crossorigin href="/${key}">`,
+              `<link rel="stylesheet" crossorigin href="/${key}" media="print" onload="this.media='all'">\n  <noscript><link rel="stylesheet" crossorigin href="/${key}"></noscript>`,
+            );
+            return out;
           }
         }
         return html;
