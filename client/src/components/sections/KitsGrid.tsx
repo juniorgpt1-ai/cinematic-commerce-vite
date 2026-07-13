@@ -49,7 +49,7 @@ const KitsGrid = memo(function KitsGrid() {
               key={k.name}
               {...fade}
               transition={{ ...fade.transition, delay: i * 0.1 }}
-              className="bg-luxe-ink p-10 flex flex-col justify-between group hover:bg-[#0d0d0d] transition-colors duration-300"
+              className="bg-luxe-ink p-10 flex flex-col justify-between group hover:bg-black/90 transition-colors duration-300"
             >
               <div>
                 <div className="flex items-center justify-between gap-4">

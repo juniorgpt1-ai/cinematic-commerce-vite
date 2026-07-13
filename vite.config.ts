@@ -166,8 +166,8 @@ function vitePluginCssPreload(): Plugin {
         for (const [key, chunk] of Object.entries(ctx.bundle)) {
           if (chunk.type === "asset" && key.endsWith(".css")) {
             return html.replace(
-              "</head>",
-              `  <link rel="preload" as="style" crossorigin href="/${key}" />\n  </head>`,
+              '<script type="module"',
+              `  <link rel="preload" as="style" crossorigin fetchpriority="high" href="/${key}" />\n  <script type="module"`,
             );
           }
         }
@@ -251,6 +251,7 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks(id) {
+          if (id.includes("node_modules/react") || id.includes("node_modules/scheduler")) return "vendor-react";
           if (id.includes("node_modules/framer-motion")) return "vendor-framer";
           if (id.includes("node_modules/lucide-react")) return "vendor-icons";
           if (id.includes("node_modules/wouter")) return "vendor-router";

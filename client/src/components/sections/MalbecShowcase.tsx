@@ -44,7 +44,7 @@ const MalbecShowcase = memo(function MalbecShowcase({ lifestyleImg, collageImg }
                 </div>
 
                 {/* Slide 2: Bottle */}
-                <div className="min-w-full relative flex items-center justify-center bg-gradient-to-b from-[#0a0a0a] via-[#111] to-black">
+                <div className="min-w-full relative flex items-center justify-center bg-gradient-to-b from-luxe-black via-luxe-black/90 to-black">
                   <img
                     src="/malbec1.webp"
                     alt="Frasco Malbec Cologne O Boticário"
@@ -62,20 +62,22 @@ const MalbecShowcase = memo(function MalbecShowcase({ lifestyleImg, collageImg }
             </div>
 
             {/* Dot indicators */}
-            <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-20 flex gap-2">
+            <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-20 flex gap-3">
               <button
                 onClick={() => setSlide(0)}
-                className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                  slide === 0 ? "bg-luxe-gold scale-110" : "bg-white/40 hover:bg-white/60"
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                  slide === 0 ? "bg-luxe-gold scale-125" : "bg-white/40 hover:bg-white/60"
                 }`}
                 aria-label="Slide 1"
+                style={{ minWidth: "44px", minHeight: "44px", padding: "6px" }}
               />
               <button
                 onClick={() => setSlide(1)}
-                className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                  slide === 1 ? "bg-luxe-gold scale-110" : "bg-white/40 hover:bg-white/60"
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                  slide === 1 ? "bg-luxe-gold scale-125" : "bg-white/40 hover:bg-white/60"
                 }`}
                 aria-label="Slide 2"
+                style={{ minWidth: "44px", minHeight: "44px", padding: "6px" }}
               />
             </div>
 
@@ -151,7 +153,7 @@ const MalbecShowcase = memo(function MalbecShowcase({ lifestyleImg, collageImg }
           transition={{ ...fade.transition, delay: 0.2 }}
           className="mt-24 md:mt-32"
         >
-          <div className="bg-[#fdf9f4] p-3 md:p-6 rounded-xs shadow-2xl border border-luxe-line/20">
+          <div className="bg-luxe-bg p-3 md:p-6 rounded-xs shadow-2xl border border-luxe-line/20">
             {/* Full-width image */}
             <div className="overflow-hidden rounded-xs">
               <img
@@ -178,12 +180,7 @@ const MalbecShowcase = memo(function MalbecShowcase({ lifestyleImg, collageImg }
                 href={waLink("Olá! Quero o Malbec Cologne com entrega VIP em 1h em BH.")}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-3 px-8 py-4 text-sm md:text-base font-bold tracking-[0.2em] uppercase rounded-sm hover:brightness-105 hover:shadow-xl [animation:luxe-glow-gold_2.5s_ease-in-out_infinite]"
-                style={{
-                  background: "linear-gradient(135deg, #c9a84c 0%, #e2c87a 30%, #c9a84c 50%, #b8942e 70%, #c9a84c 100%)",
-                  color: "#1a1a1a",
-                  boxShadow: "0 4px 20px rgba(201, 168, 76, 0.35)",
-                }}
+                className="btn-gold-metallic inline-flex items-center gap-3 px-8 py-4 text-sm md:text-base font-bold tracking-[0.2em] uppercase rounded-sm hover:brightness-105 hover:shadow-xl [animation:luxe-glow-gold_2.5s_ease-in-out_infinite]"
               >
                 Garantir Agora
                 <ArrowRight className="size-4" />

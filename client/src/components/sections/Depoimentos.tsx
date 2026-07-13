@@ -3,25 +3,26 @@ import { motion } from "framer-motion";
 import { Quote } from "lucide-react";
 import { useFadeUp } from "@/hooks/useFadeUp";
 
+const TESTIMONIALS = [
+  {
+    quote: "Comprei o combo de cauterização e foi a melhor escolha inteligente que fiz. Cabelo de salão sem gastar uma fortuna.",
+    name: "Carolina M.",
+    meta: "Savassi · BH",
+  },
+  {
+    quote: "Estava em dúvida entre as notas de perfumes. A consultora me atendeu perfeitamente. O Floratta Red é puro luxo acessível.",
+    name: "Renata S.",
+    meta: "Belvedere · BH",
+  },
+  {
+    quote: "Fiz o pedido do Malbec de carvalho às 20h. Às 20h45 o entregador estava na minha porta. Rapidez e cuidado impressionantes.",
+    name: "Felipe A.",
+    meta: "Nova Lima",
+  },
+];
+
 const Depoimentos = memo(function Depoimentos() {
   const fade = useFadeUp();
-  const items = [
-    {
-      quote: "Comprei o combo de cauterização e foi a melhor escolha inteligente que fiz. Cabelo de salão sem gastar uma fortuna.",
-      name: "Carolina M.",
-      meta: "Savassi · BH",
-    },
-    {
-      quote: "Estava em dúvida entre as notas de perfumes. A consultora me atendeu perfeitamente. O Floratta Red é puro luxo acessível.",
-      name: "Renata S.",
-      meta: "Belvedere · BH",
-    },
-    {
-      quote: "Fiz o pedido do Malbec de carvalho às 20h. Às 20h45 o entregador estava na minha porta. Rapidez e cuidado impressionantes.",
-      name: "Felipe A.",
-      meta: "Nova Lima",
-    },
-  ];
   return (
     <section className="bg-luxe-gradient border-b border-luxe-line/30 relative overflow-hidden">
       <div className="mx-auto max-w-7xl px-6 py-32 md:py-40 relative z-10">
@@ -34,12 +35,12 @@ const Depoimentos = memo(function Depoimentos() {
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16">
-          {items.map((t, i) => (
+          {TESTIMONIALS.map((t, i) => (
             <motion.figure
               key={t.name}
               {...fade}
               transition={{ ...fade.transition, delay: i * 0.1 }}
-              className="flex flex-col justify-between p-8 rounded-xs card-premium bg-white/50 backdrop-blur-sm"
+              className="flex flex-col justify-between p-8 rounded-xs card-premium bg-white"
             >
               <div>
                 <div className="flex gap-0.5 mb-4">

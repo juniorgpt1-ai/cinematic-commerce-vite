@@ -85,15 +85,12 @@ const Nav = memo(function Nav() {
 
           {/* Center: brand title */}
           <div className="text-center mb-2.5">
-            <h2
+            <div
               className="font-display text-xl font-bold tracking-[0.14em] uppercase"
-              style={{
-                color: "#D4AF37",
-                textShadow: "0 0 10px rgba(212,175,55,0.30), 0 0 20px rgba(212,175,55,0.08)",
-              }}
+              style={{ color: "var(--color-luxe-gold)" }}
             >
               Maison Parfum
-            </h2>
+            </div>
           </div>
 
           {/* Brand logos 2 rows */}
@@ -225,8 +222,8 @@ const Hero = memo(function Hero() {
             </FloatingBadge>
           </div>
 
-          <h1 className="font-display text-[17vw] md:text-[7rem] leading-[0.85] md:leading-[1.0] tracking-tight font-bold">
-            <span className="text-gold-foil">
+          <h1 className="font-display text-[17vw] md:text-[6rem] leading-[0.85] md:leading-[1.0] tracking-tight font-bold">
+            <span className="text-luxe-gold">
               Luxo Acessível
             </span>
             <br />

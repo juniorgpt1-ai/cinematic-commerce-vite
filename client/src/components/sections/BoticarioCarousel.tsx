@@ -15,11 +15,7 @@ interface CarouselProduct {
   waMsg: string;
 }
 
-const BoticarioCarousel = memo(function BoticarioCarousel() {
-  const fade = useFadeUp();
-  const carouselRef = useRef<HTMLDivElement>(null);
-
-  const products: CarouselProduct[] = [
+const PRODUCTS: CarouselProduct[] = [
     {
       name: "Nativa SPA Quinoa Lotion",
       brand: "O Boticário",
@@ -75,13 +71,19 @@ const BoticarioCarousel = memo(function BoticarioCarousel() {
       ctaText: "Garantir Batom",
       waMsg: "Olá! Quero garantir o Batom Mate da Quem Disse Berenice com entrega VIP.",
     },
-  ];
+];
+
+const BoticarioCarousel = memo(function BoticarioCarousel() {
+  const fade = useFadeUp();
+  const carouselRef = useRef<HTMLDivElement>(null);
 
   const scroll = (direction: "left" | "right") => {
     if (carouselRef.current) {
-      const scrollAmount = 340; // width of card + gap
+      const firstCard = carouselRef.current.querySelector("[data-carousel-card]");
+      const cardWidth = firstCard ? firstCard.clientWidth : 340;
+      const gap = 24;
       carouselRef.current.scrollBy({
-        left: direction === "left" ? -scrollAmount : scrollAmount,
+        left: direction === "left" ? -(cardWidth + gap) : (cardWidth + gap),
         behavior: "smooth",
       });
     }
@@ -122,15 +124,19 @@ const BoticarioCarousel = memo(function BoticarioCarousel() {
         {/* Horizontal Carousel */}
         <div
           ref={carouselRef}
+          role="region"
+          aria-roledescription="carousel"
+          aria-label="Produtos do Grupo Boticário"
           className="flex gap-6 overflow-x-auto pb-10 scrollbar-premium snap-x snap-mandatory scroll-smooth"
           style={{ scrollbarWidth: "thin" }}
         >
-          {products.map((prod, idx) => (
+          {PRODUCTS.map((prod, idx) => (
             <motion.div
               key={prod.name}
               {...fade}
               transition={{ ...fade.transition, delay: idx * 0.05 }}
-              className="min-w-[260px] md:min-w-[340px] max-w-[340px] bg-black/25 backdrop-blur-md border border-white/8 p-6 md:p-8 rounded-xs snap-start flex flex-col justify-between group hover:border-luxe-gold/50 duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:translate-y-[-2px]"
+              data-carousel-card
+              className="min-w-[260px] md:min-w-[340px] max-w-[340px] bg-black/40 border border-white/8 p-6 md:p-8 rounded-xs snap-start flex flex-col justify-between group hover:border-luxe-gold/50 duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:translate-y-[-2px]"
             >
               <div>
                 <div className="flex flex-wrap items-center justify-between gap-2">

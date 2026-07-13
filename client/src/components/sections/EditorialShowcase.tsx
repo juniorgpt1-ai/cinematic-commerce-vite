@@ -80,7 +80,7 @@ const EditorialShowcase = memo(function EditorialShowcase({
                         <span>MAISON PREMIUM</span>
                       </div>
                     </div>
-                    <div className="min-w-full relative flex items-center justify-center bg-gradient-to-b from-[#0a0a0a] via-[#111] to-black">
+                    <div className="min-w-full relative flex items-center justify-center bg-gradient-to-b from-luxe-black via-luxe-black/90 to-black">
                       <img
                         src={secondImage}
                         alt={secondLabel || imageAlt}
@@ -100,9 +100,9 @@ const EditorialShowcase = memo(function EditorialShowcase({
                     </div>
                   </div>
                 </div>
-                <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-20 flex gap-2">
-                  <button onClick={() => setSlide(0)} className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${slide === 0 ? "bg-luxe-gold scale-110" : "bg-white/40 hover:bg-white/60"}`} aria-label="Slide 1" />
-                  <button onClick={() => setSlide(1)} className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${slide === 1 ? "bg-luxe-gold scale-110" : "bg-white/40 hover:bg-white/60"}`} aria-label="Slide 2" />
+                <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-20 flex gap-3">
+                  <button onClick={() => setSlide(0)} className={`w-3 h-3 rounded-full transition-all duration-300 ${slide === 0 ? "bg-luxe-gold scale-125" : "bg-white/40 hover:bg-white/60"}`} aria-label="Slide 1" style={{ minWidth: "44px", minHeight: "44px", padding: "6px" }} />
+                  <button onClick={() => setSlide(1)} className={`w-3 h-3 rounded-full transition-all duration-300 ${slide === 1 ? "bg-luxe-gold scale-125" : "bg-white/40 hover:bg-white/60"}`} aria-label="Slide 2" style={{ minWidth: "44px", minHeight: "44px", padding: "6px" }} />
                 </div>
               </>
             ) : (

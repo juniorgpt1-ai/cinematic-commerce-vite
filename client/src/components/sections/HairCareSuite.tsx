@@ -183,7 +183,7 @@ const HairCareSuite = memo(function HairCareSuite({ volumeImg, lisoImg }: { volu
                 href={waLink("Olá! Quero o Combo de Cauterização e Liso Absoluto de Alta Performance com entrega rápida.")}
                 target="_blank"
                 rel="noreferrer"
-                className="group inline-flex flex-wrap items-center justify-center gap-3 bg-luxe-ink hover:bg-whatsapp text-white hover:text-black btn-hover-scale px-6 py-4 md:px-8 md:py-5 text-base font-semibold tracking-wide shadow-md"
+                className="group inline-flex items-center justify-center gap-3 bg-luxe-ink hover:bg-whatsapp text-white hover:text-black btn-hover-scale px-6 py-4 md:px-8 md:py-5 text-base font-semibold tracking-wide shadow-md whitespace-nowrap"
               >
                 <MessageCircle className="size-4" />
                 Sinta o Poder do Liso Absoluto
