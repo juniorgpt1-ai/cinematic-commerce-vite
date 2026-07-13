@@ -91,14 +91,18 @@ const BoticarioCarousel = memo(function BoticarioCarousel() {
 
   return (
     <section id="mais-amados" className="bg-luxe-dark-gradient text-white py-32 md:py-40 relative overflow-hidden border-b border-luxe-line/30">
-      <div className="mx-auto max-w-7xl px-6 relative z-10">
+      {/* Ambient gold glows */}
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-luxe-gold/4 rounded-full blur-[150px] pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-luxe-gold/3 rounded-full blur-[120px] pointer-events-none" />
+
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 relative z-10">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16">
           <motion.div {...fade} className="max-w-2xl">
             <span className="eyebrow text-luxe-gold-soft">Seleção dos Favoritos</span>
-            <h2 className="mt-5 font-section text-5xl md:text-5xl font-semibold leading-[1.08]">
+            <h2 className="mt-5 font-section text-4xl sm:text-5xl md:text-5xl font-semibold leading-[1.08]">
               Mais Amados do Grupo Boticário
             </h2>
-            <p className="mt-6 text-white/60 font-sans font-light">
+            <p className="mt-6 text-white/60 font-sans font-light text-base sm:text-lg">
               Escolhas consagradas, luxo acessível e alta performance olfativa e de tratamento. A melhor seleção para você.
             </p>
           </motion.div>
@@ -107,14 +111,14 @@ const BoticarioCarousel = memo(function BoticarioCarousel() {
             <button
               onClick={() => scroll("left")}
               aria-label="Rolar para esquerda"
-              className="p-3 rounded-full cursor-pointer glass-btn"
+              className="p-3 rounded-full cursor-pointer glass-btn hover:border-luxe-gold/40 transition-all duration-300"
             >
               <ChevronLeft className="size-5" />
             </button>
             <button
               onClick={() => scroll("right")}
               aria-label="Rolar para direita"
-              className="p-3 rounded-full cursor-pointer glass-btn"
+              className="p-3 rounded-full cursor-pointer glass-btn hover:border-luxe-gold/40 transition-all duration-300"
             >
               <ArrowRight className="size-5" />
             </button>
@@ -133,42 +137,44 @@ const BoticarioCarousel = memo(function BoticarioCarousel() {
           {PRODUCTS.map((prod, idx) => (
             <motion.div
               key={prod.name}
-              {...fade}
-              transition={{ ...fade.transition, delay: idx * 0.05 }}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ delay: idx * 0.06, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
               data-carousel-card
-              className="min-w-[260px] md:min-w-[340px] max-w-[340px] bg-black/40 border border-white/8 p-6 md:p-8 rounded-xs snap-start flex flex-col justify-between group hover:border-luxe-gold/50 duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:translate-y-[-2px]"
+              className="min-w-[280px] sm:min-w-[320px] md:min-w-[340px] max-w-[340px] bg-black/50 border border-white/8 p-6 md:p-8 rounded-2xl snap-start flex flex-col justify-between group hover:border-luxe-gold/40 hover:bg-black/70 hover:shadow-[0_0_40px_-8px_rgba(154,123,80,0.12)] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]"
             >
               <div>
                 <div className="flex flex-wrap items-center justify-between gap-2">
-                  <span className="text-[9px] tracking-widest uppercase font-semibold text-white/50">{prod.brand}</span>
-                  <span className="inline-block text-[9px] tracking-wider font-bold text-luxe-gold-soft uppercase border border-luxe-gold-soft/30 bg-luxe-gold/10 px-2 py-0.5 rounded-sm">
+                  <span className="text-[10px] sm:text-[11px] tracking-widest uppercase font-semibold text-white/50">{prod.brand}</span>
+                  <span className="inline-block text-[10px] sm:text-[11px] tracking-wider font-bold text-luxe-gold-soft uppercase border border-luxe-gold-soft/30 bg-luxe-gold/10 px-2.5 py-1 rounded-full group-hover:border-luxe-gold-soft/60 group-hover:bg-luxe-gold/15 transition-all duration-500">
                     {prod.tag}
                   </span>
                 </div>
 
-                <h3 className="mt-6 font-sans text-2xl font-bold leading-tight group-hover:text-luxe-gold-soft transition-colors">
+                <h3 className="mt-6 font-sans text-xl sm:text-2xl font-bold leading-tight group-hover:text-luxe-gold-soft transition-colors duration-300">
                   {prod.name}
                 </h3>
-                <p className="mt-4 text-white/70 text-base font-sans font-light leading-relaxed min-h-[72px]">
+                <p className="mt-4 text-white/65 text-sm sm:text-base font-sans font-light leading-relaxed min-h-[72px]">
                   {prod.desc}
                 </p>
               </div>
 
-              <div className="mt-8 pt-6 border-t border-white/10 flex items-center justify-between">
+              <div className="mt-8 pt-6 border-t border-white/10 group-hover:border-luxe-gold/20 transition-colors duration-500 flex items-center justify-between">
                 <div>
                   {prod.oldPrice && (
-                    <span className="text-xs text-white/40 line-through block mb-0.5">{prod.oldPrice}</span>
+                    <span className="text-xs sm:text-sm text-white/40 line-through block mb-0.5">{prod.oldPrice}</span>
                   )}
-                  <span className="font-sans text-xl font-bold text-luxe-gold-soft">{prod.price}</span>
+                  <span className="font-sans text-lg sm:text-xl font-bold text-luxe-gold-soft">{prod.price}</span>
                 </div>
 
                 <a
                   href={waLink(prod.waMsg)}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex flex-wrap items-center justify-center gap-1.5 text-xs font-semibold tracking-wider uppercase text-luxe-gold-soft/80 hover:text-luxe-gold-soft border-b border-luxe-gold-soft/50 hover:border-luxe-gold-soft pb-1 transition-all"
+                  className="inline-flex flex-wrap items-center justify-center gap-1.5 text-xs sm:text-sm font-semibold tracking-wider uppercase text-luxe-gold-soft/80 group-hover:text-luxe-gold-soft border-b border-luxe-gold-soft/40 group-hover:border-luxe-gold-soft pb-1 transition-all duration-300"
                 >
-                  {prod.ctaText} <ArrowRight className="size-3.5" />
+                  {prod.ctaText} <ArrowRight className="size-3.5 group-hover:translate-x-1 transition-transform" />
                 </a>
               </div>
             </motion.div>

@@ -11,12 +11,15 @@ const AntigravityParticles = lazy(() => import("@/components/AntigravityParticle
 
 // Assets - URLs publicas
 const heroPerfume = "/malbec-signatureA.webp";
-const malbecLifestyleImg = "/malbec-lifestyle.webp";
-const malbecCollageImg = "/malbec-collage.webp";
-const florattaRedImg = "/floratta-red-lifestyle.webp";
-const hairCareVolumeImg = "/hair-care-volume.webp";
-const hairCareLisoImg = "/hair-care-liso.webp";
-const consultoraImg = "/consultora.webp";
+const malbecLifestyleImg = "/malbec-lifestyle-opt.webp";
+const malbecLifestyleImgMob = "/malbec-lifestyle-mob.webp";
+const malbecCollageImg = "/malbec-collage-opt.webp";
+const malbecCollageImgMob = "/malbec-collage-mob.webp";
+const florattaRedImg = "/floratta-red-lifestyle-opt.webp";
+const hairCareVolumeImg = "/hair-care-volume-opt.webp";
+const hairCareLisoImg = "/hair-care-liso-opt.webp";
+const consultoraImg = "/consultora-opt.webp";
+const consultoraImgMob = "/consultora-mob.webp";
 
 // Lazy-loaded section imports
 const TrustBar = lazy(() => import("@/components/sections/TrustBar"));
@@ -40,11 +43,11 @@ const LandingPage = memo(function LandingPage() {
       <LazySection><Suspense fallback={null}><TrustBar /></Suspense></LazySection>
       <LazySection><Suspense fallback={null}><HairCareSuite volumeImg={hairCareVolumeImg} lisoImg={hairCareLisoImg} /></Suspense></LazySection>
       <LazySection><Suspense fallback={null}><PerfumesHeader /></Suspense></LazySection>
-      <LazySection><Suspense fallback={null}><MalbecShowcase lifestyleImg={malbecLifestyleImg} collageImg={malbecCollageImg} /></Suspense></LazySection>
+      <LazySection><Suspense fallback={null}><MalbecShowcase lifestyleImg={malbecLifestyleImg} lifestyleImgMob={malbecLifestyleImgMob} collageImg={malbecCollageImg} collageImgMob={malbecCollageImgMob} /></Suspense></LazySection>
       <LazySection><Suspense fallback={null}><FlorattaRedShowcase image={florattaRedImg} /></Suspense></LazySection>
       <LazySection><Suspense fallback={null}><BoticarioCarousel /></Suspense></LazySection>
       <LazySection><Suspense fallback={null}><KitsGrid /></Suspense></LazySection>
-      <LazySection><Suspense fallback={null}><Consultoria image={consultoraImg} /></Suspense></LazySection>
+      <LazySection><Suspense fallback={null}><Consultoria image={consultoraImg} imageMob={consultoraImgMob} /></Suspense></LazySection>
       <LazySection><Suspense fallback={null}><Depoimentos /></Suspense></LazySection>
       <LazySection><Suspense fallback={null}><Faq /></Suspense></LazySection>
       <LazySection><Suspense fallback={null}><CtaFinal heroImage={heroPerfume} /></Suspense></LazySection>

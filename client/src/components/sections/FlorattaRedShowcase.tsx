@@ -17,10 +17,12 @@ const FlorattaRedShowcase = memo(function FlorattaRedShowcase({ image }: { image
       cta="Garantir meu Floratta Red"
       waMessage="Olá! Quero comprar o Floratta Red (O Boticário) com entrega rápida em 1h."
       image={image}
+      imageMob="/floratta-red-lifestyle-mob.webp"
       imageAlt="Modelo com vestido vermelho segurando frasco Floratta Red em apartamento de luxo com vista da cidade"
       reverse
       sealText="Melhor Custo-Benefício"
-      secondImage="/floratta.jpeg"
+      secondImage="/floratta.webp"
+      secondImageMob="/floratta-mob.webp"
       secondLabel={`Floratta Red
 Sinta a elegância. Viva o romance.`}
     />

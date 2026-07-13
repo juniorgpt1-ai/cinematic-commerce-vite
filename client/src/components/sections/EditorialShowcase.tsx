@@ -15,11 +15,13 @@ type ShowcaseProps = {
   cta: string;
   waMessage: string;
   image: string;
+  imageMob?: string;
   imageAlt: string;
   reverse?: boolean;
   tone?: "gold" | "bordo";
   sealText?: string;
   secondImage?: string;
+  secondImageMob?: string;
   secondLabel?: string;
 };
 
@@ -33,11 +35,13 @@ const EditorialShowcase = memo(function EditorialShowcase({
   cta,
   waMessage,
   image,
+  imageMob,
   imageAlt,
   reverse,
   tone = "gold",
   sealText = "Melhor Custo-Benefício",
   secondImage,
+  secondImageMob,
   secondLabel,
 }: ShowcaseProps) {
   const fade = useFadeUp();
@@ -80,13 +84,18 @@ const EditorialShowcase = memo(function EditorialShowcase({
                         <span>MAISON PREMIUM</span>
                       </div>
                     </div>
-                    <div className="min-w-full relative flex items-center justify-center bg-gradient-to-b from-luxe-black via-luxe-black/90 to-black">
-                      <img
-                        src={secondImage}
-                        alt={secondLabel || imageAlt}
-                        loading="lazy"
-                        className="w-full h-full object-cover object-center"
-                      />
+                    <div className="min-w-full relative bg-gradient-to-b from-luxe-black via-luxe-black/90 to-black">
+                      <picture className="absolute inset-0">
+                        {secondImageMob && (
+                          <source srcSet={secondImageMob} media="(max-width: 767px)" />
+                        )}
+                        <img
+                          src={secondImage}
+                          alt={secondLabel || imageAlt}
+                          loading="lazy"
+                          className="w-full h-full object-cover object-center"
+                        />
+                      </picture>
                       <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
                       {secondLabel && (
                         <div className="absolute top-4 md:top-6 left-4 right-4 text-center">
@@ -107,12 +116,17 @@ const EditorialShowcase = memo(function EditorialShowcase({
               </>
             ) : (
               <div className="relative aspect-[4/5] overflow-hidden bg-black shadow-2xl">
-                <img
-                  src={image}
-                  alt={imageAlt}
-                  loading="lazy"
-                  className="h-full w-full object-cover transition-transform duration-750 hover:scale-103"
-                />
+                <picture>
+                  {imageMob && (
+                    <source srcSet={imageMob} media="(max-width: 767px)" />
+                  )}
+                  <img
+                    src={image}
+                    alt={imageAlt}
+                    loading="lazy"
+                    className="h-full w-full object-cover transition-transform duration-750 hover:scale-103"
+                  />
+                </picture>
                 <div className="absolute top-4 md:top-6 left-4 md:left-6 right-4 md:right-6 flex flex-wrap items-center justify-between gap-2 text-white/80 text-[10px] tracking-[0.24em] md:tracking-[0.32em] uppercase font-semibold">
                   <span>{eyebrow.split("·")[0].trim()}</span>
                   <span>MAISON PREMIUM</span>

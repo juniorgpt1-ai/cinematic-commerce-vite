@@ -5,7 +5,7 @@ import { waLink } from "@/lib/whatsapp";
 import { useFadeUp } from "@/hooks/useFadeUp";
 import FloatingBadge from "@/components/sections/FloatingBadge";
 
-const Consultoria = memo(function Consultoria({ image }: { image: string }) {
+const Consultoria = memo(function Consultoria({ image, imageMob }: { image: string; imageMob?: string }) {
   const fade = useFadeUp();
   return (
     <section className="bg-luxe-gradient border-b border-luxe-line/20 relative overflow-hidden">
@@ -13,12 +13,17 @@ const Consultoria = memo(function Consultoria({ image }: { image: string }) {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-14 lg:gap-20 items-center">
           <motion.div {...fade} className="lg:col-span-6 relative">
             <div className="relative aspect-[4/5] overflow-hidden shadow-2xl border border-luxe-line/30">
-              <img
-                src={image}
-                alt="Consultora premium sorrindo, atendimento personalizado e humanizado"
-                loading="lazy"
-                className="h-full w-full object-cover"
-              />
+              <picture>
+                {imageMob && (
+                  <source srcSet={imageMob} media="(max-width: 767px)" />
+                )}
+                <img
+                  src={image}
+                  alt="Consultora premium sorrindo, atendimento personalizado e humanizado"
+                  loading="lazy"
+                  className="h-full w-full object-cover"
+                />
+              </picture>
               <div className="absolute inset-0 border border-luxe-gold/30 pointer-events-none m-4" />
             </div>
 
