@@ -1,8 +1,6 @@
-import { motion } from "framer-motion";
 import { Timer, MessageCircle, ArrowRight } from "lucide-react";
 import { useState, useEffect, memo, lazy, Suspense } from "react";
 import { waLink } from "@/lib/whatsapp";
-import { useFadeUp } from "@/hooks/useFadeUp";
 import FloatingBadge from "@/components/sections/FloatingBadge";
 import LazySection from "@/components/sections/LazySection";
 import WhatsappFloating from "@/components/sections/WhatsappFloating";
@@ -187,7 +185,6 @@ const Nav = memo(function Nav() {
 /* -------------------------------- HERO ----------------------------------- */
 
 const Hero = memo(function Hero() {
-  const fade = useFadeUp();
   const [showParticles, setShowParticles] = useState(false);
   useEffect(() => {
     const id = requestAnimationFrame(() => setShowParticles(true));
@@ -205,7 +202,7 @@ const Hero = memo(function Hero() {
           alt="Fragrância de luxo iluminada em fundo escuro com reflexos dinâmicos"
           fetchPriority="high"
           loading="eager"
-          decoding="async"
+          decoding="sync"
           width={1600}
           height={1200}
           className="absolute inset-0 h-full w-full object-cover opacity-60"
@@ -215,7 +212,7 @@ const Hero = memo(function Hero() {
       <div className="absolute inset-0 bg-gradient-to-t from-[#070707] via-transparent to-black/50" />
 
       <div className="relative z-10 mx-auto max-w-7xl w-full px-4 md:px-6 pt-40 pb-32 md:pt-48 md:pb-32 flex flex-col justify-end">
-        <motion.div {...fade} className="max-w-3xl">
+        <div className="animate-fade-up max-w-3xl">
           <div className="mb-2 sm:mb-8 hidden md:flex md:justify-start">
             <FloatingBadge className="border-white/30 bg-white/95">
               <Timer className="size-3 sm:size-3.5 text-luxe-black" />
@@ -275,7 +272,7 @@ const Hero = memo(function Hero() {
               </span>
             </FloatingBadge>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
