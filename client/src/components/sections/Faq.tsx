@@ -1,7 +1,6 @@
 import { memo, useState } from "react";
-import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
-import { useFadeUp } from "@/hooks/useFadeUp";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const Faq = memo(function Faq() {
   const items = [
@@ -27,17 +26,18 @@ const Faq = memo(function Faq() {
     },
   ];
   const [open, setOpen] = useState<number | null>(0);
-  const fade = useFadeUp();
+  const headerRef = useScrollReveal();
+
   return (
     <section id="faq" className="bg-luxe-gradient border-b border-luxe-line/30">
       <div className="mx-auto max-w-4xl px-6 py-32 md:py-40">
-        <motion.div {...fade} className="text-center">
+        <div ref={headerRef} className="reveal-up text-center">
           <span className="eyebrow">Perguntas Frequentes</span>
           <h2 className="mt-5 font-section text-4xl md:text-5xl font-semibold leading-[1.08]">
             Dúvidas Frequentes
           </h2>
           <span className="gold-rule mt-6 mx-auto" />
-        </motion.div>
+        </div>
 
         <div className="mt-16 divide-y divide-luxe-line/40 border-y border-luxe-line/40">
           {items.map((it, i) => {

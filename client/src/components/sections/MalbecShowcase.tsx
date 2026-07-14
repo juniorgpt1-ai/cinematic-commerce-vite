@@ -1,13 +1,14 @@
 import { memo, useState, useEffect, useCallback } from "react";
-import { motion } from "framer-motion";
 import { Timer, MessageCircle, ArrowRight, Award } from "lucide-react";
 import { waLink } from "@/lib/whatsapp";
-import { useFadeUp } from "@/hooks/useFadeUp";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 import FloatingBadge from "@/components/sections/FloatingBadge";
 
 const MalbecShowcase = memo(function MalbecShowcase({ lifestyleImg, collageImg, lifestyleImgMob, collageImgMob }: { lifestyleImg: string; collageImg: string; lifestyleImgMob?: string; collageImgMob?: string }) {
-  const fade = useFadeUp();
   const [slide, setSlide] = useState(0);
+  const carouselRef = useScrollReveal();
+  const copyRef = useScrollReveal();
+  const collageRef = useScrollReveal();
 
   const nextSlide = useCallback(() => setSlide(s => (s + 1) % 2), []);
 
@@ -22,7 +23,7 @@ const MalbecShowcase = memo(function MalbecShowcase({ lifestyleImg, collageImg, 
         {/* Top editorial split */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
           {/* Carousel */}
-          <motion.div {...fade} className="lg:col-span-7 relative">
+          <div ref={carouselRef} className="reveal-right lg:col-span-7 relative">
             <div className="relative aspect-[4/5] overflow-hidden bg-black shadow-2xl border border-luxe-line/20">
               <div
                 className="flex h-full transition-transform duration-700 ease-in-out"
@@ -95,14 +96,10 @@ const MalbecShowcase = memo(function MalbecShowcase({ lifestyleImg, collageImg, 
                 <span className="text-[12px] tracking-wider uppercase font-bold text-luxe-gold-soft">Mais Procurado</span>
               </FloatingBadge>
             </div>
-          </motion.div>
+          </div>
 
           {/* Copy side */}
-          <motion.div
-            {...fade}
-            transition={{ ...fade.transition, delay: 0.12 }}
-            className="lg:col-span-5"
-          >
+          <div ref={copyRef} className="reveal-up lg:col-span-5">
             <span className="eyebrow text-luxe-gold">O Boticário · Perfumaria Masculina</span>
             <h2 className="mt-6 font-section text-4xl md:text-5xl font-semibold leading-[1.08] tracking-tight">
               Malbec Cologne. A elegância da{" "}
@@ -152,15 +149,11 @@ const MalbecShowcase = memo(function MalbecShowcase({ lifestyleImg, collageImg, 
                 <ArrowRight className="size-4 group-hover:translate-x-1 transition-transform" />
               </a>
             </div>
-          </motion.div>
+          </div>
         </div>
 
         {/* Collage — full-width editorial image */}
-        <motion.div
-          {...fade}
-          transition={{ ...fade.transition, delay: 0.2 }}
-          className="mt-24 md:mt-32"
-        >
+        <div ref={collageRef} className="reveal-scale mt-24 md:mt-32">
           <div className="bg-luxe-bg p-3 md:p-6 rounded-xs shadow-2xl border border-luxe-line/20">
             {/* Full-width image */}
             <div className="overflow-hidden rounded-xs">
@@ -200,7 +193,7 @@ const MalbecShowcase = memo(function MalbecShowcase({ lifestyleImg, collageImg, 
               </a>
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

@@ -1,8 +1,7 @@
 import { memo, useState, useEffect, useCallback } from "react";
-import { motion } from "framer-motion";
 import { Timer, MessageCircle, ArrowRight, Sparkles } from "lucide-react";
 import { waLink } from "@/lib/whatsapp";
-import { useFadeUp } from "@/hooks/useFadeUp";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 import FloatingBadge from "@/components/sections/FloatingBadge";
 
 type ShowcaseProps = {
@@ -44,7 +43,8 @@ const EditorialShowcase = memo(function EditorialShowcase({
   secondImageMob,
   secondLabel,
 }: ShowcaseProps) {
-  const fade = useFadeUp();
+  const imageRef = useScrollReveal();
+  const copyRef = useScrollReveal();
   const accentText = tone === "bordo" ? "text-luxe-bordo" : "text-luxe-gold";
   const [slide, setSlide] = useState(0);
   const hasCarousel = !!secondImage;
@@ -64,7 +64,7 @@ const EditorialShowcase = memo(function EditorialShowcase({
             reverse ? "lg:[&>div:first-child]:order-2" : ""
           }`}
         >
-          <motion.div {...fade} className={reverse ? "lg:col-span-5 relative" : "lg:col-span-7 relative"}>
+          <div ref={imageRef} className={`reveal-right ${reverse ? "lg:col-span-5" : "lg:col-span-7"} relative`}>
             {hasCarousel ? (
               <>
                 <div className="relative aspect-[4/5] overflow-hidden bg-black shadow-2xl">
@@ -141,13 +141,9 @@ const EditorialShowcase = memo(function EditorialShowcase({
                 <span className="text-[14px] tracking-wider uppercase font-bold text-luxe-gold-soft">{sealText}</span>
               </FloatingBadge>
             </div>
-          </motion.div>
+          </div>
 
-          <motion.div
-            {...fade}
-            transition={{ ...fade.transition, delay: 0.12 }}
-            className={reverse ? "lg:col-span-7" : "lg:col-span-5"}
-          >
+          <div ref={copyRef} className={`reveal-up ${reverse ? "lg:col-span-7" : "lg:col-span-5"}`}>
             <span className={`eyebrow ${accentText}`}>{eyebrow}</span>
             <h2 className="mt-6 font-section text-4xl md:text-5xl font-semibold leading-[1.08] tracking-tight">
               {title}
@@ -198,7 +194,7 @@ const EditorialShowcase = memo(function EditorialShowcase({
                 <ArrowRight className="size-4 group-hover:translate-x-1 transition-transform" />
               </a>
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

@@ -1,11 +1,12 @@
 import { memo } from "react";
-import { motion } from "framer-motion";
 import { Timer, ArrowRight } from "lucide-react";
 import { waLink } from "@/lib/whatsapp";
-import { useFadeUp } from "@/hooks/useFadeUp";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const KitsGrid = memo(function KitsGrid() {
-  const fade = useFadeUp();
+  const headerRef = useScrollReveal();
+  const gridRef = useScrollReveal();
+
   const kits = [
     {
       name: "Kit Ele Elegante",
@@ -33,7 +34,7 @@ const KitsGrid = memo(function KitsGrid() {
     <section id="kits" className="bg-luxe-dark-gradient text-white relative overflow-hidden">
 
       <div className="mx-auto max-w-7xl px-6 py-32 md:py-40 relative z-10">
-        <motion.div {...fade} className="max-w-2xl mb-16">
+        <div ref={headerRef} className="reveal-up max-w-2xl mb-16">
           <span className="eyebrow text-luxe-gold-soft">Curadoria de Presentes</span>
           <h2 className="mt-5 font-section text-5xl md:text-5xl font-semibold leading-[1.08]">
             Kits & Combos Inteligentes
@@ -41,15 +42,13 @@ const KitsGrid = memo(function KitsGrid() {
           <p className="mt-6 text-white/60 text-lg font-sans font-light leading-relaxed max-w-xl">
             Combinações desenvolvidas por especialistas para presentear com sofisticação ou reabastecer seu estoque de luxo com o melhor custo-benefício.
           </p>
-        </motion.div>
+        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-luxe-gold/20">
+        <div ref={gridRef} className="stagger-container grid grid-cols-1 md:grid-cols-3 gap-px bg-luxe-gold/20">
           {kits.map((k, i) => (
-            <motion.div
+            <div
               key={k.name}
-              {...fade}
-              transition={{ ...fade.transition, delay: i * 0.1 }}
-              className="bg-luxe-ink p-10 flex flex-col justify-between group hover:bg-black/90 transition-colors duration-300"
+              className="reveal-up bg-luxe-ink p-10 flex flex-col justify-between group hover:bg-black/90 transition-colors duration-300"
             >
               <div>
                 <div className="flex items-center justify-between gap-4">
@@ -94,7 +93,7 @@ const KitsGrid = memo(function KitsGrid() {
                   </a>
                 </div>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

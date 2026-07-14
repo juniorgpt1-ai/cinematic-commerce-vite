@@ -4,6 +4,7 @@ import { waLink } from "@/lib/whatsapp";
 import FloatingBadge from "@/components/sections/FloatingBadge";
 import LazySection from "@/components/sections/LazySection";
 import WhatsappFloating from "@/components/sections/WhatsappFloating";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const AntigravityParticles = lazy(() => import("@/components/AntigravityParticles").then(m => ({ default: m.AntigravityParticles })));
 
@@ -58,8 +59,16 @@ const LandingPage = memo(function LandingPage() {
 /* -------------------------------- NAV ------------------------------------ */
 
 const Nav = memo(function Nav() {
+  const [scrolled, setScrolled] = useState(false);
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 80);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
-    <header className="absolute top-0 inset-x-0 z-30">
+    <header className={`absolute top-0 inset-x-0 z-30 nav-scroll ${scrolled ? "scrolled" : ""}`}>
 
       {/* ═══════════════════ MOBILE: premium centered header ═══════════════════ */}
       <div className="md:hidden header-premium text-white">
@@ -190,6 +199,7 @@ const Hero = memo(function Hero() {
     const id = requestAnimationFrame(() => setShowParticles(true));
     return () => cancelAnimationFrame(id);
   }, []);
+  const ctaRef = useScrollReveal<HTMLAnchorElement>();
   return (
     <section className="relative min-h-screen w-full bg-[#070707] text-white overflow-hidden flex flex-col justify-end">
       {/* Background Interactive Particles (Antigravity effect) — deferred for LCP */}
@@ -239,12 +249,13 @@ const Hero = memo(function Hero() {
 
           <div className="mt-10 md:mt-12 flex flex-wrap items-center gap-4">
             <a
+              ref={ctaRef}
               href={waLink(
                 "Olá! Quero fazer meu pedido para entrega expressa em BH/região. Pode me ajudar?",
               )}
               target="_blank"
               rel="noreferrer"
-              className="group inline-flex items-center justify-center gap-2 whitespace-nowrap bg-whatsapp hover:bg-whatsapp-hover text-black font-bold px-4 py-3 md:px-8 md:py-4 text-sm md:text-base tracking-wide wa-glow"
+              className="cta-emphasize group inline-flex items-center justify-center gap-2 whitespace-nowrap bg-whatsapp hover:bg-whatsapp-hover text-black font-bold px-4 py-3 md:px-8 md:py-4 text-sm md:text-base tracking-wide wa-glow"
             >
               <MessageCircle className="size-5" />
               Peça Agora e Receba em Minutos

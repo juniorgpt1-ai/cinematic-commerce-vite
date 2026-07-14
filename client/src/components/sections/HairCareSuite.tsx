@@ -1,16 +1,16 @@
 import { memo } from "react";
-import { motion } from "framer-motion";
 import { MessageCircle, ArrowRight, Award, Sparkles } from "lucide-react";
 import { waLink } from "@/lib/whatsapp";
-import { useFadeUp } from "@/hooks/useFadeUp";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 import FloatingBadge from "@/components/sections/FloatingBadge";
 
 const HairCareSuite = memo(function HairCareSuite({ volumeImg, lisoImg }: { volumeImg: string; lisoImg: string }) {
-  const fade = useFadeUp();
+  const headerRef = useScrollReveal();
+
   return (
     <section id="haircare" className="relative bg-luxe-bg overflow-hidden border-b border-luxe-line/40">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 py-32 md:py-40 relative z-10">
-        <motion.div {...fade} className="max-w-3xl mb-20 text-center mx-auto">
+        <div ref={headerRef} className="reveal-up max-w-3xl mb-20 text-center mx-auto">
           <span className="eyebrow text-sm sm:text-base">Alta Performance Capilar</span>
           <h2 className="mt-5 font-section text-4xl sm:text-5xl md:text-6xl font-semibold leading-[1.08]">
             A Arte do Cuidado Absoluto
@@ -19,11 +19,11 @@ const HairCareSuite = memo(function HairCareSuite({ volumeImg, lisoImg }: { volu
           <p className="mt-8 text-base sm:text-lg text-luxe-ink/85 font-sans font-light leading-relaxed">
             Tecnologia de salão adaptada para a sua rotina diária. A sofisticação da alta performance agora acessível na sua casa.
           </p>
-        </motion.div>
+        </div>
 
         {/* 1. Encorpamento Suite */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center mb-32 md:mb-40">
-          <motion.div {...fade} className="lg:col-span-6 relative">
+          <div ref={useScrollReveal()} className="reveal-right lg:col-span-6 relative">
             <div className="relative aspect-[6/5] overflow-hidden bg-luxe-ink shadow-2xl border border-luxe-line/20 group">
               <picture>
                 <source srcSet="/VOLMOB-opt.webp" media="(max-width: 767px)" />
@@ -48,13 +48,9 @@ const HairCareSuite = memo(function HairCareSuite({ volumeImg, lisoImg }: { volu
                 <span className="text-[14px] tracking-wider uppercase font-bold text-luxe-gold-soft">Best Seller</span>
               </FloatingBadge>
             </div>
-          </motion.div>
+          </div>
 
-          <motion.div
-            {...fade}
-            transition={{ ...fade.transition, delay: 0.12 }}
-            className="lg:col-span-6"
-          >
+          <div ref={useScrollReveal()} className="reveal-up lg:col-span-6">
             <span className="eyebrow text-luxe-gold text-sm sm:text-base">Hair Care · Volume & Densidade</span>
             <h3 className="mt-4 font-section text-3xl sm:text-5xl md:text-5xl font-semibold leading-[1.08]">
               Cabelos encorpados com conforto e resultado visível.
@@ -103,12 +99,12 @@ const HairCareSuite = memo(function HairCareSuite({ volumeImg, lisoImg }: { volu
                 <ArrowRight className="size-4 group-hover:translate-x-1 transition-transform" />
               </a>
             </div>
-          </motion.div>
+          </div>
         </div>
 
         {/* 2. Cauterização Suite */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
-          <motion.div {...fade} className="lg:col-span-7 lg:order-2 relative">
+          <div ref={useScrollReveal()} className="reveal-scale lg:col-span-7 lg:order-2 relative">
             <div className="relative aspect-[6/5] overflow-hidden bg-luxe-ink shadow-2xl border border-luxe-line/20 group">
               <picture>
                 <source srcSet="/LISMOB-opt.webp" media="(max-width: 767px)" />
@@ -133,13 +129,9 @@ const HairCareSuite = memo(function HairCareSuite({ volumeImg, lisoImg }: { volu
                 <span className="text-[14px] tracking-wider uppercase font-bold text-luxe-gold-soft">Alta Performance</span>
               </FloatingBadge>
             </div>
-          </motion.div>
+          </div>
 
-          <motion.div
-            {...fade}
-            transition={{ ...fade.transition, delay: 0.12 }}
-            className="lg:col-span-5 lg:order-1"
-          >
+          <div ref={useScrollReveal()} className="reveal-up lg:col-span-5 lg:order-1">
             <span className="eyebrow text-luxe-gold text-sm sm:text-base">Hair Care · Blindagem & Cauterização</span>
             <h3 className="mt-4 font-section text-3xl sm:text-5xl md:text-5xl font-semibold leading-[1.08]">
               Liso de Salão em Casa.
@@ -188,7 +180,7 @@ const HairCareSuite = memo(function HairCareSuite({ volumeImg, lisoImg }: { volu
                 <ArrowRight className="size-4 group-hover:translate-x-1 transition-transform" />
               </a>
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

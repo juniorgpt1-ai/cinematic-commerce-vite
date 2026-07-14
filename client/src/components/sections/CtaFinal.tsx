@@ -1,12 +1,12 @@
 import { memo } from "react";
-import { motion } from "framer-motion";
 import { Timer, MessageCircle, ArrowRight } from "lucide-react";
 import { waLink } from "@/lib/whatsapp";
-import { useFadeUp } from "@/hooks/useFadeUp";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 import FloatingBadge from "@/components/sections/FloatingBadge";
 
 const CtaFinal = memo(function CtaFinal({ heroImage }: { heroImage: string }) {
-  const fade = useFadeUp();
+  const sectionRef = useScrollReveal();
+  const ctaRef = useScrollReveal<HTMLAnchorElement>();
   return (
     <section className="relative bg-dark-deeper text-white overflow-hidden py-32 md:py-40">
 
@@ -18,8 +18,7 @@ const CtaFinal = memo(function CtaFinal({ heroImage }: { heroImage: string }) {
         <div className="absolute inset-0 bg-gradient-to-t from-luxe-ink via-luxe-ink/85 to-luxe-ink/70" />
       </div>
 
-      <div className="relative mx-auto max-w-4xl px-6 text-center z-10">
-        <motion.div {...fade}>
+      <div ref={sectionRef} className="reveal-up relative mx-auto max-w-4xl px-6 text-center z-10">
           <div className="mb-8">
             <FloatingBadge className="border-luxe-gold-soft/30 bg-black/85">
               <Timer className="size-3.5 text-luxe-gold-soft" />
@@ -40,17 +39,17 @@ const CtaFinal = memo(function CtaFinal({ heroImage }: { heroImage: string }) {
 
           <div className="mt-12">
             <a
+              ref={ctaRef}
               href={waLink("Olá, quero garantir minha seleção de luxo inteligente com entrega expressa hoje.")}
               target="_blank"
               rel="noreferrer"
-              className="wa-pulse inline-flex flex-wrap items-center justify-center gap-3 bg-whatsapp hover:bg-whatsapp-hover text-black font-bold px-5 py-4 md:px-10 md:py-5 text-base md:text-lg tracking-wider uppercase rounded-sm btn-hover-scale"
+              className="cta-emphasize wa-pulse inline-flex flex-wrap items-center justify-center gap-3 bg-whatsapp hover:bg-whatsapp-hover text-black font-bold px-5 py-4 md:px-10 md:py-5 text-base md:text-lg tracking-wider uppercase rounded-sm btn-hover-scale"
             >
               <MessageCircle className="size-6" strokeWidth={2.4} />
               Garantir Combo no WhatsApp
               <ArrowRight className="size-5" strokeWidth={2.4} />
             </a>
           </div>
-        </motion.div>
       </div>
     </section>
   );

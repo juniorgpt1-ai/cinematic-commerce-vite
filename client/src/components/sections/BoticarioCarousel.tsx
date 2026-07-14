@@ -1,8 +1,7 @@
 import { memo, useRef } from "react";
-import { motion } from "framer-motion";
 import { ArrowRight, ChevronLeft } from "lucide-react";
 import { waLink } from "@/lib/whatsapp";
-import { useFadeUp } from "@/hooks/useFadeUp";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 interface CarouselProduct {
   name: string;
@@ -74,7 +73,9 @@ const PRODUCTS: CarouselProduct[] = [
 ];
 
 const BoticarioCarousel = memo(function BoticarioCarousel() {
-  const fade = useFadeUp();
+  const headerRef = useScrollReveal();
+  const controlsRef = useScrollReveal();
+  const carouselContainerRef = useScrollReveal();
   const carouselRef = useRef<HTMLDivElement>(null);
 
   const scroll = (direction: "left" | "right") => {
@@ -97,7 +98,7 @@ const BoticarioCarousel = memo(function BoticarioCarousel() {
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 relative z-10">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16">
-          <motion.div {...fade} className="max-w-2xl">
+          <div ref={headerRef} className="reveal-up max-w-2xl">
             <span className="eyebrow text-luxe-gold-soft">Seleção dos Favoritos</span>
             <h2 className="mt-5 font-section text-4xl sm:text-5xl md:text-5xl font-semibold leading-[1.08]">
               Mais Amados do Grupo Boticário
@@ -105,9 +106,9 @@ const BoticarioCarousel = memo(function BoticarioCarousel() {
             <p className="mt-6 text-white/60 font-sans font-light text-base sm:text-lg">
               Escolhas consagradas, luxo acessível e alta performance olfativa e de tratamento. A melhor seleção para você.
             </p>
-          </motion.div>
+          </div>
 
-          <motion.div {...fade} className="flex gap-3 mt-6 md:mt-0">
+          <div ref={controlsRef} className="reveal-up flex gap-3 mt-6 md:mt-0">
             <button
               onClick={() => scroll("left")}
               aria-label="Rolar para esquerda"
@@ -122,27 +123,23 @@ const BoticarioCarousel = memo(function BoticarioCarousel() {
             >
               <ArrowRight className="size-5" />
             </button>
-          </motion.div>
+          </div>
         </div>
 
         {/* Horizontal Carousel */}
-        <div
-          ref={carouselRef}
-          role="region"
-          aria-roledescription="carousel"
-          aria-label="Produtos do Grupo Boticário"
-          className="flex gap-6 overflow-x-auto pb-10 scrollbar-premium snap-x snap-mandatory scroll-smooth"
-          style={{ scrollbarWidth: "thin" }}
-        >
-          {PRODUCTS.map((prod, idx) => (
-            <motion.div
+        <div ref={carouselContainerRef}>
+          <div
+            ref={carouselRef}
+            className="stagger-container flex gap-6 overflow-x-auto pb-10 scrollbar-premium snap-x snap-mandatory scroll-smooth"
+            aria-roledescription="carousel"
+            aria-label="Produtos do Grupo Boticário"
+            style={{ scrollbarWidth: "thin" }}
+          >
+          {PRODUCTS.map((prod) => (
+            <div
               key={prod.name}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ delay: idx * 0.06, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
               data-carousel-card
-              className="min-w-[280px] sm:min-w-[320px] md:min-w-[340px] max-w-[340px] bg-black/50 border border-white/8 p-6 md:p-8 rounded-2xl snap-start flex flex-col justify-between group hover:border-luxe-gold/40 hover:bg-black/70 hover:shadow-[0_0_40px_-8px_rgba(154,123,80,0.12)] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]"
+              className="reveal-up min-w-[280px] sm:min-w-[320px] md:min-w-[340px] max-w-[340px] bg-black/50 border border-white/8 p-6 md:p-8 rounded-2xl snap-start flex flex-col justify-between group hover:border-luxe-gold/40 hover:bg-black/70 hover:shadow-[0_0_40px_-8px_rgba(154,123,80,0.12)] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]"
             >
               <div>
                 <div className="flex flex-wrap items-center justify-between gap-2">
@@ -177,8 +174,9 @@ const BoticarioCarousel = memo(function BoticarioCarousel() {
                   {prod.ctaText} <ArrowRight className="size-3.5 group-hover:translate-x-1 transition-transform" />
                 </a>
               </div>
-            </motion.div>
+            </div>
           ))}
+          </div>
         </div>
       </div>
     </section>

@@ -1,17 +1,18 @@
 import { memo } from "react";
-import { motion } from "framer-motion";
 import { MessageCircle, ArrowRight, Sparkles } from "lucide-react";
 import { waLink } from "@/lib/whatsapp";
-import { useFadeUp } from "@/hooks/useFadeUp";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 import FloatingBadge from "@/components/sections/FloatingBadge";
 
 const Consultoria = memo(function Consultoria({ image, imageMob }: { image: string; imageMob?: string }) {
-  const fade = useFadeUp();
+  const imageRef = useScrollReveal();
+  const copyRef = useScrollReveal();
+
   return (
     <section className="bg-luxe-gradient border-b border-luxe-line/20 relative overflow-hidden">
       <div className="mx-auto max-w-7xl px-6 py-32 md:py-40 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-14 lg:gap-20 items-center">
-          <motion.div {...fade} className="lg:col-span-6 relative">
+          <div ref={imageRef} className="reveal-scale lg:col-span-6 relative">
             <div className="relative aspect-[4/5] overflow-hidden shadow-2xl border border-luxe-line/30">
               <picture>
                 {imageMob && (
@@ -34,13 +35,9 @@ const Consultoria = memo(function Consultoria({ image, imageMob }: { image: stri
                 <span className="text-[14px] tracking-wider uppercase font-bold text-luxe-gold-soft">Atendimento VIP</span>
               </FloatingBadge>
             </div>
-          </motion.div>
+          </div>
 
-          <motion.div
-            {...fade}
-            transition={{ ...fade.transition, delay: 0.1 }}
-            className="lg:col-span-6"
-          >
+          <div ref={copyRef} className="reveal-up lg:col-span-6">
             <span className="eyebrow">Atendimento Humanizado</span>
             <h2 className="mt-6 font-section text-5xl md:text-5xl font-semibold leading-[1.08]">
               Escolha Inteligente Sem Complicações
@@ -73,7 +70,7 @@ const Consultoria = memo(function Consultoria({ image, imageMob }: { image: stri
               Falar com a Consultora
               <ArrowRight className="size-4" />
             </a>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

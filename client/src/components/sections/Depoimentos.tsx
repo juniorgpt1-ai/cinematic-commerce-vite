@@ -1,7 +1,6 @@
 import { memo } from "react";
-import { motion } from "framer-motion";
 import { Quote } from "lucide-react";
-import { useFadeUp } from "@/hooks/useFadeUp";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const TESTIMONIALS = [
   {
@@ -22,25 +21,24 @@ const TESTIMONIALS = [
 ];
 
 const Depoimentos = memo(function Depoimentos() {
-  const fade = useFadeUp();
+  const headerRef = useScrollReveal();
+
   return (
     <section className="bg-luxe-gradient border-b border-luxe-line/30 relative overflow-hidden">
       <div className="mx-auto max-w-7xl px-6 py-32 md:py-40 relative z-10">
-        <motion.div {...fade} className="max-w-2xl text-center mx-auto mb-20">
+        <div ref={headerRef} className="reveal-up max-w-2xl text-center mx-auto mb-20">
           <span className="eyebrow">Opinião de Clientes</span>
           <h2 className="mt-5 font-section text-5xl md:text-5xl font-semibold leading-[1.08]">
             A Experiência do Luxo Inteligente
           </h2>
           <span className="gold-rule mt-6 mx-auto" />
-        </motion.div>
+        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16">
-          {TESTIMONIALS.map((t, i) => (
-            <motion.figure
+        <div ref={useScrollReveal()} className="stagger-container grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16">
+          {TESTIMONIALS.map((t) => (
+            <figure
               key={t.name}
-              {...fade}
-              transition={{ ...fade.transition, delay: i * 0.1 }}
-              className="flex flex-col justify-between p-8 rounded-xs card-premium bg-white"
+              className="reveal-up flex flex-col justify-between p-8 rounded-xs card-premium bg-white"
             >
               <div>
                 <div className="flex gap-0.5 mb-4">
@@ -61,7 +59,7 @@ const Depoimentos = memo(function Depoimentos() {
                   {t.meta}
                 </div>
               </figcaption>
-            </motion.figure>
+            </figure>
           ))}
         </div>
       </div>
