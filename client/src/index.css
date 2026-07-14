@@ -188,6 +188,8 @@
   .wa-glow, .wa-pulse { animation: none; }
   .animate-bottle-in { animation: none; opacity: 1; transform: none; }
   .animate-bottle-float { animation: none; }
+  .animate-fade-up { animation: none; opacity: 1; transform: none; }
+  .animate-float-badge { animation: none; }
 }
 
 .scrollbar-premium::-webkit-scrollbar {
@@ -233,6 +235,38 @@
 
 @utility animate-bottle-float {
   animation: bottle-float 3.5s ease-in-out infinite alternate;
+}
+
+/* ── Hero content fade-up (replaces framer-motion useFadeUp on Hero) ── */
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(32px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@utility animate-fade-up {
+  animation: fade-up 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* ── Floating badge bob (replaces framer-motion animate on FloatingBadge) ── */
+
+@keyframes float-badge {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+@utility animate-float-badge {
+  animation: float-badge 5s ease-in-out infinite;
 }
 
 /* ── Ambient background depth ── */
