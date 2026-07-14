@@ -44,10 +44,17 @@
     <style>
       html{scroll-behavior:smooth}
       body{margin:0;background:#070707;color:#fff;font-family:'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;-webkit-font-smoothing:antialiased}
-      #root{min-height:100vh}
-      #hero-fallback{position:absolute;inset:0;z-index:1;display:flex;align-items:center;justify-content:center;text-align:center;padding:2rem;pointer-events:none}
+      #root{position:relative;min-height:100vh}
+      #hero-fallback{position:absolute;inset:0;z-index:1;display:flex;align-items:flex-end;pointer-events:none}
+      #hero-fallback .hero-fb-bg{position:absolute;inset:0}
+      #hero-fallback .hero-fb-bg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.6}
+      #hero-fallback .hero-fb-overlay-1{position:absolute;inset:0;background:linear-gradient(to right,rgba(0,0,0,.95),rgba(0,0,0,.7),transparent)}
+      #hero-fallback .hero-fb-overlay-2{position:absolute;inset:0;background:linear-gradient(to top,#070707,transparent,rgba(0,0,0,.5))}
+      #hero-fallback .hero-fb-content{position:relative;z-index:2;max-width:80rem;width:100%;margin:0 auto;padding:2.5rem 1rem 8rem}
       #hero-fallback .hero-fb-h1{font-family:'Cormorant Garamond',Georgia,'Times New Roman',serif;font-weight:700;line-height:.88;font-size:clamp(2.5rem,12vw,5.5rem)}
       #hero-fallback .hero-fb-p{font-family:'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;font-size:1.05rem;max-width:36rem;margin:1rem auto 0;color:rgba(255,255,255,.7);line-height:1.55;font-weight:300}
+      #hero-fallback .hero-fb-cta{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;white-space:nowrap;background:#25d366;color:#000;font-weight:700;padding:.75rem 1rem;font-size:.875rem;letter-spacing:.025em;margin-top:2.5rem;text-decoration:none;pointer-events:auto}
+      #hero-fallback .hero-fb-cta:hover{background:#1ebe57}
       h1,h2,h3{font-family:'Cormorant Garamond',Georgia,'Times New Roman',serif}
       .text-white\/95{color:rgba(255,255,255,.95)}
       .text-luxe-gold{color:#9A7B50}
@@ -121,16 +128,28 @@
 
   <body>
     <div id="hero-fallback">
-      <div>
+      <div class="hero-fb-bg">
+        <picture>
+          <source srcset="/malbecSMOB.webp" media="(max-width: 767px)" />
+          <img src="/malbec-signatureA.webp" alt="Fragrância de luxo iluminada em fundo escuro" fetchpriority="high" loading="eager" decoding="sync" width="1600" height="1200" />
+        </picture>
+        <div class="hero-fb-overlay-1"></div>
+        <div class="hero-fb-overlay-2"></div>
+      </div>
+      <div class="hero-fb-content">
         <h1 class="hero-fb-h1">
           <span class="text-luxe-gold">Luxo Acessível</span><br>
           <span class="text-white/95 drop-shadow-[0_2px_18px_rgba(0,0,0,0.6)]">Para Todos.</span>
         </h1>
         <p class="hero-fb-p">Perfumaria e hair care premium do Grupo Boticário com entrega expressa para <strong style="color:#fff;font-weight:600">BH e regiões</strong>. Peça agora pelo WhatsApp e receba seu pedido em minutos, com segurança e preço justo.</p>
+        <a class="hero-fb-cta" href="https://wa.me/5531900000000?text=Ol%C3%A1%21%20Quero%20fazer%20meu%20pedido%20para%20entrega%20expressa%20em%20BH%2Fregi%C3%A3o.%20Pode%20me%20ajudar%3F" target="_blank" rel="noreferrer">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          Peça Agora e Receba em Minutos
+        </a>
       </div>
     </div>
     <div id="root"></div>
-    <script>new MutationObserver(function(e,o){for(var r of e)for(var n of r.addedNodes)if(n.nodeType===1||(n.nodeType===3&&n.textContent.trim())){var d=document.getElementById("hero-fallback");d&&(d.style.display="none");o.disconnect();return}}).observe(document.getElementById("root"),{childList:!0,subtree:!0})</script>
+    <script>new MutationObserver(function(e,o){for(var r of e)for(var n of r.addedNodes)if(n.nodeType===1||(n.nodeType===3&&n.textContent.trim())){var d=document.getElementById("hero-fallback");d&&(d.style.display="none");o.disconnect();return}}).observe(document.getElementById("root"),{childList:!0})</script>
     <script type="module" src="/src/main.tsx"></script>
 
   </body>
