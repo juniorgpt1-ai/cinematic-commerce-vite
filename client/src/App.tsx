@@ -5,26 +5,14 @@ import { Route, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 
-const Home = lazy(() => import("./pages/Home"));
+import Home from "./pages/Home";
 const Toaster = lazy(() => import("sonner").then(m => ({ default: m.Toaster })));
 
 
 function Router() {
   return (
     <Switch>
-      <Route path={"/"}>
-        <Suspense
-          fallback={
-            <div className="min-h-screen bg-luxe-bg flex items-center justify-center">
-              <div className="animate-pulse text-luxe-gold font-display text-2xl">
-                Carregando...
-              </div>
-            </div>
-          }
-        >
-          <Home />
-        </Suspense>
-      </Route>
+      <Route path={"/"} component={Home} />
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />
