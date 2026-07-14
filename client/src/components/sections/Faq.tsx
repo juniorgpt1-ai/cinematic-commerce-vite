@@ -60,7 +60,7 @@ const Faq = memo(function Faq() {
                   />
                 </button>
                 <div
-                  className={`grid transition-all duration-500 ease-out ${
+                  className={`grid transition-all duration-600 ease-[cubic-bezier(0.22,1,0.36,1)] ${
                     isOpen ? "grid-rows-[1fr] opacity-100 pb-6" : "grid-rows-[0fr] opacity-0"
                   }`}
                 >

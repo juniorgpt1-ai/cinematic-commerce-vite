@@ -1,7 +1,6 @@
 import { memo } from "react";
-import { motion } from "framer-motion";
 import { Timer, ShieldCheck, Sparkles, Gift } from "lucide-react";
-import { useFadeUp } from "@/hooks/useFadeUp";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const TRUST_ITEMS = [
   {
@@ -33,7 +32,9 @@ const TRUST_ITEMS = [
 ];
 
 const TrustBar = memo(function TrustBar() {
-  const fade = useFadeUp();
+  const headerRef = useScrollReveal();
+  const gridRef = useScrollReveal();
+
   return (
     <section className="relative border-y border-luxe-gold/20 bg-luxe-gradient overflow-hidden">
       {/* Ambient light accents */}
@@ -42,86 +43,56 @@ const TrustBar = memo(function TrustBar() {
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 py-20 md:py-36 relative z-10">
         {/* Section label */}
-        <motion.div {...fade} className="text-center mb-14 md:mb-20">
+        <div ref={headerRef} className="reveal-up text-center mb-14 md:mb-20">
           <span className="inline-flex items-center gap-3 font-sans text-sm sm:text-base tracking-[0.28em] uppercase text-luxe-gold-deep font-semibold">
             <span className="h-px w-8 bg-luxe-gold/40" />
             Por que escolher a Maison
             <span className="h-px w-8 bg-luxe-gold/40" />
           </span>
-        </motion.div>
+          <h2 className="mt-12 md:mt-16 font-section text-5xl md:text-6xl font-semibold leading-[1.05]">
+            Confiança e Luxo em{" "}
+            <span className="italic font-light">Cada</span> Detalhe
+          </h2>
+          <span className="gold-rule mt-12 md:mt-14 mx-auto" />
+        </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-          {TRUST_ITEMS.map((it, i) => (
-            <motion.div
-              key={it.title}
-              {...fade}
-              transition={{ ...fade.transition, delay: i * 0.1 }}
-              className="relative flex flex-col items-center text-center p-7 md:p-8 rounded-2xl bg-white/60 border border-luxe-gold/10 hover:border-luxe-gold/30 hover:bg-white/90 hover:shadow-[0_8px_40px_-12px_rgba(154,123,80,0.15)] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group"
-            >
-              {/* Icon in a golden pill */}
-              <motion.div
-                initial={{ scale: 0, rotate: -30 }}
-                whileInView={{ scale: 1, rotate: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.12 + 0.2, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                className="relative mb-6 flex items-center justify-center w-16 h-16 rounded-2xl bg-luxe-gold/10 group-hover:bg-luxe-gold/20 transition-colors duration-500"
+        <div ref={gridRef} className="stagger-container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
+          {TRUST_ITEMS.map((it, i) => {
+            const Icon = it.icon;
+            return (
+              <div
+                key={it.title}
+                className="reveal-up flex flex-col items-center text-center"
+                style={it.stat ? undefined : undefined}
               >
-                <it.icon
-                  className="size-7 text-luxe-gold group-hover:text-luxe-gold-deep transition-colors duration-500"
-                  strokeWidth={1.5}
-                />
-                {/* Subtle ring on hover */}
-                <div className="absolute inset-0 rounded-2xl border border-luxe-gold/20 group-hover:border-luxe-gold/40 group-hover:scale-110 transition-all duration-500" />
-              </motion.div>
+                {/* Icon pill — pop-in animation */}
+                <div className="icon-pop-in w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-luxe-gold/10 border border-luxe-gold/30 flex items-center justify-center mb-6 md:mb-8">
+                  <Icon className="size-7 sm:size-8 text-luxe-gold" strokeWidth={1.5} />
+                </div>
 
-              {/* Stat */}
-              {it.stat && (
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-                  className="flex items-baseline gap-1 mb-2"
-                >
-                  <span
-                    className="text-[4.2rem] sm:text-[5rem] leading-none text-luxe-gold"
-                    style={{ fontFamily: '"Lora", serif', fontWeight: 400 }}
-                  >
-                    {it.stat}
-                  </span>
-                  <span className="font-sans text-sm tracking-[0.24em] uppercase text-luxe-gold-deep font-semibold">
-                    {it.statUnit}
-                  </span>
-                </motion.div>
-              )}
-
-              {/* Gold rule */}
-              <span className="block h-px w-10 bg-luxe-gold/40 group-hover:w-16 group-hover:bg-luxe-gold/70 transition-all duration-500 mb-4" />
-
-              {/* Title */}
-              <h3 className="font-section text-2xl sm:text-3xl leading-tight font-semibold tracking-wide text-luxe-ink">
                 {it.stat ? (
+                  // With stat number
                   <>
-                    Entrega em{" "}
-                    <span style={{ fontFamily: '"Lora", serif', fontWeight: 400 }}>
-                      60
-                    </span>{" "}
-                    Minutos
+                    <div className="flex items-baseline gap-1">
+                      <span className="stat-rise font-display text-5xl md:text-6xl text-luxe-gold font-bold leading-none">
+                        {it.stat}
+                      </span>
+                      <span className="stat-rise font-sans text-xl text-luxe-gold font-light">
+                        {it.statUnit}
+                      </span>
+                    </div>
+                    <h3 className="mt-4 font-sans text-lg md:text-xl font-semibold">{it.title}</h3>
                   </>
                 ) : (
-                  it.title
+                  // Without stat
+                  <h3 className="font-sans text-lg md:text-xl font-semibold">{it.title}</h3>
                 )}
-              </h3>
-
-              {/* Description */}
-              <p className="mt-3 text-base md:text-lg text-luxe-ink/70 leading-relaxed font-sans font-light max-w-[30ch]">
-                {it.desc}
-              </p>
-
-              {/* Animated accent dot — only visible on hover */}
-              <div className="mt-5 h-1 w-1 rounded-full bg-luxe-gold/0 group-hover:bg-luxe-gold/60 transition-all duration-700 group-hover:shadow-[0_0_12px_rgba(154,123,80,0.5)]" />
-            </motion.div>
-          ))}
+                <p className="mt-3 text-luxe-ink/85 font-sans font-light text-sm md:text-base leading-relaxed max-w-[240px]">
+                  {it.desc}
+                </p>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>
