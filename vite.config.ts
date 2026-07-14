@@ -236,7 +236,16 @@ function vitePluginStorageProxy(): Plugin {
   };
 }
 
-const plugins = [react(), tailwindcss(), jsxLocPlugin(), vitePluginManusRuntime(), vitePluginManusDebugCollector(), vitePluginStorageProxy(), vitePluginCssPreload(), visualizer({ filename: "dist/stats.html", open: false, gzipSize: true, brotliSize: true, template: "treemap" })];
+const isDev = process.env.NODE_ENV !== "production";
+const plugins = [
+  react(),
+  tailwindcss(),
+  jsxLocPlugin(),
+  ...(isDev ? [vitePluginManusRuntime(), vitePluginManusDebugCollector()] : []),
+  vitePluginStorageProxy(),
+  vitePluginCssPreload(),
+  visualizer({ filename: "dist/stats.html", open: false, gzipSize: true, brotliSize: true, template: "treemap" }),
+];
 
 export default defineConfig({
   plugins,
@@ -253,7 +262,12 @@ export default defineConfig({
     chunkSizeWarningLimit: 400,
     target: "esnext",
     cssMinify: true,
-    modulePreload: { polyfill: false },
+    modulePreload: {
+      polyfill: false,
+      resolveDependencies(_filename, deps) {
+        return deps.filter((d) => !d.includes("vendor-framer"));
+      },
+    },
     rollupOptions: {
       output: {
         manualChunks(id) {
