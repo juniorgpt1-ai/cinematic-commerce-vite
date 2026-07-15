@@ -1,8 +1,10 @@
-import { memo, useState, useEffect, useCallback } from "react";
-import { Timer, MessageCircle, ArrowRight, Sparkles } from "lucide-react";
+import { memo, useState, useEffect, useCallback, useRef } from "react";
+import { Timer, ArrowRight, Sparkles } from "lucide-react";
 import { waLink } from "@/lib/whatsapp";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { useSendMorph } from "@/hooks/useSendMorph";
 import FloatingBadge from "@/components/sections/FloatingBadge";
+import SendMorphIcon from "@/components/sections/SendMorphIcon";
 
 type ShowcaseProps = {
   id: string;
@@ -45,15 +47,30 @@ const EditorialShowcase = memo(function EditorialShowcase({
 }: ShowcaseProps) {
   const imageRef = useScrollReveal();
   const copyRef = useScrollReveal();
-  const accentText = tone === "bordo" ? "text-luxe-bordo" : "text-luxe-gold";
+  const { phase: sendPhase, trigger: triggerSend } = useSendMorph();
+  const accentText = tone === "bordo" ? "text-luxe-bordo" : "";
   const [slide, setSlide] = useState(0);
+  const [autoplayPaused, setAutoplayPaused] = useState(false);
   const hasCarousel = !!secondImage;
   const nextSlide = useCallback(() => setSlide(s => (s + 1) % 2), []);
+  const resumeTimeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+
   useEffect(() => {
-    if (!hasCarousel) return;
-    const id = setInterval(nextSlide, 4000);
-    return () => clearInterval(id);
-  }, [hasCarousel, nextSlide]);
+    if (!hasCarousel || autoplayPaused) return;
+    const intervalId = setInterval(nextSlide, 4000);
+    return () => clearInterval(intervalId);
+  }, [hasCarousel, nextSlide, autoplayPaused]);
+
+  useEffect(() => {
+    return () => clearTimeout(resumeTimeoutRef.current);
+  }, []);
+
+  const selectSlide = useCallback((i: number) => {
+    setSlide(i);
+    setAutoplayPaused(true);
+    clearTimeout(resumeTimeoutRef.current);
+    resumeTimeoutRef.current = setTimeout(() => setAutoplayPaused(false), 6000);
+  }, []);
 
   return (
     <section id={id} className="relative bg-luxe-gradient border-b border-luxe-line/30 overflow-hidden">
@@ -64,7 +81,14 @@ const EditorialShowcase = memo(function EditorialShowcase({
             reverse ? "lg:[&>div:first-child]:order-2" : ""
           }`}
         >
-          <div ref={imageRef} className={`reveal-right ${reverse ? "lg:col-span-5" : "lg:col-span-7"} relative`}>
+          <div
+            ref={imageRef}
+            className={`reveal-right ${reverse ? "lg:col-span-5" : "lg:col-span-7"} relative`}
+            onMouseEnter={() => setAutoplayPaused(true)}
+            onMouseLeave={() => setAutoplayPaused(false)}
+            onFocus={() => setAutoplayPaused(true)}
+            onBlur={() => setAutoplayPaused(false)}
+          >
             {hasCarousel ? (
               <>
                 <div className="relative aspect-[4/5] overflow-hidden bg-black shadow-2xl">
@@ -110,8 +134,8 @@ const EditorialShowcase = memo(function EditorialShowcase({
                   </div>
                 </div>
                 <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-20 flex gap-3">
-                  <button onClick={() => setSlide(0)} className={`w-3 h-3 rounded-full transition-all duration-300 ${slide === 0 ? "bg-luxe-gold scale-125" : "bg-white/40 hover:bg-white/60"}`} aria-label="Slide 1" style={{ minWidth: "44px", minHeight: "44px", padding: "6px" }} />
-                  <button onClick={() => setSlide(1)} className={`w-3 h-3 rounded-full transition-all duration-300 ${slide === 1 ? "bg-luxe-gold scale-125" : "bg-white/40 hover:bg-white/60"}`} aria-label="Slide 2" style={{ minWidth: "44px", minHeight: "44px", padding: "6px" }} />
+                  <button onClick={() => selectSlide(0)} className={`dot-progress w-3 h-3 rounded-full transition-all duration-300 ${slide === 0 ? "active bg-luxe-gold scale-125" : "bg-white/40 hover:bg-white/60"}`} aria-label="Slide 1" style={{ minWidth: "44px", minHeight: "44px", padding: "6px" }} />
+                  <button onClick={() => selectSlide(1)} className={`dot-progress w-3 h-3 rounded-full transition-all duration-300 ${slide === 1 ? "active bg-luxe-gold scale-125" : "bg-white/40 hover:bg-white/60"}`} aria-label="Slide 2" style={{ minWidth: "44px", minHeight: "44px", padding: "6px" }} />
                 </div>
               </>
             ) : (
@@ -187,9 +211,10 @@ const EditorialShowcase = memo(function EditorialShowcase({
                 href={waLink(waMessage)}
                 target="_blank"
                 rel="noreferrer"
+                onClick={triggerSend}
                 className="group inline-flex flex-wrap items-center justify-center gap-3 bg-luxe-ink hover:bg-whatsapp text-white hover:text-black btn-hover-scale px-6 py-4 md:px-8 md:py-5 text-sm font-semibold tracking-wide shadow-md"
               >
-                <MessageCircle className="size-4" />
+                <SendMorphIcon phase={sendPhase} className="size-4" />
                 {cta}
                 <ArrowRight className="size-4 group-hover:translate-x-1 transition-transform" />
               </a>

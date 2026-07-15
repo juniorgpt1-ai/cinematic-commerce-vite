@@ -8,7 +8,7 @@ const PerfumesHeader = memo(function PerfumesHeader() {
       <div ref={headerRef} className="reveal-up mx-auto max-w-7xl px-6 relative z-10 text-center">
         <div className="max-w-3xl mx-auto">
           <span className="eyebrow">Fragrâncias de Sucesso</span>
-          <h2 className="mt-6 font-section text-5xl md:text-6xl font-semibold leading-[1.08]">
+          <h2 className="mt-6 font-section text-4xl md:text-5xl font-semibold leading-[1.08]">
             Encontre Sua Assinatura de Sucesso
           </h2>
           <p className="mt-6 text-lg text-luxe-ink/85 font-sans font-light">

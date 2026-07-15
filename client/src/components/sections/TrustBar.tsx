@@ -1,13 +1,52 @@
-import { memo } from "react";
+import { memo, useEffect, useRef, useState } from "react";
 import { Timer, ShieldCheck, Sparkles, Gift } from "lucide-react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+
+function easeOutQuart(t: number) {
+  return 1 - Math.pow(1 - t, 4);
+}
+
+const CountUpStat = memo(function CountUpStat({ target }: { target: number }) {
+  const [value, setValue] = useState(0);
+  const ref = useRef<HTMLSpanElement>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setValue(target);
+      return;
+    }
+
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        obs.unobserve(el);
+        const duration = 900;
+        const start = performance.now();
+        const tick = (now: number) => {
+          const progress = Math.min((now - start) / duration, 1);
+          setValue(Math.round(easeOutQuart(progress) * target));
+          if (progress < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+      },
+      { threshold: 0.4 },
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, [target]);
+
+  return <span ref={ref}>{value}</span>;
+});
 
 const TRUST_ITEMS = [
   {
     icon: Timer,
     title: "Entrega em 60 Minutos",
     desc: "Disponível para BH e região metropolitana via Uber Flash com máxima agilidade.",
-    stat: "60",
+    stat: 60,
     statUnit: "min",
     accent: "gold",
   },
@@ -44,16 +83,16 @@ const TrustBar = memo(function TrustBar() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 py-20 md:py-36 relative z-10">
         {/* Section label */}
         <div ref={headerRef} className="reveal-up text-center mb-14 md:mb-20">
-          <span className="inline-flex items-center gap-3 font-sans text-sm sm:text-base tracking-[0.28em] uppercase text-luxe-gold-deep font-semibold">
+          <span className="inline-flex items-center gap-3 font-sans text-sm sm:text-base tracking-[0.30em] uppercase text-luxe-gold-deep font-semibold">
             <span className="h-px w-8 bg-luxe-gold/40" />
             Por que escolher a Maison
             <span className="h-px w-8 bg-luxe-gold/40" />
           </span>
-          <h2 className="mt-12 md:mt-16 font-section text-5xl md:text-6xl font-semibold leading-[1.05]">
+          <h2 className="mt-6 md:mt-8 font-section text-4xl md:text-5xl font-semibold leading-[1.05]">
             Confiança e Luxo em{" "}
             <span className="italic font-light">Cada</span> Detalhe
           </h2>
-          <span className="gold-rule mt-12 md:mt-14 mx-auto" />
+          <span className="gold-rule mt-8 md:mt-10 mx-auto" />
         </div>
 
         <div ref={gridRef} className="stagger-container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
@@ -74,8 +113,8 @@ const TrustBar = memo(function TrustBar() {
                   // With stat number
                   <>
                     <div className="flex items-baseline gap-1">
-                      <span className="stat-rise font-display text-5xl md:text-6xl text-luxe-gold font-bold leading-none">
-                        {it.stat}
+                      <span className="stat-rise font-display text-5xl md:text-6xl text-luxe-gold font-bold leading-none tabular-nums">
+                        <CountUpStat target={it.stat} />
                       </span>
                       <span className="stat-rise font-sans text-xl text-luxe-gold font-light">
                         {it.statUnit}

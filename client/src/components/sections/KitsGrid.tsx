@@ -10,23 +10,23 @@ const KitsGrid = memo(function KitsGrid() {
   const kits = [
     {
       name: "Kit Ele Elegante",
-      desc: "Malbec Cologne + sabonete líquido perfumado + necessaire em couro sintético. Indulgência inteligente.",
+      desc: "Malbec Cologne + sabonete líquido perfumado + necessaire em couro sintético. Pura indulgência.",
       price: "R$ 379,90",
-      msg: "Quero o Kit Ele Elegante (Malbec + necessaire).",
+      msg: "Olá! Quero o Kit Ele Elegante (Malbec + necessaire).",
       tag: "Best Seller"
     },
     {
       name: "Kit Ela Sublime",
       desc: "Lily Eau de Parfum + creme acetinado hidratante corporal + caixa rígida premium. Luxo inteligente.",
       price: "R$ 429,90",
-      msg: "Quero o Kit Ela Sublime (Lily + creme acetinado).",
+      msg: "Olá! Quero o Kit Ela Sublime (Lily + creme acetinado).",
       tag: "Mais Vendido"
     },
     {
       name: "Combo Casal Real",
       desc: "Malbec Cologne + Lily Eau de Parfum. A união perfeita de duas assinaturas marcantes e inesquecíveis.",
       price: "R$ 619,90",
-      msg: "Quero o Combo Casal Real (Malbec + Lily).",
+      msg: "Olá! Quero o Combo Casal Real (Malbec + Lily).",
       tag: "Melhor Preço"
     },
   ];
@@ -36,8 +36,8 @@ const KitsGrid = memo(function KitsGrid() {
       <div className="mx-auto max-w-7xl px-6 py-32 md:py-40 relative z-10">
         <div ref={headerRef} className="reveal-up max-w-2xl mb-16">
           <span className="eyebrow text-luxe-gold-soft">Curadoria de Presentes</span>
-          <h2 className="mt-5 font-section text-5xl md:text-5xl font-semibold leading-[1.08]">
-            Kits & Combos Inteligentes
+          <h2 className="mt-5 font-section text-4xl md:text-5xl font-semibold leading-[1.08]">
+            Kits & Combos para Presentear
           </h2>
           <p className="mt-6 text-white/60 text-lg font-sans font-light leading-relaxed max-w-xl">
             Combinações desenvolvidas por especialistas para presentear com sofisticação ou reabastecer seu estoque de luxo com o melhor custo-benefício.
@@ -87,7 +87,7 @@ const KitsGrid = memo(function KitsGrid() {
                     target="_blank"
                     rel="noreferrer"
                     aria-label={`Pedir ${k.name} no WhatsApp`}
-                    className="inline-flex flex-wrap items-center justify-center gap-2 text-xs font-semibold tracking-wider uppercase text-luxe-gold-soft border-b border-luxe-gold-soft/60 pb-1 group-hover:text-luxe-gold-soft group-hover:border-luxe-gold-soft transition-colors"
+                    className="relative btn-hover-scale inline-flex flex-wrap items-center justify-center gap-2 text-xs font-semibold tracking-wider uppercase text-luxe-gold-soft border-b border-luxe-gold-soft/60 pb-1 group-hover:text-luxe-gold-soft group-hover:border-luxe-gold-soft transition-colors before:absolute before:inset-[-8px] before:content-['']"
                   >
                     Pedir Combo <ArrowRight className="size-3.5" />
                   </a>

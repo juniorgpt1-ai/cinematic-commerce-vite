@@ -1,6 +1,13 @@
 import { useState, useRef, useEffect, memo } from "react";
 
-const LazySection = memo(function LazySection({ children }: { children: React.ReactNode }) {
+const LazySection = memo(function LazySection({
+  children,
+  minHeight = 400,
+}: {
+  children: React.ReactNode;
+  /** Reserved space (px) before the section mounts, to avoid a layout shift when it pops in. */
+  minHeight?: number;
+}) {
   const [visible, setVisible] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
@@ -18,7 +25,11 @@ const LazySection = memo(function LazySection({ children }: { children: React.Re
     obs.observe(el);
     return () => obs.disconnect();
   }, []);
-  return <div ref={ref}>{visible ? children : null}</div>;
+  return (
+    <div ref={ref} style={visible ? undefined : { minHeight }}>
+      {visible ? children : null}
+    </div>
+  );
 });
 
 export default LazySection;

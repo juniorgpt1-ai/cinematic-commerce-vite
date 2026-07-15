@@ -1,10 +1,12 @@
-import { Timer, MessageCircle, ArrowRight } from "lucide-react";
+import { Timer, ArrowRight } from "lucide-react";
 import { useState, useEffect, memo, lazy, Suspense } from "react";
 import { waLink } from "@/lib/whatsapp";
 import FloatingBadge from "@/components/sections/FloatingBadge";
 import LazySection from "@/components/sections/LazySection";
 import WhatsappFloating from "@/components/sections/WhatsappFloating";
+import SendMorphIcon from "@/components/sections/SendMorphIcon";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { useSendMorph } from "@/hooks/useSendMorph";
 
 const AntigravityParticles = lazy(() => import("@/components/AntigravityParticles").then(m => ({ default: m.AntigravityParticles })));
 
@@ -41,7 +43,7 @@ const LandingPage = memo(function LandingPage() {
       <Hero />
       <LazySection><Suspense fallback={null}><TrustBar /></Suspense></LazySection>
       <LazySection><Suspense fallback={null}><HairCareSuite volumeImg={hairCareVolumeImg} lisoImg={hairCareLisoImg} /></Suspense></LazySection>
-      <LazySection><Suspense fallback={null}><PerfumesHeader /></Suspense></LazySection>
+      <LazySection minHeight={260}><Suspense fallback={null}><PerfumesHeader /></Suspense></LazySection>
       <LazySection><Suspense fallback={null}><MalbecShowcase lifestyleImg={malbecLifestyleImg} lifestyleImgMob={malbecLifestyleImgMob} collageImg={malbecCollageImg} collageImgMob={malbecCollageImgMob} /></Suspense></LazySection>
       <LazySection><Suspense fallback={null}><FlorattaRedShowcase image={florattaRedImg} /></Suspense></LazySection>
       <LazySection><Suspense fallback={null}><BoticarioCarousel /></Suspense></LazySection>
@@ -68,7 +70,7 @@ const Nav = memo(function Nav() {
   }, []);
 
   return (
-    <header className={`absolute top-0 inset-x-0 z-30 nav-scroll ${scrolled ? "scrolled" : ""}`}>
+    <header className={`fixed top-0 inset-x-0 z-30 nav-scroll ${scrolled ? "scrolled" : ""}`}>
 
       {/* ═══════════════════ MOBILE: premium centered header ═══════════════════ */}
       <div className="md:hidden header-premium text-white">
@@ -78,16 +80,17 @@ const Nav = memo(function Nav() {
           <div className="grid grid-cols-[auto_1fr_auto] gap-x-5 items-center mb-2.5">
             <div />
             <nav className="flex items-center gap-3 text-[11px] tracking-[0.18em] uppercase font-sans justify-self-start ml-1">
-              <a href="#haircare" className="hover:text-luxe-gold-soft transition-colors font-medium">Hair</a>
-              <a href="#perfumes" className="hover:text-luxe-gold-soft transition-colors font-medium">Perfumes</a>
-              <a href="#kits" className="hover:text-luxe-gold-soft transition-colors font-medium">Kits</a>
-              <a href="#faq" className="hover:text-luxe-gold-soft transition-colors font-medium">FAQ</a>
+              <a href="#haircare" className="relative hover:text-luxe-gold-soft transition-colors font-medium before:absolute before:inset-[-6px] before:content-['']">Hair</a>
+              <a href="#perfumes" className="relative hover:text-luxe-gold-soft transition-colors font-medium before:absolute before:inset-[-6px] before:content-['']">Perfumes</a>
+              <a href="#mais-amados" className="relative hover:text-luxe-gold-soft transition-colors font-medium before:absolute before:inset-[-6px] before:content-['']">Amados</a>
+              <a href="#kits" className="relative hover:text-luxe-gold-soft transition-colors font-medium before:absolute before:inset-[-6px] before:content-['']">Kits</a>
+              <a href="#faq" className="relative hover:text-luxe-gold-soft transition-colors font-medium before:absolute before:inset-[-6px] before:content-['']">FAQ</a>
             </nav>
             <a
               href={waLink("Olá, vim pela página e quero atendimento de luxo inteligente.")}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-1.5 text-[12px] tracking-[0.12em] uppercase font-bold transition-colors justify-self-end text-luxe-gold-soft"
+              className="relative inline-flex items-center gap-1.5 text-[12px] tracking-[0.12em] uppercase font-bold transition-colors justify-self-end text-luxe-gold-soft before:absolute before:inset-[-6px] before:content-['']"
             >
               WhatsApp <ArrowRight className="size-3.5" />
             </a>
@@ -170,17 +173,17 @@ const Nav = memo(function Nav() {
             </div>
           </div>
           <nav className="hidden md:flex items-center gap-10 text-[14px] tracking-[0.24em] uppercase font-sans">
-            <a href="#haircare" className="hover:text-luxe-gold-soft transition-colors font-semibold">Hair Care</a>
-            <a href="#perfumes" className="hover:text-luxe-gold-soft transition-colors font-semibold">Perfumes</a>
-            <a href="#mais-amados" className="hover:text-luxe-gold-soft transition-colors font-semibold">Mais Amados</a>
-            <a href="#kits" className="hover:text-luxe-gold-soft transition-colors font-semibold">Kits</a>
-            <a href="#faq" className="hover:text-luxe-gold-soft transition-colors font-semibold">FAQ</a>
+            <a href="#haircare" className="relative hover:text-luxe-gold-soft transition-colors font-semibold before:absolute before:inset-[-10px] before:content-['']">Hair Care</a>
+            <a href="#perfumes" className="relative hover:text-luxe-gold-soft transition-colors font-semibold before:absolute before:inset-[-10px] before:content-['']">Perfumes</a>
+            <a href="#mais-amados" className="relative hover:text-luxe-gold-soft transition-colors font-semibold before:absolute before:inset-[-10px] before:content-['']">Mais Amados</a>
+            <a href="#kits" className="relative hover:text-luxe-gold-soft transition-colors font-semibold before:absolute before:inset-[-10px] before:content-['']">Kits</a>
+            <a href="#faq" className="relative hover:text-luxe-gold-soft transition-colors font-semibold before:absolute before:inset-[-10px] before:content-['']">FAQ</a>
           </nav>
           <a
             href={waLink("Olá, vim pela página e quero atendimento de luxo inteligente.")}
             target="_blank"
             rel="noreferrer"
-            className="hidden sm:inline-flex items-center gap-2 text-[14px] tracking-[0.2em] uppercase font-bold transition-colors text-luxe-gold-soft"
+            className="relative hidden sm:inline-flex items-center gap-2 text-[14px] tracking-[0.2em] uppercase font-bold transition-colors text-luxe-gold-soft before:absolute before:inset-[-10px] before:content-['']"
           >
             WhatsApp <ArrowRight className="size-4" />
           </a>
@@ -200,6 +203,7 @@ const Hero = memo(function Hero() {
     return () => cancelAnimationFrame(id);
   }, []);
   const ctaRef = useScrollReveal<HTMLAnchorElement>();
+  const { phase: sendPhase, trigger: triggerSend } = useSendMorph();
   return (
     <section className="relative min-h-screen w-full bg-[#070707] text-white overflow-hidden flex flex-col justify-end">
       {/* Background Interactive Particles (Antigravity effect) — deferred for LCP */}
@@ -232,7 +236,7 @@ const Hero = memo(function Hero() {
             </FloatingBadge>
           </div>
 
-          <h1 className="font-display text-[17vw] md:text-[6rem] leading-[0.85] md:leading-[1.0] tracking-tight font-bold">
+          <h1 className="font-display text-[clamp(2.75rem,11vw,6rem)] leading-[0.85] md:leading-[1.0] tracking-tight font-bold">
             <span className="text-luxe-gold">
               Luxo Acessível
             </span>
@@ -255,15 +259,16 @@ const Hero = memo(function Hero() {
               )}
               target="_blank"
               rel="noreferrer"
-              className="cta-emphasize group inline-flex items-center justify-center gap-2 whitespace-nowrap bg-whatsapp hover:bg-whatsapp-hover text-black font-bold px-4 py-3 md:px-8 md:py-4 text-sm md:text-base tracking-wide wa-glow"
+              onClick={triggerSend}
+              className="cta-emphasize btn-hover-scale group inline-flex items-center justify-center gap-2 whitespace-nowrap bg-whatsapp hover:bg-whatsapp-hover text-black font-bold px-4 py-3 md:px-8 md:py-4 text-sm md:text-base tracking-wide wa-glow"
             >
-              <MessageCircle className="size-5" />
+              <SendMorphIcon phase={sendPhase} className="size-5" />
               Peça Agora e Receba em Minutos
               <ArrowRight className="size-4 group-hover:translate-x-1 transition-transform" />
             </a>
             <a
               href="#haircare"
-              className="inline-flex items-center gap-2 text-sm font-semibold tracking-[0.2em] uppercase text-white/85 hover:text-luxe-gold-soft border-b border-white/30 hover:border-luxe-gold-soft pb-1 transition-colors"
+              className="relative inline-flex items-center gap-2 text-sm font-semibold tracking-[0.2em] uppercase text-white/85 hover:text-luxe-gold-soft border-b border-white/30 hover:border-luxe-gold-soft pb-1 transition-colors before:absolute before:inset-[-12px] before:content-['']"
             >
               Explorar Ofertas
             </a>

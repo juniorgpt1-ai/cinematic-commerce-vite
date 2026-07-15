@@ -47,7 +47,6 @@
   --font-display: "Cormorant Garamond", "Georgia", "Times New Roman", serif;
   --font-sans: "Plus Jakarta Sans", "system-ui", "-apple-system", "Segoe UI", "Roboto", sans-serif;
   --font-section: "Playfair Display", "Cormorant Garamond", "Georgia", serif;
-  --font-fenix: "Fenix", "Playfair Display", "Georgia", serif;
 }
 
 :root {
@@ -83,6 +82,8 @@
   --luxe-black: #0a0a0a;
   --luxe-bordo: #3d0c11;
   --luxe-line: rgba(197, 168, 92, 0.22);
+  /* Space-separated channels so glow/shadow effects can mix in an alpha via rgb(var(--luxe-glow-rgb) / <alpha>) */
+  --luxe-glow-rgb: 201 168 76;
   --whatsapp: #25d366;
   --whatsapp-hover: #1ebe57;
 }
@@ -103,8 +104,12 @@
   }
   h1, h2, h3, h4 {
     font-family: var(--font-display);
-    font-weight: 700;
+    font-weight: 600;
     letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
   }
 }
 
@@ -176,11 +181,11 @@
 }
 @keyframes luxe-glow-gold {
   0%, 100% {
-    box-shadow: 0 0 12px rgba(201, 168, 76, 0.30), 0 0 0 0 rgba(201, 168, 76, 0.35), 0 8px 18px -4px rgba(201, 168, 76, 0.20);
+    box-shadow: 0 0 12px rgb(var(--luxe-glow-rgb) / 0.30), 0 0 0 0 rgb(var(--luxe-glow-rgb) / 0.35), 0 8px 18px -4px rgb(var(--luxe-glow-rgb) / 0.20);
     transform: scale(1);
   }
   50% {
-    box-shadow: 0 0 18px rgba(201, 168, 76, 0.15), 0 0 0 16px rgba(201, 168, 76, 0), 0 8px 24px -2px rgba(201, 168, 76, 0.08);
+    box-shadow: 0 0 18px rgb(var(--luxe-glow-rgb) / 0.15), 0 0 0 16px rgb(var(--luxe-glow-rgb) / 0), 0 8px 24px -2px rgb(var(--luxe-glow-rgb) / 0.08);
     transform: scale(1.015);
   }
 }
@@ -188,10 +193,21 @@
 /* ── CTA emphasis pulse (one-shot on scroll-into-view) ── */
 
 @keyframes cta-emphasize {
-  0%   { box-shadow: 0 0 0 0 rgba(201, 168, 76, 0); }
-  35%  { box-shadow: 0 0 28px 6px rgba(201, 168, 76, 0.28); }
-  70%  { box-shadow: 0 0 14px 2px rgba(201, 168, 76, 0.12); }
-  100% { box-shadow: 0 0 0 0 rgba(201, 168, 76, 0); }
+  0%   { box-shadow: 0 0 0 0 rgb(var(--luxe-glow-rgb) / 0); }
+  35%  { box-shadow: 0 0 28px 6px rgb(var(--luxe-glow-rgb) / 0.28); }
+  70%  { box-shadow: 0 0 14px 2px rgb(var(--luxe-glow-rgb) / 0.12); }
+  100% { box-shadow: 0 0 0 0 rgb(var(--luxe-glow-rgb) / 0); }
+}
+
+/* ── Auto-advance countdown ring (carousel dot indicators) ── */
+
+@keyframes dot-progress-glow {
+  0%   { box-shadow: 0 0 0 0 rgb(var(--luxe-glow-rgb) / 0.65); }
+  100% { box-shadow: 0 0 0 5px rgb(var(--luxe-glow-rgb) / 0); }
+}
+
+.dot-progress.active {
+  animation: dot-progress-glow 4000ms linear;
 }
 
 .cta-emphasize.visible {
@@ -293,7 +309,7 @@
 
 @utility bg-luxe-dark-gradient {
   background:
-    radial-gradient(ellipse 70% 40% at 50% 0%, rgba(201, 168, 76, 0.06), transparent 55%),
+    radial-gradient(ellipse 70% 40% at 50% 0%, rgb(var(--luxe-glow-rgb) / 0.06), transparent 55%),
     var(--color-luxe-ink);
 }
 
@@ -320,7 +336,10 @@
               box-shadow 0.3s cubic-bezier(0.22, 1, 0.36, 1),
               color 0.3s cubic-bezier(0.22, 1, 0.36, 1);
   &:hover { transform: scale(1.02); }
-  &:active { transform: scale(0.98); }
+  &:active { transform: scale(0.96); animation-play-state: paused; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .btn-hover-scale:hover, .btn-hover-scale:active { transform: none; }
 }
 
 /* ── Frosted glass button ── */
@@ -338,7 +357,7 @@
 /* ── Header premium background ── */
 .header-premium {
   background:
-    radial-gradient(ellipse 80% 50% at 50% 0%, rgba(201, 168, 76, 0.06), transparent 50%),
+    radial-gradient(ellipse 80% 50% at 50% 0%, rgb(var(--luxe-glow-rgb) / 0.06), transparent 50%),
     linear-gradient(180deg, #1a1a1a 0%, #141414 40%, #0f0f0f 100%);
 }
 
@@ -346,7 +365,7 @@
 @utility btn-gold-metallic {
   background: linear-gradient(135deg, #c9a84c 0%, #e2c87a 30%, #c9a84c 50%, #b8942e 70%, #c9a84c 100%);
   color: #1a1a1a;
-  box-shadow: 0 4px 20px rgba(201, 168, 76, 0.35);
+  box-shadow: 0 4px 20px rgb(var(--luxe-glow-rgb) / 0.35);
 }
 
 
@@ -450,6 +469,16 @@ html {
 /* ── Reduced motion: disable all custom animations ── */
 
 @media (prefers-reduced-motion: reduce) {
+  /* Global safety net: any transition/animation not explicitly handled
+     below (hover lifts, image scales, accordion expand, etc.) collapses
+     to an instant state change instead of being silently missed. */
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
   html {
     scroll-behavior: auto;
   }
