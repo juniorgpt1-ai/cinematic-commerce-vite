@@ -116,3 +116,6 @@ client/public/__manus__/version.json
 
 .openclaude
 .agents
+
+# Installers accidentally dropped in public/ (too large for GitHub)
+*.exe
