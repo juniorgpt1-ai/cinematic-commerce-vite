@@ -13,14 +13,14 @@ const AntigravityParticles = lazy(() => import("@/components/AntigravityParticle
 // Assets - URLs publicas
 const heroPerfume = "/malbec-signatureA.webp";
 const malbecLifestyleImg = "/malbec-lifestyle-opt.webp";
-const malbecLifestyleImgMob = "/malbec-lifestyle-mob.webp";
+const malbecLifestyleImgMob = "/malbec-lifestyle-mob.webp 1x, /malbec-lifestyle-mob-2x.webp 2x";
 const malbecCollageImg = "/malbec-collage-opt.webp";
-const malbecCollageImgMob = "/malbec-collage-mob.webp";
+const malbecCollageImgMob = "/malbec-collage-mob.webp 1x, /malbec-collage-mob-2x.webp 2x";
 const florattaRedImg = "/floratta-red-lifestyle-opt.webp";
 const hairCareVolumeImg = "/hair-care-volume-opt.webp";
 const hairCareLisoImg = "/hair-care-liso-opt.webp";
 const consultoraImg = "/consultora-opt.webp";
-const consultoraImgMob = "/consultora-mob.webp";
+const consultoraImgMob = "/consultora-mob.webp 1x, /consultora-mob-2x.webp 2x";
 
 // Lazy-loaded section imports
 const TrustBar = lazy(() => import("@/components/sections/TrustBar"));

@@ -1,0 +1,6 @@
+# Maison Parfum
+
+> Loja online de perfumaria e cuidados capilares (Grupo Boticário & Eudora) em Belo Horizonte, Brasil, com entrega VIP em até 1 hora via Uber Flash. Pedidos são finalizados por WhatsApp.
+
+## Site
+- [Maison Parfum](https://maisonfragrance.vercel.app/): página inicial com catálogo de perfumes, produtos capilares, kits e informações de entrega.

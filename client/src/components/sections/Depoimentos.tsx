@@ -39,7 +39,7 @@ const Depoimentos = memo(function Depoimentos() {
           {TESTIMONIALS.map((t) => (
             <figure
               key={t.name}
-              className="reveal-up flex flex-col justify-between p-8 rounded-xs card-premium bg-white"
+              className="group reveal-up flex flex-col justify-between p-8 rounded-xs card-premium bg-white hover:-translate-y-1 hover:border-luxe-gold/40"
             >
               <div>
                 <div className="flex gap-0.5 mb-4">
@@ -49,7 +49,7 @@ const Depoimentos = memo(function Depoimentos() {
                     </svg>
                   ))}
                 </div>
-                <Quote className="size-8 text-luxe-gold" strokeWidth={1} />
+                <Quote className="size-8 text-luxe-gold transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-110 group-hover:-rotate-6" strokeWidth={1} />
                 <blockquote className="mt-6 font-display text-2xl md:text-3xl leading-relaxed text-luxe-ink/90 break-words">
                   &ldquo;{t.quote}&rdquo;
                 </blockquote>

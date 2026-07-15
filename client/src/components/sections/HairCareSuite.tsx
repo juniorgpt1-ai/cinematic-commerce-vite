@@ -30,7 +30,7 @@ const HairCareSuite = memo(function HairCareSuite({ volumeImg, lisoImg }: { volu
           <div ref={useScrollReveal()} className="reveal-right lg:col-span-6 relative">
             <div className="relative aspect-[6/5] overflow-hidden bg-luxe-ink shadow-2xl border border-luxe-line/20 group">
               <picture>
-                <source srcSet="/VOLMOB-opt.webp" media="(max-width: 767px)" />
+                <source srcSet="/hair-care-volume-mob.webp 1x, /hair-care-volume-mob-2x.webp 2x" media="(max-width: 767px)" />
                 <img
                   src={volumeImg}
                   alt="Modelo lavando cabelos com produtos Siàge Hair-Plastia"
@@ -112,7 +112,7 @@ const HairCareSuite = memo(function HairCareSuite({ volumeImg, lisoImg }: { volu
           <div ref={useScrollReveal()} className="reveal-scale lg:col-span-7 lg:order-2 relative">
             <div className="relative aspect-[6/5] overflow-hidden bg-luxe-ink shadow-2xl border border-luxe-line/20 group">
               <picture>
-                <source srcSet="/LISMOB-opt.webp" media="(max-width: 767px)" />
+                <source srcSet="/hair-care-liso-mob.webp 1x, /hair-care-liso-mob-2x.webp 2x" media="(max-width: 767px)" />
                 <img
                   src={lisoImg}
                   alt="Modelo com cabelo liso e alinhado sob fluxo de água"

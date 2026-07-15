@@ -76,7 +76,7 @@ const MalbecShowcase = memo(function MalbecShowcase({ lifestyleImg, collageImg, 
                 {/* Slide 2: Bottle */}
                 <div className="min-w-full relative flex items-center justify-center bg-gradient-to-b from-luxe-black via-luxe-black/90 to-black">
                   <picture className="absolute inset-0">
-                    <source srcSet="/malbec1-mob.webp" media="(max-width: 767px)" />
+                    <source srcSet="/malbec1-mob.webp 1x, /malbec1-mob-2x.webp 2x" media="(max-width: 767px)" />
                     <img
                       src="/malbec1-opt.webp"
                       alt="Frasco Malbec Cologne O Boticário"

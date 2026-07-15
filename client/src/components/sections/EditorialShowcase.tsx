@@ -97,12 +97,17 @@ const EditorialShowcase = memo(function EditorialShowcase({
                     style={{ transform: `translateX(-${slide * 100}%)` }}
                   >
                     <div className="min-w-full relative">
-                      <img
-                        src={image}
-                        alt={imageAlt}
-                        loading="lazy"
-                        className="h-full w-full object-cover object-top"
-                      />
+                      <picture>
+                        {imageMob && (
+                          <source srcSet={imageMob} media="(max-width: 767px)" />
+                        )}
+                        <img
+                          src={image}
+                          alt={imageAlt}
+                          loading="lazy"
+                          className="h-full w-full object-cover object-top"
+                        />
+                      </picture>
                       <div className="absolute top-4 md:top-6 left-4 md:left-6 right-4 md:right-6 flex flex-wrap items-center justify-between gap-2 text-white/80 text-[10px] tracking-[0.24em] md:tracking-[0.32em] uppercase font-semibold">
                         <span>{eyebrow.split("·")[0].trim()}</span>
                         <span>MAISON PREMIUM</span>
@@ -179,11 +184,13 @@ const EditorialShowcase = memo(function EditorialShowcase({
 
             <dl className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-8 border-t border-luxe-line/30 pt-10 font-sans">
               {notes.map((n, i) => (
-                <div key={n}>
-                  <dt className="text-xs tracking-[0.24em] uppercase text-luxe-ink-soft/80 font-semibold">
+                <div key={n} className="group/note cursor-default">
+                  <dt className="text-xs tracking-[0.24em] uppercase text-luxe-ink-soft/80 font-semibold transition-colors duration-300 group-hover/note:text-luxe-gold-deep">
                     Nota {i === 0 ? "Topo" : i === 1 ? "Coração" : "Fundo"}
                   </dt>
-                  <dd className="mt-2 font-display text-xl font-bold text-black">{n}</dd>
+                  <dd className="mt-2 font-display text-xl font-bold text-black origin-left transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/note:scale-110 group-hover/note:text-luxe-gold-deep">
+                    {n}
+                  </dd>
                 </div>
               ))}
             </dl>

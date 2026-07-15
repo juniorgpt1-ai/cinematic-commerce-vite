@@ -298,6 +298,24 @@
   animation: float-badge 5s ease-in-out infinite;
 }
 
+/* ── Antigravity particle float + mouse parallax (replaces framer-motion in AntigravityParticles) ── */
+
+@keyframes particle-float {
+  0%, 100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 10px -20px;
+  }
+}
+
+@utility animate-particle-float {
+  animation: particle-float var(--particle-duration, 16s) ease-in-out infinite;
+  animation-delay: var(--particle-delay, 0s);
+  transform: translate(var(--particle-px, 0px), var(--particle-py, 0px));
+  transition: transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
 /* ── Ambient background depth ── */
 
 @utility bg-luxe-gradient {

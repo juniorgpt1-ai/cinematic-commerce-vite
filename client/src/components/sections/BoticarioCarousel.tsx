@@ -1,4 +1,4 @@
-import { memo, useRef } from "react";
+import { memo, useCallback, useEffect, useRef, useState } from "react";
 import { ArrowRight, ChevronLeft } from "lucide-react";
 import { waLink } from "@/lib/whatsapp";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
@@ -77,6 +77,7 @@ const BoticarioCarousel = memo(function BoticarioCarousel() {
   const controlsRef = useScrollReveal();
   const carouselContainerRef = useScrollReveal();
   const carouselRef = useRef<HTMLDivElement>(null);
+  const [scrollFraction, setScrollFraction] = useState(0);
 
   const scroll = (direction: "left" | "right") => {
     if (carouselRef.current) {
@@ -89,6 +90,36 @@ const BoticarioCarousel = memo(function BoticarioCarousel() {
       });
     }
   };
+
+  const updateScrollFraction = useCallback(() => {
+    const el = carouselRef.current;
+    if (!el) return;
+    const max = el.scrollWidth - el.clientWidth;
+    setScrollFraction(max > 0 ? el.scrollLeft / max : 0);
+  }, []);
+
+  useEffect(() => {
+    const el = carouselRef.current;
+    if (!el) return;
+    updateScrollFraction();
+
+    let ticking = false;
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        updateScrollFraction();
+        ticking = false;
+      });
+    };
+
+    el.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", updateScrollFraction);
+    return () => {
+      el.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", updateScrollFraction);
+    };
+  }, [updateScrollFraction]);
 
   return (
     <section id="mais-amados" className="bg-luxe-dark-gradient text-white py-28 md:py-36 relative overflow-hidden border-b border-luxe-line/30">
@@ -182,6 +213,14 @@ const BoticarioCarousel = memo(function BoticarioCarousel() {
               </div>
             </div>
           ))}
+          </div>
+
+          {/* Scroll-position feedback — the styled scrollbar above is desktop-only (iOS/Android hide it) */}
+          <div aria-hidden="true" className="mt-1 h-[2px] w-24 rounded-full bg-white/10 overflow-hidden">
+            <div
+              className="h-full rounded-full bg-luxe-gold transition-[width] duration-150 ease-out"
+              style={{ width: `${12 + scrollFraction * 88}%` }}
+            />
           </div>
         </div>
       </div>

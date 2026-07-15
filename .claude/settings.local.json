@@ -30,7 +30,10 @@
       "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:4173/assets/index-D0g4UkJM.js)",
       "Bash(git add *)",
       "Bash(git commit -m ' *)",
-      "Skill(run)"
+      "Skill(run)",
+      "mcp__plugin_vercel_vercel__list_deployments",
+      "mcp__plugin_vercel_vercel__get_project",
+      "Bash(npx tsc *)"
     ]
   },
   "hooks": {
