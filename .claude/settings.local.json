@@ -22,7 +22,15 @@
       "Bash(node \".claude/skills/impeccable/scripts/detect.mjs\" --json client/src/pages/Home.tsx)",
       "Bash(node \".claude/skills/impeccable/scripts/detect.mjs\" --json client/src/components/sections/LazySection.tsx client/src/pages/Home.tsx)",
       "Bash(node \".claude/skills/impeccable/scripts/detect.mjs\" --json client/src/index.css)",
-      "Bash(node -e \"JSON.parse\\(require\\('fs'\\).readFileSync\\('.impeccable/design.json','utf8'\\)\\); console.log\\('valid JSON'\\)\")"
+      "Bash(node -e \"JSON.parse\\(require\\('fs'\\).readFileSync\\('.impeccable/design.json','utf8'\\)\\); console.log\\('valid JSON'\\)\")",
+      "Bash(node -e *)",
+      "Bash(git stash *)",
+      "Bash(pnpm build *)",
+      "Bash(curl -s http://localhost:4173/)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:4173/assets/index-D0g4UkJM.js)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Skill(run)"
     ]
   },
   "hooks": {

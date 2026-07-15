@@ -412,7 +412,21 @@
   animation: reveal-scale 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
-/* ── Stagger container: parent gets .visible, children animate in sequence ── */
+/* ── Stagger container: parent gets .visible, children animate in sequence ──
+   Mapped children (.map()) can't each call useScrollReveal(), so only the
+   container is observed. These rules trigger the reveal on children once
+   the container itself becomes .visible; the nth-child rules below only add
+   the stagger delay on top. */
+
+.stagger-container.visible > .reveal-up {
+  animation: reveal-up 0.75s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+.stagger-container.visible .icon-pop-in {
+  animation: icon-pop-in 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+.stagger-container.visible .stat-rise {
+  animation: stat-rise 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
 
 .stagger-container.visible > .reveal-up:nth-child(1) { animation-delay: 0ms; }
 .stagger-container.visible > .reveal-up:nth-child(2) { animation-delay: 70ms; }
