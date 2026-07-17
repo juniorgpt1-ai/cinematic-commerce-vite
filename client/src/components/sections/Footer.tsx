@@ -24,7 +24,7 @@ const Footer = memo(function Footer() {
             <a
               href={waLink("Olá!")}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className="relative block font-semibold hover:text-luxe-gold transition-colors before:absolute before:inset-[-8px] before:content-['']"
             >
               WhatsApp: +55 31 90000-0000

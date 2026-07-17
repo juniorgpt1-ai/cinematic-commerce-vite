@@ -63,6 +63,8 @@ const MalbecShowcase = memo(function MalbecShowcase({ lifestyleImg, collageImg, 
                       src={lifestyleImg}
                       alt="Homem sofisticado aplicando Malbec O Boticário"
                       loading="lazy"
+                      width="1200"
+                      height="1600"
                       className="h-full w-full object-cover object-top"
                     />
                   </picture>
@@ -78,9 +80,11 @@ const MalbecShowcase = memo(function MalbecShowcase({ lifestyleImg, collageImg, 
                   <picture className="absolute inset-0">
                     <source srcSet="/malbec1-mob.webp 1x, /malbec1-mob-2x.webp 2x" media="(max-width: 767px)" />
                     <img
-                      src="/malbec1-opt.webp"
+                      src="/malbec1.webp"
                       alt="Frasco Malbec Cologne O Boticário"
                       loading="lazy"
+                      width="1200"
+                      height="1600"
                       className="w-full h-full object-cover object-center"
                     />
                   </picture>
@@ -167,7 +171,7 @@ const MalbecShowcase = memo(function MalbecShowcase({ lifestyleImg, collageImg, 
               <a
                 href={waLink("Olá! Quero comprar o Malbec Cologne (O Boticário) com entrega VIP em 1h em BH.")}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 onClick={triggerSend}
                 className="group btn-hover-scale inline-flex flex-wrap items-center justify-center gap-3 bg-luxe-ink hover:bg-whatsapp text-white hover:text-black transition-colors px-5 py-3 md:px-8 md:py-4 text-sm font-semibold tracking-wide shadow-md"
               >
@@ -211,7 +215,7 @@ const MalbecShowcase = memo(function MalbecShowcase({ lifestyleImg, collageImg, 
               <a
                 href={waLink("Olá! Quero o Malbec Cologne com entrega VIP em 1h em BH.")}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="btn-gold-metallic btn-hover-scale inline-flex items-center gap-3 px-8 py-4 text-sm md:text-base font-bold tracking-[0.2em] uppercase rounded-sm hover:brightness-105 hover:shadow-xl [animation:luxe-glow-gold_2.5s_ease-in-out_infinite]"
               >
                 Garantir Agora

@@ -169,10 +169,11 @@ function vitePluginCssPreload(): Plugin {
               '<script type="module"',
               `  <link rel="preload" as="style" crossorigin fetchpriority="high" href="/${key}" />\n  <script type="module"`,
             );
-            // Make the stylesheet non-render-blocking
+            // Use standard render-blocking stylesheet (CSP-compatible, no inline onload handler)
+            // The Vite CSS output is small enough that render-blocking is negligible.
             out = out.replace(
               `<link rel="stylesheet" crossorigin href="/${key}">`,
-              `<link rel="stylesheet" crossorigin href="/${key}" media="print" onload="this.media='all'">\n  <noscript><link rel="stylesheet" crossorigin href="/${key}"></noscript>`,
+              `<link rel="stylesheet" crossorigin href="/${key}">`,
             );
             return out;
           }
@@ -241,8 +242,7 @@ const plugins = [
   react(),
   tailwindcss(),
   jsxLocPlugin(),
-  ...(isDev ? [vitePluginManusRuntime(), vitePluginManusDebugCollector()] : []),
-  vitePluginStorageProxy(),
+  ...(isDev ? [vitePluginManusRuntime(), vitePluginManusDebugCollector(), vitePluginStorageProxy()] : []),
   vitePluginCssPreload(),
   visualizer({ filename: "dist/stats.html", open: false, gzipSize: true, brotliSize: true, template: "treemap" }),
 ];
@@ -286,14 +286,6 @@ export default defineConfig({
     strictPort: false, // Will find next available port if 5000 is busy
     host: true,
     allowedHosts: [
-      ".manuspre.computer",
-      ".manus.computer",
-      ".manus-asia.computer",
-      ".manuscomputer.ai",
-      ".manusvm.computer",
-      ".replit.dev",
-      ".janeway.replit.dev",
-      ".repl.co",
       "localhost",
       "127.0.0.1",
     ],

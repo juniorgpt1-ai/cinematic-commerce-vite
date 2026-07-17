@@ -32,7 +32,7 @@ const WhatsappFloating = memo(function WhatsappFloating() {
     <a
       href={waLink("Olá, vim pela página e quero atendimento de luxo inteligente.")}
       target="_blank"
-      rel="noreferrer"
+      rel="noopener noreferrer"
       aria-label="Falar no WhatsApp"
       onClick={triggerSend}
       className="fixed bottom-6 right-6 z-40 wa-pulse btn-hover-scale inline-flex items-center bg-whatsapp hover:bg-whatsapp-hover text-black rounded-full py-3.5 pl-3.5 pr-3.5 cursor-pointer backdrop-blur-sm overflow-hidden"

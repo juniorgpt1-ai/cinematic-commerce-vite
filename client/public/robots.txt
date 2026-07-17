@@ -1,3 +1,4 @@
 User-agent: *
 Allow: /
-Sitemap: https://SEU-DOMINIO.com/sitemap.xml
+# ⚠️ Replace <SEU-DOMINIO> with your production domain before deploy
+Sitemap: https://<SEU-DOMINIO>/sitemap.xml

@@ -205,7 +205,7 @@ const BoticarioCarousel = memo(function BoticarioCarousel() {
                 <a
                   href={waLink(prod.waMsg)}
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   className="relative btn-hover-scale inline-flex flex-wrap items-center justify-center gap-1.5 text-xs sm:text-sm font-semibold tracking-wider uppercase text-luxe-gold-soft/80 group-hover:text-luxe-gold-soft border-b border-luxe-gold-soft/40 group-hover:border-luxe-gold-soft pb-1 transition-all duration-300 before:absolute before:inset-[-6px] before:content-['']"
                 >
                   {prod.ctaText} <ArrowRight className="size-3.5 group-hover:translate-x-1 transition-transform" />

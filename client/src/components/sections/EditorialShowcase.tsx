@@ -105,6 +105,8 @@ const EditorialShowcase = memo(function EditorialShowcase({
                           src={image}
                           alt={imageAlt}
                           loading="lazy"
+                          width="1200"
+                          height="1600"
                           className="h-full w-full object-cover object-top"
                         />
                       </picture>
@@ -122,6 +124,8 @@ const EditorialShowcase = memo(function EditorialShowcase({
                           src={secondImage}
                           alt={secondLabel || imageAlt}
                           loading="lazy"
+                          width="800"
+                          height="800"
                           className="w-full h-full object-cover object-center"
                         />
                       </picture>
@@ -217,7 +221,7 @@ const EditorialShowcase = memo(function EditorialShowcase({
               <a
                 href={waLink(waMessage)}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 onClick={triggerSend}
                 className="group inline-flex flex-wrap items-center justify-center gap-3 bg-luxe-ink hover:bg-whatsapp text-white hover:text-black btn-hover-scale px-6 py-4 md:px-8 md:py-5 text-sm font-semibold tracking-wide shadow-md"
               >

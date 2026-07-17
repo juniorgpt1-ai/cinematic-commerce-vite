@@ -36,6 +36,8 @@ const HairCareSuite = memo(function HairCareSuite({ volumeImg, lisoImg }: { volu
                   alt="Modelo lavando cabelos com produtos Siàge Hair-Plastia"
                   loading="lazy"
                   decoding="async"
+                  width="1100"
+                  height="916"
                   className="h-full w-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
                 />
               </picture>
@@ -95,7 +97,7 @@ const HairCareSuite = memo(function HairCareSuite({ volumeImg, lisoImg }: { volu
               <a
                 href={waLink("Olá! Quero o Combo de Encorpamento Inteligente de Alta Performance com entrega rápida.")}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 onClick={triggerVolumeSend}
                 className="group inline-flex flex-wrap items-center justify-center gap-3 bg-luxe-ink hover:bg-whatsapp text-white hover:text-black btn-hover-scale px-5 py-3.5 sm:px-6 sm:py-4 md:px-8 md:py-5 text-sm sm:text-base font-semibold tracking-wide shadow-md"
               >
@@ -118,6 +120,8 @@ const HairCareSuite = memo(function HairCareSuite({ volumeImg, lisoImg }: { volu
                   alt="Modelo com cabelo liso e alinhado sob fluxo de água"
                   loading="lazy"
                   decoding="async"
+                  width="836"
+                  height="470"
                   className="h-full w-full object-cover object-[75%]"
                 />
               </picture>
@@ -177,7 +181,7 @@ const HairCareSuite = memo(function HairCareSuite({ volumeImg, lisoImg }: { volu
               <a
                 href={waLink("Olá! Quero o Combo de Cauterização e Liso Absoluto de Alta Performance com entrega rápida.")}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 onClick={triggerLisoSend}
                 className="group inline-flex items-center justify-center gap-3 bg-luxe-ink hover:bg-whatsapp text-white hover:text-black btn-hover-scale px-5 py-3.5 sm:px-6 sm:py-4 md:px-8 md:py-5 text-sm sm:text-base font-semibold tracking-wide shadow-md whitespace-nowrap"
               >

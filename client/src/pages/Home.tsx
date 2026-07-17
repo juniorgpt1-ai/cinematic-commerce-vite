@@ -12,14 +12,14 @@ const AntigravityParticles = lazy(() => import("@/components/AntigravityParticle
 
 // Assets - URLs publicas
 const heroPerfume = "/malbec-signatureA.webp";
-const malbecLifestyleImg = "/malbec-lifestyle-opt.webp";
+const malbecLifestyleImg = "/malbec-lifestyle.webp";
 const malbecLifestyleImgMob = "/malbec-lifestyle-mob.webp 1x, /malbec-lifestyle-mob-2x.webp 2x";
-const malbecCollageImg = "/malbec-collage-opt.webp";
+const malbecCollageImg = "/malbec-collage.webp";
 const malbecCollageImgMob = "/malbec-collage-mob.webp 1x, /malbec-collage-mob-2x.webp 2x";
-const florattaRedImg = "/floratta-red-lifestyle-opt.webp";
-const hairCareVolumeImg = "/hair-care-volume-opt.webp";
-const hairCareLisoImg = "/hair-care-liso-opt.webp";
-const consultoraImg = "/consultora-opt.webp";
+const florattaRedImg = "/floratta-red-lifestyle.webp";
+const hairCareVolumeImg = "/hair-care-volume.webp";
+const hairCareLisoImg = "/hair-care-liso.webp";
+const consultoraImg = "/consultora.webp";
 const consultoraImgMob = "/consultora-mob.webp 1x, /consultora-mob-2x.webp 2x";
 
 // Lazy-loaded section imports
@@ -87,7 +87,7 @@ const Nav = memo(function Nav() {
             <a
               href={waLink("Olá, vim pela página e quero atendimento de luxo inteligente.")}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className="relative inline-flex items-center gap-1.5 text-[12px] tracking-[0.12em] uppercase font-bold transition-colors shrink-0 text-luxe-gold-soft before:absolute before:inset-[-6px] before:content-['']"
             >
               WhatsApp <ArrowRight className="size-3.5" />
@@ -180,7 +180,7 @@ const Nav = memo(function Nav() {
           <a
             href={waLink("Olá, vim pela página e quero atendimento de luxo inteligente.")}
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
             className="relative hidden sm:inline-flex items-center gap-2 text-[12px] xl:text-[14px] tracking-[0.1em] xl:tracking-[0.2em] uppercase font-bold transition-colors text-luxe-gold-soft before:absolute before:inset-[-10px] before:content-[''] whitespace-nowrap shrink-0"
           >
             WhatsApp <ArrowRight className="size-4" />
@@ -260,7 +260,7 @@ const Hero = memo(function Hero() {
                   "Olá! Quero fazer meu pedido para entrega expressa em BH/região. Pode me ajudar?",
                 )}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 onClick={triggerSend}
                 className="cta-emphasize btn-hover-scale group inline-flex items-center justify-center gap-2 whitespace-nowrap bg-whatsapp hover:bg-whatsapp-hover text-black font-bold px-4 py-3 md:px-8 md:py-4 text-sm md:text-base tracking-wide wa-glow"
               >

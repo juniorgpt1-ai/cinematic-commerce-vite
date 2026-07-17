@@ -85,7 +85,7 @@ const KitsGrid = memo(function KitsGrid() {
                   <a
                     href={waLink(k.msg)}
                     target="_blank"
-                    rel="noreferrer"
+                    rel="noopener noreferrer"
                     aria-label={`Pedir ${k.name} no WhatsApp`}
                     className="relative btn-hover-scale inline-flex flex-wrap items-center justify-center gap-2 text-xs font-semibold tracking-wider uppercase text-luxe-gold-soft border-b border-luxe-gold-soft/60 pb-1 group-hover:text-luxe-gold-soft group-hover:border-luxe-gold-soft transition-colors before:absolute before:inset-[-8px] before:content-['']"
                   >

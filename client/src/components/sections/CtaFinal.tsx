@@ -16,7 +16,7 @@ const CtaFinal = memo(function CtaFinal({ heroImage }: { heroImage: string }) {
       <div className="absolute inset-0 opacity-20">
         <picture>
           <source srcSet="/malbecSMOB.webp" media="(max-width: 767px)" />
-          <img src={heroImage} alt="" className="h-full w-full object-cover" loading="lazy" decoding="async" />
+          <img src={heroImage} alt="" className="h-full w-full object-cover" loading="lazy" decoding="async" width="1075" height="1463" />
         </picture>
         <div className="absolute inset-0 bg-gradient-to-t from-luxe-ink via-luxe-ink/85 to-luxe-ink/70" />
       </div>
@@ -45,7 +45,7 @@ const CtaFinal = memo(function CtaFinal({ heroImage }: { heroImage: string }) {
               ref={ctaRef}
               href={waLink("Olá, quero garantir minha seleção de luxo inteligente com entrega expressa hoje.")}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               onClick={triggerSend}
               className="cta-emphasize wa-pulse inline-flex flex-wrap items-center justify-center gap-3 bg-whatsapp hover:bg-whatsapp-hover text-black font-bold px-5 py-4 md:px-10 md:py-5 text-base md:text-lg tracking-wider uppercase rounded-sm btn-hover-scale"
             >

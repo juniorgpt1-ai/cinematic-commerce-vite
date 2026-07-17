@@ -1,71 +1,65 @@
 /**
- * Image optimization script for Cinematic Commerce.
- * Uses sharp to resize and recompress WebP images for production.
+ * Image optimization script — process ALL project WebP images.
+ * Quality 90, effort 6 (maximum), no upscaling.
  *
  * Run: node scripts/optimize-images.mjs
- *
- * Targets:
- *  - VOLMOB.webp: 2200x1829 → resize to 1200px wide (2x mobile display), quality 80
- *  - LISMOB.webp: 1131x941  → resize to 1000px wide, quality 80
- *  - malbecSMOB.webp: keep dimensions, recompress quality 75
  */
 
 import sharp from "sharp";
-import { stat } from "node:fs/promises";
-import { join, dirname } from "node:path";
+import { readFile, writeFile, stat as fsStat, readdir } from "node:fs/promises";
+import { join, dirname, basename } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const PUBLIC_DIR = join(__dirname, "..", "client", "public");
 
-const IMAGE_OPTIMIZATIONS = [
-  {
-    file: "VOLMOB.webp",
-    width: 1200,
-    quality: 80,
-    effort: 6,
-  },
-  {
-    file: "LISMOB.webp",
-    width: 1000,
-    quality: 80,
-    effort: 6,
-  },
-  {
-    // No resize target (dimensions already correct for mobile display), so there's
-    // no width-based idempotency signal like the entries above. Guard against
-    // re-encoding an already-optimized file on every build (webp->webp requality
-    // compounds quality loss run after run) with a size floor instead.
-    file: "malbecSMOB.webp",
-    width: null,
-    quality: 75,
-    effort: 6,
-    skipIfBelowKB: 130,
-  },
-];
+// Target widths: null = keep original dimensions, recompress only.
+// All targets use { quality: 90, effort: 6, withoutEnlargement: true }.
+const IMAGE_TARGETS = {
+  // Hero — LCP critical, keep dimensions, recompress quality 90
+  "malbecDDESK.webp":         { width: null },
+  "malbecSMOB.webp":          { width: null },
+  "malbec-signatureA.webp":   { width: null },
 
-async function optimizeImage({ file, width, quality, effort, skipIfBelowKB }) {
-  const { readFile, writeFile } = await import("node:fs/promises");
+  // Lifestyle / Collage — cap at 2400px wide max
+  "malbec-lifestyle.webp":    { width: 2400 },
+  "malbec-collage.webp":      { width: 2400 },
+  "floratta-red-lifestyle.webp": { width: 2400 },
+  "hair-care-volume.webp":    { width: 2200 },
+  "hair-care-liso.webp":      { width: 1672 },
+  "consultora.webp":          { width: 1200 },
+  "floratta.webp":            { width: 1024 },
+  "malbec1.webp":             { width: 2400 },
 
-  const inputPath = join(PUBLIC_DIR, file);
+  // Mobile variants — keep dimensions, recompress
+  "malbec-lifestyle-mob.webp":       { width: null },
+  "malbec-lifestyle-mob-2x.webp":    { width: null },
+  "malbec-collage-mob.webp":         { width: null },
+  "malbec-collage-mob-2x.webp":      { width: null },
+  "floratta-red-lifestyle-mob.webp": { width: null },
+  "floratta-red-lifestyle-mob-2x.webp": { width: null },
+  "hair-care-volume-mob.webp":       { width: null },
+  "hair-care-volume-mob-2x.webp":    { width: null },
+  "hair-care-liso-mob.webp":         { width: null },
+  "hair-care-liso-mob-2x.webp":      { width: null },
+  "consultora-mob.webp":             { width: null },
+  "consultora-mob-2x.webp":          { width: null },
+  "floratta-mob.webp":               { width: null },
+  "floratta-mob-2x.webp":            { width: null },
+  "malbec1-mob.webp":                { width: null },
+  "malbec1-mob-2x.webp":             { width: null },
+};
 
-  const inputStats = await stat(inputPath);
-  const inputSizeKB = (inputStats.size / 1024).toFixed(1);
-
-  // Read file into buffer first to avoid file-locking issues on Windows
-  const inputBuffer = await readFile(inputPath);
+async function optimizeImage(filePath, target) {
+  const inputBuffer = await readFile(filePath);
   const metadata = await sharp(inputBuffer).metadata();
+  const inputSizeKB = ((await fsStat(filePath)).size / 1024).toFixed(1);
 
-  // Skip if already at or below target dimensions (prevents re-optimization quality loss)
-  if (width && metadata.width <= width) {
-    console.log(`  ${file}: ${inputSizeKB} KiB (already optimized, skipping)`);
-    return;
-  }
+  const { width } = target;
 
-  // Skip quality-only (no resize) entries once already under the expected size,
-  // so repeated builds don't keep re-encoding the same file at ever-lower quality.
-  if (!width && skipIfBelowKB && inputStats.size / 1024 < skipIfBelowKB) {
-    console.log(`  ${file}: ${inputSizeKB} KiB (already optimized, skipping)`);
+  // Idempotency: skip if already at or below target dimensions
+  if (width && metadata.width && metadata.width <= width) {
+    console.log(`  ${basename(filePath)}: ${inputSizeKB} KiB (at target width, skipping)`);
     return;
   }
 
@@ -75,29 +69,43 @@ async function optimizeImage({ file, width, quality, effort, skipIfBelowKB }) {
     pipeline = pipeline.resize({ width, withoutEnlargement: true });
   }
 
-  const outputBuffer = await pipeline.webp({ quality, effort }).toBuffer();
-  await writeFile(inputPath, outputBuffer);
+  const outputBuffer = await pipeline.webp({ quality: 90, effort: 6 }).toBuffer();
+  await writeFile(filePath, outputBuffer);
 
-  const outputStats = await stat(inputPath);
-  const outputSizeKB = (outputStats.size / 1024).toFixed(1);
-  const savingsKB = (inputStats.size / 1024 - outputStats.size / 1024).toFixed(1);
-  const percent = (((inputStats.size - outputStats.size) / inputStats.size) * 100).toFixed(0);
-
-  console.log(`  ${file}: ${inputSizeKB} KiB → ${outputSizeKB} KiB (${savingsKB} KiB saved, ${percent}%)`);
+  const outputSizeKB = ((await fsStat(filePath)).size / 1024).toFixed(1);
+  const delta = (outputSizeKB - inputSizeKB).toFixed(1);
+  const sign = delta > 0 ? "+" : "";
+  console.log(`  ${basename(filePath)}: ${inputSizeKB} KiB → ${outputSizeKB} KiB (${sign}${delta} KiB)`);
 }
 
 async function main() {
-  console.log("Optimizing images...\n");
+  console.log("Optimizing all WebP images (quality 90, effort 6)...\n");
 
-  for (const config of IMAGE_OPTIMIZATIONS) {
+  const allFiles = await readdir(PUBLIC_DIR, { recursive: true });
+  const webpFiles = allFiles
+    .filter(f => f.endsWith(".webp"))
+    .filter(f => !f.includes("node_modules"));
+
+  let count = 0;
+  let skipped = 0;
+
+  for (const relPath of webpFiles.sort()) {
+    const absPath = join(PUBLIC_DIR, relPath);
+    const target = IMAGE_TARGETS[basename(relPath)];
+
+    if (!target) {
+      continue; // silently skip files not in the target map
+    }
+
     try {
-      await optimizeImage(config);
+      await optimizeImage(absPath, target);
+      count++;
     } catch (err) {
-      console.error(`  ✗ ${config.file}: ${err.message}`);
+      console.error(`  ✗ ${basename(relPath)}: ${err.message}`);
     }
   }
 
-  console.log("\nDone.");
+  console.log(`\nDone. ${count} images optimized.`);
 }
 
 main();

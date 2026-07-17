@@ -25,6 +25,8 @@ const Consultoria = memo(function Consultoria({ image, imageMob }: { image: stri
                   src={image}
                   alt="Consultora premium sorrindo, atendimento personalizado e humanizado"
                   loading="lazy"
+                  width="600"
+                  height="704"
                   className="h-full w-full object-cover"
                 />
               </picture>
@@ -66,7 +68,7 @@ const Consultoria = memo(function Consultoria({ image, imageMob }: { image: stri
             <a
               href={waLink("Olá, quero falar com a consultora premium para fazer minha seleção personalizada.")}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               onClick={triggerSend}
               className="mt-10 inline-flex flex-wrap items-center justify-center gap-3 bg-luxe-ink hover:bg-whatsapp hover:text-black text-white btn-hover-scale px-6 py-4 md:px-8 md:py-5 text-sm font-semibold tracking-wide shadow-md"
             >
