@@ -31,9 +31,20 @@ const IMAGE_OPTIMIZATIONS = [
     quality: 80,
     effort: 6,
   },
+  {
+    // No resize target (dimensions already correct for mobile display), so there's
+    // no width-based idempotency signal like the entries above. Guard against
+    // re-encoding an already-optimized file on every build (webp->webp requality
+    // compounds quality loss run after run) with a size floor instead.
+    file: "malbecSMOB.webp",
+    width: null,
+    quality: 75,
+    effort: 6,
+    skipIfBelowKB: 130,
+  },
 ];
 
-async function optimizeImage({ file, width, quality, effort }) {
+async function optimizeImage({ file, width, quality, effort, skipIfBelowKB }) {
   const { readFile, writeFile } = await import("node:fs/promises");
 
   const inputPath = join(PUBLIC_DIR, file);
@@ -47,6 +58,13 @@ async function optimizeImage({ file, width, quality, effort }) {
 
   // Skip if already at or below target dimensions (prevents re-optimization quality loss)
   if (width && metadata.width <= width) {
+    console.log(`  ${file}: ${inputSizeKB} KiB (already optimized, skipping)`);
+    return;
+  }
+
+  // Skip quality-only (no resize) entries once already under the expected size,
+  // so repeated builds don't keep re-encoding the same file at ever-lower quality.
+  if (!width && skipIfBelowKB && inputStats.size / 1024 < skipIfBelowKB) {
     console.log(`  ${file}: ${inputSizeKB} KiB (already optimized, skipping)`);
     return;
   }

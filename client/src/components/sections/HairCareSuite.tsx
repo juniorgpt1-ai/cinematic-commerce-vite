@@ -1,22 +1,26 @@
 import { memo } from "react";
-import { MessageCircle, ArrowRight, Award, Sparkles } from "lucide-react";
+import { ArrowRight, Award, Sparkles } from "lucide-react";
 import { waLink } from "@/lib/whatsapp";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { useSendMorph } from "@/hooks/useSendMorph";
 import FloatingBadge from "@/components/sections/FloatingBadge";
+import SendMorphIcon from "@/components/sections/SendMorphIcon";
 
 const HairCareSuite = memo(function HairCareSuite({ volumeImg, lisoImg }: { volumeImg: string; lisoImg: string }) {
   const headerRef = useScrollReveal();
+  const { phase: volumeSendPhase, trigger: triggerVolumeSend } = useSendMorph();
+  const { phase: lisoSendPhase, trigger: triggerLisoSend } = useSendMorph();
 
   return (
     <section id="haircare" className="relative bg-luxe-bg overflow-hidden border-b border-luxe-line/40">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 py-32 md:py-40 relative z-10">
         <div ref={headerRef} className="reveal-up max-w-3xl mb-20 text-center mx-auto">
           <span className="eyebrow text-sm sm:text-base">Alta Performance Capilar</span>
-          <h2 className="mt-5 font-section text-4xl sm:text-5xl md:text-6xl font-semibold leading-[1.08]">
+          <h2 className="mt-5 font-section text-4xl sm:text-5xl font-semibold leading-[1.08]">
             A Arte do Cuidado Absoluto
           </h2>
           <span className="gold-rule mt-6 mx-auto" />
-          <p className="mt-8 text-base sm:text-lg text-luxe-ink/85 font-sans font-light leading-relaxed">
+          <p className="mt-8 max-w-2xl mx-auto text-base sm:text-lg text-luxe-ink/85 font-sans font-light leading-relaxed">
             Tecnologia de salão adaptada para a sua rotina diária. A sofisticação da alta performance agora acessível na sua casa.
           </p>
         </div>
@@ -26,7 +30,7 @@ const HairCareSuite = memo(function HairCareSuite({ volumeImg, lisoImg }: { volu
           <div ref={useScrollReveal()} className="reveal-right lg:col-span-6 relative">
             <div className="relative aspect-[6/5] overflow-hidden bg-luxe-ink shadow-2xl border border-luxe-line/20 group">
               <picture>
-                <source srcSet="/VOLMOB-opt.webp" media="(max-width: 767px)" />
+                <source srcSet="/hair-care-volume-mob.webp 1x, /hair-care-volume-mob-2x.webp 2x" media="(max-width: 767px)" />
                 <img
                   src={volumeImg}
                   alt="Modelo lavando cabelos com produtos Siàge Hair-Plastia"
@@ -51,7 +55,7 @@ const HairCareSuite = memo(function HairCareSuite({ volumeImg, lisoImg }: { volu
           </div>
 
           <div ref={useScrollReveal()} className="reveal-up lg:col-span-6">
-            <span className="eyebrow text-luxe-gold text-sm sm:text-base">Hair Care · Volume & Densidade</span>
+            <span className="eyebrow text-sm sm:text-base">Hair Care · Volume & Densidade</span>
             <h3 className="mt-4 font-section text-3xl sm:text-5xl md:text-5xl font-semibold leading-[1.08]">
               Cabelos encorpados com conforto e resultado visível.
             </h3>
@@ -64,7 +68,7 @@ const HairCareSuite = memo(function HairCareSuite({ volumeImg, lisoImg }: { volu
             <ul className="mt-8 space-y-4 text-luxe-ink/85 font-sans font-light text-sm sm:text-base">
               <li className="flex items-center gap-3">
                 <span className="h-1.5 w-1.5 bg-luxe-gold rounded-full shrink-0" />
-                <span>Preenchimento de porosidade com ácido hialurônico inteligente.</span>
+                <span>Preenchimento de porosidade com ácido hialurônico de alta performance.</span>
               </li>
               <li className="flex items-center gap-3">
                 <span className="h-1.5 w-1.5 bg-luxe-gold rounded-full shrink-0" />
@@ -92,9 +96,10 @@ const HairCareSuite = memo(function HairCareSuite({ volumeImg, lisoImg }: { volu
                 href={waLink("Olá! Quero o Combo de Encorpamento Inteligente de Alta Performance com entrega rápida.")}
                 target="_blank"
                 rel="noreferrer"
+                onClick={triggerVolumeSend}
                 className="group inline-flex flex-wrap items-center justify-center gap-3 bg-luxe-ink hover:bg-whatsapp text-white hover:text-black btn-hover-scale px-5 py-3.5 sm:px-6 sm:py-4 md:px-8 md:py-5 text-sm sm:text-base font-semibold tracking-wide shadow-md"
               >
-                <MessageCircle className="size-4 sm:size-5" />
+                <SendMorphIcon phase={volumeSendPhase} className="size-4 sm:size-5" />
                 Eu Quero Fios Encorpados
                 <ArrowRight className="size-4 group-hover:translate-x-1 transition-transform" />
               </a>
@@ -107,7 +112,7 @@ const HairCareSuite = memo(function HairCareSuite({ volumeImg, lisoImg }: { volu
           <div ref={useScrollReveal()} className="reveal-scale lg:col-span-7 lg:order-2 relative">
             <div className="relative aspect-[6/5] overflow-hidden bg-luxe-ink shadow-2xl border border-luxe-line/20 group">
               <picture>
-                <source srcSet="/LISMOB-opt.webp" media="(max-width: 767px)" />
+                <source srcSet="/hair-care-liso-mob.webp 1x, /hair-care-liso-mob-2x.webp 2x" media="(max-width: 767px)" />
                 <img
                   src={lisoImg}
                   alt="Modelo com cabelo liso e alinhado sob fluxo de água"
@@ -132,7 +137,7 @@ const HairCareSuite = memo(function HairCareSuite({ volumeImg, lisoImg }: { volu
           </div>
 
           <div ref={useScrollReveal()} className="reveal-up lg:col-span-5 lg:order-1">
-            <span className="eyebrow text-luxe-gold text-sm sm:text-base">Hair Care · Blindagem & Cauterização</span>
+            <span className="eyebrow text-sm sm:text-base">Hair Care · Blindagem & Cauterização</span>
             <h3 className="mt-4 font-section text-3xl sm:text-5xl md:text-5xl font-semibold leading-[1.08]">
               Liso de Salão em Casa.
             </h3>
@@ -173,9 +178,10 @@ const HairCareSuite = memo(function HairCareSuite({ volumeImg, lisoImg }: { volu
                 href={waLink("Olá! Quero o Combo de Cauterização e Liso Absoluto de Alta Performance com entrega rápida.")}
                 target="_blank"
                 rel="noreferrer"
+                onClick={triggerLisoSend}
                 className="group inline-flex items-center justify-center gap-3 bg-luxe-ink hover:bg-whatsapp text-white hover:text-black btn-hover-scale px-5 py-3.5 sm:px-6 sm:py-4 md:px-8 md:py-5 text-sm sm:text-base font-semibold tracking-wide shadow-md whitespace-nowrap"
               >
-                <MessageCircle className="size-4 sm:size-5" />
+                <SendMorphIcon phase={lisoSendPhase} className="size-4 sm:size-5" />
                 Sinta o Poder do Liso Absoluto
                 <ArrowRight className="size-4 group-hover:translate-x-1 transition-transform" />
               </a>

@@ -25,7 +25,7 @@ const Footer = memo(function Footer() {
               href={waLink("Olá!")}
               target="_blank"
               rel="noreferrer"
-              className="block font-semibold hover:text-luxe-gold transition-colors"
+              className="relative block font-semibold hover:text-luxe-gold transition-colors before:absolute before:inset-[-8px] before:content-['']"
             >
               WhatsApp: +55 31 90000-0000
             </a>
@@ -37,7 +37,7 @@ const Footer = memo(function Footer() {
             <a
               href="#"
               aria-label="Instagram"
-              className="inline-flex items-center gap-2 hover:text-luxe-gold transition-colors font-medium"
+              className="relative inline-flex items-center gap-2 hover:text-luxe-gold transition-colors font-medium before:absolute before:inset-[-8px] before:content-['']"
             >
               <Instagram className="size-4" /> @maison.parfum
             </a>

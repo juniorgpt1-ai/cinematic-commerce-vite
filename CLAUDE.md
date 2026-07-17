@@ -24,7 +24,7 @@ npx vitest --run    # Run tests (Vitest installed but no test files exist yet)
 
 - **Framework:** React 19 + Vite 7 + TypeScript 5.6
 - **Styling:** Tailwind CSS v4 + `tw-animate-css` + shadcn/ui (New York style)
-- **Animation:** Framer Motion 12
+- **Animation:** CSS keyframes/transitions (`@utility` classes in `index.css`); no animation library
 - **Routing:** Wouter 3.3 (lightweight ~2KB router)
 - **Server:** Express 4 (static file serving + SPA fallback)
 - **UI primitives:** Radix UI (accordion, dialog, tooltip), Embla Carousel, Recharts 2
@@ -42,7 +42,7 @@ client/src/
 │   └── NotFound.tsx      # 404
 ├── components/
 │   ├── ui/               # 55+ shadcn/ui components (button, card, dialog, carousel, chart, etc.)
-│   └── AntigravityParticles.tsx  # Framer Motion particle background for Hero
+│   └── AntigravityParticles.tsx  # CSS-driven particle background for Hero (vanilla mouse parallax)
 ├── lib/
 │   ├── utils.ts          # cn() helper (clsx + tailwind-merge)
 │   └── whatsapp.ts       # waLink() builder → https://wa.me/<number>?text=<encoded>
@@ -55,7 +55,7 @@ server/index.ts           # Express: serves dist/public/ static + SPA fallback o
 ### Key Patterns
 
 - **No backend API.** All commerce flows through WhatsApp links (`lib/whatsapp.ts`). The phone number is hardcoded (`5531900000000` — placeholder). Every CTA opens a pre-filled WhatsApp message.
-- **Single-page landing pattern:** `Home.tsx` is a large file with internal function components per section (`Hero`, `TrustBar`, `HairCareSuite`, `MalbecShowcase`, etc.). Animations use a shared `useFadeUp()` Framer Motion hook.
+- **Single-page landing pattern:** `Home.tsx` is a large file with internal function components per section (`Hero`, `TrustBar`, `HairCareSuite`, `MalbecShowcase`, etc.). Animations use CSS `@utility` classes (`animate-fade-up`, `animate-float-badge`, `animate-particle-float`, etc.) defined in `index.css`.
 - **No global state library.** No Redux/Zustand/Context for business state. Only `ThemeContext` exists (light/dark toggled by `.dark` on `<html>`).
 - **Styling:** Custom "luxe palette" CSS custom properties (`--luxe-gold`, `--luxe-bordo`, `--luxe-ink`) mapped to Tailwind v4 `@theme inline` tokens. Google Fonts: Cormorant Garamond, Merriweather, Playfair Display, Plus Jakarta Sans.
 - **Build output:** Two-step build — Vite bundles client to `dist/public/`, then esbuild bundles the Express server to `dist/index.js`.

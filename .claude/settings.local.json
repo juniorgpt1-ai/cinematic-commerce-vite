@@ -1,5 +1,41 @@
 {
-  "description": "Impeccable design detector: runs after Edit/Write/MultiEdit on UI files and surfaces findings as system reminders.",
+  "permissions": {
+    "allow": [
+      "Bash(node .agents/skills/impeccable/scripts/context.mjs)",
+      "Bash(node \".claude/skills/impeccable/scripts/context-signals.mjs\")",
+      "Bash(node \".claude/skills/impeccable/scripts/detect.mjs\" --json .)",
+      "Bash(pnpm check *)",
+      "Bash(node .claude/skills/impeccable/scripts/detect.mjs --json --scope layout client/src/pages/Home.tsx client/src/components/sections/TrustBar.tsx client/src/components/sections/HairCareSuite.tsx client/src/components/sections/PerfumesHeader.tsx client/src/components/sections/MalbecShowcase.tsx client/src/components/sections/FlorattaRedShowcase.tsx client/src/components/sections/EditorialShowcase.tsx client/src/components/sections/BoticarioCarousel.tsx client/src/components/sections/KitsGrid.tsx client/src/components/sections/Consultoria.tsx client/src/components/sections/Depoimentos.tsx client/src/components/sections/Faq.tsx client/src/components/sections/CtaFinal.tsx client/src/components/sections/Footer.tsx client/src/components/sections/WhatsappFloating.tsx client/src/components/sections/FloatingBadge.tsx client/src/index.css)",
+      "Bash(node \".claude/skills/impeccable/scripts/detect.mjs\" --json client/src/components/sections/BoticarioCarousel.tsx client/src/components/sections/Consultoria.tsx client/src/components/sections/CtaFinal.tsx client/src/components/sections/Depoimentos.tsx client/src/components/sections/Faq.tsx client/src/components/sections/KitsGrid.tsx client/src/components/sections/MalbecShowcase.tsx client/src/components/sections/TrustBar.tsx client/src/components/sections/WhatsappFloating.tsx client/src/index.css client/src/pages/Home.tsx)",
+      "Bash(node \".claude/skills/impeccable/scripts/detect.mjs\" --json client/src/hooks/useSendMorph.ts client/src/components/sections/SendMorphIcon.tsx client/src/pages/Home.tsx client/src/components/sections/WhatsappFloating.tsx client/src/components/sections/MalbecShowcase.tsx client/src/components/sections/HairCareSuite.tsx client/src/components/sections/EditorialShowcase.tsx client/src/components/sections/Consultoria.tsx client/src/components/sections/CtaFinal.tsx)",
+      "Bash(node \".claude/skills/impeccable/scripts/detect.mjs\" --json client/src/index.css client/src/components/sections/MalbecShowcase.tsx client/src/components/sections/EditorialShowcase.tsx)",
+      "Bash(node .claude/skills/impeccable/scripts/detect.mjs --json --scope type client/index.html client/src/index.css client/src/fonts.css client/src/pages/Home.tsx client/src/components/sections/TrustBar.tsx client/src/components/sections/HairCareSuite.tsx client/src/components/sections/PerfumesHeader.tsx client/src/components/sections/MalbecShowcase.tsx client/src/components/sections/FlorattaRedShowcase.tsx client/src/components/sections/EditorialShowcase.tsx client/src/components/sections/BoticarioCarousel.tsx client/src/components/sections/KitsGrid.tsx client/src/components/sections/Consultoria.tsx client/src/components/sections/Depoimentos.tsx client/src/components/sections/Faq.tsx client/src/components/sections/CtaFinal.tsx client/src/components/sections/Footer.tsx)",
+      "Bash(node \".claude/skills/impeccable/scripts/detect.mjs\" --json --scope type client/index.html client/src/index.css client/src/fonts.css client/src/pages/Home.tsx client/src/components/sections/TrustBar.tsx client/src/components/sections/HairCareSuite.tsx client/src/components/sections/PerfumesHeader.tsx client/src/components/sections/MalbecShowcase.tsx client/src/components/sections/KitsGrid.tsx client/src/components/sections/Faq.tsx)",
+      "Bash(node \".claude/skills/impeccable/scripts/detect.mjs\" --json client/src/lib/whatsapp.ts client/src/components/sections/BoticarioCarousel.tsx)",
+      "Bash(node .claude/skills/impeccable/scripts/critique-storage.mjs slug \"client/src/pages/Home.tsx\")",
+      "Bash(IMPECCABLE_CRITIQUE_META='{\"target\":\"client/src/pages/Home.tsx \\(full landing page\\)\",\"total_score\":23,\"p0_count\":2,\"p1_count\":2}' node .claude/skills/impeccable/scripts/critique-storage.mjs write client-src-pages-home-tsx \"C:\\\\Users\\\\SAMUEL\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\C--Users-SAMUEL-Downloads-cinematic-commerce-vite\\\\37b342ca-5c72-40ae-8164-522f7960f4c3\\\\scratchpad\\\\critique-home.md\")",
+      "Bash(node .claude/skills/impeccable/scripts/critique-storage.mjs trend client-src-pages-home-tsx 5)",
+      "Bash(node \".claude/skills/impeccable/scripts/detect.mjs\" --json client/src/pages/Home.tsx client/src/components/sections/MalbecShowcase.tsx client/src/components/sections/EditorialShowcase.tsx client/src/components/sections/HairCareSuite.tsx client/src/components/sections/KitsGrid.tsx client/src/components/sections/BoticarioCarousel.tsx client/src/components/sections/Footer.tsx)",
+      "Bash(node \".claude/skills/impeccable/scripts/detect.mjs\" --json client/index.html client/src/pages/Home.tsx client/src/components/sections/TrustBar.tsx client/src/components/sections/HairCareSuite.tsx client/src/components/sections/PerfumesHeader.tsx client/src/components/sections/MalbecShowcase.tsx client/src/components/sections/FlorattaRedShowcase.tsx client/src/components/sections/EditorialShowcase.tsx client/src/components/sections/BoticarioCarousel.tsx client/src/components/sections/KitsGrid.tsx client/src/components/sections/Consultoria.tsx client/src/components/sections/Depoimentos.tsx client/src/components/sections/Faq.tsx client/src/components/sections/CtaFinal.tsx client/src/components/sections/Footer.tsx client/src/components/sections/WhatsappFloating.tsx client/src/components/sections/SendMorphIcon.tsx client/src/index.css client/src/fonts.css)",
+      "Bash(node \".claude/skills/impeccable/scripts/detect.mjs\" --json client/src/components/sections/BoticarioCarousel.tsx)",
+      "Bash(node \".claude/skills/impeccable/scripts/detect.mjs\" --json client/src/components/sections/KitsGrid.tsx client/src/components/sections/BoticarioCarousel.tsx client/src/components/sections/FlorattaRedShowcase.tsx client/src/components/sections/Depoimentos.tsx client/src/components/sections/HairCareSuite.tsx client/src/components/sections/Consultoria.tsx)",
+      "Bash(node \".claude/skills/impeccable/scripts/detect.mjs\" --json client/src/pages/Home.tsx)",
+      "Bash(node \".claude/skills/impeccable/scripts/detect.mjs\" --json client/src/components/sections/LazySection.tsx client/src/pages/Home.tsx)",
+      "Bash(node \".claude/skills/impeccable/scripts/detect.mjs\" --json client/src/index.css)",
+      "Bash(node -e \"JSON.parse\\(require\\('fs'\\).readFileSync\\('.impeccable/design.json','utf8'\\)\\); console.log\\('valid JSON'\\)\")",
+      "Bash(node -e *)",
+      "Bash(git stash *)",
+      "Bash(pnpm build *)",
+      "Bash(curl -s http://localhost:4173/)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:4173/assets/index-D0g4UkJM.js)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Skill(run)",
+      "mcp__plugin_vercel_vercel__list_deployments",
+      "mcp__plugin_vercel_vercel__get_project",
+      "Bash(npx tsc *)"
+    ]
+  },
   "hooks": {
     "PostToolUse": [
       {
@@ -25,5 +61,6 @@
         ]
       }
     ]
-  }
+  },
+  "description": "Impeccable design detector: runs after Edit/Write/MultiEdit on UI files and surfaces findings as system reminders."
 }

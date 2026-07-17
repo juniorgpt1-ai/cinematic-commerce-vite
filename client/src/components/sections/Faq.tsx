@@ -30,13 +30,14 @@ const Faq = memo(function Faq() {
 
   return (
     <section id="faq" className="bg-luxe-gradient border-b border-luxe-line/30">
-      <div className="mx-auto max-w-4xl px-6 py-32 md:py-40">
+      <div className="mx-auto max-w-4xl px-6 py-24 md:py-32">
         <div ref={headerRef} className="reveal-up text-center">
-          <span className="eyebrow">Perguntas Frequentes</span>
-          <h2 className="mt-5 font-section text-4xl md:text-5xl font-semibold leading-[1.08]">
-            Dúvidas Frequentes
+          <h2 className="font-section text-4xl md:text-5xl font-semibold leading-[1.08]">
+            Perguntas Frequentes
           </h2>
-          <span className="gold-rule mt-6 mx-auto" />
+          <p className="mt-4 text-luxe-ink/70 font-sans font-light text-base md:text-lg">
+            Tudo o que você precisa saber antes de pedir.
+          </p>
         </div>
 
         <div className="mt-16 divide-y divide-luxe-line/40 border-y border-luxe-line/40">
@@ -48,14 +49,18 @@ const Faq = memo(function Faq() {
                   type="button"
                   onClick={() => setOpen(isOpen ? null : i)}
                   aria-expanded={isOpen}
-                  className="w-full flex items-center justify-between gap-4 py-6 text-left group cursor-pointer"
+                  className="w-full flex items-center justify-between gap-4 py-6 text-left group cursor-pointer transition-opacity duration-150 active:opacity-60"
                 >
-                  <span className="font-fenix text-2xl md:text-3xl text-luxe-ink group-hover:text-luxe-gold transition-colors font-normal min-w-0 break-words">
+                  <span
+                    className={`font-section text-2xl md:text-3xl transition-colors duration-300 font-normal min-w-0 break-words ${
+                      isOpen ? "text-luxe-gold" : "text-luxe-ink group-hover:text-luxe-gold"
+                    }`}
+                  >
                     {it.q}
                   </span>
                   <ChevronDown
                     className={`size-5 text-luxe-gold shrink-0 transition-transform duration-500 ${
-                      isOpen ? "rotate-180" : ""
+                      isOpen ? "rotate-180 drop-shadow-[0_0_6px_rgba(154,123,80,0.55)]" : ""
                     }`}
                   />
                 </button>
@@ -65,7 +70,7 @@ const Faq = memo(function Faq() {
                   }`}
                 >
                   <div className="overflow-hidden">
-                    <p className="text-luxe-ink/80 font-sans font-light leading-relaxed max-w-3xl">
+                    <p className="text-luxe-ink/80 font-sans font-light leading-relaxed max-w-xl">
                       {it.a}
                     </p>
                   </div>

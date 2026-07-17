@@ -4,7 +4,7 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const TESTIMONIALS = [
   {
-    quote: "Comprei o combo de cauterização e foi a melhor escolha inteligente que fiz. Cabelo de salão sem gastar uma fortuna.",
+    quote: "Comprei o combo de cauterização e foi a melhor escolha que fiz. Cabelo de salão sem gastar uma fortuna.",
     name: "Carolina M.",
     meta: "Savassi · BH",
   },
@@ -25,20 +25,21 @@ const Depoimentos = memo(function Depoimentos() {
 
   return (
     <section className="bg-luxe-gradient border-b border-luxe-line/30 relative overflow-hidden">
-      <div className="mx-auto max-w-7xl px-6 py-32 md:py-40 relative z-10">
-        <div ref={headerRef} className="reveal-up max-w-2xl text-center mx-auto mb-20">
-          <span className="eyebrow">Opinião de Clientes</span>
-          <h2 className="mt-5 font-section text-5xl md:text-5xl font-semibold leading-[1.08]">
-            A Experiência do Luxo Inteligente
+      <div className="mx-auto max-w-7xl px-6 py-24 md:py-32 relative z-10">
+        <div ref={headerRef} className="reveal-up max-w-xl mb-16 md:mb-20">
+          <h2 className="font-section text-4xl md:text-5xl font-semibold leading-[1.08]">
+            A experiência do <span className="italic font-light text-luxe-gold">luxo inteligente</span>.
           </h2>
-          <span className="gold-rule mt-6 mx-auto" />
+          <p className="mt-5 text-luxe-ink/70 font-sans font-light text-base md:text-lg">
+            Quem já pediu, conta como foi.
+          </p>
         </div>
 
         <div ref={useScrollReveal()} className="stagger-container grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16">
           {TESTIMONIALS.map((t) => (
             <figure
               key={t.name}
-              className="reveal-up flex flex-col justify-between p-8 rounded-xs card-premium bg-white"
+              className="group reveal-up flex flex-col justify-between p-8 rounded-xs card-premium bg-white hover:-translate-y-1 hover:border-luxe-gold/40"
             >
               <div>
                 <div className="flex gap-0.5 mb-4">
@@ -48,7 +49,7 @@ const Depoimentos = memo(function Depoimentos() {
                     </svg>
                   ))}
                 </div>
-                <Quote className="size-8 text-luxe-gold" strokeWidth={1} />
+                <Quote className="size-8 text-luxe-gold transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-110 group-hover:-rotate-6" strokeWidth={1} />
                 <blockquote className="mt-6 font-display text-2xl md:text-3xl leading-relaxed text-luxe-ink/90 break-words">
                   &ldquo;{t.quote}&rdquo;
                 </blockquote>

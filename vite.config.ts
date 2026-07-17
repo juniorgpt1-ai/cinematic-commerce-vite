@@ -264,15 +264,11 @@ export default defineConfig({
     cssMinify: true,
     modulePreload: {
       polyfill: false,
-      resolveDependencies(_filename, deps) {
-        return deps.filter((d) => !d.includes("vendor-framer"));
-      },
     },
     rollupOptions: {
       output: {
         manualChunks(id) {
           if (id.includes("node_modules/react") || id.includes("node_modules/scheduler")) return "vendor-react";
-          if (id.includes("node_modules/framer-motion")) return "vendor-framer";
           if (id.includes("node_modules/lucide-react")) return "vendor-icons";
           if (id.includes("node_modules/wouter")) return "vendor-router";
           if (id.includes("components/sections/")) {

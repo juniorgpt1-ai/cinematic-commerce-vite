@@ -37,7 +37,7 @@
     <link rel="preload" as="font" type="font/woff2" crossorigin href="/fonts/plus-jakarta-sans.woff2" />
 
     <!-- LCP Preload: hero image discovered before CSS/JS -->
-    <link rel="preload" as="image" href="/malbec-signatureA.webp" fetchpriority="high" type="image/webp" media="(min-width: 768px)" />
+    <link rel="preload" as="image" href="/malbecDDESK.webp" fetchpriority="high" type="image/webp" media="(min-width: 768px)" />
     <link rel="preload" as="image" href="/malbecSMOB.webp" fetchpriority="high" type="image/webp" media="(max-width: 767px)" />
 
     <!-- Critical inline CSS: prevents white flash before Tailwind loads -->
@@ -51,8 +51,8 @@
       #hero-fallback .hero-fb-overlay-1{position:absolute;inset:0;background:linear-gradient(to right,rgba(0,0,0,.95),rgba(0,0,0,.7),transparent)}
       #hero-fallback .hero-fb-overlay-2{position:absolute;inset:0;background:linear-gradient(to top,#070707,transparent,rgba(0,0,0,.5))}
       #hero-fallback .hero-fb-content{position:relative;z-index:2;max-width:80rem;width:100%;margin:0 auto;padding:2.5rem 1rem 8rem}
-      #hero-fallback .hero-fb-h1{font-family:'Cormorant Garamond',Georgia,'Times New Roman',serif;font-weight:700;line-height:.88;font-size:clamp(2.5rem,12vw,5.5rem)}
-      #hero-fallback .hero-fb-p{font-family:'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;font-size:1.05rem;max-width:36rem;margin:1rem auto 0;color:rgba(255,255,255,.7);line-height:1.55;font-weight:300}
+      #hero-fallback .hero-fb-h1{font-family:'Cormorant Garamond',Georgia,'Times New Roman',serif;font-weight:700;line-height:.88;font-size:clamp(2.75rem,11vw,6rem)}
+      #hero-fallback .hero-fb-p{font-family:'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;font-size:1.05rem;max-width:36rem;margin:1rem auto 0;color:rgba(255,255,255,.7);line-height:1.55;font-weight:400}
       #hero-fallback .hero-fb-cta{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;white-space:nowrap;background:#25d366;color:#000;font-weight:700;padding:.75rem 1rem;font-size:.875rem;letter-spacing:.025em;margin-top:2.5rem;text-decoration:none;pointer-events:auto}
       #hero-fallback .hero-fb-cta:hover{background:#1ebe57}
       h1,h2,h3{font-family:'Cormorant Garamond',Georgia,'Times New Roman',serif}
@@ -69,6 +69,7 @@
       <div class="hero-fb-bg">
         <picture>
           <source srcset="/malbecSMOB.webp" media="(max-width: 767px)" />
+          <source srcset="/malbecDDESK.webp" media="(min-width: 768px)" />
           <img src="/malbec-signatureA.webp" alt="Fragrância de luxo iluminada em fundo escuro" fetchpriority="high" loading="eager" decoding="sync" width="1600" height="1200" />
         </picture>
         <div class="hero-fb-overlay-1"></div>

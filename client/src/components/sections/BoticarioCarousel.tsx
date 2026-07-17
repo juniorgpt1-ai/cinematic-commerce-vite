@@ -1,4 +1,4 @@
-import { memo, useRef } from "react";
+import { memo, useCallback, useEffect, useRef, useState } from "react";
 import { ArrowRight, ChevronLeft } from "lucide-react";
 import { waLink } from "@/lib/whatsapp";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
@@ -37,7 +37,7 @@ const PRODUCTS: CarouselProduct[] = [
     {
       name: "Floratta Blue Cologne",
       brand: "O Boticário",
-      tag: "Frescor Inteligente",
+      tag: "Frescor Aconchegante",
       desc: "Floral musk leve e aconchegante que transmite paz e sofisticação para o seu dia a dia.",
       price: "R$ 139,90",
       ctaText: "Garantir Floratta Blue",
@@ -77,6 +77,7 @@ const BoticarioCarousel = memo(function BoticarioCarousel() {
   const controlsRef = useScrollReveal();
   const carouselContainerRef = useScrollReveal();
   const carouselRef = useRef<HTMLDivElement>(null);
+  const [scrollFraction, setScrollFraction] = useState(0);
 
   const scroll = (direction: "left" | "right") => {
     if (carouselRef.current) {
@@ -90,8 +91,38 @@ const BoticarioCarousel = memo(function BoticarioCarousel() {
     }
   };
 
+  const updateScrollFraction = useCallback(() => {
+    const el = carouselRef.current;
+    if (!el) return;
+    const max = el.scrollWidth - el.clientWidth;
+    setScrollFraction(max > 0 ? el.scrollLeft / max : 0);
+  }, []);
+
+  useEffect(() => {
+    const el = carouselRef.current;
+    if (!el) return;
+    updateScrollFraction();
+
+    let ticking = false;
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        updateScrollFraction();
+        ticking = false;
+      });
+    };
+
+    el.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", updateScrollFraction);
+    return () => {
+      el.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", updateScrollFraction);
+    };
+  }, [updateScrollFraction]);
+
   return (
-    <section id="mais-amados" className="bg-luxe-dark-gradient text-white py-32 md:py-40 relative overflow-hidden border-b border-luxe-line/30">
+    <section id="mais-amados" className="bg-luxe-dark-gradient text-white py-28 md:py-36 relative overflow-hidden border-b border-luxe-line/30">
       {/* Ambient gold glows */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-luxe-gold/4 rounded-full blur-[150px] pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-luxe-gold/3 rounded-full blur-[120px] pointer-events-none" />
@@ -112,14 +143,14 @@ const BoticarioCarousel = memo(function BoticarioCarousel() {
             <button
               onClick={() => scroll("left")}
               aria-label="Rolar para esquerda"
-              className="p-3 rounded-full cursor-pointer glass-btn hover:border-luxe-gold/40 transition-all duration-300"
+              className="p-3 rounded-full cursor-pointer glass-btn btn-hover-scale hover:border-luxe-gold/40 transition-all duration-300"
             >
               <ChevronLeft className="size-5" />
             </button>
             <button
               onClick={() => scroll("right")}
               aria-label="Rolar para direita"
-              className="p-3 rounded-full cursor-pointer glass-btn hover:border-luxe-gold/40 transition-all duration-300"
+              className="p-3 rounded-full cursor-pointer glass-btn btn-hover-scale hover:border-luxe-gold/40 transition-all duration-300"
             >
               <ArrowRight className="size-5" />
             </button>
@@ -139,12 +170,18 @@ const BoticarioCarousel = memo(function BoticarioCarousel() {
             <div
               key={prod.name}
               data-carousel-card
-              className="reveal-up min-w-[280px] sm:min-w-[320px] md:min-w-[340px] max-w-[340px] bg-black/50 border border-white/8 p-6 md:p-8 rounded-2xl snap-start flex flex-col justify-between group hover:border-luxe-gold/40 hover:bg-black/70 hover:shadow-[0_0_40px_-8px_rgba(154,123,80,0.12)] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]"
+              className="reveal-up min-w-[280px] sm:min-w-[320px] md:min-w-[340px] max-w-[340px] bg-black/50 border border-white/10 p-6 md:p-8 rounded-2xl snap-start flex flex-col justify-between group hover:border-luxe-gold/60 hover:bg-black/70 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]"
             >
               <div>
                 <div className="flex flex-wrap items-center justify-between gap-2">
                   <span className="text-[10px] sm:text-[11px] tracking-widest uppercase font-semibold text-white/50">{prod.brand}</span>
-                  <span className="inline-block text-[10px] sm:text-[11px] tracking-wider font-bold text-luxe-gold-soft uppercase border border-luxe-gold-soft/30 bg-luxe-gold/10 px-2.5 py-1 rounded-full group-hover:border-luxe-gold-soft/60 group-hover:bg-luxe-gold/15 transition-all duration-500">
+                  <span
+                    className={`inline-block text-[10px] sm:text-[11px] tracking-wider font-bold uppercase px-2.5 py-1 rounded-full transition-all duration-500 ${
+                      prod.oldPrice
+                        ? "text-white bg-luxe-bordo border border-luxe-bordo"
+                        : "text-luxe-gold-soft border border-luxe-gold-soft/30 bg-luxe-gold/10 group-hover:border-luxe-gold-soft/60 group-hover:bg-luxe-gold/15"
+                    }`}
+                  >
                     {prod.tag}
                   </span>
                 </div>
@@ -157,7 +194,7 @@ const BoticarioCarousel = memo(function BoticarioCarousel() {
                 </p>
               </div>
 
-              <div className="mt-8 pt-6 border-t border-white/10 group-hover:border-luxe-gold/20 transition-colors duration-500 flex items-center justify-between">
+              <div className="mt-8 pt-6 border-t border-white/10 group-hover:border-luxe-gold/20 transition-colors duration-500 flex flex-wrap items-center justify-between gap-2">
                 <div>
                   {prod.oldPrice && (
                     <span className="text-xs sm:text-sm text-white/40 line-through block mb-0.5">{prod.oldPrice}</span>
@@ -169,13 +206,21 @@ const BoticarioCarousel = memo(function BoticarioCarousel() {
                   href={waLink(prod.waMsg)}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex flex-wrap items-center justify-center gap-1.5 text-xs sm:text-sm font-semibold tracking-wider uppercase text-luxe-gold-soft/80 group-hover:text-luxe-gold-soft border-b border-luxe-gold-soft/40 group-hover:border-luxe-gold-soft pb-1 transition-all duration-300"
+                  className="relative btn-hover-scale inline-flex flex-wrap items-center justify-center gap-1.5 text-xs sm:text-sm font-semibold tracking-wider uppercase text-luxe-gold-soft/80 group-hover:text-luxe-gold-soft border-b border-luxe-gold-soft/40 group-hover:border-luxe-gold-soft pb-1 transition-all duration-300 before:absolute before:inset-[-6px] before:content-['']"
                 >
                   {prod.ctaText} <ArrowRight className="size-3.5 group-hover:translate-x-1 transition-transform" />
                 </a>
               </div>
             </div>
           ))}
+          </div>
+
+          {/* Scroll-position feedback — the styled scrollbar above is desktop-only (iOS/Android hide it) */}
+          <div aria-hidden="true" className="mt-1 h-[2px] w-24 rounded-full bg-white/10 overflow-hidden">
+            <div
+              className="h-full rounded-full bg-luxe-gold transition-[width] duration-150 ease-out"
+              style={{ width: `${12 + scrollFraction * 88}%` }}
+            />
           </div>
         </div>
       </div>

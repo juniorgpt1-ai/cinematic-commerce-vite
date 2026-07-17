@@ -1,5 +1,4 @@
-import { memo, useEffect, useMemo, useState } from "react";
-import { motion, useMotionValue, useSpring, useTransform, useReducedMotion, MotionValue } from "framer-motion";
+import { memo, useEffect, useRef, useState } from "react";
 
 interface Particle {
   id: number;
@@ -12,47 +11,37 @@ interface Particle {
   delay: number;
 }
 
-const particleAnim = { y: [0, -20, 0], x: [0, 10, 0] };
-
-const ParticleElement = memo(function ParticleElement({ p, smoothMouseX, smoothMouseY }: { p: Particle, smoothMouseX: MotionValue<number>, smoothMouseY: MotionValue<number> }) {
-  const xOffset = useTransform(smoothMouseX, (val: number) => val * p.parallaxFactor * 4);
-  const yOffset = useTransform(smoothMouseY, (val: number) => val * p.parallaxFactor * 4);
-
-  let bgStyle = "";
-  if (p.type === "bead") {
-    bgStyle = "bg-gradient-to-tr from-luxe-gold/30 to-luxe-gold-soft/60 backdrop-blur-[1px] shadow-[0_0_12px_rgba(197,168,92,0.4)] border border-luxe-gold-soft/30 rounded-full";
-  } else if (p.type === "drop") {
-    bgStyle = "bg-gradient-to-tr from-white/10 to-white/40 backdrop-blur-[2px] shadow-[inset_-2px_-2px_6px_rgba(255,255,255,0.4),2px_2px_10px_rgba(0,0,0,0.06)] border border-white/50 rounded-full";
-  } else {
-    bgStyle = "bg-luxe-gold-soft/50 rotate-45 rounded-xs shadow-[0_0_10px_rgba(223,200,138,0.6)]";
+function bgStyleFor(type: Particle["type"]) {
+  if (type === "bead") {
+    return "bg-gradient-to-tr from-luxe-gold/30 to-luxe-gold-soft/60 backdrop-blur-[1px] shadow-[0_0_12px_rgba(197,168,92,0.4)] border border-luxe-gold-soft/30 rounded-full";
   }
+  if (type === "drop") {
+    return "bg-gradient-to-tr from-white/10 to-white/40 backdrop-blur-[2px] shadow-[inset_-2px_-2px_6px_rgba(255,255,255,0.4),2px_2px_10px_rgba(0,0,0,0.06)] border border-white/50 rounded-full";
+  }
+  return "bg-luxe-gold-soft/50 rotate-45 rounded-xs shadow-[0_0_10px_rgba(223,200,138,0.6)]";
+}
 
-  const transition = useMemo(() => ({
-    duration: p.floatDuration,
-    repeat: Infinity,
-    ease: "easeInOut" as const,
-    delay: p.delay,
-  }), [p.floatDuration, p.delay]);
-
+const ParticleElement = memo(function ParticleElement({ p }: { p: Particle }) {
   return (
-    <motion.div
+    <div
+      data-parallax={p.parallaxFactor}
       style={{
         left: `${p.x}%`,
         top: `${p.y}%`,
         width: p.size,
         height: p.size,
-        x: xOffset,
-        y: yOffset,
+        ["--particle-duration" as string]: `${p.floatDuration}s`,
+        ["--particle-delay" as string]: `${p.delay}s`,
       }}
-      animate={particleAnim}
-      transition={transition}
-      className={`absolute ${bgStyle}`}
+      className={`absolute animate-particle-float will-change-transform ${bgStyleFor(p.type)}`}
     />
   );
 });
 
 export function AntigravityParticles() {
-  const prefersReducedMotion = useReducedMotion();
+  const [reducedMotion] = useState(
+    () => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches,
+  );
 
   const [particles] = useState<Particle[]>(() => {
     const types: ("bead" | "drop" | "spark")[] = ["bead", "drop", "spark"];
@@ -68,30 +57,47 @@ export function AntigravityParticles() {
     }));
   });
 
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-
-  const springConfig = { damping: 25, stiffness: 100 };
-  const smoothMouseX = useSpring(mouseX, springConfig);
-  const smoothMouseY = useSpring(mouseY, springConfig);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    if (reducedMotion) return;
+
+    const container = containerRef.current;
+    if (!container) return;
+
+    let rafId = 0;
+    let targetX = 0;
+    let targetY = 0;
+
+    const applyParallax = () => {
+      rafId = 0;
+      container.querySelectorAll<HTMLElement>("[data-parallax]").forEach((el) => {
+        const factor = Number(el.dataset.parallax);
+        el.style.setProperty("--particle-px", `${targetX * factor * 4}px`);
+        el.style.setProperty("--particle-py", `${targetY * factor * 4}px`);
+      });
+    };
+
     const handleMouseMove = (e: MouseEvent) => {
       const { innerWidth, innerHeight } = window;
-      mouseX.set((e.clientX / innerWidth) - 0.5);
-      mouseY.set((e.clientY / innerHeight) - 0.5);
+      targetX = e.clientX / innerWidth - 0.5;
+      targetY = e.clientY / innerHeight - 0.5;
+      if (!rafId) rafId = requestAnimationFrame(applyParallax);
     };
 
     window.addEventListener("mousemove", handleMouseMove, { passive: true });
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, [mouseX, mouseY]);
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      if (rafId) cancelAnimationFrame(rafId);
+    };
+  }, [reducedMotion]);
 
-  if (prefersReducedMotion) return null;
+  if (reducedMotion) return null;
 
   return (
-    <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
+    <div ref={containerRef} className="absolute inset-0 pointer-events-none overflow-hidden z-0">
       {particles.map((p) => (
-        <ParticleElement key={p.id} p={p} smoothMouseX={smoothMouseX} smoothMouseY={smoothMouseY} />
+        <ParticleElement key={p.id} p={p} />
       ))}
     </div>
   );

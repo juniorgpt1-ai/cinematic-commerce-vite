@@ -1,29 +1,53 @@
-import { memo, useState, useEffect, useCallback } from "react";
-import { Timer, MessageCircle, ArrowRight, Award } from "lucide-react";
+import { memo, useState, useEffect, useCallback, useRef } from "react";
+import { Timer, ArrowRight, Award } from "lucide-react";
 import { waLink } from "@/lib/whatsapp";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { useSendMorph } from "@/hooks/useSendMorph";
 import FloatingBadge from "@/components/sections/FloatingBadge";
+import SendMorphIcon from "@/components/sections/SendMorphIcon";
 
 const MalbecShowcase = memo(function MalbecShowcase({ lifestyleImg, collageImg, lifestyleImgMob, collageImgMob }: { lifestyleImg: string; collageImg: string; lifestyleImgMob?: string; collageImgMob?: string }) {
   const [slide, setSlide] = useState(0);
+  const [autoplayPaused, setAutoplayPaused] = useState(false);
   const carouselRef = useScrollReveal();
   const copyRef = useScrollReveal();
   const collageRef = useScrollReveal();
+  const { phase: sendPhase, trigger: triggerSend } = useSendMorph();
+  const resumeTimeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
 
   const nextSlide = useCallback(() => setSlide(s => (s + 1) % 2), []);
 
   useEffect(() => {
+    if (autoplayPaused) return;
     const id = setInterval(nextSlide, 4000);
     return () => clearInterval(id);
-  }, [nextSlide]);
+  }, [nextSlide, autoplayPaused]);
+
+  useEffect(() => {
+    return () => clearTimeout(resumeTimeoutRef.current);
+  }, []);
+
+  const selectSlide = useCallback((i: number) => {
+    setSlide(i);
+    setAutoplayPaused(true);
+    clearTimeout(resumeTimeoutRef.current);
+    resumeTimeoutRef.current = setTimeout(() => setAutoplayPaused(false), 6000);
+  }, []);
 
   return (
     <section id="malbec" className="relative bg-luxe-gradient border-b border-luxe-line/30 overflow-hidden">
-      <div className="mx-auto max-w-7xl px-6 py-32 md:py-40 relative z-10">
+      <div className="mx-auto max-w-7xl px-6 py-36 md:py-44 relative z-10">
         {/* Top editorial split */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
           {/* Carousel */}
-          <div ref={carouselRef} className="reveal-right lg:col-span-7 relative">
+          <div
+            ref={carouselRef}
+            className="reveal-right lg:col-span-7 relative"
+            onMouseEnter={() => setAutoplayPaused(true)}
+            onMouseLeave={() => setAutoplayPaused(false)}
+            onFocus={() => setAutoplayPaused(true)}
+            onBlur={() => setAutoplayPaused(false)}
+          >
             <div className="relative aspect-[4/5] overflow-hidden bg-black shadow-2xl border border-luxe-line/20">
               <div
                 className="flex h-full transition-transform duration-700 ease-in-out"
@@ -52,7 +76,7 @@ const MalbecShowcase = memo(function MalbecShowcase({ lifestyleImg, collageImg, 
                 {/* Slide 2: Bottle */}
                 <div className="min-w-full relative flex items-center justify-center bg-gradient-to-b from-luxe-black via-luxe-black/90 to-black">
                   <picture className="absolute inset-0">
-                    <source srcSet="/malbec1-mob.webp" media="(max-width: 767px)" />
+                    <source srcSet="/malbec1-mob.webp 1x, /malbec1-mob-2x.webp 2x" media="(max-width: 767px)" />
                     <img
                       src="/malbec1-opt.webp"
                       alt="Frasco Malbec Cologne O Boticário"
@@ -73,17 +97,17 @@ const MalbecShowcase = memo(function MalbecShowcase({ lifestyleImg, collageImg, 
             {/* Dot indicators */}
             <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-20 flex gap-3">
               <button
-                onClick={() => setSlide(0)}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                  slide === 0 ? "bg-luxe-gold scale-125" : "bg-white/40 hover:bg-white/60"
+                onClick={() => selectSlide(0)}
+                className={`dot-progress w-3 h-3 rounded-full transition-all duration-300 ${
+                  slide === 0 ? "active bg-luxe-gold scale-125" : "bg-white/40 hover:bg-white/60"
                 }`}
                 aria-label="Slide 1"
                 style={{ minWidth: "44px", minHeight: "44px", padding: "6px" }}
               />
               <button
-                onClick={() => setSlide(1)}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                  slide === 1 ? "bg-luxe-gold scale-125" : "bg-white/40 hover:bg-white/60"
+                onClick={() => selectSlide(1)}
+                className={`dot-progress w-3 h-3 rounded-full transition-all duration-300 ${
+                  slide === 1 ? "active bg-luxe-gold scale-125" : "bg-white/40 hover:bg-white/60"
                 }`}
                 aria-label="Slide 2"
                 style={{ minWidth: "44px", minHeight: "44px", padding: "6px" }}
@@ -100,7 +124,7 @@ const MalbecShowcase = memo(function MalbecShowcase({ lifestyleImg, collageImg, 
 
           {/* Copy side */}
           <div ref={copyRef} className="reveal-up lg:col-span-5">
-            <span className="eyebrow text-luxe-gold">O Boticário · Perfumaria Masculina</span>
+            <span className="eyebrow">O Boticário · Perfumaria Masculina</span>
             <h2 className="mt-6 font-section text-4xl md:text-5xl font-semibold leading-[1.08] tracking-tight">
               Malbec Cologne. A elegância da{" "}
               <span className="font-light italic text-luxe-gold">presença marcante</span>.
@@ -112,11 +136,13 @@ const MalbecShowcase = memo(function MalbecShowcase({ lifestyleImg, collageImg, 
 
             <dl className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-6 border-t border-luxe-line/30 pt-8 font-sans">
               {(["Lima da Pérsia", "Uvas Malbec", "Carvalho Francês"] as const).map((n, i) => (
-                <div key={n}>
-                  <dt className="text-xs tracking-[0.24em] uppercase text-luxe-ink-soft/80 font-semibold">
+                <div key={n} className="group/note cursor-default">
+                  <dt className="text-xs tracking-[0.24em] uppercase text-luxe-ink-soft/80 font-semibold transition-colors duration-300 group-hover/note:text-luxe-gold-deep">
                     Nota {i === 0 ? "Topo" : i === 1 ? "Coração" : "Fundo"}
                   </dt>
-                  <dd className="mt-2 font-display text-xl font-bold text-black">{n}</dd>
+                  <dd className="mt-2 font-display text-xl font-bold text-black origin-left transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/note:scale-110 group-hover/note:text-luxe-gold-deep">
+                    {n}
+                  </dd>
                 </div>
               ))}
             </dl>
@@ -142,9 +168,10 @@ const MalbecShowcase = memo(function MalbecShowcase({ lifestyleImg, collageImg, 
                 href={waLink("Olá! Quero comprar o Malbec Cologne (O Boticário) com entrega VIP em 1h em BH.")}
                 target="_blank"
                 rel="noreferrer"
-                className="group inline-flex flex-wrap items-center justify-center gap-3 bg-luxe-ink hover:bg-whatsapp text-white hover:text-black transition-colors px-5 py-3 md:px-8 md:py-4 text-sm font-semibold tracking-wide shadow-md"
+                onClick={triggerSend}
+                className="group btn-hover-scale inline-flex flex-wrap items-center justify-center gap-3 bg-luxe-ink hover:bg-whatsapp text-white hover:text-black transition-colors px-5 py-3 md:px-8 md:py-4 text-sm font-semibold tracking-wide shadow-md"
               >
-                <MessageCircle className="size-4" />
+                <SendMorphIcon phase={sendPhase} className="size-4" />
                 Garantir meu Malbec
                 <ArrowRight className="size-4 group-hover:translate-x-1 transition-transform" />
               </a>
@@ -175,7 +202,6 @@ const MalbecShowcase = memo(function MalbecShowcase({ lifestyleImg, collageImg, 
             {/* Title */}
             <h2
               className="mt-12 md:mt-16 text-center font-section text-2xl md:text-4xl font-semibold text-luxe-ink leading-snug px-2"
-              style={{ fontFamily: "var(--font-fenix)" }}
             >
               A marca de quem faz acontecer e não aceita menos que o melhor.
             </h2>
@@ -186,7 +212,7 @@ const MalbecShowcase = memo(function MalbecShowcase({ lifestyleImg, collageImg, 
                 href={waLink("Olá! Quero o Malbec Cologne com entrega VIP em 1h em BH.")}
                 target="_blank"
                 rel="noreferrer"
-                className="btn-gold-metallic inline-flex items-center gap-3 px-8 py-4 text-sm md:text-base font-bold tracking-[0.2em] uppercase rounded-sm hover:brightness-105 hover:shadow-xl [animation:luxe-glow-gold_2.5s_ease-in-out_infinite]"
+                className="btn-gold-metallic btn-hover-scale inline-flex items-center gap-3 px-8 py-4 text-sm md:text-base font-bold tracking-[0.2em] uppercase rounded-sm hover:brightness-105 hover:shadow-xl [animation:luxe-glow-gold_2.5s_ease-in-out_infinite]"
               >
                 Garantir Agora
                 <ArrowRight className="size-4" />

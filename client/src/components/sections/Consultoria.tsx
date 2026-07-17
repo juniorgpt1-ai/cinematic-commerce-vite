@@ -1,17 +1,20 @@
 import { memo } from "react";
-import { MessageCircle, ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight, Sparkles } from "lucide-react";
 import { waLink } from "@/lib/whatsapp";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { useSendMorph } from "@/hooks/useSendMorph";
 import FloatingBadge from "@/components/sections/FloatingBadge";
+import SendMorphIcon from "@/components/sections/SendMorphIcon";
 
 const Consultoria = memo(function Consultoria({ image, imageMob }: { image: string; imageMob?: string }) {
   const imageRef = useScrollReveal();
   const copyRef = useScrollReveal();
+  const { phase: sendPhase, trigger: triggerSend } = useSendMorph();
 
   return (
     <section className="bg-luxe-gradient border-b border-luxe-line/20 relative overflow-hidden">
       <div className="mx-auto max-w-7xl px-6 py-32 md:py-40 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-14 lg:gap-20 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
           <div ref={imageRef} className="reveal-scale lg:col-span-6 relative">
             <div className="relative aspect-[4/5] overflow-hidden shadow-2xl border border-luxe-line/30">
               <picture>
@@ -38,13 +41,13 @@ const Consultoria = memo(function Consultoria({ image, imageMob }: { image: stri
           </div>
 
           <div ref={copyRef} className="reveal-up lg:col-span-6">
-            <span className="eyebrow">Atendimento Humanizado</span>
-            <h2 className="mt-6 font-section text-5xl md:text-5xl font-semibold leading-[1.08]">
-              Escolha Inteligente Sem Complicações
+            <h2 className="font-section text-4xl md:text-5xl font-semibold leading-[1.1]">
+              Não decida sozinho.
+              <br />
+              <span className="font-light italic text-luxe-gold">Escolha com quem entende.</span>
             </h2>
-            <span className="gold-rule mt-8" />
             <p className="mt-8 text-lg text-luxe-ink/85 font-sans font-light leading-relaxed max-w-lg">
-              Evite frustrações ao comprar no escuro. Nossa consultoria de luxo inteligente ajuda você a selecionar a fragrância e o tratamento capilar sob medida para sua necessidade, com honestidade e empatia.
+              Evite frustrações ao comprar no escuro. Nossa consultoria ajuda você a selecionar a fragrância e o tratamento capilar sob medida para sua necessidade, com honestidade e empatia.
             </p>
             <ul className="mt-8 space-y-4 text-luxe-ink/85 font-sans font-light">
               <li className="flex items-start gap-3">
@@ -64,9 +67,10 @@ const Consultoria = memo(function Consultoria({ image, imageMob }: { image: stri
               href={waLink("Olá, quero falar com a consultora premium para fazer minha seleção personalizada.")}
               target="_blank"
               rel="noreferrer"
+              onClick={triggerSend}
               className="mt-10 inline-flex flex-wrap items-center justify-center gap-3 bg-luxe-ink hover:bg-whatsapp hover:text-black text-white btn-hover-scale px-6 py-4 md:px-8 md:py-5 text-sm font-semibold tracking-wide shadow-md"
             >
-              <MessageCircle className="size-4" />
+              <SendMorphIcon phase={sendPhase} className="size-4" />
               Falar com a Consultora
               <ArrowRight className="size-4" />
             </a>

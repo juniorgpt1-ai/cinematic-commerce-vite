@@ -1,14 +1,17 @@
 import { memo } from "react";
-import { Timer, MessageCircle, ArrowRight } from "lucide-react";
+import { Timer, ArrowRight } from "lucide-react";
 import { waLink } from "@/lib/whatsapp";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { useSendMorph } from "@/hooks/useSendMorph";
 import FloatingBadge from "@/components/sections/FloatingBadge";
+import SendMorphIcon from "@/components/sections/SendMorphIcon";
 
 const CtaFinal = memo(function CtaFinal({ heroImage }: { heroImage: string }) {
   const sectionRef = useScrollReveal();
   const ctaRef = useScrollReveal<HTMLAnchorElement>();
+  const { phase: sendPhase, trigger: triggerSend } = useSendMorph();
   return (
-    <section className="relative bg-dark-deeper text-white overflow-hidden py-32 md:py-40">
+    <section className="relative bg-dark-deeper text-white overflow-hidden py-36 md:py-44">
 
       <div className="absolute inset-0 opacity-20">
         <picture>
@@ -43,9 +46,10 @@ const CtaFinal = memo(function CtaFinal({ heroImage }: { heroImage: string }) {
               href={waLink("Olá, quero garantir minha seleção de luxo inteligente com entrega expressa hoje.")}
               target="_blank"
               rel="noreferrer"
+              onClick={triggerSend}
               className="cta-emphasize wa-pulse inline-flex flex-wrap items-center justify-center gap-3 bg-whatsapp hover:bg-whatsapp-hover text-black font-bold px-5 py-4 md:px-10 md:py-5 text-base md:text-lg tracking-wider uppercase rounded-sm btn-hover-scale"
             >
-              <MessageCircle className="size-6" strokeWidth={2.4} />
+              <SendMorphIcon phase={sendPhase} className="size-6" strokeWidth={2.4} />
               Garantir Combo no WhatsApp
               <ArrowRight className="size-5" strokeWidth={2.4} />
             </a>
