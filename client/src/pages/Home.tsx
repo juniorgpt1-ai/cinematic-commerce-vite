@@ -74,24 +74,23 @@ const Nav = memo(function Nav() {
 
         {/* ═══════════════════ MOBILE: nav row only ═══════════════════ */}
         <div className="md:hidden bg-black/40 backdrop-blur-sm text-white">
-          <div className="px-4 py-2.5">
-            <div className="flex items-center justify-between gap-3">
-              <a href="/" aria-label="S&C Beauty — Início" className="shrink-0">
-                <img src="/sc-monogram-white.png" alt="S&C Beauty" className="h-8 w-auto shimmer-logo" />
+          <div className="px-3 py-2">
+            <div className="flex items-center justify-between gap-1.5">
+              <a href="/" aria-label="S&C Beauty — Início" className="shrink-0" style={{ isolation: "isolate" }}>
+                <img src="/sc-monogram-white.png" alt="S&C Beauty" className="h-7 w-auto shimmer-logo" />
               </a>
-              <nav className="flex items-center gap-3 text-[11px] tracking-[0.18em] uppercase font-sans">
-                <a href="#haircare" className="relative hover:text-luxe-gold-soft transition-colors font-medium before:absolute before:inset-[-6px] before:content-['']">Hair</a>
-                <a href="#perfumes" className="relative hover:text-luxe-gold-soft transition-colors font-medium before:absolute before:inset-[-6px] before:content-['']">Perfumes</a>
-                <a href="#mais-amados" className="relative hover:text-luxe-gold-soft transition-colors font-medium before:absolute before:inset-[-6px] before:content-['']">Amados</a>
-                <a href="#faq" className="relative hover:text-luxe-gold-soft transition-colors font-medium before:absolute before:inset-[-6px] before:content-['']">FAQ</a>
+              <nav className="flex items-center gap-2.5 text-[10px] tracking-[0.14em] uppercase font-sans">
+                <a href="#haircare" className="relative hover:text-luxe-gold-soft transition-colors font-medium before:absolute before:inset-[-5px] before:content-['']">Hair</a>
+                <a href="#perfumes" className="relative hover:text-luxe-gold-soft transition-colors font-medium before:absolute before:inset-[-5px] before:content-['']">Perfumes</a>
+                <a href="#faq" className="relative hover:text-luxe-gold-soft transition-colors font-medium before:absolute before:inset-[-5px] before:content-['']">FAQ</a>
               </nav>
               <a
                 href={waLink("Olá, vim pela página e quero atendimento de luxo inteligente.")}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="relative inline-flex items-center gap-1.5 text-[12px] tracking-[0.12em] uppercase font-bold transition-colors shrink-0 text-luxe-gold-soft before:absolute before:inset-[-6px] before:content-['']"
+                className="relative inline-flex items-center gap-1 text-[11px] tracking-[0.10em] uppercase font-bold transition-colors shrink-0 text-luxe-gold-soft before:absolute before:inset-[-5px] before:content-['']"
               >
-                WhatsApp <ArrowRight className="size-3.5" />
+                WhatsApp <ArrowRight className="size-3" />
               </a>
             </div>
           </div>
@@ -101,7 +100,7 @@ const Nav = memo(function Nav() {
         <div className="hidden md:block">
           <div className="mx-auto max-w-7xl px-2 sm:px-4 md:px-6 py-3 md:py-5 flex items-center justify-between gap-2 text-white">
             <div className="leading-tight">
-              <a href="/" aria-label="S&C Beauty — Início" className="inline-block">
+              <a href="/" aria-label="S&C Beauty — Início" className="inline-block" style={{ isolation: "isolate" }}>
                 <img src="/sc-monogram-white.png" alt="S&C Beauty" className="h-10 lg:h-11 w-auto shimmer-logo" />
               </a>
               <div className="mt-1 text-[11px] md:text-[9px] xl:text-[10px] tracking-[0.22em] md:tracking-[0.18em] xl:tracking-[0.32em] uppercase font-sans font-semibold whitespace-nowrap" style={{color:"var(--color-luxe-gold-soft)",opacity:0.8}}>
@@ -193,7 +192,7 @@ const Hero = memo(function Hero() {
           decoding="sync"
           width={1600}
           height={1200}
-          className="absolute inset-0 h-full w-full object-cover opacity-60"
+          className="absolute inset-0 h-full w-full object-cover object-[65%_center] md:object-center opacity-60 md:opacity-60"
         />
       </picture>
       <div className="absolute inset-0 bg-gradient-to-r from-black/95 via-black/70 to-transparent" />
@@ -227,6 +226,18 @@ const Hero = memo(function Hero() {
             <p className="mt-6 max-w-lg text-base md:text-lg text-white/70 font-sans font-normal leading-relaxed drop-shadow-[0_1px_8px_rgba(0,0,0,0.6)]">
               Grupo Boticário e Eudora. Peça pelo WhatsApp, receba em minutos.
             </p>
+
+            {/* Brand logos — mobile: compact grid below subtitle */}
+            <div className="md:hidden mt-5">
+              <div className="flex flex-wrap items-center justify-start gap-x-3 gap-y-2">
+                <img src="/brands/oboticario.svg" alt="O Boticário" title="O Boticário" width="72" height="28" className="h-6 w-auto rounded-sm opacity-85" />
+                <img src="/brands/eudora.svg" alt="Eudora" title="Eudora" width="72" height="28" className="h-6 w-auto rounded-sm opacity-85" />
+                <img src="/brands/qdb.svg" alt="QDB" title="Quem Disse, Berenice?" width="72" height="28" className="h-6 w-auto rounded-sm opacity-85" />
+                <img src="/brands/multib.svg" alt="Multi B" title="Multi B" width="72" height="28" className="h-6 w-auto rounded-sm opacity-85" />
+                <img src="/brands/vult.svg" alt="Vult" title="Vult" width="72" height="28" className="h-6 w-auto rounded-sm opacity-85" />
+                <img src="/brands/oui.svg" alt="O.U.i" title="O.U.i" width="72" height="28" className="h-6 w-auto rounded-sm opacity-85" />
+              </div>
+            </div>
           </div>
 
           <div>

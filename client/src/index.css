@@ -518,6 +518,8 @@ html {
 }
 
 .shimmer-logo {
+  mask-mode: luminance;
+  -webkit-mask-mode: luminance;
   mask-image: linear-gradient(
     110deg,
     #000 30%,
