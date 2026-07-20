@@ -13,14 +13,11 @@ const AntigravityParticles = lazy(() => import("@/components/AntigravityParticle
 // Assets - URLs publicas
 const heroPerfume = "/malbec-signatureA.webp";
 const malbecLifestyleImg = "/malbec-lifestyle.webp";
-const malbecLifestyleImgMob = "/malbec-lifestyle-mob.webp 1x, /malbec-lifestyle-mob-2x.webp 2x";
 const malbecCollageImg = "/malbec-collage.webp";
-const malbecCollageImgMob = "/malbec-collage-mob.webp 1x, /malbec-collage-mob-2x.webp 2x";
 const florattaRedImg = "/floratta-red-lifestyle.webp";
 const hairCareVolumeImg = "/hair-care-volume.webp";
 const hairCareLisoImg = "/hair-care-liso.webp";
 const consultoraImg = "/consultora.webp";
-const consultoraImgMob = "/consultora-mob.webp 1x, /consultora-mob-2x.webp 2x";
 
 // Lazy-loaded section imports
 const TrustBar = lazy(() => import("@/components/sections/TrustBar"));
@@ -44,11 +41,11 @@ const LandingPage = memo(function LandingPage() {
       <LazySection><Suspense fallback={null}><TrustBar /></Suspense></LazySection>
       <LazySection><Suspense fallback={null}><HairCareSuite volumeImg={hairCareVolumeImg} lisoImg={hairCareLisoImg} /></Suspense></LazySection>
       <LazySection minHeight={260}><Suspense fallback={null}><PerfumesHeader /></Suspense></LazySection>
-      <LazySection><Suspense fallback={null}><MalbecShowcase lifestyleImg={malbecLifestyleImg} lifestyleImgMob={malbecLifestyleImgMob} collageImg={malbecCollageImg} collageImgMob={malbecCollageImgMob} /></Suspense></LazySection>
+      <LazySection><Suspense fallback={null}><MalbecShowcase lifestyleImg={malbecLifestyleImg} collageImg={malbecCollageImg} /></Suspense></LazySection>
       <LazySection><Suspense fallback={null}><FlorattaRedShowcase image={florattaRedImg} /></Suspense></LazySection>
       <LazySection><Suspense fallback={null}><BoticarioCarousel /></Suspense></LazySection>
       <LazySection><Suspense fallback={null}><KitsGrid /></Suspense></LazySection>
-      <LazySection><Suspense fallback={null}><Consultoria image={consultoraImg} imageMob={consultoraImgMob} /></Suspense></LazySection>
+      <LazySection><Suspense fallback={null}><Consultoria image={consultoraImg} /></Suspense></LazySection>
       <LazySection><Suspense fallback={null}><Depoimentos /></Suspense></LazySection>
       <LazySection><Suspense fallback={null}><Faq /></Suspense></LazySection>
       <LazySection><Suspense fallback={null}><CtaFinal heroImage={heroPerfume} /></Suspense></LazySection>
@@ -70,125 +67,100 @@ const Nav = memo(function Nav() {
   }, []);
 
   return (
-    <header className={`fixed top-0 inset-x-0 z-30 nav-scroll ${scrolled ? "scrolled" : ""}`}>
+    <>
+      <header className={`fixed top-0 inset-x-0 z-30 nav-scroll ${scrolled ? "scrolled" : ""}`}>
 
-      {/* ═══════════════════ MOBILE: premium centered header ═══════════════════ */}
-      <div className="md:hidden header-premium text-white">
-        <div className="mx-auto max-w-7xl px-4 py-3">
+        {/* ═══════════════════ MOBILE: nav row only ═══════════════════ */}
+        <div className="md:hidden bg-black/40 backdrop-blur-sm text-white">
+          <div className="px-4 py-2.5">
+            <div className="flex items-center justify-between gap-3">
+              <nav className="flex items-center gap-3 text-[11px] tracking-[0.18em] uppercase font-sans">
+                <a href="#haircare" className="relative hover:text-luxe-gold-soft transition-colors font-medium before:absolute before:inset-[-6px] before:content-['']">Hair</a>
+                <a href="#perfumes" className="relative hover:text-luxe-gold-soft transition-colors font-medium before:absolute before:inset-[-6px] before:content-['']">Perfumes</a>
+                <a href="#mais-amados" className="relative hover:text-luxe-gold-soft transition-colors font-medium before:absolute before:inset-[-6px] before:content-['']">Amados</a>
+                <a href="#faq" className="relative hover:text-luxe-gold-soft transition-colors font-medium before:absolute before:inset-[-6px] before:content-['']">FAQ</a>
+              </nav>
+              <a
+                href={waLink("Olá, vim pela página e quero atendimento de luxo inteligente.")}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="relative inline-flex items-center gap-1.5 text-[12px] tracking-[0.12em] uppercase font-bold transition-colors shrink-0 text-luxe-gold-soft before:absolute before:inset-[-6px] before:content-['']"
+              >
+                WhatsApp <ArrowRight className="size-3.5" />
+              </a>
+            </div>
+          </div>
+        </div>
 
-          {/* Top bar: nav links + WhatsApp */}
-          <div className="flex items-center justify-between gap-3 mb-2.5">
-            <nav className="flex items-center gap-3 text-[11px] tracking-[0.18em] uppercase font-sans">
-              <a href="#haircare" className="relative hover:text-luxe-gold-soft transition-colors font-medium before:absolute before:inset-[-6px] before:content-['']">Hair</a>
-              <a href="#perfumes" className="relative hover:text-luxe-gold-soft transition-colors font-medium before:absolute before:inset-[-6px] before:content-['']">Perfumes</a>
-              <a href="#mais-amados" className="relative hover:text-luxe-gold-soft transition-colors font-medium before:absolute before:inset-[-6px] before:content-['']">Amados</a>
-              <a href="#faq" className="relative hover:text-luxe-gold-soft transition-colors font-medium before:absolute before:inset-[-6px] before:content-['']">FAQ</a>
+        {/* ═══════════════════ DESKTOP: original layout ═══════════════════ */}
+        <div className="hidden md:block">
+          <div className="mx-auto max-w-7xl px-2 sm:px-4 md:px-6 py-3 md:py-5 flex items-center justify-between gap-2 text-white">
+            <div className="leading-tight">
+              <div className="font-sans text-2xl md:text-2xl lg:text-3xl font-semibold tracking-[0.18em] md:tracking-[0.22em] uppercase">
+                <span className="text-luxe-gold-soft">Maison</span>
+                <span className="text-luxe-gold/50 mx-1"> · </span>
+                <span className="text-white/90">Parfum</span>
+              </div>
+              <div className="mt-1 text-[11px] md:text-[9px] xl:text-[10px] tracking-[0.22em] md:tracking-[0.18em] xl:tracking-[0.32em] uppercase font-sans font-semibold whitespace-nowrap" style={{color:"var(--color-luxe-gold-soft)",opacity:0.8}}>
+                Revendedor Oficial Grupo Boticário
+              </div>
+              <div className="mt-2.5 flex flex-col gap-1.5">
+                <div className="flex items-center gap-2">
+                  {[
+                    { name: "O Boticário", logo: "/brands/oboticario.svg" },
+                    { name: "Eudora",      logo: "/brands/eudora.svg"     },
+                    { name: "QDB",         logo: "/brands/qdb.svg"        },
+                  ].map((brand) => (
+                    <img
+                      key={brand.name}
+                      src={brand.logo}
+                      alt={brand.name}
+                      title={brand.name}
+                      width="90"
+                      height="36"
+                      className="h-7 sm:h-8 md:h-8 lg:h-9 w-auto rounded-sm opacity-90 hover:opacity-100 transition-opacity duration-200"
+                    />
+                  ))}
+                </div>
+                <div className="flex items-center gap-2">
+                  {[
+                    { name: "Multi B",     logo: "/brands/multib.svg"     },
+                    { name: "Vult",        logo: "/brands/vult.svg"       },
+                    { name: "O.U.i",       logo: "/brands/oui.svg"        },
+                  ].map((brand) => (
+                    <img
+                      key={brand.name}
+                      src={brand.logo}
+                      alt={brand.name}
+                      title={brand.name}
+                      width="90"
+                      height="36"
+                      className="h-7 sm:h-8 md:h-8 lg:h-9 w-auto rounded-sm opacity-90 hover:opacity-100 transition-opacity duration-200"
+                    />
+                  ))}
+                </div>
+              </div>
+            </div>
+            <nav className="hidden md:flex items-center gap-4 xl:gap-10 text-[12px] xl:text-[14px] tracking-[0.12em] xl:tracking-[0.24em] uppercase font-sans whitespace-nowrap">
+              <a href="#haircare" className="relative hover:text-luxe-gold-soft transition-colors font-semibold before:absolute before:inset-[-10px] before:content-['']">Hair Care</a>
+              <a href="#perfumes" className="relative hover:text-luxe-gold-soft transition-colors font-semibold before:absolute before:inset-[-10px] before:content-['']">Perfumes</a>
+              <a href="#mais-amados" className="relative hover:text-luxe-gold-soft transition-colors font-semibold before:absolute before:inset-[-10px] before:content-['']">Mais Amados</a>
+              <a href="#kits" className="relative hover:text-luxe-gold-soft transition-colors font-semibold before:absolute before:inset-[-10px] before:content-['']">Kits</a>
+              <a href="#faq" className="relative hover:text-luxe-gold-soft transition-colors font-semibold before:absolute before:inset-[-10px] before:content-['']">FAQ</a>
             </nav>
             <a
               href={waLink("Olá, vim pela página e quero atendimento de luxo inteligente.")}
               target="_blank"
               rel="noopener noreferrer"
-              className="relative inline-flex items-center gap-1.5 text-[12px] tracking-[0.12em] uppercase font-bold transition-colors shrink-0 text-luxe-gold-soft before:absolute before:inset-[-6px] before:content-['']"
+              className="relative hidden sm:inline-flex items-center gap-2 text-[12px] xl:text-[14px] tracking-[0.1em] xl:tracking-[0.2em] uppercase font-bold transition-colors text-luxe-gold-soft before:absolute before:inset-[-10px] before:content-[''] whitespace-nowrap shrink-0"
             >
-              WhatsApp <ArrowRight className="size-3.5" />
+              WhatsApp <ArrowRight className="size-4" />
             </a>
           </div>
-
-          {/* Center: brand title */}
-          <div className="text-center mb-2.5">
-            <div
-              className="font-display text-xl font-bold tracking-[0.14em] uppercase"
-              style={{ color: "var(--color-luxe-gold)" }}
-            >
-              Maison Parfum
-            </div>
-          </div>
-
-          {/* Brand logos 2 rows */}
-          <div className="flex flex-col gap-1.5 items-center">
-            <div className="flex items-center justify-center gap-2.5">
-              <img src="/brands/oboticario.svg" alt="O Boticário" title="O Boticário" width="90" height="36" className="h-9 w-auto rounded-sm opacity-90" />
-              <img src="/brands/eudora.svg" alt="Eudora" title="Eudora" width="90" height="36" className="h-9 w-auto rounded-sm opacity-90" />
-              <img src="/brands/qdb.svg" alt="QDB" title="Quem Disse, Berenice?" width="90" height="36" className="h-9 w-auto rounded-sm opacity-90" />
-            </div>
-            <div className="flex items-center justify-center gap-2.5">
-              <img src="/brands/multib.svg" alt="Multi B" title="Multi B" width="90" height="36" className="h-9 w-auto rounded-sm opacity-90" />
-              <img src="/brands/vult.svg" alt="Vult" title="Vult" width="90" height="36" className="h-9 w-auto rounded-sm opacity-90" />
-              <img src="/brands/oui.svg" alt="O.U.i" title="O.U.i" width="90" height="36" className="h-9 w-auto rounded-sm opacity-90" />
-            </div>
-          </div>
-
         </div>
-      </div>
 
-      {/* ═══════════════════ DESKTOP: original layout ═══════════════════ */}
-      <div className="hidden md:block">
-        <div className="mx-auto max-w-7xl px-2 sm:px-4 md:px-6 py-3 md:py-5 flex items-center justify-between gap-2 text-white">
-          <div className="leading-tight">
-            <div className="font-sans text-2xl md:text-2xl lg:text-3xl font-semibold tracking-[0.18em] md:tracking-[0.22em] uppercase">
-              <span className="text-luxe-gold-soft">Maison</span>
-              <span className="text-luxe-gold/50 mx-1"> · </span>
-              <span className="text-white/90">Parfum</span>
-            </div>
-            <div className="mt-1 text-[11px] md:text-[9px] xl:text-[10px] tracking-[0.22em] md:tracking-[0.18em] xl:tracking-[0.32em] uppercase font-sans font-semibold whitespace-nowrap" style={{color:"var(--color-luxe-gold-soft)",opacity:0.8}}>
-              Revendedor Oficial Grupo Boticário
-            </div>
-            <div className="mt-2.5 flex flex-col gap-1.5">
-              <div className="flex items-center gap-2">
-                {[
-                  { name: "O Boticário", logo: "/brands/oboticario.svg" },
-                  { name: "Eudora",      logo: "/brands/eudora.svg"     },
-                  { name: "QDB",         logo: "/brands/qdb.svg"        },
-                ].map((brand) => (
-                  <img
-                    key={brand.name}
-                    src={brand.logo}
-                    alt={brand.name}
-                    title={brand.name}
-                    width="90"
-                    height="36"
-                    className="h-7 sm:h-8 md:h-8 lg:h-9 w-auto rounded-sm opacity-90 hover:opacity-100 transition-opacity duration-200"
-                  />
-                ))}
-              </div>
-              <div className="flex items-center gap-2">
-                {[
-                  { name: "Multi B",     logo: "/brands/multib.svg"     },
-                  { name: "Vult",        logo: "/brands/vult.svg"       },
-                  { name: "O.U.i",       logo: "/brands/oui.svg"        },
-                ].map((brand) => (
-                  <img
-                    key={brand.name}
-                    src={brand.logo}
-                    alt={brand.name}
-                    title={brand.name}
-                    width="90"
-                    height="36"
-                    className="h-7 sm:h-8 md:h-8 lg:h-9 w-auto rounded-sm opacity-90 hover:opacity-100 transition-opacity duration-200"
-                  />
-                ))}
-              </div>
-            </div>
-          </div>
-          <nav className="hidden md:flex items-center gap-4 xl:gap-10 text-[12px] xl:text-[14px] tracking-[0.12em] xl:tracking-[0.24em] uppercase font-sans whitespace-nowrap">
-            <a href="#haircare" className="relative hover:text-luxe-gold-soft transition-colors font-semibold before:absolute before:inset-[-10px] before:content-['']">Hair Care</a>
-            <a href="#perfumes" className="relative hover:text-luxe-gold-soft transition-colors font-semibold before:absolute before:inset-[-10px] before:content-['']">Perfumes</a>
-            <a href="#mais-amados" className="relative hover:text-luxe-gold-soft transition-colors font-semibold before:absolute before:inset-[-10px] before:content-['']">Mais Amados</a>
-            <a href="#kits" className="relative hover:text-luxe-gold-soft transition-colors font-semibold before:absolute before:inset-[-10px] before:content-['']">Kits</a>
-            <a href="#faq" className="relative hover:text-luxe-gold-soft transition-colors font-semibold before:absolute before:inset-[-10px] before:content-['']">FAQ</a>
-          </nav>
-          <a
-            href={waLink("Olá, vim pela página e quero atendimento de luxo inteligente.")}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="relative hidden sm:inline-flex items-center gap-2 text-[12px] xl:text-[14px] tracking-[0.1em] xl:tracking-[0.2em] uppercase font-bold transition-colors text-luxe-gold-soft before:absolute before:inset-[-10px] before:content-[''] whitespace-nowrap shrink-0"
-          >
-            WhatsApp <ArrowRight className="size-4" />
-          </a>
-        </div>
-      </div>
-
-    </header>
+      </header>
+    </>
   );
 });
 
@@ -223,6 +195,32 @@ const Hero = memo(function Hero() {
       </picture>
       <div className="absolute inset-0 bg-gradient-to-r from-black/95 via-black/70 to-transparent" />
       <div className="absolute inset-0 bg-gradient-to-t from-[#070707] via-transparent to-black/50" />
+
+      {/* MOBILE: Brand identity — overlaid on Hero, scrolls away with Hero */}
+      <div className="md:hidden absolute top-10 left-0 right-0 z-20">
+        <div className="px-4 py-3 text-center text-white">
+          <div className="mb-2.5">
+            <div
+              className="font-display text-xl font-bold tracking-[0.14em] uppercase"
+              style={{ color: "var(--color-luxe-gold)" }}
+            >
+              Maison Parfum
+            </div>
+          </div>
+          <div className="flex flex-col gap-1.5 items-center">
+            <div className="flex items-center justify-center gap-2.5">
+              <img src="/brands/oboticario.svg" alt="O Boticário" title="O Boticário" width="90" height="36" className="h-9 w-auto rounded-sm opacity-90" />
+              <img src="/brands/eudora.svg" alt="Eudora" title="Eudora" width="90" height="36" className="h-9 w-auto rounded-sm opacity-90" />
+              <img src="/brands/qdb.svg" alt="QDB" title="Quem Disse, Berenice?" width="90" height="36" className="h-9 w-auto rounded-sm opacity-90" />
+            </div>
+            <div className="flex items-center justify-center gap-2.5">
+              <img src="/brands/multib.svg" alt="Multi B" title="Multi B" width="90" height="36" className="h-9 w-auto rounded-sm opacity-90" />
+              <img src="/brands/vult.svg" alt="Vult" title="Vult" width="90" height="36" className="h-9 w-auto rounded-sm opacity-90" />
+              <img src="/brands/oui.svg" alt="O.U.i" title="O.U.i" width="90" height="36" className="h-9 w-auto rounded-sm opacity-90" />
+            </div>
+          </div>
+        </div>
+      </div>
 
       <div className="relative z-10 mx-auto max-w-7xl w-full px-4 md:px-6 pt-48 pb-14 md:pt-48 md:pb-32 flex flex-col justify-end flex-1 md:grow-0">
         <div className="animate-fade-up max-w-3xl flex flex-col flex-1 md:grow-0 justify-between md:justify-normal gap-y-6">

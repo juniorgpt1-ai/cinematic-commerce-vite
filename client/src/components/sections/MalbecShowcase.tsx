@@ -6,7 +6,7 @@ import { useSendMorph } from "@/hooks/useSendMorph";
 import FloatingBadge from "@/components/sections/FloatingBadge";
 import SendMorphIcon from "@/components/sections/SendMorphIcon";
 
-const MalbecShowcase = memo(function MalbecShowcase({ lifestyleImg, collageImg, lifestyleImgMob, collageImgMob }: { lifestyleImg: string; collageImg: string; lifestyleImgMob?: string; collageImgMob?: string }) {
+const MalbecShowcase = memo(function MalbecShowcase({ lifestyleImg, collageImg }: { lifestyleImg: string; collageImg: string }) {
   const [slide, setSlide] = useState(0);
   const [autoplayPaused, setAutoplayPaused] = useState(false);
   const carouselRef = useScrollReveal();
@@ -55,19 +55,14 @@ const MalbecShowcase = memo(function MalbecShowcase({ lifestyleImg, collageImg, 
               >
                 {/* Slide 1: Lifestyle */}
                 <div className="min-w-full relative">
-                  <picture>
-                    {lifestyleImgMob && (
-                      <source srcSet={lifestyleImgMob} media="(max-width: 767px)" />
-                    )}
-                    <img
-                      src={lifestyleImg}
-                      alt="Homem sofisticado aplicando Malbec O Boticário"
-                      loading="lazy"
-                      width="1200"
-                      height="1600"
-                      className="h-full w-full object-cover object-top"
-                    />
-                  </picture>
+                  <img
+                    src={lifestyleImg}
+                    alt="Homem sofisticado aplicando Malbec O Boticário"
+                    loading="lazy"
+                    width="1200"
+                    height="1600"
+                    className="h-full w-full object-cover object-top"
+                  />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
                   <div className="absolute top-4 md:top-6 left-4 md:left-6 right-4 md:right-6 flex flex-wrap items-center justify-between gap-2 text-white/80 text-[10px] tracking-[0.24em] md:tracking-[0.32em] uppercase font-semibold">
                     <span>O BOTICÁRIO · MASCULINO</span>
@@ -77,17 +72,14 @@ const MalbecShowcase = memo(function MalbecShowcase({ lifestyleImg, collageImg, 
 
                 {/* Slide 2: Bottle */}
                 <div className="min-w-full relative flex items-center justify-center bg-gradient-to-b from-luxe-black via-luxe-black/90 to-black">
-                  <picture className="absolute inset-0">
-                    <source srcSet="/malbec1-mob.webp 1x, /malbec1-mob-2x.webp 2x" media="(max-width: 767px)" />
-                    <img
-                      src="/malbec1.webp"
-                      alt="Frasco Malbec Cologne O Boticário"
-                      loading="lazy"
-                      width="1200"
-                      height="1600"
-                      className="w-full h-full object-cover object-center"
-                    />
-                  </picture>
+                  <img
+                    src="/malbec1.webp"
+                    alt="Frasco Malbec Cologne O Boticário"
+                    loading="lazy"
+                    width="1200"
+                    height="1600"
+                    className="absolute inset-0 w-full h-full object-cover object-center"
+                  />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
                   <div className="absolute top-4 md:top-6 left-4 right-4 text-center">
                     <span className="text-white/80 text-[10px] tracking-[0.28em] md:tracking-[0.32em] uppercase font-semibold">
@@ -188,19 +180,14 @@ const MalbecShowcase = memo(function MalbecShowcase({ lifestyleImg, collageImg, 
           <div className="bg-luxe-bg p-3 md:p-6 rounded-xs shadow-2xl border border-luxe-line/20">
             {/* Full-width image */}
             <div className="overflow-hidden rounded-xs">
-              <picture>
-                {collageImgMob && (
-                  <source srcSet={collageImgMob} media="(max-width: 767px)" />
-                )}
-                <img
-                  src={collageImg}
-                  alt="Malbec O Boticário — relógio, frasco, aplicação e espelho"
-                  loading="lazy"
-                  width="2400"
-                  height="1792"
-                  className="w-full h-auto md:h-[600px] md:object-cover block"
-                />
-              </picture>
+              <img
+                src={collageImg}
+                alt="Malbec O Boticário — relógio, frasco, aplicação e espelho"
+                loading="lazy"
+                width="2400"
+                height="1792"
+                className="w-full h-auto md:h-[600px] md:object-cover block"
+              />
             </div>
 
             {/* Title */}

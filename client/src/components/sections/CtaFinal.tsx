@@ -14,10 +14,7 @@ const CtaFinal = memo(function CtaFinal({ heroImage }: { heroImage: string }) {
     <section className="relative bg-dark-deeper text-white overflow-hidden py-36 md:py-44">
 
       <div className="absolute inset-0 opacity-20">
-        <picture>
-          <source srcSet="/malbecSMOB.webp" media="(max-width: 767px)" />
-          <img src={heroImage} alt="" className="h-full w-full object-cover" loading="lazy" decoding="async" width="1075" height="1463" />
-        </picture>
+        <img src={heroImage} alt="" className="h-full w-full object-cover" loading="lazy" decoding="async" width="1075" height="1463" />
         <div className="absolute inset-0 bg-gradient-to-t from-luxe-ink via-luxe-ink/85 to-luxe-ink/70" />
       </div>
 

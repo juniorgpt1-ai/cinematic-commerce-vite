@@ -29,18 +29,15 @@ const HairCareSuite = memo(function HairCareSuite({ volumeImg, lisoImg }: { volu
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center mb-32 md:mb-40">
           <div ref={useScrollReveal()} className="reveal-right lg:col-span-6 relative">
             <div className="relative aspect-[6/5] overflow-hidden bg-luxe-ink shadow-2xl border border-luxe-line/20 group">
-              <picture>
-                <source srcSet="/hair-care-volume-mob.webp 1x, /hair-care-volume-mob-2x.webp 2x" media="(max-width: 767px)" />
-                <img
-                  src={volumeImg}
-                  alt="Modelo lavando cabelos com produtos Siàge Hair-Plastia"
-                  loading="lazy"
-                  decoding="async"
-                  width="1100"
-                  height="916"
-                  className="h-full w-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
-                />
-              </picture>
+              <img
+                src={volumeImg}
+                alt="Modelo lavando cabelos com produtos Siàge Hair-Plastia"
+                loading="lazy"
+                decoding="async"
+                width="1100"
+                height="916"
+                className="h-full w-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+              />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20" />
               <div className="absolute top-4 md:top-6 left-4 md:left-6 right-4 md:right-6 flex flex-wrap items-center justify-between gap-2 text-white/80 text-[11px] sm:text-xs tracking-[0.24em] md:tracking-[0.32em] uppercase font-semibold">
                 <span>VOLUME PREMIUM</span>
@@ -113,18 +110,15 @@ const HairCareSuite = memo(function HairCareSuite({ volumeImg, lisoImg }: { volu
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
           <div ref={useScrollReveal()} className="reveal-scale lg:col-span-7 lg:order-2 relative">
             <div className="relative aspect-[6/5] overflow-hidden bg-luxe-ink shadow-2xl border border-luxe-line/20 group">
-              <picture>
-                <source srcSet="/hair-care-liso-mob.webp 1x, /hair-care-liso-mob-2x.webp 2x" media="(max-width: 767px)" />
-                <img
-                  src={lisoImg}
-                  alt="Modelo com cabelo liso e alinhado sob fluxo de água"
-                  loading="lazy"
-                  decoding="async"
-                  width="836"
-                  height="470"
-                  className="h-full w-full object-cover object-[75%]"
-                />
-              </picture>
+              <img
+                src={lisoImg}
+                alt="Modelo com cabelo liso e alinhado sob fluxo de água"
+                loading="lazy"
+                decoding="async"
+                width="836"
+                height="470"
+                className="h-full w-full object-cover object-[75%]"
+              />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20" />
               <div className="absolute top-4 md:top-6 left-4 md:left-6 right-4 md:right-6 flex flex-wrap items-center justify-between gap-2 text-white/80 text-[11px] sm:text-xs tracking-[0.24em] md:tracking-[0.32em] uppercase font-semibold">
                 <span>ALINHAMENTO PREMIUM</span>
