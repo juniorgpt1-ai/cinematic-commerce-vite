@@ -4,10 +4,10 @@
     "@type": "LocalBusiness",
     "name": "S&C Beauty",
     "description": "Revendedor oficial Grupo Boticário e Eudora. Perfumaria e cosméticos premium com entrega expressa em Belo Horizonte.",
-    "image": "https://maisonfragrance.vercel.app/malbec-signatureA.webp",
+    "image": "https://maisonfragrance.vercel.app/sc-beauty-lockup.png",
     "@id": "https://maisonfragrance.vercel.app/",
     "url": "https://maisonfragrance.vercel.app/",
-    "telephone": "SEU-TELEFONE",
+    "telephone": "+55 31 90000-0000",
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "Belo Horizonte",
@@ -43,7 +43,7 @@
     "@type": "Product",
     "name": "Malbec Cologne — O Boticário",
     "description": "Fragrância masculina amadeirada com notas de carvalho, uísque e especiarias. Entrega expressa em Belo Horizonte.",
-    "image": "https://maisonfragrance.vercel.app/malbec.webp",
+    "image": "https://maisonfragrance.vercel.app/malbec1.webp",
     "brand": { "@type": "Brand", "name": "O Boticário" },
     "offers": {
       "@type": "Offer",

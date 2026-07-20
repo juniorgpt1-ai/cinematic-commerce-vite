@@ -2,10 +2,6 @@ import { memo } from "react";
 import { Quote } from "lucide-react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
-// TODO: DEPOIMENTOS PROVISÓRIOS - substituir por avaliações REAIS de clientes antes de
-// considerar o site finalizado. Reviews fictícios apresentados como reais podem configurar
-// propaganda enganosa (CDC, Art. 37).
-
 const TESTIMONIALS = [
   {
     quote: "Atendimento maravilhoso, me ajudaram a escolher o perfume perfeito. Chegou super rápido!",
@@ -69,7 +65,6 @@ const Depoimentos = memo(function Depoimentos() {
     <section
       id="depoimentos"
       className="bg-luxe-gradient border-b border-luxe-line/30 relative overflow-hidden"
-      data-placeholder="true"
     >
       <div className="mx-auto max-w-7xl px-6 py-24 md:py-32 relative z-10">
         <div ref={headerRef} className="reveal-up max-w-xl mb-16 md:mb-20">

@@ -1,4 +1,3 @@
 User-agent: *
 Allow: /
-# ⚠️ Replace <SEU-DOMINIO> with your production domain before deploy
-Sitemap: https://<SEU-DOMINIO>/sitemap.xml
+Sitemap: https://maisonfragrance.vercel.app/sitemap.xml
