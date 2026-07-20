@@ -139,7 +139,7 @@ const EditorialShowcase = memo(function EditorialShowcase({
                   src={image}
                   alt={imageAlt}
                   loading="lazy"
-                  className="h-full w-full object-cover transition-transform duration-750 hover:scale-103"
+                  className="h-full w-full object-cover img-hover-lift transition-transform duration-750 hover:scale-103"
                 />
                 <div className="absolute top-4 md:top-6 left-4 md:left-6 right-4 md:right-6 flex flex-wrap items-center justify-between gap-2 text-white/80 text-[10px] tracking-[0.24em] md:tracking-[0.32em] uppercase font-semibold">
                   <span>{eyebrow.split("·")[0].trim()}</span>

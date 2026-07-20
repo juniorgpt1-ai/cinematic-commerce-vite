@@ -38,7 +38,7 @@ const HairCareSuite = memo(function HairCareSuite({ volumeImg, lisoImg }: { volu
                 decoding="async"
                 width="1100"
                 height="916"
-                className="h-full w-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                className="h-full w-full object-cover object-center img-hover-lift group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20" />
               <div className="absolute top-4 md:top-6 left-4 md:left-6 right-4 md:right-6 flex flex-wrap items-center justify-between gap-2 text-white/80 text-[11px] sm:text-xs tracking-[0.24em] md:tracking-[0.32em] uppercase font-semibold">
@@ -132,7 +132,7 @@ const HairCareSuite = memo(function HairCareSuite({ volumeImg, lisoImg }: { volu
                 decoding="async"
                 width="836"
                 height="470"
-                className="h-full w-full object-cover object-[75%]"
+                className="h-full w-full object-cover object-[75%] img-hover-lift"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20" />
               <div className="absolute top-4 md:top-6 left-4 md:left-6 right-4 md:right-6 flex flex-wrap items-center justify-between gap-2 text-white/80 text-[11px] sm:text-xs tracking-[0.24em] md:tracking-[0.32em] uppercase font-semibold">

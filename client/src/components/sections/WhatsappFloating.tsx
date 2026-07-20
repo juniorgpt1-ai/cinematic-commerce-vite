@@ -43,7 +43,7 @@ const WhatsappFloating = memo(function WhatsappFloating() {
           showLabel ? "max-w-[150px] opacity-100 ml-2 mr-0.5" : "max-w-0 opacity-0 ml-0"
         }`}
       >
-        Fale com a gente
+        Precisa de ajuda?
       </span>
     </a>
   );

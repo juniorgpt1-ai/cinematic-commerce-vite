@@ -352,9 +352,10 @@
   transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
               background-color 0.3s cubic-bezier(0.22, 1, 0.36, 1),
               box-shadow 0.3s cubic-bezier(0.22, 1, 0.36, 1),
-              color 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+              color 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+              filter 0.15s ease;
   &:hover { transform: scale(1.02); }
-  &:active { transform: scale(0.96); animation-play-state: paused; }
+  &:active { transform: scale(0.96); filter: brightness(0.95); animation-play-state: paused; }
 }
 @media (prefers-reduced-motion: reduce) {
   .btn-hover-scale:hover, .btn-hover-scale:active { transform: none; }
@@ -369,6 +370,16 @@
   &:hover {
     background: rgba(255, 255, 255, 0.12);
     border-color: rgba(255, 255, 255, 0.2);
+  }
+}
+
+/* ── Product image hover brightness lift ── */
+
+@utility img-hover-lift {
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+              filter 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  &:hover {
+    filter: brightness(1.08);
   }
 }
 
