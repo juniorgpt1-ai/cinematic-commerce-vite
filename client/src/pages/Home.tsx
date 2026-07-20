@@ -28,6 +28,7 @@ const FlorattaRedShowcase = lazy(() => import("@/components/sections/FlorattaRed
 const BoticarioCarousel = lazy(() => import("@/components/sections/BoticarioCarousel"));
 const KitsGrid = lazy(() => import("@/components/sections/KitsGrid"));
 const Consultoria = lazy(() => import("@/components/sections/Consultoria"));
+const ComoFunciona = lazy(() => import("@/components/sections/ComoFunciona"));
 const Depoimentos = lazy(() => import("@/components/sections/Depoimentos"));
 const Faq = lazy(() => import("@/components/sections/Faq"));
 const CtaFinal = lazy(() => import("@/components/sections/CtaFinal"));
@@ -46,6 +47,7 @@ const LandingPage = memo(function LandingPage() {
       <LazySection><Suspense fallback={null}><BoticarioCarousel /></Suspense></LazySection>
       <LazySection><Suspense fallback={null}><KitsGrid /></Suspense></LazySection>
       <LazySection><Suspense fallback={null}><Consultoria image={consultoraImg} /></Suspense></LazySection>
+      <LazySection><Suspense fallback={null}><ComoFunciona /></Suspense></LazySection>
       <LazySection><Suspense fallback={null}><Depoimentos /></Suspense></LazySection>
       <LazySection><Suspense fallback={null}><Faq /></Suspense></LazySection>
       <LazySection><Suspense fallback={null}><CtaFinal heroImage={heroPerfume} /></Suspense></LazySection>
@@ -97,9 +99,9 @@ const Nav = memo(function Nav() {
           <div className="mx-auto max-w-7xl px-2 sm:px-4 md:px-6 py-3 md:py-5 flex items-center justify-between gap-2 text-white">
             <div className="leading-tight">
               <div className="font-sans text-2xl md:text-2xl lg:text-3xl font-semibold tracking-[0.18em] md:tracking-[0.22em] uppercase">
-                <span className="text-luxe-gold-soft">Maison</span>
+                <span className="text-luxe-gold-soft">S&C</span>
                 <span className="text-luxe-gold/50 mx-1"> · </span>
-                <span className="text-white/90">Parfum</span>
+                <span className="text-white/90">Beauty</span>
               </div>
               <div className="mt-1 text-[11px] md:text-[9px] xl:text-[10px] tracking-[0.22em] md:tracking-[0.18em] xl:tracking-[0.32em] uppercase font-sans font-semibold whitespace-nowrap" style={{color:"var(--color-luxe-gold-soft)",opacity:0.8}}>
                 Revendedor Oficial Grupo Boticário
@@ -204,7 +206,7 @@ const Hero = memo(function Hero() {
               className="font-display text-xl font-bold tracking-[0.14em] uppercase"
               style={{ color: "var(--color-luxe-gold)" }}
             >
-              Maison Parfum
+              S&C Beauty
             </div>
           </div>
           <div className="flex flex-col gap-1.5 items-center">
@@ -251,7 +253,7 @@ const Hero = memo(function Hero() {
           </div>
 
           <div>
-            <div className="mt-10 md:mt-12 flex flex-wrap items-center gap-4">
+            <div className="mt-10 md:mt-12 flex flex-col items-start gap-2">
               <a
                 ref={ctaRef}
                 href={waLink(
@@ -260,15 +262,18 @@ const Hero = memo(function Hero() {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={triggerSend}
-                className="cta-emphasize btn-hover-scale group inline-flex items-center justify-center gap-2 whitespace-nowrap bg-whatsapp hover:bg-whatsapp-hover text-black font-bold px-4 py-3 md:px-8 md:py-4 text-sm md:text-base tracking-wide wa-glow"
+                className="PrimaryWhatsAppCTA cta-emphasize btn-hover-scale group inline-flex items-center justify-center gap-2 whitespace-nowrap bg-whatsapp hover:bg-whatsapp-hover text-white font-bold px-4 py-3 md:px-8 md:py-4 text-sm md:text-base tracking-wide wa-glow w-[calc(100%-32px)] mx-4 md:w-auto md:mx-0"
               >
                 <SendMorphIcon phase={sendPhase} className="size-5" />
-                Peça Agora e Receba em Minutos
+                Peça no WhatsApp
                 <ArrowRight className="size-4 group-hover:translate-x-1 transition-transform" />
               </a>
+              <span className="text-xs text-white/55 font-sans font-normal tracking-wide text-center w-full md:text-left px-4 md:px-0">
+                Resposta em minutos
+              </span>
               <a
                 href="#haircare"
-                className="relative inline-flex items-center gap-2 text-sm font-semibold tracking-[0.2em] uppercase text-white/85 hover:text-luxe-gold-soft border-b border-white/30 hover:border-luxe-gold-soft pb-1 transition-colors before:absolute before:inset-[-12px] before:content-['']"
+                className="relative inline-flex items-center gap-2 text-sm font-semibold tracking-[0.2em] uppercase text-white/85 hover:text-luxe-gold-soft border-b border-white/30 hover:border-luxe-gold-soft pb-1 transition-colors before:absolute before:inset-[-12px] before:content-[''] md:ml-0 ml-4"
               >
                 Explorar Ofertas
               </a>

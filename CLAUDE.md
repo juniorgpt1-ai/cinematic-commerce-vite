@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-**Cinematic Commerce — Maison Fragrance** is a single-page e-commerce landing page for a Brazilian fragrance/haircare reseller (Grupo Boticário & Eudora products). The primary CTA is WhatsApp-based ordering with VIP 1-hour delivery via Uber Flash in Belo Horizonte, Brazil.
+**Cinematic Commerce — S&C Beauty** is a single-page e-commerce landing page for a Brazilian fragrance/cosmetics reseller (Grupo Boticário & Eudora products). The primary CTA is WhatsApp-based ordering with express delivery via Uber Flash in Belo Horizonte, Brazil.
 
 ## Commands
 

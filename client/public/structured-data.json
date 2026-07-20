@@ -2,11 +2,11 @@
   {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    "name": "Maison Parfum",
-    "description": "Revendedor oficial Grupo Boticário e Eudora. Perfumaria e hair care premium com entrega VIP em até 1h em Belo Horizonte.",
-    "image": "https://SEU-DOMINIO.com/malbec-signatureA.webp",
-    "@id": "https://SEU-DOMINIO.com/",
-    "url": "https://SEU-DOMINIO.com/",
+    "name": "S&C Beauty",
+    "description": "Revendedor oficial Grupo Boticário e Eudora. Perfumaria e cosméticos premium com entrega expressa em Belo Horizonte.",
+    "image": "https://maisonfragrance.vercel.app/malbec-signatureA.webp",
+    "@id": "https://maisonfragrance.vercel.app/",
+    "url": "https://maisonfragrance.vercel.app/",
     "telephone": "SEU-TELEFONE",
     "address": {
       "@type": "PostalAddress",
@@ -31,7 +31,7 @@
       "@type": "Offer",
       "itemOffered": {
         "@type": "Product",
-        "name": "Perfumaria e Hair Care Premium Grupo Boticário",
+        "name": "Perfumaria e Cosméticos Premium Grupo Boticário",
         "brand": { "@type": "Brand", "name": "Grupo Boticário" }
       },
       "availability": "https://schema.org/InStock",
@@ -42,15 +42,15 @@
     "@context": "https://schema.org",
     "@type": "Product",
     "name": "Malbec Cologne — O Boticário",
-    "description": "Fragrância masculina amadeirada com notas de carvalho, uísque e especiarias. Entrega VIP em até 1h em Belo Horizonte.",
-    "image": "https://SEU-DOMINIO.com/malbec.webp",
+    "description": "Fragrância masculina amadeirada com notas de carvalho, uísque e especiarias. Entrega expressa em Belo Horizonte.",
+    "image": "https://maisonfragrance.vercel.app/malbec.webp",
     "brand": { "@type": "Brand", "name": "O Boticário" },
     "offers": {
       "@type": "Offer",
       "price": "289.90",
       "priceCurrency": "BRL",
       "availability": "https://schema.org/InStock",
-      "url": "https://SEU-DOMINIO.com/#malbec",
+      "url": "https://maisonfragrance.vercel.app/#malbec",
       "acceptedPaymentMethod": { "@type": "PaymentMethod", "name": "Pix" }
     }
   }

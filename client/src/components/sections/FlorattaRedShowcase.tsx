@@ -15,7 +15,7 @@ const FlorattaRedShowcase = memo(function FlorattaRedShowcase({ image }: { image
       notes={["Frutas Vermelhas, Laranja, Maçã", "Tuberosa, Violeta, Flor de Lótus", "Chocolate Amargo, Musk, Cedro"]}
       price="R$ 169,90"
       cta="Garantir meu Floratta Red"
-      waMessage="Olá! Quero comprar o Floratta Red (O Boticário) com entrega rápida em 1h."
+      waMessage="Olá! Tenho interesse no Floratta Red (O Boticário). Pode me ajudar?"
       image={image}
       imageAlt="Modelo com vestido vermelho segurando frasco Floratta Red em apartamento de luxo com vista da cidade"
       reverse

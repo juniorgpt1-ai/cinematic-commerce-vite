@@ -29,25 +29,23 @@ const CtaFinal = memo(function CtaFinal({ heroImage }: { heroImage: string }) {
           </div>
 
           <h2 className="mt-8 font-section text-5xl md:text-7xl font-semibold leading-[1.05]">
-            O Melhor do Grupo Boticário,
-            <br />
-            <span className="font-light italic text-luxe-gold-soft">Chegando Rápido Até Você.</span>
+            Não encontrou o que procura?
           </h2>
           <p className="mt-8 text-white/70 text-lg font-sans font-light max-w-xl mx-auto leading-relaxed">
-            Nossos combos exclusivos têm estoque limitado. Fale com nosso atendimento agora mesmo e receba seus produtos preferidos com embalagem de luxo inclusa hoje em BH.
+            Temos acesso ao catálogo completo do Grupo Boticário. Fale com a gente e encontramos para você.
           </p>
 
           <div className="mt-12">
             <a
               ref={ctaRef}
-              href={waLink("Olá, quero garantir minha seleção de luxo inteligente com entrega expressa hoje.")}
+              href={waLink("Olá! Gostaria de ajuda para encontrar um produto específico.")}
               target="_blank"
               rel="noopener noreferrer"
               onClick={triggerSend}
-              className="cta-emphasize wa-pulse inline-flex flex-wrap items-center justify-center gap-3 bg-whatsapp hover:bg-whatsapp-hover text-black font-bold px-5 py-4 md:px-10 md:py-5 text-base md:text-lg tracking-wider uppercase rounded-sm btn-hover-scale"
+              className="cta-emphasize wa-pulse inline-flex flex-wrap items-center justify-center gap-3 bg-whatsapp hover:bg-whatsapp-hover text-white font-bold px-5 py-4 md:px-10 md:py-5 text-base md:text-lg tracking-wider uppercase rounded-sm btn-hover-scale wa-glow"
             >
               <SendMorphIcon phase={sendPhase} className="size-6" strokeWidth={2.4} />
-              Garantir Combo no WhatsApp
+              Falar no WhatsApp
               <ArrowRight className="size-5" strokeWidth={2.4} />
             </a>
           </div>

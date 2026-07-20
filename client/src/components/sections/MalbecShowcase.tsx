@@ -66,7 +66,7 @@ const MalbecShowcase = memo(function MalbecShowcase({ lifestyleImg, collageImg }
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
                   <div className="absolute top-4 md:top-6 left-4 md:left-6 right-4 md:right-6 flex flex-wrap items-center justify-between gap-2 text-white/80 text-[10px] tracking-[0.24em] md:tracking-[0.32em] uppercase font-semibold">
                     <span>O BOTICÁRIO · MASCULINO</span>
-                    <span>MAISON PREMIUM</span>
+                    <span>PREMIUM</span>
                   </div>
                 </div>
 
@@ -153,7 +153,7 @@ const MalbecShowcase = memo(function MalbecShowcase({ lifestyleImg, collageImg }
             <div className="mt-10 flex items-end justify-between gap-6 flex-wrap">
               <div>
                 <span className="text-[10px] tracking-[0.28em] uppercase text-luxe-ink-soft/70 font-semibold">Valor Acessível</span>
-                <div className="font-sans text-4xl font-bold mt-1 text-luxe-ink">R$ 289,90</div>
+                <div className="font-sans text-2xl md:text-3xl font-semibold mt-1 text-luxe-ink">R$ 289,90</div>
                 <div className="mt-2 text-[13px] text-luxe-ink-soft font-medium">
                   ou <span className="text-luxe-ink font-semibold">6x sem juros</span>
                   <span className="mx-2 text-luxe-gold">·</span>
@@ -161,7 +161,7 @@ const MalbecShowcase = memo(function MalbecShowcase({ lifestyleImg, collageImg }
                 </div>
               </div>
               <a
-                href={waLink("Olá! Quero comprar o Malbec Cologne (O Boticário) com entrega VIP em 1h em BH.")}
+                href={waLink("Olá! Tenho interesse no Malbec Cologne. Pode me ajudar?")}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={triggerSend}
@@ -200,7 +200,7 @@ const MalbecShowcase = memo(function MalbecShowcase({ lifestyleImg, collageImg }
             {/* Gold metallic CTA button */}
             <div className="mt-6 md:mt-8 flex justify-center">
               <a
-                href={waLink("Olá! Quero o Malbec Cologne com entrega VIP em 1h em BH.")}
+                href={waLink("Olá! Tenho interesse no Malbec Cologne. Pode me ajudar?")}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-gold-metallic btn-hover-scale inline-flex items-center gap-3 px-8 py-4 text-sm md:text-base font-bold tracking-[0.2em] uppercase rounded-sm hover:brightness-105 hover:shadow-xl [animation:luxe-glow-gold_2.5s_ease-in-out_infinite]"

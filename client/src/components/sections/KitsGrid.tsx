@@ -12,21 +12,21 @@ const KitsGrid = memo(function KitsGrid() {
       name: "Kit Ele Elegante",
       desc: "Malbec Cologne + sabonete líquido perfumado + necessaire em couro sintético. Pura indulgência.",
       price: "R$ 379,90",
-      msg: "Olá! Quero o Kit Ele Elegante (Malbec + necessaire).",
+      msg: "Olá! Tenho interesse no Kit Ele Elegante (Malbec + necessaire). Pode me ajudar?",
       tag: "Best Seller"
     },
     {
       name: "Kit Ela Sublime",
-      desc: "Lily Eau de Parfum + creme acetinado hidratante corporal + caixa rígida premium. Luxo inteligente.",
+      desc: "Lily Eau de Parfum + creme acetinado hidratante corporal + caixa rígida premium.",
       price: "R$ 429,90",
-      msg: "Olá! Quero o Kit Ela Sublime (Lily + creme acetinado).",
+      msg: "Olá! Tenho interesse no Kit Ela Sublime (Lily + creme acetinado). Pode me ajudar?",
       tag: "Mais Vendido"
     },
     {
       name: "Combo Casal Real",
       desc: "Malbec Cologne + Lily Eau de Parfum. A união perfeita de duas assinaturas marcantes e inesquecíveis.",
       price: "R$ 619,90",
-      msg: "Olá! Quero o Combo Casal Real (Malbec + Lily).",
+      msg: "Olá! Tenho interesse no Combo Casal Real (Malbec + Lily). Pode me ajudar?",
       tag: "Melhor Preço"
     },
   ];

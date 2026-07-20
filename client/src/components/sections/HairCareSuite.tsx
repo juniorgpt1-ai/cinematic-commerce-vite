@@ -1,5 +1,5 @@
-import { memo } from "react";
-import { ArrowRight, Award, Sparkles } from "lucide-react";
+import { memo, useState } from "react";
+import { ArrowRight, Award, Sparkles, ChevronDown } from "lucide-react";
 import { waLink } from "@/lib/whatsapp";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useSendMorph } from "@/hooks/useSendMorph";
@@ -10,6 +10,8 @@ const HairCareSuite = memo(function HairCareSuite({ volumeImg, lisoImg }: { volu
   const headerRef = useScrollReveal();
   const { phase: volumeSendPhase, trigger: triggerVolumeSend } = useSendMorph();
   const { phase: lisoSendPhase, trigger: triggerLisoSend } = useSendMorph();
+  const [volumeOpen, setVolumeOpen] = useState(false);
+  const [lisoOpen, setLisoOpen] = useState(false);
 
   return (
     <section id="haircare" className="relative bg-luxe-bg overflow-hidden border-b border-luxe-line/40">
@@ -61,30 +63,43 @@ const HairCareSuite = memo(function HairCareSuite({ volumeImg, lisoImg }: { volu
             <span className="gold-rule mt-6" />
 
             <p className="mt-6 text-base sm:text-lg text-luxe-ink/85 font-sans font-light leading-relaxed">
-              Tecnologia de ponta preenche sua fibra. Volumiza, hidrata e elimina a porosidade de forma rápida e confortável — fios encorpados com brilho tridimensional e balanço natural.
+              Tecnologia de ponta que preenche sua fibra, volumiza e hidrata de forma rápida e confortável.
             </p>
 
-            <ul className="mt-8 space-y-4 text-luxe-ink/85 font-sans font-light text-sm sm:text-base">
-              <li className="flex items-center gap-3">
-                <span className="h-1.5 w-1.5 bg-luxe-gold rounded-full shrink-0" />
-                <span>Preenchimento de porosidade com ácido hialurônico de alta performance.</span>
-              </li>
-              <li className="flex items-center gap-3">
-                <span className="h-1.5 w-1.5 bg-luxe-gold rounded-full shrink-0" />
-                <span>Aumento imediato de espessura e densidade do fio.</span>
-              </li>
-              <li className="flex items-center gap-3">
-                <span className="h-1.5 w-1.5 bg-luxe-gold rounded-full shrink-0" />
-                <span>Espuma rica luxuosa ("foam desire") que limpa sem ressecar.</span>
-              </li>
-            </ul>
+            {/* Collapsible details */}
+            <button
+              type="button"
+              onClick={() => setVolumeOpen(!volumeOpen)}
+              className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-luxe-gold hover:text-luxe-gold-deep transition-colors cursor-pointer"
+            >
+              Ver detalhes
+              <ChevronDown className={`size-4 transition-transform duration-300 ${volumeOpen ? "rotate-180" : ""}`} />
+            </button>
+            <div className={`grid transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${volumeOpen ? "grid-rows-[1fr] opacity-100 mt-4" : "grid-rows-[0fr] opacity-0"}`}>
+              <div className="overflow-hidden">
+                <ul className="space-y-3 text-luxe-ink/85 font-sans font-light text-sm sm:text-base">
+                  <li className="flex items-center gap-3">
+                    <span className="h-1.5 w-1.5 bg-luxe-gold rounded-full shrink-0" />
+                    <span>Preenchimento de porosidade com ácido hialurônico de alta performance.</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <span className="h-1.5 w-1.5 bg-luxe-gold rounded-full shrink-0" />
+                    <span>Aumento imediato de espessura e densidade do fio.</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <span className="h-1.5 w-1.5 bg-luxe-gold rounded-full shrink-0" />
+                    <span>Espuma rica luxuosa que limpa sem ressecar.</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
 
             <div className="mt-10 flex items-center justify-between gap-6 flex-wrap border-t border-luxe-line/30 pt-8">
               <div>
                 <span className="text-[10px] sm:text-xs tracking-[0.28em] uppercase text-luxe-ink-soft/70 font-semibold">
                   Tratamento Completo
                 </span>
-                <div className="font-sans text-3xl sm:text-4xl font-bold mt-1 text-luxe-ink">R$ 159,90</div>
+                <div className="font-sans text-xl sm:text-2xl font-semibold mt-1 text-luxe-ink">R$ 159,90</div>
                 <div className="mt-1 text-xs sm:text-[13px] text-luxe-ink-soft font-medium">
                   ou <span className="font-semibold text-luxe-ink">3x sem juros</span>
                   <span className="mx-2 text-luxe-gold">·</span>
@@ -92,7 +107,7 @@ const HairCareSuite = memo(function HairCareSuite({ volumeImg, lisoImg }: { volu
                 </div>
               </div>
               <a
-                href={waLink("Olá! Quero o Combo de Encorpamento Inteligente de Alta Performance com entrega rápida.")}
+                href={waLink("Olá! Tenho interesse no Combo de Encorpamento Inteligente de Alta Performance. Pode me ajudar?")}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={triggerVolumeSend}
@@ -142,30 +157,43 @@ const HairCareSuite = memo(function HairCareSuite({ volumeImg, lisoImg }: { volu
             <span className="gold-rule mt-6" />
 
             <p className="mt-6 text-base sm:text-lg text-luxe-ink/85 font-sans font-light leading-relaxed">
-              Repõe Massa e Blinda os Fios. Sua inteligência escolhe o liso absoluto, 3x mais eficaz. Alta performance para todos através da tecnologia de cauterização lipídica que sela as cutículas instantaneamente.
+              Repõe massa e blinda os fios com tecnologia de cauterização lipídica que sela as cutículas instantaneamente.
             </p>
 
-            <ul className="mt-8 space-y-4 text-luxe-ink/85 font-sans font-light text-sm sm:text-base">
-              <li className="flex items-center gap-3">
-                <span className="h-1.5 w-1.5 bg-luxe-gold rounded-full shrink-0" />
-                <span>Reconstrução profunda com queratina biomimética termo-ativada.</span>
-              </li>
-              <li className="flex items-center gap-3">
-                <span className="h-1.5 w-1.5 bg-luxe-gold rounded-full shrink-0" />
-                <span>Alinhamento absoluto dos fios sem química agressiva.</span>
-              </li>
-              <li className="flex items-center gap-3">
-                <span className="h-1.5 w-1.5 bg-luxe-gold rounded-full shrink-0" />
-                <span>Ação anti-umidade com escudo protetor duradouro.</span>
-              </li>
-            </ul>
+            {/* Collapsible details */}
+            <button
+              type="button"
+              onClick={() => setLisoOpen(!lisoOpen)}
+              className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-luxe-gold hover:text-luxe-gold-deep transition-colors cursor-pointer"
+            >
+              Ver detalhes
+              <ChevronDown className={`size-4 transition-transform duration-300 ${lisoOpen ? "rotate-180" : ""}`} />
+            </button>
+            <div className={`grid transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${lisoOpen ? "grid-rows-[1fr] opacity-100 mt-4" : "grid-rows-[0fr] opacity-0"}`}>
+              <div className="overflow-hidden">
+                <ul className="space-y-3 text-luxe-ink/85 font-sans font-light text-sm sm:text-base">
+                  <li className="flex items-center gap-3">
+                    <span className="h-1.5 w-1.5 bg-luxe-gold rounded-full shrink-0" />
+                    <span>Reconstrução profunda com queratina biomimética termo-ativada.</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <span className="h-1.5 w-1.5 bg-luxe-gold rounded-full shrink-0" />
+                    <span>Alinhamento absoluto dos fios sem química agressiva.</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <span className="h-1.5 w-1.5 bg-luxe-gold rounded-full shrink-0" />
+                    <span>Ação anti-umidade com escudo protetor duradouro.</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
 
             <div className="mt-10 flex items-center justify-between gap-6 flex-wrap border-t border-luxe-line/30 pt-8">
               <div>
                 <span className="text-[10px] sm:text-xs tracking-[0.28em] uppercase text-luxe-ink-soft/70 font-semibold">
                   Tratamento Completo
                 </span>
-                <div className="font-sans text-3xl sm:text-4xl font-bold mt-1 text-luxe-ink">R$ 179,90</div>
+                <div className="font-sans text-xl sm:text-2xl font-semibold mt-1 text-luxe-ink">R$ 179,90</div>
                 <div className="mt-1 text-xs sm:text-[13px] text-luxe-ink-soft font-medium">
                   ou <span className="font-semibold text-luxe-ink">3x sem juros</span>
                   <span className="mx-2 text-luxe-gold">·</span>
@@ -173,7 +201,7 @@ const HairCareSuite = memo(function HairCareSuite({ volumeImg, lisoImg }: { volu
                 </div>
               </div>
               <a
-                href={waLink("Olá! Quero o Combo de Cauterização e Liso Absoluto de Alta Performance com entrega rápida.")}
+                href={waLink("Olá! Tenho interesse no Combo de Cauterização e Liso Absoluto de Alta Performance. Pode me ajudar?")}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={triggerLisoSend}

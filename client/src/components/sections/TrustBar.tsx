@@ -85,7 +85,7 @@ const TrustBar = memo(function TrustBar() {
         <div ref={headerRef} className="reveal-up text-center mb-14 md:mb-20">
           <span className="inline-flex items-center gap-3 font-sans text-base tracking-[0.30em] uppercase text-luxe-gold-deep font-semibold [text-shadow:0_1px_3px_rgba(0,0,0,0.25)]">
             <span className="h-px w-8 bg-luxe-gold/40" />
-            Por que escolher a Maison
+            Por que escolher a S&C Beauty
             <span className="h-px w-8 bg-luxe-gold/40" />
           </span>
           <h2 className="mt-6 md:mt-8 font-section text-5xl md:text-5xl font-semibold leading-[1.05] [text-shadow:0_2px_8px_rgba(0,0,0,0.3)]">

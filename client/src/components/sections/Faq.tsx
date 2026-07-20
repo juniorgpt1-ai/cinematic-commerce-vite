@@ -5,24 +5,20 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 const Faq = memo(function Faq() {
   const items = [
     {
-      q: "O que significa 'Luxo Inteligente'?",
-      a: "Significa ter acesso aos melhores produtos cosméticos de alta performance e à perfumaria premium com preços justos e acessíveis, focando no melhor custo-benefício e na entrega rápida de conveniência, sem a necessidade de pagar preços exorbitantes por marcas importadas.",
+      q: "Os produtos são originais?",
+      a: "Sim, somos revendedores oficiais do Grupo Boticário. Todos os produtos são originais e acompanham nota fiscal.",
     },
     {
-      q: "Como funciona a entrega em até 1h?",
-      a: "Disponibilizamos entregadores parceiros via Uber Flash para toda Belo Horizonte e bairros limítrofes da região metropolitana. O produto sai direto do nosso estoque, já com embalagem premium inclusa.",
+      q: "Como funciona a entrega?",
+      a: "Entrega expressa via Uber Flash em BH e região, quando disponível. O prazo pode variar conforme a demanda do aplicativo.",
     },
     {
-      q: "Os produtos são originais e possuem garantia?",
-      a: "Sim, absolutamente. Somos revendedores oficiais e autorizados de marcas renomadas do Grupo Boticário e Eudora. Todos os itens acompanham nota fiscal completa de compra.",
+      q: "Posso encomendar produtos que não estão no site?",
+      a: "Sim, temos acesso ao catálogo completo do Grupo Boticário. Fale com a gente pelo WhatsApp e encontramos o que você procura.",
     },
     {
-      q: "Quais são as condições e formas de pagamento?",
-      a: "Aceitamos pagamento por Pix (com 5% de desconto automático), cartões de crédito em até 6x sem juros ou links de pagamento online totalmente seguros enviados diretamente pelo WhatsApp.",
-    },
-    {
-      q: "Posso solicitar troca de algum produto?",
-      a: "Sim, garantimos o direito de troca ou devolução do produto não utilizado em até 7 dias após o recebimento, seguindo rigorosamente o Código de Defesa do Consumidor.",
+      q: "Quais as formas de pagamento?",
+      a: "Pix, cartão de crédito e condições facilitadas — combinamos tudo pelo WhatsApp para sua comodidade.",
     },
   ];
   const [open, setOpen] = useState<number | null>(0);

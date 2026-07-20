@@ -1,6 +1,6 @@
-# Maison Parfum
+# S&C Beauty
 
-> Loja online de perfumaria e cuidados capilares (Grupo Boticário & Eudora) em Belo Horizonte, Brasil, com entrega VIP em até 1 hora via Uber Flash. Pedidos são finalizados por WhatsApp.
+> Loja online de perfumaria e cosméticos (Grupo Boticário & Eudora) em Belo Horizonte, Brasil, com entrega expressa via Uber Flash. Pedidos são finalizados por WhatsApp.
 
 ## Site
-- [Maison Parfum](https://maisonfragrance.vercel.app/): página inicial com catálogo de perfumes, produtos capilares, kits e informações de entrega.
+- [S&C Beauty](https://maisonfragrance.vercel.app/): página inicial com catálogo de perfumes, produtos capilares, kits e informações de entrega.

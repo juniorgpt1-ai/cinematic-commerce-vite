@@ -4,19 +4,19 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const TESTIMONIALS = [
   {
-    quote: "Comprei o combo de cauterização e foi a melhor escolha que fiz. Cabelo de salão sem gastar uma fortuna.",
-    name: "Carolina M.",
-    meta: "Savassi · BH",
+    quote: "[DEPOIMENTO] — Envie seu depoimento real pelo WhatsApp para aparecer aqui.",
+    name: "[NOME DO CLIENTE]",
+    meta: "[BAIRRO] · BH",
   },
   {
-    quote: "Estava em dúvida entre as notas de perfumes. A consultora me atendeu perfeitamente. O Floratta Red é puro luxo acessível.",
-    name: "Renata S.",
-    meta: "Belvedere · BH",
+    quote: "[DEPOIMENTO] — Envie seu depoimento real pelo WhatsApp para aparecer aqui.",
+    name: "[NOME DO CLIENTE]",
+    meta: "[BAIRRO] · BH",
   },
   {
-    quote: "Fiz o pedido do Malbec de carvalho às 20h. Às 20h45 o entregador estava na minha porta. Rapidez e cuidado impressionantes.",
-    name: "Felipe A.",
-    meta: "Nova Lima",
+    quote: "[DEPOIMENTO] — Envie seu depoimento real pelo WhatsApp para aparecer aqui.",
+    name: "[NOME DO CLIENTE]",
+    meta: "[BAIRRO] · BH",
   },
 ];
 

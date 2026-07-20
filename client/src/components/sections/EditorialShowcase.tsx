@@ -103,7 +103,7 @@ const EditorialShowcase = memo(function EditorialShowcase({
                       />
                       <div className="absolute top-4 md:top-6 left-4 md:left-6 right-4 md:right-6 flex flex-wrap items-center justify-between gap-2 text-white/80 text-[10px] tracking-[0.24em] md:tracking-[0.32em] uppercase font-semibold">
                         <span>{eyebrow.split("·")[0].trim()}</span>
-                        <span>MAISON PREMIUM</span>
+                        <span>PREMIUM</span>
                       </div>
                     </div>
                     <div className="min-w-full relative bg-gradient-to-b from-luxe-black via-luxe-black/90 to-black">
@@ -143,7 +143,7 @@ const EditorialShowcase = memo(function EditorialShowcase({
                 />
                 <div className="absolute top-4 md:top-6 left-4 md:left-6 right-4 md:right-6 flex flex-wrap items-center justify-between gap-2 text-white/80 text-[10px] tracking-[0.24em] md:tracking-[0.32em] uppercase font-semibold">
                   <span>{eyebrow.split("·")[0].trim()}</span>
-                  <span>MAISON PREMIUM</span>
+                  <span>PREMIUM</span>
                 </div>
               </div>
             )}
@@ -192,7 +192,7 @@ const EditorialShowcase = memo(function EditorialShowcase({
                 <span className="text-[10px] tracking-[0.28em] uppercase text-luxe-ink-soft/70 font-semibold">
                   Valor Acessível
                 </span>
-                <div className="font-sans text-4xl md:text-5xl font-bold mt-1 text-luxe-ink">{price}</div>
+                <div className="font-sans text-2xl md:text-3xl font-semibold mt-1 text-luxe-ink">{price}</div>
                 <div className="mt-2 text-[13px] text-luxe-ink-soft font-medium">
                   ou <span className="text-luxe-ink font-semibold">6x sem juros</span>
                   <span className="mx-2 text-luxe-gold">·</span>

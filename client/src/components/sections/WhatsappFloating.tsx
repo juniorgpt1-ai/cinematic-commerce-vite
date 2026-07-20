@@ -30,12 +30,12 @@ const WhatsappFloating = memo(function WhatsappFloating() {
 
   return (
     <a
-      href={waLink("Olá, vim pela página e quero atendimento de luxo inteligente.")}
+      href={waLink("Olá! Gostaria de ajuda para escolher um produto.")}
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Falar no WhatsApp"
       onClick={triggerSend}
-      className="fixed bottom-6 right-6 z-40 wa-pulse btn-hover-scale inline-flex items-center bg-whatsapp hover:bg-whatsapp-hover text-black rounded-full py-3.5 pl-3.5 pr-3.5 cursor-pointer backdrop-blur-sm overflow-hidden"
+      className="fixed bottom-6 right-6 z-40 wa-glow btn-hover-scale inline-flex items-center bg-whatsapp hover:bg-whatsapp-hover text-white rounded-full py-3.5 pl-3.5 pr-3.5 cursor-pointer backdrop-blur-sm overflow-hidden"
     >
       <SendMorphIcon phase={sendPhase} className="size-5" />
       <span

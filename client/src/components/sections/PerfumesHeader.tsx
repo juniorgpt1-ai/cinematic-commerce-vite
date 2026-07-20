@@ -9,10 +9,10 @@ const PerfumesHeader = memo(function PerfumesHeader() {
         <div className="max-w-3xl mx-auto">
           <span className="eyebrow">Fragrâncias de Sucesso</span>
           <h2 className="mt-6 font-section text-4xl md:text-5xl font-semibold leading-[1.08]">
-            Encontre Sua Assinatura de Sucesso
+            Nossas Fragrâncias
           </h2>
           <p className="mt-6 text-lg text-luxe-ink/85 font-sans font-light">
-            Com nossas fragrâncias mais vendidas, marcantes e recomendadas por especialistas olfativos.
+            As mais vendidas, com entrega expressa em BH e região.
           </p>
           <span className="gold-rule mt-8 mx-auto" />
         </div>

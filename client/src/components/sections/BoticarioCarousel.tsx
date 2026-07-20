@@ -22,7 +22,7 @@ const PRODUCTS: CarouselProduct[] = [
       desc: "Hidratante corporal firmador com óleo puro de quinoa. Estimula o colágeno e nutre a pele.",
       price: "R$ 84,90",
       ctaText: "Garantir Nativa SPA",
-      waMsg: "Olá! Quero garantir a Nativa SPA Quinoa Body Lotion com entrega rápida.",
+      waMsg: "Olá! Tenho interesse na Nativa SPA Quinoa Body Lotion. Pode me ajudar?",
     },
     {
       name: "Egeo Red Eau de Toilette",
@@ -32,7 +32,7 @@ const PRODUCTS: CarouselProduct[] = [
       price: "R$ 119,90",
       oldPrice: "R$ 149,90",
       ctaText: "Garantir Egeo Red",
-      waMsg: "Olá! Quero aproveitar a promoção de 20% OFF no Egeo Red com entrega VIP.",
+      waMsg: "Olá! Tenho interesse no Egeo Red. Pode me ajudar?",
     },
     {
       name: "Floratta Blue Cologne",
@@ -41,7 +41,7 @@ const PRODUCTS: CarouselProduct[] = [
       desc: "Floral musk leve e aconchegante que transmite paz e sofisticação para o seu dia a dia.",
       price: "R$ 139,90",
       ctaText: "Garantir Floratta Blue",
-      waMsg: "Olá! Quero adquirir o Floratta Blue Cologne com entrega em 1h.",
+      waMsg: "Olá! Tenho interesse no Floratta Blue Cologne. Pode me ajudar?",
     },
     {
       name: "Zaad Eau de Parfum",
@@ -50,7 +50,7 @@ const PRODUCTS: CarouselProduct[] = [
       desc: "Fragrância herbal fresca de alta fixação com ingredientes nobres do mundo inteiro.",
       price: "R$ 329,90",
       ctaText: "Garantir Zaad",
-      waMsg: "Olá! Quero comprar o Zaad Eau de Parfum com entrega rápida em BH.",
+      waMsg: "Olá! Tenho interesse no Zaad Eau de Parfum. Pode me ajudar?",
     },
     {
       name: "Coffee Woman Seduction",
@@ -59,7 +59,7 @@ const PRODUCTS: CarouselProduct[] = [
       desc: "Equilíbrio fascinante entre grãos de café arábica e notas doces de chocolate branco.",
       price: "R$ 199,90",
       ctaText: "Garantir Coffee",
-      waMsg: "Olá! Quero comprar o Coffee Woman Seduction com entrega expressa.",
+      waMsg: "Olá! Tenho interesse no Coffee Woman Seduction. Pode me ajudar?",
     },
     {
       name: "Batom Mate QDB?",
@@ -68,7 +68,7 @@ const PRODUCTS: CarouselProduct[] = [
       desc: "Batom líquido de efeito mate extremamente confortável. Durabilidade imbatível de 12 horas.",
       price: "R$ 49,90",
       ctaText: "Garantir Batom",
-      waMsg: "Olá! Quero garantir o Batom Mate da Quem Disse Berenice com entrega VIP.",
+      waMsg: "Olá! Tenho interesse no Batom Mate da Quem Disse Berenice. Pode me ajudar?",
     },
 ];
 

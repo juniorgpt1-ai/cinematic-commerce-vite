@@ -1,4 +1,5 @@
-// Fallback used until VITE_WHATSAPP_NUMBER is set — apenas dígitos, com DDI.
+// TODO: Substituir pelo número real de WhatsApp antes do deploy em produção.
+// Centralize o número AQUI — é a única constante a ser alterada.
 const PLACEHOLDER_WHATSAPP_NUMBER = "5531900000000";
 
 export const WHATSAPP_NUMBER: string =
@@ -8,7 +9,7 @@ if (import.meta.env.PROD && WHATSAPP_NUMBER === PLACEHOLDER_WHATSAPP_NUMBER) {
   // Every WhatsApp CTA on the page is the entire conversion funnel — a silent
   // placeholder here means every order attempt opens a number that doesn't exist.
   console.error(
-    "[Maison Parfum] VITE_WHATSAPP_NUMBER is not set — WhatsApp CTAs are pointing at a placeholder number in production. Set VITE_WHATSAPP_NUMBER before this deploy goes live.",
+    "[S&C Beauty] VITE_WHATSAPP_NUMBER is not set — WhatsApp CTAs are pointing at a placeholder number in production. Set VITE_WHATSAPP_NUMBER before this deploy goes live.",
   );
 }
 
