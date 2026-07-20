@@ -75,7 +75,7 @@ const PRODUCTS: CarouselProduct[] = [
 const BoticarioCarousel = memo(function BoticarioCarousel() {
   const headerRef = useScrollReveal();
   const controlsRef = useScrollReveal();
-  const carouselContainerRef = useScrollReveal();
+  const carouselRevealRef = useScrollReveal();
   const carouselRef = useRef<HTMLDivElement>(null);
   const [scrollFraction, setScrollFraction] = useState(0);
 
@@ -158,14 +158,16 @@ const BoticarioCarousel = memo(function BoticarioCarousel() {
         </div>
 
         {/* Horizontal Carousel */}
-        <div ref={carouselContainerRef}>
-          <div
-            ref={carouselRef}
-            className="stagger-container flex gap-6 overflow-x-auto pb-10 scrollbar-premium snap-x snap-mandatory scroll-smooth"
-            aria-roledescription="carousel"
-            aria-label="Produtos do Grupo Boticário"
-            style={{ scrollbarWidth: "thin" }}
-          >
+        <div
+          ref={(node) => {
+            carouselRevealRef.current = node;
+            carouselRef.current = node;
+          }}
+          className="stagger-container flex gap-6 overflow-x-auto pb-10 scrollbar-premium snap-x snap-mandatory scroll-smooth"
+          aria-roledescription="carousel"
+          aria-label="Produtos do Grupo Boticário"
+          style={{ scrollbarWidth: "thin" }}
+        >
           {PRODUCTS.map((prod) => (
             <div
               key={prod.name}
@@ -215,13 +217,12 @@ const BoticarioCarousel = memo(function BoticarioCarousel() {
           ))}
           </div>
 
-          {/* Scroll-position feedback — the styled scrollbar above is desktop-only (iOS/Android hide it) */}
-          <div aria-hidden="true" className="mt-1 h-[2px] w-24 rounded-full bg-white/10 overflow-hidden">
-            <div
-              className="h-full rounded-full bg-luxe-gold transition-[width] duration-150 ease-out"
-              style={{ width: `${12 + scrollFraction * 88}%` }}
-            />
-          </div>
+        {/* Scroll-position feedback — the styled scrollbar above is desktop-only (iOS/Android hide it) */}
+        <div aria-hidden="true" className="mt-1 h-[2px] w-24 rounded-full bg-white/10 overflow-hidden">
+          <div
+            className="h-full rounded-full bg-luxe-gold transition-[width] duration-150 ease-out"
+            style={{ width: `${12 + scrollFraction * 88}%` }}
+          />
         </div>
       </div>
     </section>
