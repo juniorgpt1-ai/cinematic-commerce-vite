@@ -66,7 +66,7 @@ const Depoimentos = memo(function Depoimentos() {
       id="depoimentos"
       className="bg-luxe-gradient border-b border-luxe-line/30 relative overflow-hidden"
     >
-      <div className="mx-auto max-w-7xl px-6 py-24 md:py-32 relative z-10">
+      <div className="mx-auto max-w-7xl px-6 py-20 md:py-28 relative z-10">
         <div ref={headerRef} className="reveal-up max-w-xl mb-16 md:mb-20">
           <h2 className="font-section text-4xl md:text-5xl font-semibold leading-[1.08]">
             A experiência do <span className="italic font-light text-luxe-gold">luxo inteligente</span>.

@@ -26,7 +26,7 @@ const Faq = memo(function Faq() {
 
   return (
     <section id="faq" className="bg-luxe-gradient border-b border-luxe-line/30">
-      <div className="mx-auto max-w-4xl px-6 py-24 md:py-32">
+      <div className="mx-auto max-w-4xl px-6 py-20 md:py-28">
         <div ref={headerRef} className="reveal-up text-center">
           <h2 className="font-section text-4xl md:text-5xl font-semibold leading-[1.08]">
             Perguntas Frequentes

@@ -5,7 +5,7 @@ import { waLink } from "@/lib/whatsapp";
 const Footer = memo(function Footer() {
   return (
     <footer className="bg-luxe-bg border-t border-luxe-line/30">
-      <div className="mx-auto max-w-7xl px-6 py-24 md:py-32">
+      <div className="mx-auto max-w-7xl px-6 py-20 md:py-28">
         <div className="flex justify-center mb-16">
           <img src="/sc-beauty-lockup.png" alt="S&C Beauty" className="w-[180px] h-auto" />
         </div>

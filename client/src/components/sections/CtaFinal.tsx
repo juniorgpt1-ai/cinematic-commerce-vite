@@ -11,7 +11,7 @@ const CtaFinal = memo(function CtaFinal({ heroImage }: { heroImage: string }) {
   const ctaRef = useScrollReveal<HTMLAnchorElement>();
   const { phase: sendPhase, trigger: triggerSend } = useSendMorph();
   return (
-    <section className="relative bg-dark-deeper text-white overflow-hidden py-36 md:py-44">
+    <section className="relative bg-dark-deeper text-white overflow-hidden py-28 md:py-36">
 
       <div className="absolute inset-0 opacity-20">
         <img src={heroImage} alt="" className="h-full w-full object-cover" loading="lazy" decoding="async" width="1075" height="1463" />
@@ -29,7 +29,7 @@ const CtaFinal = memo(function CtaFinal({ heroImage }: { heroImage: string }) {
           </div>
 
           <h2 className="mt-8 font-section text-5xl md:text-7xl font-semibold leading-[1.05]">
-            Não encontrou o que procura?
+            Catálogo completo à sua disposição.
           </h2>
           <p className="mt-8 text-white/70 text-lg font-sans font-light max-w-xl mx-auto leading-relaxed">
             Temos acesso ao catálogo completo do Grupo Boticário. Fale com a gente e encontramos para você.
