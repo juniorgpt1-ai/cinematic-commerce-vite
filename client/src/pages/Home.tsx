@@ -178,7 +178,7 @@ const Hero = memo(function Hero() {
   const ctaRef = useScrollReveal<HTMLAnchorElement>();
   const { phase: sendPhase, trigger: triggerSend } = useSendMorph();
   return (
-    <section className="relative min-h-screen w-full bg-[#070707] text-white overflow-hidden flex flex-col justify-end">
+    <section className="relative min-h-[85vh] md:min-h-screen w-full bg-[#070707] text-white overflow-hidden flex flex-col justify-end">
       {/* Background Interactive Particles (Antigravity effect) — deferred for LCP */}
       {showParticles && <Suspense fallback={null}><AntigravityParticles /></Suspense>}
 
@@ -199,33 +199,7 @@ const Hero = memo(function Hero() {
       <div className="absolute inset-0 bg-gradient-to-r from-black/95 via-black/70 to-transparent" />
       <div className="absolute inset-0 bg-gradient-to-t from-[#070707] via-transparent to-black/50" />
 
-      {/* MOBILE: Brand identity — overlaid on Hero, scrolls away with Hero */}
-      <div className="md:hidden absolute top-10 left-0 right-0 z-20">
-        <div className="px-4 py-3 text-center text-white">
-          <div className="mb-2.5">
-            <div
-              className="font-display text-xl font-bold tracking-[0.14em] uppercase"
-              style={{ color: "var(--color-luxe-gold)" }}
-            >
-              S&C Beauty
-            </div>
-          </div>
-          <div className="flex flex-col gap-1.5 items-center">
-            <div className="flex items-center justify-center gap-2.5">
-              <img src="/brands/oboticario.svg" alt="O Boticário" title="O Boticário" width="90" height="36" className="h-9 w-auto rounded-sm opacity-90" />
-              <img src="/brands/eudora.svg" alt="Eudora" title="Eudora" width="90" height="36" className="h-9 w-auto rounded-sm opacity-90" />
-              <img src="/brands/qdb.svg" alt="QDB" title="Quem Disse, Berenice?" width="90" height="36" className="h-9 w-auto rounded-sm opacity-90" />
-            </div>
-            <div className="flex items-center justify-center gap-2.5">
-              <img src="/brands/multib.svg" alt="Multi B" title="Multi B" width="90" height="36" className="h-9 w-auto rounded-sm opacity-90" />
-              <img src="/brands/vult.svg" alt="Vult" title="Vult" width="90" height="36" className="h-9 w-auto rounded-sm opacity-90" />
-              <img src="/brands/oui.svg" alt="O.U.i" title="O.U.i" width="90" height="36" className="h-9 w-auto rounded-sm opacity-90" />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="relative z-10 mx-auto max-w-7xl w-full px-4 md:px-6 pt-48 pb-14 md:pt-48 md:pb-32 flex flex-col justify-end flex-1 md:grow-0">
+      <div className="relative z-10 mx-auto max-w-7xl w-full px-4 md:px-6 pt-36 md:pt-48 pb-10 md:pb-32 flex flex-col justify-end flex-1 md:grow-0">
         <div className="animate-fade-up max-w-3xl flex flex-col flex-1 md:grow-0 justify-between md:justify-normal gap-y-6">
           <div>
             <div className="mb-2 sm:mb-8 hidden md:flex md:justify-start">
@@ -238,18 +212,20 @@ const Hero = memo(function Hero() {
             </div>
 
             <h1 className="font-display text-[clamp(2.75rem,11vw,6rem)] leading-[0.85] md:leading-[1.0] tracking-tight font-bold">
-              <span className="text-luxe-gold">
-                Luxo Acessível
+              <span className="block text-[clamp(0.85rem,3vw,1.15rem)] tracking-[0.24em] uppercase font-sans font-semibold text-luxe-gold-soft mb-3 md:mb-4 drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]">
+                Perfumaria Premium
+              </span>
+              <span className="text-white/95 drop-shadow-[0_2px_18px_rgba(0,0,0,0.6)]">
+                Entrega Expressa
               </span>
               <br />
-              <span className="text-white/95 drop-shadow-[0_2px_18px_rgba(0,0,0,0.6)]">
-                Para Todos.
+              <span className="text-white/80 drop-shadow-[0_2px_12px_rgba(0,0,0,0.5)]">
+                em BH e Região
               </span>
             </h1>
 
-            <p className="mt-8 max-w-xl text-lg md:text-lg text-white/70 font-sans font-normal leading-relaxed drop-shadow-[0_1px_8px_rgba(0,0,0,0.6)]">
-              Perfumaria e hair care premium do Grupo Boticário com entrega expressa para <strong className="text-white font-semibold">BH e regiões</strong>.
-              Peça agora pelo WhatsApp e receba seu pedido em minutos, com segurança e preço justo.
+            <p className="mt-6 max-w-lg text-base md:text-lg text-white/70 font-sans font-normal leading-relaxed drop-shadow-[0_1px_8px_rgba(0,0,0,0.6)]">
+              Grupo Boticário e Eudora. Peça pelo WhatsApp, receba em minutos.
             </p>
           </div>
 
@@ -272,21 +248,23 @@ const Hero = memo(function Hero() {
               <span className="text-xs text-white/55 font-sans font-normal tracking-wide text-center w-full md:text-left px-4 md:px-0">
                 Resposta em minutos
               </span>
-              <a
-                href="#haircare"
-                className="relative inline-flex items-center gap-2 text-sm font-semibold tracking-[0.2em] uppercase text-white/85 hover:text-luxe-gold-soft border-b border-white/30 hover:border-luxe-gold-soft pb-1 transition-colors before:absolute before:inset-[-12px] before:content-[''] md:ml-0 ml-4"
-              >
-                Explorar Ofertas
-              </a>
             </div>
 
-            <div className="md:hidden mt-3">
+            <div className="md:hidden mt-4">
               <FloatingBadge className="border-white/30 bg-white/95 px-2.5 py-1">
                 <Timer className="size-3 text-luxe-black" />
                 <span className="text-[11px] tracking-[0.14em] uppercase text-luxe-black font-semibold">
                   Entrega VIP · Em até 1h para BH e Região
                 </span>
               </FloatingBadge>
+            </div>
+
+            <div className="hidden md:flex justify-center mt-6">
+              <span className="text-white/40 animate-[pulse_2.5s_ease-in-out_infinite]">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M6 9l6 6 6-6" />
+                </svg>
+              </span>
             </div>
 
             <div className="mt-6 md:mt-16 flex flex-wrap items-center gap-4 md:gap-6 text-[10px] tracking-[0.24em] md:tracking-[0.32em] uppercase text-white/50 font-semibold">
