@@ -33,7 +33,7 @@ const KitsGrid = memo(function KitsGrid() {
   return (
     <section id="kits" className="bg-luxe-dark-gradient text-white relative overflow-hidden">
 
-      <div className="mx-auto max-w-7xl px-6 py-32 md:py-40 relative z-10">
+      <div className="mx-auto max-w-7xl px-6 py-24 md:py-32 relative z-10">
         <div ref={headerRef} className="reveal-up max-w-2xl mb-16">
           <span className="eyebrow text-luxe-gold-soft">Curadoria de Presentes</span>
           <h2 className="mt-5 font-section text-4xl md:text-5xl font-semibold leading-[1.08]">
@@ -48,7 +48,7 @@ const KitsGrid = memo(function KitsGrid() {
           {kits.map((k, i) => (
             <div
               key={k.name}
-              className="reveal-up bg-luxe-ink p-10 flex flex-col justify-between group hover:bg-black/90 transition-colors duration-300"
+              className="reveal-up bg-luxe-ink p-6 md:p-10 flex flex-col justify-between group hover:bg-black/90 transition-colors duration-300"
             >
               <div>
                 <div className="flex items-center justify-between gap-4">
@@ -79,7 +79,7 @@ const KitsGrid = memo(function KitsGrid() {
                   <div>
                     <div className="font-sans text-3xl font-bold text-luxe-gold-soft">{k.price}</div>
                     <div className="mt-1 text-[12px] text-white/60">
-                      6x sem juros <span className="text-luxe-gold-soft">·</span> Pix 5% OFF
+                      3x sem juros <span className="text-luxe-gold-soft">·</span> Pix 5% OFF
                     </div>
                   </div>
                   <a
@@ -87,7 +87,7 @@ const KitsGrid = memo(function KitsGrid() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={`Pedir ${k.name} no WhatsApp`}
-                    className="relative btn-hover-scale inline-flex flex-wrap items-center justify-center gap-2 text-xs font-semibold tracking-wider uppercase text-luxe-gold-soft border-b border-luxe-gold-soft/60 pb-1 group-hover:text-luxe-gold-soft group-hover:border-luxe-gold-soft transition-colors before:absolute before:inset-[-8px] before:content-['']"
+                    className="btn-hover-scale inline-flex items-center justify-center gap-2 bg-luxe-ink hover:bg-whatsapp text-luxe-gold-soft hover:text-black border border-luxe-gold-soft/30 hover:border-whatsapp px-4 py-2.5 text-xs font-semibold tracking-wider uppercase transition-all duration-300"
                   >
                     Pedir Combo <ArrowRight className="size-3.5" />
                   </a>

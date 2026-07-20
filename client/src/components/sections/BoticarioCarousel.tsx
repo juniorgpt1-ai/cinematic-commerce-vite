@@ -122,7 +122,7 @@ const BoticarioCarousel = memo(function BoticarioCarousel() {
   }, [updateScrollFraction]);
 
   return (
-    <section id="mais-amados" className="bg-luxe-dark-gradient text-white py-28 md:py-36 relative overflow-hidden border-b border-luxe-line/30">
+    <section id="mais-amados" className="bg-luxe-dark-gradient text-white py-24 md:py-28 relative overflow-hidden border-b border-luxe-line/30">
       {/* Ambient gold glows */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-luxe-gold/4 rounded-full blur-[150px] pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-luxe-gold/3 rounded-full blur-[120px] pointer-events-none" />
@@ -172,7 +172,7 @@ const BoticarioCarousel = memo(function BoticarioCarousel() {
             <div
               key={prod.name}
               data-carousel-card
-              className="reveal-up min-w-[280px] sm:min-w-[320px] md:min-w-[340px] max-w-[340px] bg-black/50 border border-white/10 p-6 md:p-8 rounded-2xl snap-start flex flex-col justify-between group hover:border-luxe-gold/60 hover:bg-black/70 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]"
+              className="reveal-up min-w-[280px] sm:min-w-[320px] md:min-w-[340px] max-w-[340px] bg-black/50 border border-white/10 p-5 md:p-8 rounded-2xl snap-start flex flex-col justify-between group hover:border-luxe-gold/60 hover:bg-black/70 hover:border-l-luxe-gold/60 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]"
             >
               <div>
                 <div className="flex flex-wrap items-center justify-between gap-2">
@@ -191,7 +191,7 @@ const BoticarioCarousel = memo(function BoticarioCarousel() {
                 <h3 className="mt-6 font-sans text-xl sm:text-2xl font-bold leading-tight group-hover:text-luxe-gold-soft transition-colors duration-300">
                   {prod.name}
                 </h3>
-                <p className="mt-4 text-white/65 text-sm sm:text-base font-sans font-light leading-relaxed min-h-[72px]">
+                <p className="mt-3 text-white/65 text-sm sm:text-base font-sans font-light leading-relaxed min-h-[60px]">
                   {prod.desc}
                 </p>
               </div>

@@ -13,8 +13,8 @@ const Consultoria = memo(function Consultoria({ image }: { image: string }) {
 
   return (
     <section className="bg-luxe-gradient border-b border-luxe-line/20 relative overflow-hidden">
-      <div className="mx-auto max-w-7xl px-6 py-32 md:py-40 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+      <div className="mx-auto max-w-7xl px-6 py-24 md:py-32 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-20 items-center">
           <div ref={imageRef} className="reveal-scale lg:col-span-6 relative">
             <div className="relative aspect-[4/5] overflow-hidden shadow-2xl border border-luxe-line/30">
               <img

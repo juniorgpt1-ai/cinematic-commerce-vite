@@ -26,7 +26,7 @@ const ComoFunciona = memo(function ComoFunciona() {
 
   return (
     <section id="como-funciona" className="bg-luxe-gradient border-b border-luxe-line/30 relative overflow-hidden">
-      <div className="mx-auto max-w-7xl px-6 py-24 md:py-32 relative z-10">
+      <div className="mx-auto max-w-7xl px-6 py-20 md:py-28 relative z-10">
         <div ref={headerRef} className="reveal-up text-center mb-16 md:mb-20">
           <span className="eyebrow">Simples e rápido</span>
           <h2 className="mt-5 font-section text-4xl md:text-5xl font-semibold leading-[1.08]">
