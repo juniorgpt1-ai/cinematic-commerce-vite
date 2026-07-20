@@ -15,20 +15,20 @@ const HairCareSuite = memo(function HairCareSuite({ volumeImg, lisoImg }: { volu
 
   return (
     <section id="haircare" className="relative bg-luxe-bg overflow-hidden border-b border-luxe-line/40">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 py-32 md:py-40 relative z-10">
-        <div ref={headerRef} className="reveal-up max-w-3xl mb-20 text-center mx-auto">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 py-24 md:py-32 relative z-10">
+        <div ref={headerRef} className="reveal-up max-w-3xl mb-14 text-center mx-auto">
           <span className="eyebrow text-sm sm:text-base">Alta Performance Capilar</span>
           <h2 className="mt-5 font-section text-4xl sm:text-5xl font-semibold leading-[1.08]">
             A Arte do Cuidado Absoluto
           </h2>
           <span className="gold-rule mt-6 mx-auto" />
           <p className="mt-8 max-w-2xl mx-auto text-base sm:text-lg text-luxe-ink/85 font-sans font-light leading-relaxed">
-            Tecnologia de salão adaptada para a sua rotina diária. A sofisticação da alta performance agora acessível na sua casa.
+            Resultado de salão na sua rotina diária.
           </p>
         </div>
 
         {/* 1. Encorpamento Suite */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center mb-32 md:mb-40">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-20 items-center mb-24 md:mb-32">
           <div ref={useScrollReveal()} className="reveal-right lg:col-span-6 relative">
             <div className="relative aspect-[6/5] overflow-hidden bg-luxe-ink shadow-2xl border border-luxe-line/20 group">
               <img
@@ -122,7 +122,7 @@ const HairCareSuite = memo(function HairCareSuite({ volumeImg, lisoImg }: { volu
         </div>
 
         {/* 2. Cauterização Suite */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-20 items-center">
           <div ref={useScrollReveal()} className="reveal-scale lg:col-span-7 lg:order-2 relative">
             <div className="relative aspect-[6/5] overflow-hidden bg-luxe-ink shadow-2xl border border-luxe-line/20 group">
               <img

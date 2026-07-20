@@ -36,9 +36,9 @@ const MalbecShowcase = memo(function MalbecShowcase({ lifestyleImg, collageImg }
 
   return (
     <section id="malbec" className="relative bg-luxe-gradient border-b border-luxe-line/30 overflow-hidden">
-      <div className="mx-auto max-w-7xl px-6 py-36 md:py-44 relative z-10">
+      <div className="mx-auto max-w-7xl px-6 py-28 md:py-36 relative z-10">
         {/* Top editorial split */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-20 items-center">
           {/* Carousel */}
           <div
             ref={carouselRef}
@@ -155,7 +155,7 @@ const MalbecShowcase = memo(function MalbecShowcase({ lifestyleImg, collageImg }
                 <span className="text-[10px] tracking-[0.28em] uppercase text-luxe-ink-soft/70 font-semibold">Valor Acessível</span>
                 <div className="font-sans text-2xl md:text-3xl font-semibold mt-1 text-luxe-ink">R$ 289,90</div>
                 <div className="mt-2 text-[13px] text-luxe-ink-soft font-medium">
-                  ou <span className="text-luxe-ink font-semibold">6x sem juros</span>
+                  ou <span className="text-luxe-ink font-semibold">3x sem juros</span>
                   <span className="mx-2 text-luxe-gold">·</span>
                   <span className="text-luxe-ink font-semibold">Pix com 5% OFF</span>
                 </div>
@@ -176,7 +176,7 @@ const MalbecShowcase = memo(function MalbecShowcase({ lifestyleImg, collageImg }
         </div>
 
         {/* Collage — full-width editorial image */}
-        <div ref={collageRef} className="reveal-scale mt-24 md:mt-32">
+        <div ref={collageRef} className="reveal-scale mt-20 md:mt-28">
           <div className="bg-luxe-bg p-3 md:p-6 rounded-xs shadow-2xl border border-luxe-line/20">
             {/* Full-width image */}
             <div className="overflow-hidden rounded-xs">

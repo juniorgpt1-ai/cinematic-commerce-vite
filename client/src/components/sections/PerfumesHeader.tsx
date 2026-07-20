@@ -4,7 +4,7 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 const PerfumesHeader = memo(function PerfumesHeader() {
   const headerRef = useScrollReveal();
   return (
-    <section id="perfumes" className="bg-luxe-gradient pt-32 md:pt-40 pb-8 border-b border-luxe-line/20 relative overflow-hidden">
+    <section id="perfumes" className="bg-luxe-gradient pt-20 md:pt-28 pb-6 border-b border-luxe-line/20 relative overflow-hidden">
       <div ref={headerRef} className="reveal-up mx-auto max-w-7xl px-6 relative z-10 text-center">
         <div className="max-w-3xl mx-auto">
           <span className="eyebrow">Fragrâncias de Sucesso</span>

@@ -71,9 +71,9 @@ const EditorialShowcase = memo(function EditorialShowcase({
   return (
     <section id={id} className="relative bg-luxe-gradient border-b border-luxe-line/30 overflow-hidden">
 
-      <div className="mx-auto max-w-7xl px-6 py-32 md:py-40 relative z-10">
+      <div className="mx-auto max-w-7xl px-6 py-28 md:py-36 relative z-10">
         <div
-          className={`grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center ${
+          className={`grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-20 items-center ${
             reverse ? "lg:[&>div:first-child]:order-2" : ""
           }`}
         >
@@ -194,7 +194,7 @@ const EditorialShowcase = memo(function EditorialShowcase({
                 </span>
                 <div className="font-sans text-2xl md:text-3xl font-semibold mt-1 text-luxe-ink">{price}</div>
                 <div className="mt-2 text-[13px] text-luxe-ink-soft font-medium">
-                  ou <span className="text-luxe-ink font-semibold">6x sem juros</span>
+                  ou <span className="text-luxe-ink font-semibold">3x sem juros</span>
                   <span className="mx-2 text-luxe-gold">·</span>
                   <span className="text-luxe-ink font-semibold">Pix com 5% OFF</span>
                 </div>
