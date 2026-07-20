@@ -498,6 +498,37 @@ html {
   scroll-behavior: smooth;
 }
 
+/* ── Navbar logo shimmer — subtle luxury shine ── */
+
+@keyframes logo-shimmer {
+  0%   { mask-position: -180% 0; -webkit-mask-position: -180% 0; }
+  30%  { mask-position: 220% 0; -webkit-mask-position: 220% 0; }
+  100% { mask-position: 220% 0; -webkit-mask-position: 220% 0; }
+}
+
+.shimmer-logo {
+  mask-image: linear-gradient(
+    110deg,
+    #000 30%,
+    rgba(255, 255, 255, 0.45) 45%,
+    rgba(255, 255, 255, 0.55) 50%,
+    rgba(255, 255, 255, 0.45) 55%,
+    #000 70%
+  );
+  mask-size: 200% 100%;
+  -webkit-mask-image: linear-gradient(
+    110deg,
+    #000 30%,
+    rgba(255, 255, 255, 0.45) 45%,
+    rgba(255, 255, 255, 0.55) 50%,
+    rgba(255, 255, 255, 0.45) 55%,
+    #000 70%
+  );
+  -webkit-mask-size: 200% 100%;
+  animation: logo-shimmer 8s ease-in-out infinite;
+  animation-delay: 2s;
+}
+
 /* ── Reduced motion: disable all custom animations ── */
 
 @media (prefers-reduced-motion: reduce) {
