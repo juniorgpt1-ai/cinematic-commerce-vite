@@ -1,186 +1,136 @@
-# CTA Breathing — Touch-Only Hover Substitute
+# CTA Breathing Animation — Touch-Only Hover Substitute
 
 **Date:** 2026-07-21
 **Status:** Approved for implementation
 
 ## Problem
 
-The desktop hover on section CTAs delivers three simultaneous signals: background goes
-`luxe-ink` → `whatsapp` green, text goes white → black, and the button scales to 1.02.
-
-The arrow icon (`/msg.svg`) is a hardcoded `fill="black"` SVG — it does not inherit
-`currentColor`. On `bg-luxe-ink` (#0a0a0a) it is effectively invisible; the hover green is
-what reveals it.
-
-Touch devices have no hover, so those CTAs read as static and the arrow stays hidden. This
-spec restores the *perception of interactivity* on touch — nothing more. It is not a
-marketing or attention device.
+Desktop buttons have hover feedback (color change, scale, glow). Touch devices have no hover.
+The `useTouchCtaReveal` hook fires a one-shot on scroll-into-view, which doesn't provide
+continuous interactive affordance. This spec replaces it with a CSS breathing animation.
 
 ## Non-Goals
 
-No entrance animation, one-shot, fade-in, bounce, heartbeat, blink, shake, exaggerated zoom,
-blinking glow, or attention-grabbing pulse. **Desktop behavior changes in no way.**
+No entrance animation, bounce, heartbeat, blink, shake, exaggerated zoom, blinking glow,
+or attention-grabbing pulse. Desktop hover behavior is unchanged.
 
 ## Scope
 
-### Included — 9 CTAs
+**All clickable CTA buttons** across the entire site — Hero, section headers, product cards,
+KitsGrid, CtaFinal, WhatsappFloating, Consultoria, HairCareSuite, MalbecShowcase,
+FlorattaRedShowcase, BoticarioCarousel, Footer.
 
-| Component | Line | Base background |
-|---|---|---|
-| `Consultoria.tsx` | 71 | `bg-luxe-ink` |
-| `HairCareSuite.tsx` | 37, 129, 223 | `bg-luxe-ink` |
-| `MalbecShowcase.tsx` | 150 | `bg-luxe-ink` |
-| `EditorialShowcase.tsx` | 188 | `bg-luxe-ink` |
-| `KitsGrid.tsx` | 56 | `bg-luxe-gold/10` (variant) |
-| `KitsGrid.tsx` | 107 | `bg-luxe-ink` (card button) |
-| `BoticarioCarousel.tsx` | 211 | `bg-luxe-ink` (card button) |
+## Design
 
-### Excluded — with rationale
+### Gate
 
-- **Hero CTA** (`Home.tsx:204`) — explicit user instruction; also already `bg-whatsapp`.
-- **CtaFinal** (`CtaFinal.tsx:45`) — already `bg-whatsapp`; breathing toward green is a no-op.
-- **WhatsappFloating** (`WhatsappFloating.tsx:103`) — `position: fixed`, permanently visible,
-  already green. Viewport-driven breathing is meaningless.
-- **MalbecShowcase gold CTA** (`MalbecShowcase.tsx:189`) — `btn-gold-metallic`; its hover
-  identity is `brightness-105 + shadow-xl`, not green. It already runs
-  `luxe-glow-gold 2.5s infinite`; adding green breathing would break its visual identity and
-  collide with a running animation. Its `useTouchCtaReveal("")` call is deleted, not replaced.
+```css
+@media (hover: none) and (pointer: coarse) {
+  .btn-breathe { animation: cta-breathe 4s ease-in-out infinite; }
+}
+```
 
-## Design System Reuse
+`hover: none` detects touch devices. `pointer: coarse` reinforces it (avoids stylus false
+positives). Desktop (`hover: hover`) never runs the animation.
 
-All values derive from the existing desktop hover. No new arbitrary values.
-
-| Token | Source | Use |
-|---|---|---|
-| `--whatsapp: #25d366` | `index.css:96` | Breath peak tint |
-| `cubic-bezier(0.22, 1, 0.36, 1)` | `btn-hover-scale`, `index.css:335` | Promoted to `--ease-luxe` |
-| `--luxe-ink` | `index.css` palette | Breath resting color |
-| `shadow-md` | Tailwind v4 `--shadow-md` | Breath resting shadow |
-| scale `1.02` | `btn-hover-scale:hover` | Reference; breathing uses a softer 1.015 |
-
-`--ease-luxe` is a refactor: the literal `cubic-bezier(0.22, 1, 0.36, 1)` is currently
-copy-pasted across ~6 utilities in `index.css`. It is extracted to a named token and those
-call sites reference it. Behavior is unchanged.
-
-## Visual Specification
-
-The background is the primary actor. The arrow is **never targeted directly** — it gains
-contrast as a consequence of the background lightening. Text color is untouched.
+### Keyframe
 
 ```css
 @keyframes cta-breathe {
   0%, 100% {
-    background-color: var(--cta-base);
+    background-color: <original>;
+    box-shadow: <original>;
     transform: scale(1);
-    box-shadow: var(--shadow-md);
+    filter: brightness(1);
   }
-  38%, 52% {
-    background-color: var(--cta-breathe-peak);
-    transform: scale(1.015);
-    box-shadow: 0 8px 28px -4px rgb(37 211 102 / 0.28);
-  }
-  83% {
-    background-color: var(--cta-base);
-    transform: scale(1);
-    box-shadow: var(--shadow-md);
+  50% {
+    background-color: var(--btn-breathe-peak, <original>);
+    box-shadow: 0 0 24px var(--btn-breathe-shadow, transparent),
+                0 8px 24px -4px rgba(0,0,0,0.15);
+    transform: scale(1.025);
+    filter: brightness(1.08);
   }
 }
 ```
 
-The explicit `83%` stop is what creates the rest phase: without it the exhale would stretch
-across `52% → 100%` and the cycle would loop with no pause, reading as mechanical.
+**4-second cycle, symmetric ease-in-out.** The `50%` peak holds briefly due to the easing
+curve (ease-in-out plateaus at extremes).
 
-- `--cta-base` defaults to `var(--luxe-ink)`; one modifier class overrides it for `KitsGrid:56`.
-- `--cta-breathe-peak` = `color-mix(in oklab, var(--whatsapp) 75%, var(--cta-base))`.
-  **75%, not 100%** — full `#25d366` reads as a flash. 75% raises the black arrow to
-  comfortable contrast while remaining nearly subliminal.
-- Peak scale is **1.015**, a hard ceiling. Never exceeded.
-- Peak shadow reuses the hover green at low alpha; the resting shadow is the button's existing
-  `shadow-md`, so there is no visual jump at cycle boundaries.
+### CSS Custom Properties per Variant
 
-### Cycle timing — 6s total
+Each button family declares `--btn-breathe-peak` (peak background) and
+`--btn-breathe-shadow` (peak glow color) inline via Tailwind arbitrary properties:
 
-| Phase | Duration | Keyframe span |
+| Family | `--btn-breathe-peak` | `--btn-breathe-shadow` |
 |---|---|---|
-| Inhale | 2.28s | 0% → 38% |
-| Hold | 0.84s | 38% → 52% |
-| Exhale | 1.86s | 52% → 83% |
-| Rest | 1.02s | 83% → 100% |
+| WhatsApp green (`bg-whatsapp`) | `#1ebe57` (hover green) | `rgba(37,211,102,0.4)` |
+| Dark → green (`bg-luxe-ink`) | `#25d366` (whatsapp) | `rgba(37,211,102,0.28)` |
+| Gold metallic (`btn-gold-metallic`) | `#e2c87a` (lighter gold) | `rgb(201,168,76 / 0.45)` |
+| Outline gold (`bg-luxe-gold/10`) | `rgba(154,123,80,0.15)` | `rgb(201,168,76 / 0.2)` |
+| Glass/outline light (`glass-btn`) | `rgba(255,255,255,0.12)` | `rgba(255,255,255,0.15)` |
+| Secondary/ghost | `var(--accent)` at 15% opacity | `var(--ring)` at 20% alpha |
 
-Breath ≈ 5s, pause ≈ 1s. The asymmetry between inhale, hold, and rest is what makes it read
-as organic breath rather than a mechanical sine loop.
+### Vinheta (Focus Depth Effect)
 
-## Architecture
-
-### `useCtaBreathing` hook
-
-Replaces `useTouchCtaReveal` entirely. Returns a ref to attach to the CTA element.
-
-JS **never writes inline styles**. It toggles a single `data-breathing` attribute; CSS owns
-all visual state:
+A `.btn-breathe` uses a `::after` pseudo-element with `box-shadow: inset` for vignette.
+The opacity is driven by a second `@keyframes` animation synced to the same 4s cycle:
 
 ```css
-[data-breathing="true"] { animation: cta-breathe 6s var(--ease-luxe) infinite; }
+.btn-breathe {
+  position: relative;
+  isolation: isolate;
+}
+.btn-breathe::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: -1;
+  animation: cta-breathe-vignette 4s ease-in-out infinite;
+}
+
+@keyframes cta-breathe-vignette {
+  0%, 100% { box-shadow: inset 0 0 20px rgba(0,0,0,0); }
+  50%      { box-shadow: inset 0 0 20px rgba(0,0,0,0.18); }
+}
 ```
 
-### Module-level coordinator
+### Implementation: Pure CSS
 
-A singleton registry, not per-hook state — "only one CTA breathes" is a global invariant and
-cannot be enforced by independent hook instances.
+No JS hook. No IntersectionObserver. No scroll listeners. No singleton coordinator.
+A single `@utility` class `.btn-breathe` applied to all CTA elements.
 
-Responsibilities:
+**Rationale:** The user chose symmetric breathing (approach B) — no viewport awareness needed.
+The animation runs continuously on touch devices, exactly like a hover affordance.
 
-1. **Touch gate.** Registry is inert unless `(hover: none) and (pointer: coarse)` matches.
-   Desktop never activates. Evaluated once at module load.
-2. **Reduced motion.** Inert if `prefers-reduced-motion: reduce`. Watched live via
-   `MediaQueryList.addEventListener` so a mid-session change takes effect.
-3. **Visibility.** One shared `IntersectionObserver` at `threshold: 0.6`. Elements crossing
-   in become candidates; crossing out are removed and lose the attribute immediately.
-4. **Election.** Among candidates, the highest `intersectionRatio` wins. Exactly one element
-   holds `data-breathing` at any moment.
-5. **Start delay.** 300–600ms randomized, applied before the winner starts. Makes the
-   interface feel responsive to the user rather than to the scroll position.
-6. **Scroll stabilization.** One shared `passive: true` scroll listener for the entire module
-   — not one per CTA. It only resets a timer; it never reads layout
-   (no `getBoundingClientRect`, no style reads). On scroll: revoke `data-breathing`
-   immediately. After 250ms idle: re-elect and re-apply the 300–600ms start delay.
+## Cleanup
 
-**Note on the scroll listener.** The original brief said "never use scroll listeners." The
-intent — never drive animation by reading layout on scroll — is honored: this listener does
-nothing but reset a timer. A pure-IntersectionObserver proxy was rejected because a fully
-visible CTA crosses no thresholds during slow scroll and would fail to pause. The native
-`scrollend` event was rejected for poor Safari iOS support, which is the primary target.
-
-### Cleanup
-
-Deleting `useTouchCtaReveal` requires removing its import and call in `Consultoria.tsx`,
-`KitsGrid.tsx`, `HairCareSuite.tsx`, and `MalbecShowcase.tsx` (two call sites in the latter,
-including the gold CTA which gains no replacement). Delete the hook file. Audit `index.css`
-for `cta-emphasize` / `wa-pulse` usage that becomes dead or conflicting on touch.
+- Delete `client/src/hooks/useTouchCtaReveal.ts`
+- Remove all `useTouchCtaReveal()` calls from `Consultoria.tsx`, `KitsGrid.tsx`,
+  `HairCareSuite.tsx`, `MalbecShowcase.tsx`
+- Add `btn-breathe` class + variant custom properties to every CTA `<a>` element
+- The existing `cta-emphasize` and `wa-glow`/`wa-pulse` classes on touch devices are
+  redundant with breathing and should be gated to `@media (hover: hover)` only
 
 ## Performance
 
-`transform` and `box-shadow` are compositor-friendly. `background-color` triggers paint but
-not layout, on a single small element — negligible, and it is the property the effect
-fundamentally depends on. No layout shift: scale uses `transform`, never width/height/margin.
-At most one element animates at a time, by design.
+- `transform`, `opacity`, `filter` — compositor-only, no layout
+- `background-color` — paint only, single small element, negligible
+- `box-shadow` — compositor-friendly when on a non-root element with `will-change`
+- No JS animation frames, no `getBoundingClientRect`, no forced reflows
 
 ## Accessibility
 
-`prefers-reduced-motion: reduce` disables breathing entirely — the registry never grants the
-attribute. A CSS-level guard also nulls the animation, so the feature is off even if a stale
-attribute persists. This matches the existing guard at `index.css:343`.
+- `@media (prefers-reduced-motion: reduce)` disables the animation entirely
+- The existing global reduced-motion block at `index.css:578` already handles this
+- Add explicit `.btn-breathe { animation: none !important; }` in that block for defense
 
 ## Verification
 
-Real mobile device, slow scroll through the full Home page:
-
-1. Exactly one CTA breathes at any moment — never two.
-2. Nothing breathes on the Hero.
-3. The black arrow becomes legible at breath peak.
-4. The green matches desktop hover identity.
-5. Breathing stops on scroll and resumes ~250ms after it settles.
-6. Breathing stops immediately when the CTA leaves the viewport.
-7. Desktop hover is byte-for-byte unchanged; nothing breathes on desktop.
-8. Sustained 60 FPS in DevTools performance capture.
-9. With reduced motion enabled, no breathing occurs anywhere.
+1. Desktop: hover works exactly as before — no breathing
+2. Mobile/touch: all CTAs breathe continuously with 4s cycle
+3. Each variant breathes to its own peak color
+4. Peak includes scale (1.025), glow shadow, brightness lift, and vignette
+5. Reduced motion: no breathing on any device
+6. Sustained 60 FPS on mobile
