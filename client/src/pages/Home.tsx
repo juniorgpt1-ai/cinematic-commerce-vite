@@ -198,7 +198,7 @@ const Hero = memo(function Hero() {
       <div className="absolute inset-0 bg-gradient-to-r from-black/95 via-black/70 to-transparent" />
       <div className="absolute inset-0 bg-gradient-to-t from-[#070707] via-transparent to-black/50" />
 
-      <div className="relative z-10 mx-auto max-w-7xl w-full px-4 md:px-6 pt-24 md:pt-32 pb-6 md:pb-40 flex flex-col justify-end flex-1 md:grow-0">
+      <div className="relative z-10 mx-auto max-w-7xl w-full px-4 md:px-6 pt-24 md:pt-32 pb-20 md:pb-40 flex flex-col justify-end flex-1 md:grow-0">
         <div className="animate-fade-up max-w-3xl flex flex-col flex-1 md:grow-0 justify-between md:justify-normal gap-y-6">
           <div>
             <div className="mb-2 sm:mb-8 hidden md:flex md:justify-start">

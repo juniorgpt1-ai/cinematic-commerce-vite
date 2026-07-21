@@ -215,10 +215,9 @@
 }
 @media (prefers-reduced-motion: reduce) {
   .wa-glow, .wa-pulse { animation: none; }
-  .animate-bottle-in { animation: none; opacity: 1; transform: none; }
-  .animate-bottle-float { animation: none; }
   .animate-fade-up { animation: none; opacity: 1; transform: none; }
   .animate-float-badge { animation: none; }
+  .animate-bg-slow-zoom { animation: none; }
 }
 
 .scrollbar-premium::-webkit-scrollbar {
@@ -234,36 +233,6 @@
 }
 .scrollbar-premium::-webkit-scrollbar-thumb:hover {
   background: var(--color-luxe-gold-soft);
-}
-
-/* ── Perfume Bottle Animations ── */
-
-@keyframes bottle-enter {
-  from {
-    opacity: 0;
-    transform: translateY(15px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes bottle-float {
-  from {
-    transform: translateY(0);
-  }
-  to {
-    transform: translateY(-6px);
-  }
-}
-
-@utility animate-bottle-in {
-  animation: bottle-enter 600ms ease-out forwards;
-}
-
-@utility animate-bottle-float {
-  animation: bottle-float 3.5s ease-in-out infinite alternate;
 }
 
 /* ── Hero content fade-up (replaces framer-motion useFadeUp on Hero) ── */
@@ -316,6 +285,18 @@
   transition: transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* ── Background slow zoom (parallax depth for section backgrounds) ── */
+
+@keyframes bg-slow-zoom {
+  from { transform: scale(1); }
+  to   { transform: scale(1.06); }
+}
+
+@utility animate-bg-slow-zoom {
+  animation: bg-slow-zoom 20s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: transform;
+}
+
 /* ── Ambient background depth ── */
 
 @utility bg-luxe-gradient {
@@ -335,15 +316,6 @@
   background:
     radial-gradient(ellipse 50% 30% at 30% 20%, rgba(197, 168, 92, 0.06), transparent 60%),
     #0a0a0a;
-}
-
-/* ── Premium card ── */
-
-@utility card-premium {
-  border: 1px solid rgba(197, 168, 92, 0.12);
-  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
-              box-shadow 0.3s cubic-bezier(0.22, 1, 0.36, 1),
-              border-color 0.3s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 /* ── Button hover scale ── */
@@ -381,13 +353,6 @@
   &:hover {
     filter: brightness(1.08);
   }
-}
-
-/* ── Header premium background ── */
-.header-premium {
-  background:
-    radial-gradient(ellipse 80% 50% at 50% 0%, rgb(var(--luxe-glow-rgb) / 0.06), transparent 50%),
-    linear-gradient(180deg, #1a1a1a 0%, #141414 40%, #0f0f0f 100%);
 }
 
 /* ── Gold metallic CTA ── */
@@ -463,6 +428,12 @@
 .stagger-container.visible > .reveal-up:nth-child(4) { animation-delay: 210ms; }
 .stagger-container.visible > .reveal-up:nth-child(5) { animation-delay: 280ms; }
 .stagger-container.visible > .reveal-up:nth-child(6) { animation-delay: 350ms; }
+
+/* ── CtaFinal content stagger: children reveal in sequence ── */
+.cta-final-content.visible > .reveal-up:nth-child(1) { animation-delay: 0ms; }
+.cta-final-content.visible > .reveal-up:nth-child(2) { animation-delay: 120ms; }
+.cta-final-content.visible > .reveal-up:nth-child(3) { animation-delay: 240ms; }
+.cta-final-content.visible > .reveal-up:nth-child(4) { animation-delay: 360ms; }
 
 /* ── Nav scroll transition ── */
 

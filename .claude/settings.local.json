@@ -45,7 +45,11 @@
       "Bash(awk -F/ '{print $1}')",
       "Bash(awk '$1==160000')",
       "Bash(git rm *)",
-      "Bash(rmdir cinematic-commerce-vite *)"
+      "Bash(rmdir cinematic-commerce-vite *)",
+      "Bash(git commit -q -m 'cleanup fase 2b: ignora awesome-design-md para o gitlink nao voltar *)",
+      "Bash(mkdir -p _quarentena/logos-nao-usados _quarentena/modulos-mortos _quarentena/scripts-nao-usados _quarentena/artefatos-dev)",
+      "Bash(git mv *)",
+      "Bash(mv client/public/preview.webp _quarentena/logos-nao-usados/)"
     ]
   },
   "hooks": {

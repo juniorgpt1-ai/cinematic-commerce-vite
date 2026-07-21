@@ -8,18 +8,21 @@ import SendMorphIcon from "@/components/sections/SendMorphIcon";
 
 const CtaFinal = memo(function CtaFinal({ heroImage }: { heroImage: string }) {
   const sectionRef = useScrollReveal();
+  const badgeRef = useScrollReveal();
+  const headingRef = useScrollReveal();
+  const textRef = useScrollReveal();
   const ctaRef = useScrollReveal<HTMLAnchorElement>();
   const { phase: sendPhase, trigger: triggerSend } = useSendMorph();
   return (
     <section className="relative bg-dark-deeper text-white overflow-hidden py-28 md:py-36">
 
       <div className="absolute inset-0 opacity-45">
-        <img src={heroImage} alt="" className="h-full w-full object-cover" loading="lazy" decoding="async" width="1075" height="1463" />
+        <img src={heroImage} alt="" className="h-full w-full object-cover animate-bg-slow-zoom" loading="lazy" decoding="async" width="1075" height="1463" />
         <div className="absolute inset-0 bg-gradient-to-t from-luxe-ink via-luxe-ink/85 to-luxe-ink/70" />
       </div>
 
-      <div ref={sectionRef} className="reveal-up relative mx-auto max-w-4xl px-6 text-center z-10">
-          <div className="mb-8">
+      <div ref={sectionRef} className="cta-final-content relative mx-auto max-w-4xl px-6 text-center z-10">
+          <div ref={badgeRef} className="reveal-up mb-8">
             <FloatingBadge className="border-luxe-gold-soft/50 bg-black/90 shadow-xl shadow-black/50 ring-1 ring-white/5">
               <Timer className="size-4 text-luxe-gold-soft" />
               <span className="text-[13px] tracking-[0.28em] uppercase text-luxe-gold-soft font-bold">
@@ -28,10 +31,10 @@ const CtaFinal = memo(function CtaFinal({ heroImage }: { heroImage: string }) {
             </FloatingBadge>
           </div>
 
-          <h2 className="mt-8 font-section text-5xl md:text-7xl font-semibold leading-[1.05]">
+          <h2 ref={headingRef} className="reveal-up mt-8 font-section text-5xl md:text-7xl font-semibold leading-[1.05]">
             Catálogo completo à sua disposição.
           </h2>
-          <p className="mt-8 text-white/70 text-lg font-sans font-light max-w-xl mx-auto leading-relaxed">
+          <p ref={textRef} className="reveal-up mt-8 text-white/70 text-lg font-sans font-light max-w-xl mx-auto leading-relaxed">
             Temos acesso ao catálogo completo do Grupo Boticário. Fale com a gente e encontramos para você.
           </p>
 

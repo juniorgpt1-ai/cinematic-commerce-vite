@@ -23,7 +23,7 @@ const Consultoria = memo(function Consultoria({ image }: { image: string }) {
                 loading="lazy"
                 width="600"
                 height="704"
-                className="h-full w-full object-cover"
+                className="h-full w-full object-cover animate-bg-slow-zoom"
               />
               <div className="absolute inset-0 border border-luxe-gold/30 pointer-events-none m-4" />
             </div>
