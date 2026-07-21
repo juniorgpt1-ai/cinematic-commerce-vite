@@ -121,3 +121,6 @@ client/public/__manus__/version.json
 
 # Installers accidentally dropped in public/ (too large for GitHub)
 *.exe
+
+# Repositorio de referencia clonado dentro do projeto (nao e submodulo)
+awesome-design-md/
