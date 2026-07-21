@@ -35,7 +35,15 @@
       "mcp__plugin_vercel_vercel__get_project",
       "Bash(npx tsc *)",
       "Bash(claude mcp *)",
-      "Bash(echo \"EXIT:$?\")"
+      "Bash(echo \"EXIT:$?\")",
+      "mcp__playwright__browser_navigate",
+      "Bash(where magick *)",
+      "Bash(where inkscape *)",
+      "Bash(node \"C:/Users/SAMUEL/AppData/Local/Temp/claude/C--Users-SAMUEL-Downloads-cinematic-commerce-vite/5d9c5ece-c82a-4e0a-96e5-e9d9de7a3fc1/scratchpad/gen-assets.cjs\")",
+      "Bash(node _gen-assets.cjs)",
+      "Bash(git diff *)",
+      "Bash(awk -F/ '{print $1}')",
+      "Bash(awk '$1==160000')"
     ]
   },
   "hooks": {

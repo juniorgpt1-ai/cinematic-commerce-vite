@@ -13,11 +13,11 @@ const AntigravityParticles = lazy(() => import("@/components/AntigravityParticle
 // Assets - URLs publicas
 const heroPerfume = "/malbec-signatureA.webp";
 const malbecLifestyleImg = "/malbec-lifestyle-mob.webp";
-const malbecCollageImg = "/malbec-collage-mob.webp";
-const florattaRedImg = "/floratta-red-lifestyle-mob.webp";
-const hairCareVolumeImg = "/hair-care-volume-mob.webp";
-const hairCareLisoImg = "/hair-care-liso-mob.webp";
-const consultoraImg = "/consultora-mob.webp";
+const malbecCollageImg = "/malbec-collage-mob-2x.webp";
+const florattaRedImg = "/floratta-red-lifestyle-mob-2x.webp";
+const hairCareVolumeImg = "/hair-care-volume-mob-2x.webp";
+const hairCareLisoImg = "/hair-care-liso-mob-2x.webp";
+const consultoraImg = "/consultora-mob-2x.webp";
 
 // Lazy-loaded section imports
 const TrustBar = lazy(() => import("@/components/sections/TrustBar"));
@@ -50,7 +50,7 @@ const LandingPage = memo(function LandingPage() {
       <LazySection><Suspense fallback={null}><ComoFunciona /></Suspense></LazySection>
       <LazySection><Suspense fallback={null}><Depoimentos /></Suspense></LazySection>
       <LazySection><Suspense fallback={null}><Faq /></Suspense></LazySection>
-      <LazySection><Suspense fallback={null}><CtaFinal heroImage={heroPerfume} /></Suspense></LazySection>
+      <LazySection><Suspense fallback={null}><CtaFinal heroImage="/malbecSMOB.webp" /></Suspense></LazySection>
       <LazySection><Suspense fallback={null}><Footer /></Suspense></LazySection>
       <WhatsappFloating />
     </main>

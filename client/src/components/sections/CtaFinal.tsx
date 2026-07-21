@@ -13,16 +13,16 @@ const CtaFinal = memo(function CtaFinal({ heroImage }: { heroImage: string }) {
   return (
     <section className="relative bg-dark-deeper text-white overflow-hidden py-28 md:py-36">
 
-      <div className="absolute inset-0 opacity-20">
+      <div className="absolute inset-0 opacity-45">
         <img src={heroImage} alt="" className="h-full w-full object-cover" loading="lazy" decoding="async" width="1075" height="1463" />
         <div className="absolute inset-0 bg-gradient-to-t from-luxe-ink via-luxe-ink/85 to-luxe-ink/70" />
       </div>
 
       <div ref={sectionRef} className="reveal-up relative mx-auto max-w-4xl px-6 text-center z-10">
           <div className="mb-8">
-            <FloatingBadge className="border-luxe-gold-soft/30 bg-black/85">
-              <Timer className="size-3.5 text-luxe-gold-soft" />
-              <span className="text-[12px] tracking-[0.32em] uppercase text-luxe-gold-soft font-semibold">
+            <FloatingBadge className="border-luxe-gold/50 bg-black/90 shadow-xl shadow-black/50 ring-1 ring-white/5">
+              <Timer className="size-3.5 text-luxe-gold" />
+              <span className="text-[12px] tracking-[0.32em] uppercase text-luxe-gold font-semibold">
                 Última saída VIP do dia às 21h
               </span>
             </FloatingBadge>

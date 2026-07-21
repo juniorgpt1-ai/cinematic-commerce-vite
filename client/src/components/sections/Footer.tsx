@@ -6,18 +6,18 @@ const Footer = memo(function Footer() {
   return (
     <footer className="bg-luxe-bg border-t border-luxe-line/30">
       <div className="mx-auto max-w-7xl px-6 py-20 md:py-28">
-        <div className="flex justify-center mb-16">
-          <img src="/preview.webp" alt="S&C Beauty" className="w-[180px] h-auto mix-blend-multiply" />
+        <div className="flex flex-col items-center mb-16">
+          <img src="/sc-monogram-transparente.webp" alt="S&C Beauty" className="w-[260px] h-auto" />
+          <div className="mt-4 font-sans text-xl font-semibold tracking-[0.18em] uppercase text-center">
+            S&C<span className="text-luxe-gold"> · </span>Beauty
+          </div>
+          <div className="mt-1 text-[10px] tracking-[0.24em] uppercase text-luxe-ink-soft/80 font-sans text-center">
+            Revendedora autorizada Grupo Boticário e Eudora
+          </div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-start">
           <div>
-            <div className="font-sans text-xl font-semibold tracking-[0.18em] uppercase">
-              S&C<span className="text-luxe-gold"> · </span>Beauty
-            </div>
-            <div className="mt-1 text-[10px] tracking-[0.24em] uppercase text-luxe-ink-soft/80 font-sans">
-              Revendedora autorizada Grupo Boticário e Eudora
-            </div>
-            <p className="mt-4 text-sm text-luxe-ink/85 max-w-xs font-sans font-light leading-relaxed">
+            <p className="text-base text-luxe-ink/85 max-w-xs font-sans font-light leading-relaxed">
               Entrega expressa via Uber Flash em Belo Horizonte e região. Perfumaria e cosméticos premium na porta da sua casa.
             </p>
           </div>
