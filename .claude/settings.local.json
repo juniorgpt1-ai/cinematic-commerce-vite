@@ -52,7 +52,8 @@
       "Bash(mv client/public/preview.webp _quarentena/logos-nao-usados/)",
       "Bash(git commit -q -m 'docs: adiciona CLEANUP-REPORT.md com o resumo das fases *)",
       "Bash(read p *)",
-      "Bash([ -f \"dist/public$p\" ])"
+      "Bash([ -f \"dist/public$p\" ])",
+      "Bash(git commit -q -m ' *)"
     ]
   },
   "hooks": {
