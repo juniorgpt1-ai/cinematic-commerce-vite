@@ -40,34 +40,46 @@ Não estavam no escopo pedido, mas eram defeitos reais em produção:
 
 ---
 
-## FASE 1 — Imagens em alta resolução
+## FASE 1 + FASE 5 — Imagens em alta resolução
 
-**Problema:** o site usava as variantes `-mob` (1x, 380–600px) em todos os
-layouts, inclusive desktop. Esticadas, ficavam visivelmente sem qualidade.
-As variantes `-mob-2x` (720–880px) existiam no repositório mas **não eram
-referenciadas em lugar nenhum**.
+**Problema:** o site servia as variantes `-mob` (380–880px) esticadas em
+**todos** os viewports, inclusive desktop. Visivelmente sem qualidade.
 
-**Correção:** 5 imagens repontadas para `-2x`.
+**Causa-raiz:** o commit `18cd5d9` ("gg") **deletou as 8 imagens desktop
+originais** do repositório. O commit anterior `0713165` já havia removido as
+tags `<source>` mobile de todas as seções, com a intenção declarada de "usar as
+imagens desktop em todos os viewports" — mas os arquivos desktop foram apagados
+logo depois, deixando o site preso nas variantes mobile.
+
+**Correção final (commit `8028a8f`):** as 8 imagens desktop foram
+**recuperadas do histórico do git** (`git checkout 18cd5d9^ -- ...`) e
+religadas em todas as seções.
 
 | Imagem | Antes | Depois |
 |---|---|---|
-| consultora | 400×470 | **720×845** |
-| hair-care-volume | 380×359 | **760×718** |
-| hair-care-liso | 380×214 | **760×428** |
-| floratta-red-lifestyle | 600×448 | **760×567** |
-| malbec-collage | 600×445 | **720×538** |
-
-**Exceção:** `malbec-lifestyle` ficou no arquivo 1x — nesse caso específico o
-arquivo "1x" (800×597) é **maior** que o próprio "-2x" (760×567). Anomalia de
-como os arquivos foram gerados originalmente.
+| consultora | 720×845 | **1200×1408** |
+| hair-care-volume | 760×718 | **2200×2078** |
+| hair-care-liso | 760×428 | **1672×941** |
+| floratta-red-lifestyle | 760×567 | **2400×1792** |
+| malbec-collage | 720×538 | **2400×1792** |
+| malbec-lifestyle | 800×597 | **2400×1792** |
+| malbec1 | 880×657 | **2400×1792** |
+| floratta | 760×760 | **1024×1024** |
 
 **Hero intocado**, conforme pedido: `malbecSMOB.webp`, `malbecDDESK.webp` e
-`malbec-signatureA.webp` seguem como estavam.
+`malbec-signatureA.webp` seguem exatamente como estavam, com o `<picture>` e os
+breakpoints originais.
 
-> ⚠️ Os arquivos-fonte originais em alta (`*-opt.webp`, `floratta.webp`,
-> `malbec1.webp`) **não existem mais** no repositório. Os `-2x` são a maior
-> resolução disponível hoje. Se você tiver os originais, dá pra regerar com
-> qualidade bem melhor.
+Todas as 8 variantes `-mob`/`-mob-2x` foram para quarentena.
+
+> ⚠️ **Trade-off de peso:** as imagens de seção passaram de ~270 KB para
+> ~1,2 MB no total. Todas são lazy-loaded (abaixo da dobra, via `LazySection` +
+> `loading="lazy"`), então não afetam o LCP — mas o mobile agora baixa arquivos
+> bem maiores. Se quiser o melhor dos dois mundos depois, o caminho é
+> reintroduzir `<picture>` com `<source media="(max-width: 767px)">` apontando
+> para variantes intermediárias (~1000–1200px) geradas a partir dessas
+> desktop — que é justamente o que o `generate-mobile-srcset.mjs` (em
+> quarentena) fazia.
 
 ---
 
