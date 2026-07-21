@@ -43,7 +43,9 @@
       "Bash(node _gen-assets.cjs)",
       "Bash(git diff *)",
       "Bash(awk -F/ '{print $1}')",
-      "Bash(awk '$1==160000')"
+      "Bash(awk '$1==160000')",
+      "Bash(git rm *)",
+      "Bash(rmdir cinematic-commerce-vite *)"
     ]
   },
   "hooks": {

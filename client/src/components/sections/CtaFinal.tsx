@@ -20,9 +20,9 @@ const CtaFinal = memo(function CtaFinal({ heroImage }: { heroImage: string }) {
 
       <div ref={sectionRef} className="reveal-up relative mx-auto max-w-4xl px-6 text-center z-10">
           <div className="mb-8">
-            <FloatingBadge className="border-luxe-gold/50 bg-black/90 shadow-xl shadow-black/50 ring-1 ring-white/5">
-              <Timer className="size-3.5 text-luxe-gold" />
-              <span className="text-[12px] tracking-[0.32em] uppercase text-luxe-gold font-semibold">
+            <FloatingBadge className="border-luxe-gold-soft/50 bg-black/90 shadow-xl shadow-black/50 ring-1 ring-white/5">
+              <Timer className="size-4 text-luxe-gold-soft" />
+              <span className="text-[13px] tracking-[0.28em] uppercase text-luxe-gold-soft font-bold">
                 Última saída VIP do dia às 21h
               </span>
             </FloatingBadge>

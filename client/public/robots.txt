@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
-<!-- TODO: substituir pelo domínio real -->
+
+# TODO: substituir pelo domínio real
 Sitemap: https://SEU-DOMINIO.com.br/sitemap.xml
