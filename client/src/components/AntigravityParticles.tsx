@@ -33,7 +33,7 @@ const ParticleElement = memo(function ParticleElement({ p }: { p: Particle }) {
         ["--particle-duration" as string]: `${p.floatDuration}s`,
         ["--particle-delay" as string]: `${p.delay}s`,
       }}
-      className={`absolute animate-particle-float will-change-transform ${bgStyleFor(p.type)}`}
+      className={`absolute animate-particle-float ${bgStyleFor(p.type)}`}
     />
   );
 });

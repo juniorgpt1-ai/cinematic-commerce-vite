@@ -22,12 +22,12 @@ npx vitest --run    # Run tests (Vitest installed but no test files exist yet)
 
 ### Stack
 
-- **Framework:** React 19 + Vite 7 + TypeScript 5.6
+- **Framework:** React 19 + Vite 5 + TypeScript 5.6
 - **Styling:** Tailwind CSS v4 + `tw-animate-css` + shadcn/ui (New York style)
 - **Animation:** CSS keyframes/transitions (`@utility` classes in `index.css`); no animation library
 - **Routing:** Wouter 3.3 (lightweight ~2KB router)
 - **Server:** Express 4 (static file serving + SPA fallback)
-- **UI primitives:** Radix UI (accordion, dialog, tooltip), Embla Carousel, Recharts 2
+- **UI primitives:** Radix UI (slot only), Lucide React icons
 - **No test suite configured yet** (Vitest installed, no test files)
 
 ### Directory Layout
@@ -35,18 +35,18 @@ npx vitest --run    # Run tests (Vitest installed but no test files exist yet)
 ```
 client/src/
 ├── main.tsx              # Entry: <App> + <SpeedInsights>
-├── App.tsx               # Root: ErrorBoundary > ThemeProvider > TooltipProvider > Router
+├── App.tsx               # Root: ErrorBoundary > ThemeProvider > Router
 ├── index.css             # Tailwind v4 imports + custom "luxe palette" CSS vars + utility classes
 ├── pages/
-│   ├── Home.tsx          # ~1448 LOC: all sections (Hero, TrustBar, HairCare, Perfumes, Kits, FAQ, Footer)
+│   ├── Home.tsx          # ~284 LOC: sections imported via lazy() from components/sections/
 │   └── NotFound.tsx      # 404
 ├── components/
-│   ├── ui/               # 55+ shadcn/ui components (button, card, dialog, carousel, chart, etc.)
+│   ├── ui/               # 2 shadcn/ui components (button, card)
 │   └── AntigravityParticles.tsx  # CSS-driven particle background for Hero (vanilla mouse parallax)
 ├── lib/
 │   ├── utils.ts          # cn() helper (clsx + tailwind-merge)
 │   └── whatsapp.ts       # waLink() builder → https://wa.me/<number>?text=<encoded>
-├── hooks/                # useMobile, useComposition, usePersistFn
+├── hooks/                # useScrollReveal, useSendMorph, useTouchCtaReveal, useCarouselAutoplay
 └── contexts/
     └── ThemeContext.tsx   # Light/dark (default light, switchable disabled)
 server/index.ts           # Express: serves dist/public/ static + SPA fallback on port 3000

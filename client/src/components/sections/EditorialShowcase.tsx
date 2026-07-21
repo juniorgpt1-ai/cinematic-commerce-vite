@@ -1,8 +1,9 @@
-import { memo, useState, useEffect, useCallback, useRef } from "react";
-import { Timer, ArrowRight, Sparkles } from "lucide-react";
+import { memo } from "react";
+import { Timer, Sparkles } from "lucide-react";
 import { waLink } from "@/lib/whatsapp";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useSendMorph } from "@/hooks/useSendMorph";
+import { useCarouselAutoplay } from "@/hooks/useCarouselAutoplay";
 import FloatingBadge from "@/components/sections/FloatingBadge";
 import SendMorphIcon from "@/components/sections/SendMorphIcon";
 
@@ -45,28 +46,8 @@ const EditorialShowcase = memo(function EditorialShowcase({
   const copyRef = useScrollReveal();
   const { phase: sendPhase, trigger: triggerSend } = useSendMorph();
   const accentText = tone === "bordo" ? "text-luxe-bordo" : "";
-  const [slide, setSlide] = useState(0);
-  const [autoplayPaused, setAutoplayPaused] = useState(false);
   const hasCarousel = !!secondImage;
-  const nextSlide = useCallback(() => setSlide(s => (s + 1) % 2), []);
-  const resumeTimeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
-
-  useEffect(() => {
-    if (!hasCarousel || autoplayPaused) return;
-    const intervalId = setInterval(nextSlide, 4000);
-    return () => clearInterval(intervalId);
-  }, [hasCarousel, nextSlide, autoplayPaused]);
-
-  useEffect(() => {
-    return () => clearTimeout(resumeTimeoutRef.current);
-  }, []);
-
-  const selectSlide = useCallback((i: number) => {
-    setSlide(i);
-    setAutoplayPaused(true);
-    clearTimeout(resumeTimeoutRef.current);
-    resumeTimeoutRef.current = setTimeout(() => setAutoplayPaused(false), 6000);
-  }, []);
+  const { slide, selectSlide, carouselHandlers } = useCarouselAutoplay(2, 4000, 6000, hasCarousel);
 
   return (
     <section id={id} className="relative bg-luxe-gradient border-b border-luxe-line/30 overflow-hidden">
@@ -80,16 +61,16 @@ const EditorialShowcase = memo(function EditorialShowcase({
           <div
             ref={imageRef}
             className={`reveal-right ${reverse ? "lg:col-span-5" : "lg:col-span-7"} relative`}
-            onMouseEnter={() => setAutoplayPaused(true)}
-            onMouseLeave={() => setAutoplayPaused(false)}
-            onFocus={() => setAutoplayPaused(true)}
-            onBlur={() => setAutoplayPaused(false)}
+            onMouseEnter={carouselHandlers.onMouseEnter}
+            onMouseLeave={carouselHandlers.onMouseLeave}
+            onFocus={carouselHandlers.onFocus}
+            onBlur={carouselHandlers.onBlur}
           >
             {hasCarousel ? (
               <>
                 <div className="relative aspect-[4/5] overflow-hidden bg-black shadow-2xl">
                   <div
-                    className="flex h-full transition-transform duration-700 ease-in-out"
+                    className="flex h-full transition-transform duration-500 ease-in-out"
                     style={{ transform: `translateX(-${slide * 100}%)` }}
                   >
                     <div className="min-w-full relative">
@@ -119,7 +100,7 @@ const EditorialShowcase = memo(function EditorialShowcase({
                       {secondLabel && (
                         <div className="absolute top-4 md:top-6 left-4 right-4 text-center">
                           {secondLabel.split("\n").map((line, i) => (
-                            <span key={i} className={`block ${i === 0 ? "text-white/80 text-[13px] tracking-[0.24em] md:tracking-[0.28em] uppercase font-semibold" : "text-white/60 text-[14px] leading-relaxed font-light italic mt-1"}`}>
+                            <span key={i} className={`block ${i === 0 ? "text-white/80 text-[13px] tracking-[0.24em] md:tracking-[0.28em] uppercase font-semibold" : "text-white/85 text-[14px] leading-relaxed font-light italic mt-1"}`}>
                               {line}
                             </span>
                           ))}
@@ -163,7 +144,7 @@ const EditorialShowcase = memo(function EditorialShowcase({
               {title}
             </h2>
             <span className="gold-rule mt-8" />
-            <p className="mt-8 text-lg text-luxe-ink/85 font-sans font-light leading-relaxed">
+            <p className="mt-8 text-lg text-luxe-ink/97 font-sans font-normal leading-relaxed drop-shadow-[0_1px_3px_rgba(0,0,0,0.06)]">
               {copy}
             </p>
 
@@ -189,11 +170,11 @@ const EditorialShowcase = memo(function EditorialShowcase({
 
             <div className="mt-10 flex items-end justify-between gap-6 flex-wrap">
               <div>
-                <span className="text-[10px] tracking-[0.28em] uppercase text-luxe-ink-soft/70 font-semibold">
+                <span className="text-[10px] tracking-[0.28em] uppercase text-luxe-ink-soft/85 font-semibold">
                   Valor Acessível
                 </span>
                 <div className="font-sans text-2xl md:text-3xl font-semibold mt-1 text-luxe-ink">{price}</div>
-                <div className="mt-2 text-[13px] text-luxe-ink-soft font-medium">
+                <div className="mt-2 text-[13px] text-luxe-ink-soft/90 font-medium">
                   ou <span className="text-luxe-ink font-semibold">3x sem juros</span>
                   <span className="mx-2 text-luxe-gold">·</span>
                   <span className="text-luxe-ink font-semibold">Pix com 5% OFF</span>
@@ -208,7 +189,7 @@ const EditorialShowcase = memo(function EditorialShowcase({
               >
                 <SendMorphIcon phase={sendPhase} className="size-4" />
                 {cta}
-                <ArrowRight className="size-4 group-hover:translate-x-1 transition-transform" />
+                <img src="/msg.svg" alt="" className="size-5 group-hover:translate-x-1 transition-transform" />
               </a>
             </div>
           </div>

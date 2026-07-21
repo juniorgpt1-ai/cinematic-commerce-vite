@@ -12,6 +12,9 @@
     <link rel="alternate icon" href="/sc-monogram-gold-solid.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
+    <!-- Fonts — self-hosted woff2 (zero external CDN dependency) -->
+    <!-- @font-face rules are in client/src/fonts.css, imported via main.tsx -->
+
     <!-- Primary SEO -->
     <title>S&C Beauty — Perfumaria e Cosméticos Premium | Entrega Expressa em BH</title>
     <meta name="description" content="Perfumaria e cosméticos premium do Grupo Boticário e Eudora com entrega expressa via Uber Flash em Belo Horizonte. Revendedor oficial. Consulte agora pelo WhatsApp." />
@@ -41,10 +44,10 @@
     <meta name="twitter:image" content="https://SEU-DOMINIO.com.br/og-image.png" />
     <meta name="twitter:image:alt" content="S&C Beauty — Perfumaria e Cosméticos Premium" />
 
-    <!-- Font Preloads: self-hosted critical above-the-fold variants -->
-    <link rel="preload" as="font" type="font/woff2" crossorigin href="/fonts/cormorant-garamond.woff2" />
-    <link rel="preload" as="font" type="font/woff2" crossorigin href="/fonts/plus-jakarta-sans.woff2" />
-    <link rel="preload" as="font" type="font/woff2" crossorigin href="/fonts/playfair-display-600.woff2" />
+    <!-- Font Preloads: critical latin-subset woff2 for LCP (self-hosted) -->
+    <link rel="preload" as="font" type="font/woff2" crossorigin href="/fonts/cormorantgaramond/v21/co3bmX5slCNuHLi8bLeY9MK7whWMhyjYqXtK.woff2" />
+    <link rel="preload" as="font" type="font/woff2" crossorigin href="/fonts/plusjakartasans/v12/LDIoaomQNQcsA88c7O9yZ4KMCoOg4Ko20yw.woff2" />
+    <link rel="preload" as="font" type="font/woff2" crossorigin href="/fonts/playfairdisplay/v40/nuFvD-vYSZviVYUb_rj3ij__anPXJzDwcbmjWBN2PKebunDXbtM.woff2" />
 
     <!-- Preconnect: WhatsApp (every CTA opens this) -->
     <link rel="preconnect" href="https://wa.me" />

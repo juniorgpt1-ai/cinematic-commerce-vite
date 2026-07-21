@@ -126,7 +126,7 @@ const TrustBar = memo(function TrustBar() {
                   // Without stat
                   <h3 className="font-sans text-xl font-semibold [text-shadow:0_1px_4px_rgba(0,0,0,0.2)]">{it.title}</h3>
                 )}
-                <p className="mt-3 text-luxe-ink/95 font-sans font-normal text-base leading-relaxed max-w-[280px]">
+                <p className="mt-3 text-luxe-ink/97 font-sans font-normal text-base leading-relaxed max-w-[280px] drop-shadow-[0_1px_3px_rgba(0,0,0,0.06)]">
                   {it.desc}
                 </p>
               </div>

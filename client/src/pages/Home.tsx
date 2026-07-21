@@ -1,4 +1,4 @@
-import { Timer, ArrowRight } from "lucide-react";
+import { Timer } from "lucide-react";
 import { useState, useEffect, memo, lazy, Suspense } from "react";
 import { waLink } from "@/lib/whatsapp";
 import FloatingBadge from "@/components/sections/FloatingBadge";
@@ -74,15 +74,17 @@ const Nav = memo(function Nav() {
 
         {/* ═══════════════════ MOBILE: nav row only ═══════════════════ */}
         <div className="md:hidden bg-black/40 backdrop-blur-sm text-white">
-          <div className="px-3 py-2">
+          <div className="nav-inner px-3 py-2">
             <div className="flex items-center justify-between gap-1.5">
-              <a href="/" aria-label="S&C Beauty — Início" className="shrink-0 shimmer-logo" style={{ isolation: "isolate" }}>
-                <img src="/sc-monogram-white.svg" alt="S&C Beauty" className="h-10 w-auto" />
+              <a href="/" aria-label="S&C Beauty — Início" className="shrink-0 logo-wrap">
+                <img src="/sc-monogram-white.svg" alt="S&C Beauty" className="logo-base h-10 w-auto" />
+                <div className="logo-shine"></div>
               </a>
-              <nav className="flex items-center gap-3 text-[12px] tracking-[0.14em] uppercase font-sans">
+              <nav className="flex items-center gap-2.5 text-[11px] tracking-[0.12em] uppercase font-sans">
                 <a href="#haircare" className="relative hover:text-luxe-gold-soft transition-colors font-medium before:absolute before:inset-[-5px] before:content-['']">Hair</a>
                 <a href="#perfumes" className="relative hover:text-luxe-gold-soft transition-colors font-medium before:absolute before:inset-[-5px] before:content-['']">Perfumes</a>
                 <a href="#faq" className="relative hover:text-luxe-gold-soft transition-colors font-medium before:absolute before:inset-[-5px] before:content-['']">FAQ</a>
+                <a href="#kits" className="relative hover:text-luxe-gold-soft transition-colors font-medium before:absolute before:inset-[-5px] before:content-['']">Kits</a>
               </nav>
               <a
                 href={waLink("Olá, vim pela página e quero atendimento de luxo inteligente.")}
@@ -90,60 +92,20 @@ const Nav = memo(function Nav() {
                 rel="noopener noreferrer"
                 className="relative inline-flex items-center gap-1 text-[13px] tracking-[0.10em] uppercase font-bold transition-colors shrink-0 text-luxe-gold-soft before:absolute before:inset-[-5px] before:content-['']"
               >
-                WhatsApp <ArrowRight className="size-3" />
+                WhatsApp <img src="/msg.svg" alt="" className="size-4 invert" />
               </a>
             </div>
           </div>
         </div>
 
-        {/* ═══════════════════ DESKTOP: original layout ═══════════════════ */}
+        {/* ═══════════════════ DESKTOP: clean layout ═══════════════════ */}
         <div className="hidden md:block">
-          <div className="mx-auto max-w-7xl px-2 sm:px-4 md:px-6 py-3 md:py-5 flex items-center justify-between gap-2 text-white">
-            <div className="leading-tight">
-              <a href="/" aria-label="S&C Beauty — Início" className="inline-block shimmer-logo" style={{ isolation: "isolate" }}>
-                <img src="/sc-monogram-white.svg" alt="S&C Beauty" className="h-14 lg:h-16 w-auto" />
-              </a>
-              <div className="mt-1 text-[11px] md:text-[9px] xl:text-[10px] tracking-[0.22em] md:tracking-[0.18em] xl:tracking-[0.32em] uppercase font-sans font-semibold whitespace-nowrap" style={{color:"var(--color-luxe-gold-soft)",opacity:0.8}}>
-                Revendedor Oficial Grupo Boticário
-              </div>
-              <div className="mt-2.5 flex flex-col gap-1.5">
-                <div className="flex items-center gap-2">
-                  {[
-                    { name: "O Boticário", logo: "/brands/oboticario.svg" },
-                    { name: "Eudora",      logo: "/brands/eudora.svg"     },
-                    { name: "QDB",         logo: "/brands/qdb.svg"        },
-                  ].map((brand) => (
-                    <img
-                      key={brand.name}
-                      src={brand.logo}
-                      alt={brand.name}
-                      title={brand.name}
-                      width="90"
-                      height="36"
-                      className="h-7 sm:h-8 md:h-8 lg:h-9 w-auto rounded-sm opacity-90 hover:opacity-100 transition-opacity duration-200"
-                    />
-                  ))}
-                </div>
-                <div className="flex items-center gap-2">
-                  {[
-                    { name: "Multi B",     logo: "/brands/multib.svg"     },
-                    { name: "Vult",        logo: "/brands/vult.svg"       },
-                    { name: "O.U.i",       logo: "/brands/oui.svg"        },
-                  ].map((brand) => (
-                    <img
-                      key={brand.name}
-                      src={brand.logo}
-                      alt={brand.name}
-                      title={brand.name}
-                      width="90"
-                      height="36"
-                      className="h-7 sm:h-8 md:h-8 lg:h-9 w-auto rounded-sm opacity-90 hover:opacity-100 transition-opacity duration-200"
-                    />
-                  ))}
-                </div>
-              </div>
-            </div>
-            <nav className="hidden md:flex items-center gap-4 xl:gap-10 text-[14px] xl:text-[16px] tracking-[0.12em] xl:tracking-[0.24em] uppercase font-sans whitespace-nowrap">
+          <div className="nav-inner mx-auto max-w-7xl px-4 md:px-6 py-3 md:py-4 flex items-center justify-between gap-6 text-white">
+            <a href="/" aria-label="S&C Beauty — Início" className="shrink-0 logo-wrap">
+              <img src="/sc-monogram-white.svg" alt="S&C Beauty" className="logo-base h-10 lg:h-12 w-auto" />
+              <div className="logo-shine"></div>
+            </a>
+            <nav className="flex items-center gap-4 xl:gap-10 text-[14px] xl:text-[16px] tracking-[0.12em] xl:tracking-[0.24em] uppercase font-sans whitespace-nowrap">
               <a href="#haircare" className="relative hover:text-luxe-gold-soft transition-colors font-semibold before:absolute before:inset-[-10px] before:content-['']">Hair Care</a>
               <a href="#perfumes" className="relative hover:text-luxe-gold-soft transition-colors font-semibold before:absolute before:inset-[-10px] before:content-['']">Perfumes</a>
               <a href="#mais-amados" className="relative hover:text-luxe-gold-soft transition-colors font-semibold before:absolute before:inset-[-10px] before:content-['']">Mais Amados</a>
@@ -154,9 +116,9 @@ const Nav = memo(function Nav() {
               href={waLink("Olá, vim pela página e quero atendimento de luxo inteligente.")}
               target="_blank"
               rel="noopener noreferrer"
-              className="relative hidden sm:inline-flex items-center gap-2 text-[14px] xl:text-[16px] tracking-[0.1em] xl:tracking-[0.2em] uppercase font-bold transition-colors text-luxe-gold-soft before:absolute before:inset-[-10px] before:content-[''] whitespace-nowrap shrink-0"
+              className="relative inline-flex items-center gap-2 text-[14px] xl:text-[16px] tracking-[0.1em] xl:tracking-[0.2em] uppercase font-bold transition-colors text-luxe-gold-soft before:absolute before:inset-[-10px] before:content-[''] whitespace-nowrap shrink-0"
             >
-              WhatsApp <ArrowRight className="size-4" />
+              WhatsApp <img src="/msg.svg" alt="" className="size-5" />
             </a>
           </div>
         </div>
@@ -192,16 +154,16 @@ const Hero = memo(function Hero() {
           decoding="sync"
           width={1600}
           height={1200}
-          className="absolute inset-0 h-full w-full object-cover object-[55%_center] md:object-center opacity-95"
+          className="absolute inset-0 h-full w-full object-cover object-[55%_center] md:object-center opacity-100 animate-hero-bg-zoom"
         />
       </picture>
       <div className="absolute inset-0 bg-gradient-to-r from-black/95 via-black/70 to-transparent" />
       <div className="absolute inset-0 bg-gradient-to-t from-[#070707] via-transparent to-black/50" />
 
-      <div className="relative z-10 mx-auto max-w-7xl w-full px-4 md:px-6 pt-24 md:pt-32 pb-12 md:pb-40 flex flex-col justify-end flex-1 md:grow-0">
-        <div className="animate-fade-up max-w-3xl flex flex-col flex-1 md:grow-0 justify-between md:justify-normal gap-y-6">
+      <div className="relative z-10 mx-auto max-w-7xl w-full px-4 md:px-6 pt-24 md:pt-32 pb-20 md:pb-40 flex flex-col justify-end flex-1 md:grow-0">
+        <div className="max-w-3xl flex flex-col flex-1 md:grow-0 justify-between md:justify-normal gap-y-10">
           <div>
-            <div className="mb-2 sm:mb-8 hidden md:flex md:justify-start">
+            <div className="mb-2 sm:mb-8 hidden md:flex md:justify-start animate-fade-up" style={{ animationDelay: "0ms" }}>
               <FloatingBadge className="border-white/30 bg-white/95">
                 <Timer className="size-3 sm:size-3.5 text-luxe-black" />
                 <span className="text-[9px] sm:text-[12px] tracking-[0.24em] sm:tracking-[0.32em] uppercase text-luxe-black font-semibold">
@@ -210,27 +172,27 @@ const Hero = memo(function Hero() {
               </FloatingBadge>
             </div>
 
-            <h1 className="font-display text-[clamp(2.75rem,11vw,6rem)] leading-[0.85] md:leading-[1.0] tracking-tight font-bold">
-              <span className="block text-[clamp(0.85rem,3vw,1.15rem)] tracking-[0.24em] uppercase font-sans font-semibold text-luxe-gold-soft mb-3 md:mb-4 drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]">
+            <h1 className="font-display text-[clamp(2.75rem,11vw,6rem)] leading-[1.0] md:leading-[1.05] tracking-tight font-bold">
+              <span className="block text-[clamp(0.85rem,3vw,1.15rem)] tracking-[0.24em] uppercase font-sans font-semibold text-luxe-gold-soft mb-4 md:mb-5 drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)] animate-fade-up" style={{ animationDelay: "100ms" }}>
                 Perfumaria Premium
               </span>
-              <span className="text-white/95 drop-shadow-[0_2px_18px_rgba(0,0,0,0.6)]">
+              <span className="text-white/95 drop-shadow-[0_2px_18px_rgba(0,0,0,0.6)] animate-fade-up" style={{ animationDelay: "200ms" }}>
                 Entrega Expressa
               </span>
               <br />
-              <span className="text-white/80 drop-shadow-[0_2px_12px_rgba(0,0,0,0.5)]">
+              <span className="text-white/80 drop-shadow-[0_2px_12px_rgba(0,0,0,0.5)] animate-fade-up" style={{ animationDelay: "300ms" }}>
                 em BH e Região
               </span>
             </h1>
 
-            <p className="mt-6 max-w-lg text-base md:text-lg text-white/70 font-sans font-normal leading-relaxed drop-shadow-[0_1px_8px_rgba(0,0,0,0.6)]">
+            <p className="mt-6 max-w-lg text-base md:text-lg text-white/82 font-sans font-normal leading-relaxed drop-shadow-[0_1px_8px_rgba(0,0,0,0.6)] animate-fade-up" style={{ animationDelay: "400ms" }}>
               Grupo Boticário e Eudora. Peça pelo WhatsApp, receba em minutos.
             </p>
 
           </div>
 
-          <div>
-            <div className="mt-10 md:mt-12 flex flex-col items-start gap-2">
+          <div className="animate-fade-up" style={{ animationDelay: "500ms" }}>
+            <div className="mt-14 md:mt-16 flex flex-col items-start gap-2">
               <a
                 ref={ctaRef}
                 href={waLink(
@@ -243,11 +205,34 @@ const Hero = memo(function Hero() {
               >
                 <SendMorphIcon phase={sendPhase} className="size-6 md:size-7" />
                 <span className="drop-shadow-[0_2px_6px_rgba(0,0,0,0.4)]">Peça no WhatsApp</span>
-                <ArrowRight className="size-5 md:size-6 group-hover:translate-x-1 transition-transform" />
+                <img src="/msg.svg" alt="" className="size-6 md:size-7 group-hover:translate-x-1 transition-transform" />
               </a>
-              <span className="text-xs text-white/55 font-sans font-normal tracking-wide text-center w-full md:text-left px-4 md:px-0">
+              <span className="text-xs text-white/70 font-sans font-normal tracking-wide text-center w-full md:text-left px-4 md:px-0">
                 Resposta em minutos
               </span>
+
+              {/* ── Desktop-only brand trust marks ── */}
+              <div className="hidden md:flex items-center gap-4 lg:gap-5 mt-4 animate-fade-up" style={{ animationDelay: "700ms" }}>
+                <span className="text-[10px] lg:text-[11px] tracking-[0.22em] uppercase text-white/50 font-sans font-medium shrink-0">Revenda autorizada</span>
+                <div className="flex items-center gap-3 lg:gap-4">
+                  {[
+                    { name: "O Boticário", logo: "/brands/oboticario.svg" },
+                    { name: "Eudora",      logo: "/brands/eudora.svg"     },
+                    { name: "QDB",         logo: "/brands/qdb.svg"        },
+                    { name: "Multi B",     logo: "/brands/multib.svg"     },
+                    { name: "Vult",        logo: "/brands/vult.svg"       },
+                    { name: "O.U.i",       logo: "/brands/oui.svg"        },
+                  ].map((brand) => (
+                    <img
+                      key={brand.name}
+                      src={brand.logo}
+                      alt={brand.name}
+                      title={brand.name}
+                      className="h-4 lg:h-5 xl:h-6 w-auto opacity-40 hover:opacity-70 transition-opacity duration-300"
+                    />
+                  ))}
+                </div>
+              </div>
             </div>
 
             <div className="md:hidden mt-4">
@@ -259,19 +244,6 @@ const Hero = memo(function Hero() {
               </FloatingBadge>
             </div>
 
-            <div className="hidden md:flex justify-center mt-6">
-              <span className="text-white/40 animate-[pulse_2.5s_ease-in-out_infinite]">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M6 9l6 6 6-6" />
-                </svg>
-              </span>
-            </div>
-
-            <div className="mt-6 md:mt-16 flex flex-wrap items-center gap-4 md:gap-6 text-[10px] tracking-[0.24em] md:tracking-[0.32em] uppercase text-white/50 font-semibold">
-              <span>Grupo Boticário</span>
-              <span className="h-px w-8 bg-luxe-gold/50" />
-              <span>Eudora</span>
-            </div>
           </div>
         </div>
       </div>

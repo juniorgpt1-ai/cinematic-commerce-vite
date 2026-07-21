@@ -1,8 +1,9 @@
 import { memo, useState } from "react";
-import { ArrowRight, Award, Sparkles, ChevronDown } from "lucide-react";
+import { Award, Sparkles, ChevronDown } from "lucide-react";
 import { waLink } from "@/lib/whatsapp";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useSendMorph } from "@/hooks/useSendMorph";
+import { useTouchCtaReveal } from "@/hooks/useTouchCtaReveal";
 import FloatingBadge from "@/components/sections/FloatingBadge";
 import SendMorphIcon from "@/components/sections/SendMorphIcon";
 
@@ -10,8 +11,10 @@ const HairCareSuite = memo(function HairCareSuite({ volumeImg, lisoImg }: { volu
   const headerRef = useScrollReveal();
   const { phase: volumeSendPhase, trigger: triggerVolumeSend } = useSendMorph();
   const { phase: lisoSendPhase, trigger: triggerLisoSend } = useSendMorph();
+  const { phase: headerSendPhase, trigger: triggerHeaderSend } = useSendMorph();
   const [volumeOpen, setVolumeOpen] = useState(false);
   const [lisoOpen, setLisoOpen] = useState(false);
+  const headerCtaRef = useTouchCtaReveal();
 
   return (
     <section id="haircare" className="relative bg-luxe-bg overflow-hidden border-b border-luxe-line/40">
@@ -22,9 +25,21 @@ const HairCareSuite = memo(function HairCareSuite({ volumeImg, lisoImg }: { volu
             A Arte do Cuidado Absoluto
           </h2>
           <span className="gold-rule mt-6 mx-auto" />
-          <p className="mt-8 max-w-2xl mx-auto text-base sm:text-lg text-luxe-ink/85 font-sans font-light leading-relaxed">
+          <p className="mt-8 max-w-2xl mx-auto text-base sm:text-lg text-luxe-ink/97 font-sans font-normal leading-relaxed drop-shadow-[0_1px_3px_rgba(0,0,0,0.06)]">
             Resultado de salão na sua rotina diária.
           </p>
+          <a
+            ref={headerCtaRef}
+            href={waLink("Olá! Gostaria de conhecer a linha de cuidados capilares. Pode me ajudar?")}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={triggerHeaderSend}
+            className="mt-8 inline-flex flex-wrap items-center justify-center gap-3 border border-luxe-gold/25 bg-luxe-ink hover:bg-whatsapp hover:border-whatsapp text-white hover:text-black btn-hover-scale px-6 py-4 md:px-8 md:py-5 text-sm font-semibold tracking-wide shadow-md"
+          >
+            <SendMorphIcon phase={headerSendPhase} className="size-4" />
+            Conhecer a linha capilar completa!
+            <img src="/msg.svg" alt="" className="size-5 group-hover:translate-x-1 transition-transform" />
+          </a>
         </div>
 
         {/* 1. Encorpamento Suite */}
@@ -38,7 +53,7 @@ const HairCareSuite = memo(function HairCareSuite({ volumeImg, lisoImg }: { volu
                 decoding="async"
                 width="1100"
                 height="916"
-                className="h-full w-full object-cover object-center img-hover-lift group-hover:scale-105"
+                className="h-full w-full object-cover object-center card-img-zoom"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20" />
               <div className="absolute top-4 md:top-6 left-4 md:left-6 right-4 md:right-6 flex flex-wrap items-center justify-between gap-2 text-white/80 text-[11px] sm:text-xs tracking-[0.24em] md:tracking-[0.32em] uppercase font-semibold">
@@ -62,7 +77,7 @@ const HairCareSuite = memo(function HairCareSuite({ volumeImg, lisoImg }: { volu
             </h3>
             <span className="gold-rule mt-6" />
 
-            <p className="mt-6 text-base sm:text-lg text-luxe-ink/85 font-sans font-light leading-relaxed">
+            <p className="mt-6 text-base sm:text-lg text-luxe-ink/97 font-sans font-normal leading-relaxed drop-shadow-[0_1px_3px_rgba(0,0,0,0.06)]">
               Tecnologia de ponta que preenche sua fibra, volumiza e hidrata de forma rápida e confortável.
             </p>
 
@@ -77,7 +92,7 @@ const HairCareSuite = memo(function HairCareSuite({ volumeImg, lisoImg }: { volu
             </button>
             <div className={`grid transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${volumeOpen ? "grid-rows-[1fr] opacity-100 mt-4" : "grid-rows-[0fr] opacity-0"}`}>
               <div className="overflow-hidden">
-                <ul className="space-y-3 text-luxe-ink/85 font-sans font-light text-sm sm:text-base">
+                <ul className="space-y-3 text-luxe-ink/97 font-sans font-normal text-sm sm:text-base">
                   <li className="flex items-center gap-3">
                     <span className="h-1.5 w-1.5 bg-luxe-gold rounded-full shrink-0" />
                     <span>Preenchimento de porosidade com ácido hialurônico de alta performance.</span>
@@ -96,11 +111,11 @@ const HairCareSuite = memo(function HairCareSuite({ volumeImg, lisoImg }: { volu
 
             <div className="mt-10 flex items-center justify-between gap-6 flex-wrap border-t border-luxe-line/30 pt-8">
               <div>
-                <span className="text-[10px] sm:text-xs tracking-[0.28em] uppercase text-luxe-ink-soft/70 font-semibold">
+                <span className="text-[10px] sm:text-xs tracking-[0.28em] uppercase text-luxe-ink-soft/85 font-semibold">
                   Tratamento Completo
                 </span>
                 <div className="font-sans text-xl sm:text-2xl font-semibold mt-1 text-luxe-ink">R$ 159,90</div>
-                <div className="mt-1 text-xs sm:text-[13px] text-luxe-ink-soft font-medium">
+                <div className="mt-1 text-xs sm:text-[13px] text-luxe-ink-soft/90 font-medium">
                   ou <span className="font-semibold text-luxe-ink">3x sem juros</span>
                   <span className="mx-2 text-luxe-gold">·</span>
                   <span className="font-semibold text-luxe-ink">Pix com 5% OFF</span>
@@ -111,11 +126,11 @@ const HairCareSuite = memo(function HairCareSuite({ volumeImg, lisoImg }: { volu
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={triggerVolumeSend}
-                className="group inline-flex flex-wrap items-center justify-center gap-3 bg-luxe-ink hover:bg-whatsapp text-white hover:text-black btn-hover-scale px-5 py-3.5 sm:px-6 sm:py-4 md:px-8 md:py-5 text-sm sm:text-base font-semibold tracking-wide shadow-md"
+                className="group inline-flex flex-wrap items-center justify-center gap-3 border border-luxe-gold/25 bg-luxe-ink hover:bg-whatsapp hover:border-whatsapp text-white hover:text-black btn-hover-scale px-5 py-3.5 sm:px-6 sm:py-4 md:px-8 md:py-5 text-sm sm:text-base font-semibold tracking-wide shadow-md"
               >
                 <SendMorphIcon phase={volumeSendPhase} className="size-4 sm:size-5" />
                 Eu Quero Fios Encorpados
-                <ArrowRight className="size-4 group-hover:translate-x-1 transition-transform" />
+                <img src="/msg.svg" alt="" className="size-5 group-hover:translate-x-1 transition-transform" />
               </a>
             </div>
           </div>
@@ -132,7 +147,7 @@ const HairCareSuite = memo(function HairCareSuite({ volumeImg, lisoImg }: { volu
                 decoding="async"
                 width="836"
                 height="470"
-                className="h-full w-full object-cover object-[75%] img-hover-lift"
+                className="h-full w-full object-cover object-[75%] card-img-zoom"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20" />
               <div className="absolute top-4 md:top-6 left-4 md:left-6 right-4 md:right-6 flex flex-wrap items-center justify-between gap-2 text-white/80 text-[11px] sm:text-xs tracking-[0.24em] md:tracking-[0.32em] uppercase font-semibold">
@@ -156,7 +171,7 @@ const HairCareSuite = memo(function HairCareSuite({ volumeImg, lisoImg }: { volu
             </h3>
             <span className="gold-rule mt-6" />
 
-            <p className="mt-6 text-base sm:text-lg text-luxe-ink/85 font-sans font-light leading-relaxed">
+            <p className="mt-6 text-base sm:text-lg text-luxe-ink/97 font-sans font-normal leading-relaxed drop-shadow-[0_1px_3px_rgba(0,0,0,0.06)]">
               Repõe massa e blinda os fios com tecnologia de cauterização lipídica que sela as cutículas instantaneamente.
             </p>
 
@@ -171,7 +186,7 @@ const HairCareSuite = memo(function HairCareSuite({ volumeImg, lisoImg }: { volu
             </button>
             <div className={`grid transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${lisoOpen ? "grid-rows-[1fr] opacity-100 mt-4" : "grid-rows-[0fr] opacity-0"}`}>
               <div className="overflow-hidden">
-                <ul className="space-y-3 text-luxe-ink/85 font-sans font-light text-sm sm:text-base">
+                <ul className="space-y-3 text-luxe-ink/97 font-sans font-normal text-sm sm:text-base">
                   <li className="flex items-center gap-3">
                     <span className="h-1.5 w-1.5 bg-luxe-gold rounded-full shrink-0" />
                     <span>Reconstrução profunda com queratina biomimética termo-ativada.</span>
@@ -190,11 +205,11 @@ const HairCareSuite = memo(function HairCareSuite({ volumeImg, lisoImg }: { volu
 
             <div className="mt-10 flex items-center justify-between gap-6 flex-wrap border-t border-luxe-line/30 pt-8">
               <div>
-                <span className="text-[10px] sm:text-xs tracking-[0.28em] uppercase text-luxe-ink-soft/70 font-semibold">
+                <span className="text-[10px] sm:text-xs tracking-[0.28em] uppercase text-luxe-ink-soft/85 font-semibold">
                   Tratamento Completo
                 </span>
                 <div className="font-sans text-xl sm:text-2xl font-semibold mt-1 text-luxe-ink">R$ 179,90</div>
-                <div className="mt-1 text-xs sm:text-[13px] text-luxe-ink-soft font-medium">
+                <div className="mt-1 text-xs sm:text-[13px] text-luxe-ink-soft/90 font-medium">
                   ou <span className="font-semibold text-luxe-ink">3x sem juros</span>
                   <span className="mx-2 text-luxe-gold">·</span>
                   <span className="font-semibold text-luxe-ink">Pix com 5% OFF</span>
@@ -205,11 +220,11 @@ const HairCareSuite = memo(function HairCareSuite({ volumeImg, lisoImg }: { volu
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={triggerLisoSend}
-                className="group inline-flex items-center justify-center gap-3 bg-luxe-ink hover:bg-whatsapp text-white hover:text-black btn-hover-scale px-5 py-3.5 sm:px-6 sm:py-4 md:px-8 md:py-5 text-sm sm:text-base font-semibold tracking-wide shadow-md whitespace-nowrap"
+                className="group inline-flex items-center justify-center gap-3 border border-luxe-gold/25 bg-luxe-ink hover:bg-whatsapp hover:border-whatsapp text-white hover:text-black btn-hover-scale px-5 py-3.5 sm:px-6 sm:py-4 md:px-8 md:py-5 text-sm sm:text-base font-semibold tracking-wide shadow-md whitespace-nowrap"
               >
                 <SendMorphIcon phase={lisoSendPhase} className="size-4 sm:size-5" />
                 Sinta o Poder do Liso Absoluto
-                <ArrowRight className="size-4 group-hover:translate-x-1 transition-transform" />
+                <img src="/msg.svg" alt="" className="size-5 group-hover:translate-x-1 transition-transform" />
               </a>
             </div>
           </div>

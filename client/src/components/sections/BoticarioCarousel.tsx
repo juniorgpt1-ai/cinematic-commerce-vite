@@ -1,5 +1,5 @@
 import { memo, useCallback, useEffect, useRef, useState } from "react";
-import { ArrowRight, ChevronLeft } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { waLink } from "@/lib/whatsapp";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
@@ -134,7 +134,7 @@ const BoticarioCarousel = memo(function BoticarioCarousel() {
             <h2 className="mt-5 font-section text-4xl sm:text-5xl md:text-5xl font-semibold leading-[1.08]">
               Mais Amados do Grupo Boticário
             </h2>
-            <p className="mt-6 text-white/60 font-sans font-light text-base sm:text-lg">
+            <p className="mt-6 text-white/85 font-sans font-normal text-base sm:text-lg drop-shadow-[0_1px_8px_rgba(0,0,0,0.5)]">
               Escolhas consagradas, luxo acessível e alta performance olfativa e de tratamento. A melhor seleção para você.
             </p>
           </div>
@@ -152,7 +152,7 @@ const BoticarioCarousel = memo(function BoticarioCarousel() {
               aria-label="Rolar para direita"
               className="p-3 rounded-full cursor-pointer glass-btn btn-hover-scale hover:border-luxe-gold/40 transition-all duration-300"
             >
-              <ArrowRight className="size-5" />
+              <ChevronRight className="size-5" />
             </button>
           </div>
         </div>
@@ -166,17 +166,17 @@ const BoticarioCarousel = memo(function BoticarioCarousel() {
           className="stagger-container flex gap-6 overflow-x-auto pb-10 scrollbar-premium snap-x snap-mandatory scroll-smooth"
           aria-roledescription="carousel"
           aria-label="Produtos do Grupo Boticário"
-          style={{ scrollbarWidth: "thin" }}
+          style={{ scrollbarWidth: "thin", WebkitOverflowScrolling: "touch" }}
         >
           {PRODUCTS.map((prod) => (
             <div
               key={prod.name}
               data-carousel-card
-              className="reveal-up min-w-[280px] sm:min-w-[320px] md:min-w-[340px] max-w-[340px] bg-black/50 border border-white/10 p-5 md:p-8 rounded-2xl snap-start flex flex-col justify-between group hover:border-luxe-gold/60 hover:bg-black/70 hover:border-l-luxe-gold/60 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]"
+              className="reveal-up min-w-[280px] sm:min-w-[320px] md:min-w-[340px] max-w-[340px] bg-black/50 border border-white/10 p-5 md:p-8 rounded-2xl snap-start flex flex-col justify-between group card-hover-lift transition-colors duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:border-luxe-gold/60 hover:bg-black/70"
             >
               <div>
                 <div className="flex flex-wrap items-center justify-between gap-2">
-                  <span className="text-[10px] sm:text-[11px] tracking-widest uppercase font-semibold text-white/50">{prod.brand}</span>
+                  <span className="text-[10px] sm:text-[11px] tracking-widest uppercase font-semibold text-white/85">{prod.brand}</span>
                   <span
                     className={`inline-block text-[10px] sm:text-[11px] tracking-wider font-bold uppercase px-2.5 py-1 rounded-full transition-all duration-500 ${
                       prod.oldPrice
@@ -191,7 +191,7 @@ const BoticarioCarousel = memo(function BoticarioCarousel() {
                 <h3 className="mt-6 font-sans text-xl sm:text-2xl font-bold leading-tight group-hover:text-luxe-gold-soft transition-colors duration-300">
                   {prod.name}
                 </h3>
-                <p className="mt-3 text-white/65 text-sm sm:text-base font-sans font-light leading-relaxed min-h-[60px]">
+                <p className="mt-3 text-white/85 text-sm sm:text-base font-sans font-normal leading-relaxed min-h-[60px] drop-shadow-[0_1px_6px_rgba(0,0,0,0.5)]">
                   {prod.desc}
                 </p>
               </div>
@@ -208,9 +208,9 @@ const BoticarioCarousel = memo(function BoticarioCarousel() {
                   href={waLink(prod.waMsg)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="relative btn-hover-scale inline-flex flex-wrap items-center justify-center gap-1.5 text-xs sm:text-sm font-semibold tracking-wider uppercase text-luxe-gold-soft/80 group-hover:text-luxe-gold-soft border-b border-luxe-gold-soft/40 group-hover:border-luxe-gold-soft pb-1 transition-all duration-300 before:absolute before:inset-[-6px] before:content-['']"
+                  className="btn-hover-scale inline-flex items-center justify-center gap-1.5 bg-luxe-ink hover:bg-whatsapp text-luxe-gold-soft hover:text-black border border-luxe-gold-soft/30 hover:border-whatsapp px-3 py-2 text-xs font-semibold tracking-wider uppercase transition-all duration-300"
                 >
-                  {prod.ctaText} <ArrowRight className="size-3.5 group-hover:translate-x-1 transition-transform" />
+                  {prod.ctaText} <img src="/msg.svg" alt="" className="size-4 group-hover:translate-x-1 transition-transform" />
                 </a>
               </div>
             </div>

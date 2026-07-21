@@ -47,7 +47,7 @@ const ComoFunciona = memo(function ComoFunciona() {
                   Passo {i + 1}
                 </span>
                 <h3 className="font-sans text-xl font-semibold">{step.title}</h3>
-                <p className="mt-3 text-luxe-ink/70 font-sans font-light text-base leading-relaxed max-w-[280px]">
+                <p className="mt-3 text-luxe-ink/93 font-sans font-normal text-base leading-relaxed max-w-[280px] drop-shadow-[0_1px_3px_rgba(0,0,0,0.06)]">
                   {step.desc}
                 </p>
               </div>

@@ -1,11 +1,9 @@
-import { Suspense, lazy } from "react";
 import NotFound from "@/pages/NotFound";
 import { Route, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 
 import Home from "./pages/Home";
-const Toaster = lazy(() => import("sonner").then(m => ({ default: m.Toaster })));
 
 
 function Router() {
@@ -31,7 +29,6 @@ function App() {
         defaultTheme="light"
         // switchable
       >
-        <Suspense fallback={null}><Toaster /></Suspense>
         <Router />
       </ThemeProvider>
     </ErrorBoundary>

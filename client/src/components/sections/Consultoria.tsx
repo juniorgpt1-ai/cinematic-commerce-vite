@@ -1,8 +1,9 @@
 import { memo } from "react";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { Sparkles } from "lucide-react";
 import { waLink } from "@/lib/whatsapp";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useSendMorph } from "@/hooks/useSendMorph";
+import { useTouchCtaReveal } from "@/hooks/useTouchCtaReveal";
 import FloatingBadge from "@/components/sections/FloatingBadge";
 import SendMorphIcon from "@/components/sections/SendMorphIcon";
 
@@ -10,6 +11,7 @@ const Consultoria = memo(function Consultoria({ image }: { image: string }) {
   const imageRef = useScrollReveal();
   const copyRef = useScrollReveal();
   const { phase: sendPhase, trigger: triggerSend } = useSendMorph();
+  const ctaRef = useTouchCtaReveal();
 
   return (
     <section className="bg-luxe-gradient border-b border-luxe-line/20 relative overflow-hidden">
@@ -43,10 +45,10 @@ const Consultoria = memo(function Consultoria({ image }: { image: string }) {
               <br />
               <span className="font-light italic text-luxe-gold">Escolha com quem entende.</span>
             </h2>
-            <p className="mt-8 text-lg text-luxe-ink/85 font-sans font-light leading-relaxed max-w-lg">
+            <p className="mt-8 text-lg text-luxe-ink/97 font-sans font-normal leading-relaxed max-w-lg drop-shadow-[0_1px_3px_rgba(0,0,0,0.06)]">
               Evite frustrações ao comprar no escuro. Nossa consultoria ajuda você a selecionar a fragrância e o tratamento capilar sob medida para sua necessidade, com honestidade e empatia.
             </p>
-            <ul className="mt-8 space-y-4 text-luxe-ink/85 font-sans font-light">
+            <ul className="mt-8 space-y-4 text-luxe-ink/97 font-sans font-normal">
               <li className="flex items-start gap-3">
                 <span className="mt-2.5 h-1.5 w-1.5 bg-luxe-gold rounded-full shrink-0" />
                 <span>Perfil de fragrância ou capilar personalizado em poucas mensagens.</span>
@@ -61,6 +63,7 @@ const Consultoria = memo(function Consultoria({ image }: { image: string }) {
               </li>
             </ul>
             <a
+              ref={ctaRef}
               href={waLink("Olá, quero falar com a consultora premium para fazer minha seleção personalizada.")}
               target="_blank"
               rel="noopener noreferrer"
@@ -69,7 +72,7 @@ const Consultoria = memo(function Consultoria({ image }: { image: string }) {
             >
               <SendMorphIcon phase={sendPhase} className="size-4" />
               Falar com a Consultora
-              <ArrowRight className="size-4" />
+              <img src="/msg.svg" alt="" className="size-5" />
             </a>
           </div>
         </div>

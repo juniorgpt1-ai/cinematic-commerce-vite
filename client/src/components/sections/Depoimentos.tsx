@@ -71,22 +71,22 @@ const Depoimentos = memo(function Depoimentos() {
           <h2 className="font-section text-4xl md:text-5xl font-semibold leading-[1.08]">
             A experiência do <span className="italic font-light text-luxe-gold">luxo inteligente</span>.
           </h2>
-          <p className="mt-5 text-luxe-ink/70 font-sans font-light text-base md:text-lg">
+          <p className="mt-5 text-luxe-ink/93 font-sans font-normal text-base md:text-lg drop-shadow-[0_1px_3px_rgba(0,0,0,0.06)]">
             Quem já pediu, conta como foi.
           </p>
         </div>
 
         <div
           ref={useScrollReveal()}
-          className="stagger-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
+          className="stagger-container max-w-3xl mx-auto flex flex-col gap-4"
         >
           {TESTIMONIALS.map((t) => (
             <figure
               key={t.name}
-              className="group reveal-up flex flex-col p-8 rounded-xl bg-white/60 backdrop-blur-sm border border-luxe-line/20 hover:border-[#B89A6A]/40 hover:bg-white transition-all duration-300"
+              className="group reveal-up flex flex-col p-6 rounded-xs border border-luxe-gold/30 bg-luxe-gold/5"
             >
               {/* Stars */}
-              <div className="flex gap-1 mb-5">
+              <div className="flex gap-1 mb-4">
                 {[0, 1, 2, 3, 4].map((s) => (
                   <StarIcon key={s} filled={s < t.rating} />
                 ))}
@@ -94,21 +94,21 @@ const Depoimentos = memo(function Depoimentos() {
 
               {/* Quote */}
               <Quote
-                className="size-7 text-[#B89A6A]/40 shrink-0 mb-3"
+                className="size-6 text-luxe-gold/30 shrink-0 mb-3"
                 strokeWidth={1.5}
               />
-              <blockquote className="font-sans text-base leading-relaxed text-luxe-ink/80 break-words">
+              <blockquote className="font-sans text-base leading-relaxed text-luxe-ink/90">
                 &ldquo;{t.quote}&rdquo;
               </blockquote>
 
               {/* Author */}
-              <figcaption className="mt-8 pt-5 border-t border-luxe-line/20 flex items-center gap-3">
+              <figcaption className="mt-6 flex items-center gap-3">
                 <AvatarInitial name={t.name} />
                 <div>
-                  <div className="font-section text-base font-semibold text-luxe-ink leading-tight">
+                  <div className="font-section text-sm font-semibold text-luxe-ink leading-tight">
                     {t.name}
                   </div>
-                  <div className="text-xs text-[#6B7280] mt-0.5">
+                  <div className="text-xs text-luxe-ink-soft/80 mt-0.5">
                     {t.city}
                   </div>
                 </div>

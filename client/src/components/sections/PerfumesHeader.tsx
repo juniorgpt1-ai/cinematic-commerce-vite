@@ -11,7 +11,7 @@ const PerfumesHeader = memo(function PerfumesHeader() {
           <h2 className="mt-6 font-section text-4xl md:text-5xl font-semibold leading-[1.08]">
             Nossas Fragrâncias
           </h2>
-          <p className="mt-6 text-lg text-luxe-ink/85 font-sans font-light">
+          <p className="mt-6 text-lg text-luxe-ink/97 font-sans font-normal drop-shadow-[0_1px_3px_rgba(0,0,0,0.06)]">
             As mais vendidas, com entrega expressa em BH e região.
           </p>
           <span className="gold-rule mt-8 mx-auto" />

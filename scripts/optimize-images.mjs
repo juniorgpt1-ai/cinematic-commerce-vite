@@ -69,7 +69,7 @@ async function optimizeImage(filePath, target) {
     pipeline = pipeline.resize({ width, withoutEnlargement: true });
   }
 
-  const outputBuffer = await pipeline.webp({ quality: 90, effort: 6 }).toBuffer();
+  const outputBuffer = await pipeline.webp({ quality: 95, effort: 6 }).toBuffer();
   await writeFile(filePath, outputBuffer);
 
   const outputSizeKB = ((await fsStat(filePath)).size / 1024).toFixed(1);
@@ -79,7 +79,7 @@ async function optimizeImage(filePath, target) {
 }
 
 async function main() {
-  console.log("Optimizing all WebP images (quality 90, effort 6)...\n");
+  console.log("Optimizing all WebP images (quality 95, effort 6)...\n");
 
   const allFiles = await readdir(PUBLIC_DIR, { recursive: true });
   const webpFiles = allFiles

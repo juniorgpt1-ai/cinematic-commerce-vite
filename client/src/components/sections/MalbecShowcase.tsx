@@ -1,38 +1,20 @@
-import { memo, useState, useEffect, useCallback, useRef } from "react";
-import { Timer, ArrowRight, Award } from "lucide-react";
+import { memo } from "react";
+import { Timer, Award } from "lucide-react";
 import { waLink } from "@/lib/whatsapp";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useSendMorph } from "@/hooks/useSendMorph";
+import { useTouchCtaReveal } from "@/hooks/useTouchCtaReveal";
+import { useCarouselAutoplay } from "@/hooks/useCarouselAutoplay";
 import FloatingBadge from "@/components/sections/FloatingBadge";
 import SendMorphIcon from "@/components/sections/SendMorphIcon";
 
 const MalbecShowcase = memo(function MalbecShowcase({ lifestyleImg, collageImg }: { lifestyleImg: string; collageImg: string }) {
-  const [slide, setSlide] = useState(0);
-  const [autoplayPaused, setAutoplayPaused] = useState(false);
+  const { slide, selectSlide, carouselHandlers } = useCarouselAutoplay(2);
   const carouselRef = useScrollReveal();
   const copyRef = useScrollReveal();
   const collageRef = useScrollReveal();
+  const goldCtaRef = useTouchCtaReveal(""); // gold btn — skip bg change
   const { phase: sendPhase, trigger: triggerSend } = useSendMorph();
-  const resumeTimeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
-
-  const nextSlide = useCallback(() => setSlide(s => (s + 1) % 2), []);
-
-  useEffect(() => {
-    if (autoplayPaused) return;
-    const id = setInterval(nextSlide, 4000);
-    return () => clearInterval(id);
-  }, [nextSlide, autoplayPaused]);
-
-  useEffect(() => {
-    return () => clearTimeout(resumeTimeoutRef.current);
-  }, []);
-
-  const selectSlide = useCallback((i: number) => {
-    setSlide(i);
-    setAutoplayPaused(true);
-    clearTimeout(resumeTimeoutRef.current);
-    resumeTimeoutRef.current = setTimeout(() => setAutoplayPaused(false), 6000);
-  }, []);
 
   return (
     <section id="malbec" className="relative bg-luxe-gradient border-b border-luxe-line/30 overflow-hidden">
@@ -43,14 +25,14 @@ const MalbecShowcase = memo(function MalbecShowcase({ lifestyleImg, collageImg }
           <div
             ref={carouselRef}
             className="reveal-right lg:col-span-7 relative"
-            onMouseEnter={() => setAutoplayPaused(true)}
-            onMouseLeave={() => setAutoplayPaused(false)}
-            onFocus={() => setAutoplayPaused(true)}
-            onBlur={() => setAutoplayPaused(false)}
+            onMouseEnter={carouselHandlers.onMouseEnter}
+            onMouseLeave={carouselHandlers.onMouseLeave}
+            onFocus={carouselHandlers.onFocus}
+            onBlur={carouselHandlers.onBlur}
           >
             <div className="relative aspect-[4/5] overflow-hidden bg-black shadow-2xl border border-luxe-line/20">
               <div
-                className="flex h-full transition-transform duration-700 ease-in-out"
+                className="flex h-full transition-transform duration-500 ease-in-out"
                 style={{ transform: `translateX(-${slide * 100}%)` }}
               >
                 {/* Slide 1: Lifestyle */}
@@ -126,7 +108,7 @@ const MalbecShowcase = memo(function MalbecShowcase({ lifestyleImg, collageImg }
               <span className="font-light italic text-luxe-gold">presença marcante</span>.
             </h2>
             <span className="gold-rule mt-8" />
-            <p className="mt-8 text-lg text-luxe-ink/85 font-sans font-light leading-relaxed">
+            <p className="mt-8 text-lg text-luxe-ink/97 font-sans font-normal leading-relaxed drop-shadow-[0_1px_3px_rgba(0,0,0,0.06)]">
               Um clássico atemporal que une sofisticação e intensidade. Com álcool vinícola e madeiras nobres, é a assinatura olfativa do homem que sabe o que quer — luxo acessível com altíssima performance.
             </p>
 
@@ -152,9 +134,9 @@ const MalbecShowcase = memo(function MalbecShowcase({ lifestyleImg, collageImg }
 
             <div className="mt-10 flex items-end justify-between gap-6 flex-wrap">
               <div>
-                <span className="text-[10px] tracking-[0.28em] uppercase text-luxe-ink-soft/70 font-semibold">Valor Acessível</span>
+                <span className="text-[10px] tracking-[0.28em] uppercase text-luxe-ink-soft/85 font-semibold">Valor Acessível</span>
                 <div className="font-sans text-2xl md:text-3xl font-semibold mt-1 text-luxe-ink">R$ 289,90</div>
-                <div className="mt-2 text-[13px] text-luxe-ink-soft font-medium">
+                <div className="mt-2 text-[13px] text-luxe-ink-soft/90 font-medium">
                   ou <span className="text-luxe-ink font-semibold">3x sem juros</span>
                   <span className="mx-2 text-luxe-gold">·</span>
                   <span className="text-luxe-ink font-semibold">Pix com 5% OFF</span>
@@ -169,7 +151,7 @@ const MalbecShowcase = memo(function MalbecShowcase({ lifestyleImg, collageImg }
               >
                 <SendMorphIcon phase={sendPhase} className="size-4" />
                 Garantir meu Malbec
-                <ArrowRight className="size-4 group-hover:translate-x-1 transition-transform" />
+                <img src="/msg.svg" alt="" className="size-5 group-hover:translate-x-1 transition-transform" />
               </a>
             </div>
           </div>
@@ -200,13 +182,14 @@ const MalbecShowcase = memo(function MalbecShowcase({ lifestyleImg, collageImg }
             {/* Gold metallic CTA button */}
             <div className="mt-6 md:mt-8 flex justify-center">
               <a
-                href={waLink("Olá! Tenho interesse no Malbec Cologne. Pode me ajudar?")}
+                ref={goldCtaRef}
+                href={waLink("Olá! Quero descobrir a fragrância ideal para o meu estilo. Pode me ajudar?")}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-gold-metallic btn-hover-scale inline-flex items-center gap-3 px-8 py-4 text-sm md:text-base font-bold tracking-[0.2em] uppercase rounded-sm hover:brightness-105 hover:shadow-xl [animation:luxe-glow-gold_2.5s_ease-in-out_infinite]"
+                className="btn-gold-metallic btn-hover-scale inline-flex items-center gap-3 px-6 py-4 text-sm md:text-base font-bold tracking-[0.2em] uppercase rounded-sm hover:brightness-105 hover:shadow-xl [animation:luxe-glow-gold_2.5s_ease-in-out_infinite] whitespace-nowrap"
               >
-                Garantir Agora
-                <ArrowRight className="size-4" />
+                Encontrar meu perfume
+                <img src="/msg.svg" alt="" className="size-5" />
               </a>
             </div>
           </div>

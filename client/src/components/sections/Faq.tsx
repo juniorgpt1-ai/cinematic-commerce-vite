@@ -31,16 +31,16 @@ const Faq = memo(function Faq() {
           <h2 className="font-section text-4xl md:text-5xl font-semibold leading-[1.08]">
             Perguntas Frequentes
           </h2>
-          <p className="mt-4 text-luxe-ink/70 font-sans font-light text-base md:text-lg">
+          <p className="mt-4 text-luxe-ink/93 font-sans font-normal text-base md:text-lg drop-shadow-[0_1px_3px_rgba(0,0,0,0.06)]">
             Tudo o que você precisa saber antes de pedir.
           </p>
         </div>
 
-        <div className="mt-16 divide-y divide-luxe-line/40 border-y border-luxe-line/40">
+        <div className="mt-16 flex flex-col gap-3">
           {items.map((it, i) => {
             const isOpen = open === i;
             return (
-              <div key={it.q}>
+              <div key={it.q} className="rounded-xs border border-luxe-gold/30 bg-luxe-gold/5 px-5 py-3">
                 <button
                   type="button"
                   onClick={() => setOpen(isOpen ? null : i)}
@@ -61,12 +61,12 @@ const Faq = memo(function Faq() {
                   />
                 </button>
                 <div
-                  className={`grid transition-all duration-600 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                  className={`grid transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${
                     isOpen ? "grid-rows-[1fr] opacity-100 pb-6" : "grid-rows-[0fr] opacity-0"
                   }`}
                 >
                   <div className="overflow-hidden">
-                    <p className="text-luxe-ink/80 font-sans font-light leading-relaxed max-w-xl">
+                    <p className="text-luxe-ink/93 font-sans font-normal leading-relaxed max-w-xl">
                       {it.a}
                     </p>
                   </div>

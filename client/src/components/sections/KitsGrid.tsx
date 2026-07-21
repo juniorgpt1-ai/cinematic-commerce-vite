@@ -1,11 +1,16 @@
 import { memo } from "react";
-import { Timer, ArrowRight } from "lucide-react";
+import { Timer } from "lucide-react";
 import { waLink } from "@/lib/whatsapp";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { useSendMorph } from "@/hooks/useSendMorph";
+import { useTouchCtaReveal } from "@/hooks/useTouchCtaReveal";
+import SendMorphIcon from "@/components/sections/SendMorphIcon";
 
 const KitsGrid = memo(function KitsGrid() {
   const headerRef = useScrollReveal();
   const gridRef = useScrollReveal();
+  const { phase: sendPhase, trigger: triggerSend } = useSendMorph();
+  const ctaRef = useTouchCtaReveal();
 
   const kits = [
     {
@@ -39,16 +44,28 @@ const KitsGrid = memo(function KitsGrid() {
           <h2 className="mt-5 font-section text-4xl md:text-5xl font-semibold leading-[1.08]">
             Kits & Combos para Presentear
           </h2>
-          <p className="mt-6 text-white/60 text-lg font-sans font-light leading-relaxed max-w-xl">
+          <p className="mt-6 text-white/82 text-lg font-sans font-normal leading-relaxed max-w-xl drop-shadow-[0_1px_8px_rgba(0,0,0,0.5)]">
             Combinações desenvolvidas por especialistas para presentear com sofisticação ou reabastecer seu estoque de luxo com o melhor custo-benefício.
           </p>
+          <a
+            ref={ctaRef}
+            href={waLink("Olá! Gostaria de ajuda para escolher um presente especial. Pode me ajudar?")}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={triggerSend}
+            className="mt-8 inline-flex flex-wrap items-center justify-center gap-3 border border-luxe-gold-soft/30 bg-luxe-gold/10 hover:bg-whatsapp hover:border-whatsapp text-luxe-gold-soft hover:text-black btn-hover-scale px-6 py-4 md:px-8 md:py-5 text-sm font-semibold tracking-wide shadow-md"
+          >
+            <SendMorphIcon phase={sendPhase} className="size-4" />
+            Escolher um presente
+            <img src="/msg.svg" alt="" className="size-5 group-hover:translate-x-1 transition-transform" />
+          </a>
         </div>
 
         <div ref={gridRef} className="stagger-container grid grid-cols-1 md:grid-cols-3 gap-px bg-luxe-gold/20">
           {kits.map((k, i) => (
             <div
               key={k.name}
-              className="reveal-up bg-luxe-ink p-6 md:p-10 flex flex-col justify-between group hover:bg-black/90 transition-colors duration-300"
+              className="reveal-up bg-luxe-ink p-6 md:p-10 flex flex-col justify-between group card-hover-lift transition-colors duration-300 hover:bg-black/90"
             >
               <div>
                 <div className="flex items-center justify-between gap-4">
@@ -62,7 +79,7 @@ const KitsGrid = memo(function KitsGrid() {
 
                 <h3 className="mt-12 font-sans text-2xl font-bold group-hover:text-luxe-gold-soft transition-colors">{k.name}</h3>
                 <span className="gold-rule mt-6" />
-                <p className="mt-8 text-white/70 font-sans font-light leading-relaxed">
+                <p className="mt-8 text-white/85 font-sans font-normal leading-relaxed drop-shadow-[0_1px_6px_rgba(0,0,0,0.5)]">
                   {k.desc}
                 </p>
               </div>
@@ -78,7 +95,7 @@ const KitsGrid = memo(function KitsGrid() {
                 <div className="mt-10 pt-6 border-t border-white/10 flex flex-wrap items-end justify-between gap-4">
                   <div>
                     <div className="font-sans text-3xl font-bold text-luxe-gold-soft">{k.price}</div>
-                    <div className="mt-1 text-[12px] text-white/60">
+                    <div className="mt-1 text-[12px] text-white/85 drop-shadow-[0_1px_4px_rgba(0,0,0,0.5)]">
                       3x sem juros <span className="text-luxe-gold-soft">·</span> Pix 5% OFF
                     </div>
                   </div>
@@ -89,7 +106,7 @@ const KitsGrid = memo(function KitsGrid() {
                     aria-label={`Pedir ${k.name} no WhatsApp`}
                     className="btn-hover-scale inline-flex items-center justify-center gap-2 bg-luxe-ink hover:bg-whatsapp text-luxe-gold-soft hover:text-black border border-luxe-gold-soft/30 hover:border-whatsapp px-4 py-2.5 text-xs font-semibold tracking-wider uppercase transition-all duration-300"
                   >
-                    Pedir Combo <ArrowRight className="size-3.5" />
+                    Pedir Combo <img src="/msg.svg" alt="" className="size-4" />
                   </a>
                 </div>
               </div>
