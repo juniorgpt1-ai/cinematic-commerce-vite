@@ -509,35 +509,45 @@ html {
   scroll-behavior: smooth;
 }
 
-/* ── Navbar logo shimmer — subtle luxury shine ── */
+/* ── Navbar logo shimmer — subtle luxury shine ──
+   Base logo (the <img>) stays fully visible at all times. A separate
+   ::after layer, clipped to the logo's own silhouette via mask-image,
+   sweeps a warm gold glint across it — a pure-white sweep would be
+   invisible against the pure-white glyph, so the highlight is tinted
+   with the brand gold and blended in via mix-blend-mode. */
 
 @keyframes logo-shimmer {
-  0%   { mask-position: -180% 0; -webkit-mask-position: -180% 0; }
-  30%  { mask-position: 220% 0; -webkit-mask-position: 220% 0; }
-  100% { mask-position: 220% 0; -webkit-mask-position: 220% 0; }
+  0%   { background-position: -120% 0; }
+  25%  { background-position: 120% 0; }
+  100% { background-position: 120% 0; }
 }
 
 .shimmer-logo {
-  mask-mode: luminance;
-  -webkit-mask-mode: luminance;
-  mask-image: linear-gradient(
+  position: relative;
+  display: inline-block;
+}
+
+.shimmer-logo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(
     110deg,
-    #000 30%,
-    rgba(255, 255, 255, 0.45) 45%,
-    rgba(255, 255, 255, 0.55) 50%,
-    rgba(255, 255, 255, 0.45) 55%,
-    #000 70%
+    transparent 35%,
+    rgba(184, 154, 106, 0.9) 50%,
+    transparent 65%
   );
-  mask-size: 200% 100%;
-  -webkit-mask-image: linear-gradient(
-    110deg,
-    #000 30%,
-    rgba(255, 255, 255, 0.45) 45%,
-    rgba(255, 255, 255, 0.55) 50%,
-    rgba(255, 255, 255, 0.45) 55%,
-    #000 70%
-  );
-  -webkit-mask-size: 200% 100%;
+  background-size: 250% 100%;
+  background-repeat: no-repeat;
+  background-position: -120% 0;
+  mask-image: url(/sc-monogram-white.svg);
+  mask-size: 100% 100%;
+  mask-repeat: no-repeat;
+  -webkit-mask-image: url(/sc-monogram-white.svg);
+  -webkit-mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mix-blend-mode: overlay;
+  pointer-events: none;
   animation: logo-shimmer 8s ease-in-out infinite;
   animation-delay: 2s;
 }

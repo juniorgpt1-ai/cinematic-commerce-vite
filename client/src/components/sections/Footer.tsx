@@ -7,7 +7,7 @@ const Footer = memo(function Footer() {
     <footer className="bg-luxe-bg border-t border-luxe-line/30">
       <div className="mx-auto max-w-7xl px-6 py-20 md:py-28">
         <div className="flex justify-center mb-16">
-          <img src="/sc-beauty-lockup.png" alt="S&C Beauty" className="w-[180px] h-auto" />
+          <img src="/preview.webp" alt="S&C Beauty" className="w-[180px] h-auto mix-blend-multiply" />
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16 items-start">
           <div>

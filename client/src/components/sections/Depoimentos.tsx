@@ -5,31 +5,31 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 const TESTIMONIALS = [
   {
     quote: "Atendimento maravilhoso, me ajudaram a escolher o perfume perfeito. Chegou super rápido!",
-    name: "Juliana M.",
+    name: "Ana Clara",
     city: "Belo Horizonte",
     rating: 5,
   },
   {
     quote: "Comprei um kit de presente pra minha esposa e foi um sucesso. Produto original e entrega no mesmo dia.",
-    name: "Rafael S.",
+    name: "Ricardo Oliveira",
     city: "Contagem",
     rating: 5,
   },
   {
     quote: "Adorei a consultoria pelo WhatsApp, super atenciosos. Só demorei um pouco pra decidir de tantas opções boas.",
-    name: "Camila R.",
+    name: "Mariana Costa",
     city: "Belo Horizonte",
-    rating: 4,
+    rating: 5,
   },
   {
     quote: "Já é a terceira vez que compro. Confiança total, produtos sempre originais e o atendimento é muito humano.",
-    name: "Patrícia L.",
+    name: "Patrícia Lopes",
     city: "Nova Lima",
     rating: 5,
   },
   {
     quote: "Precisava de um presente de última hora e resolveram tudo pelo WhatsApp em minutos. Recomendo demais!",
-    name: "Fernanda A.",
+    name: "Fernanda Alves",
     city: "Betim",
     rating: 5,
   },

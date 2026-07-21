@@ -8,24 +8,28 @@
       content="width=device-width, initial-scale=1.0" />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="/sc-monogram-gold-solid.png" />
-    <link rel="apple-touch-icon" href="/sc-monogram-gold-solid.png" />
+    <link rel="icon" type="image/svg+xml" href="/sc-monogram-gold-solid.svg" />
+    <link rel="alternate icon" href="/sc-monogram-gold-solid.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
     <!-- Primary SEO -->
     <title>S&C Beauty — Perfumaria e Cosméticos Premium | Entrega Expressa em BH</title>
     <meta name="description" content="Perfumaria e cosméticos premium do Grupo Boticário e Eudora com entrega expressa via Uber Flash em Belo Horizonte. Revendedor oficial. Consulte agora pelo WhatsApp." />
     <meta name="robots" content="index, follow" />
-    <link rel="canonical" href="https://maisonfragrance.vercel.app/" />
+    <!-- TODO: substituir pelo domínio real antes do deploy -->
+    <link rel="canonical" href="https://SEU-DOMINIO.com.br/" />
 
     <!-- Open Graph (WhatsApp, Facebook, LinkedIn) -->
     <meta property="og:type" content="website" />
     <meta property="og:title" content="S&C Beauty — Luxo Acessível Para Todos | Entrega Expressa em BH" />
     <meta property="og:description" content="Perfumaria e cosméticos premium do Grupo Boticário e Eudora com entrega expressa em BH. Revendedor oficial. Peça pelo WhatsApp." />
-    <meta property="og:image" content="https://maisonfragrance.vercel.app/sc-beauty-lockup.png" />
+    <!-- TODO: substituir pelo domínio real -->
+    <meta property="og:image" content="https://SEU-DOMINIO.com.br/og-image.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="S&C Beauty — Perfumaria e Cosméticos Premium" />
-    <meta property="og:url" content="https://maisonfragrance.vercel.app/" />
+    <!-- TODO: substituir pelo domínio real -->
+    <meta property="og:url" content="https://SEU-DOMINIO.com.br/" />
     <meta property="og:site_name" content="S&C Beauty" />
     <meta property="og:locale" content="pt_BR" />
 
@@ -33,7 +37,8 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="S&C Beauty — Luxo Acessível Para Todos | Entrega Expressa em BH" />
     <meta name="twitter:description" content="Perfumaria e cosméticos premium do Grupo Boticário e Eudora. Entrega expressa em BH. Peça pelo WhatsApp." />
-    <meta name="twitter:image" content="https://maisonfragrance.vercel.app/sc-beauty-lockup.png" />
+    <!-- TODO: substituir pelo domínio real -->
+    <meta name="twitter:image" content="https://SEU-DOMINIO.com.br/og-image.png" />
     <meta name="twitter:image:alt" content="S&C Beauty — Perfumaria e Cosméticos Premium" />
 
     <!-- Font Preloads: self-hosted critical above-the-fold variants -->
@@ -73,7 +78,67 @@
       .hero-fb-cta.PrimaryWhatsAppCTA{color:#fff;box-shadow:0 4px 24px rgba(18,160,45,.35)}
     </style>
 
-    <script type="application/ld+json" src="/structured-data.json"></script>
+    <!-- Structured Data (JSON-LD) — inline para ser processado pelo Google -->
+    <!-- TODO: substituir domínio, telefone e demais placeholders por dados reais -->
+    <script type="application/ld+json">
+    [
+      {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "S&C Beauty",
+        "description": "Revendedor oficial Grupo Boticário e Eudora. Perfumaria e cosméticos premium com entrega expressa em Belo Horizonte.",
+        "image": "https://SEU-DOMINIO.com.br/sc-beauty-lockup.png",
+        "@id": "https://SEU-DOMINIO.com.br/",
+        "url": "https://SEU-DOMINIO.com.br/",
+        "telephone": "+55 31 90000-0000",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Belo Horizonte",
+          "addressRegion": "MG",
+          "addressCountry": "BR"
+        },
+        "areaServed": {
+          "@type": "City",
+          "name": "Belo Horizonte"
+        },
+        "openingHoursSpecification": {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+          "opens": "09:00",
+          "closes": "21:00"
+        },
+        "currenciesAccepted": "BRL",
+        "paymentAccepted": "Pix, Credit Card",
+        "priceRange": "R$",
+        "makesOffer": {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Product",
+            "name": "Perfumaria e Cosméticos Premium Grupo Boticário",
+            "brand": { "@type": "Brand", "name": "Grupo Boticário" }
+          },
+          "availability": "https://schema.org/InStock",
+          "areaServed": { "@type": "City", "name": "Belo Horizonte" }
+        }
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        "name": "Malbec Cologne — O Boticário",
+        "description": "Fragrância masculina amadeirada com notas de carvalho, uísque e especiarias. Entrega expressa em Belo Horizonte.",
+        "image": "https://SEU-DOMINIO.com.br/malbec1.webp",
+        "brand": { "@type": "Brand", "name": "O Boticário" },
+        "offers": {
+          "@type": "Offer",
+          "price": "289.90",
+          "priceCurrency": "BRL",
+          "availability": "https://schema.org/InStock",
+          "url": "https://SEU-DOMINIO.com.br/#malbec",
+          "acceptedPaymentMethod": { "@type": "PaymentMethod", "name": "Pix" }
+        }
+      }
+    ]
+    </script>
   </head>
 
   <body>
@@ -93,6 +158,7 @@
           <span class="text-white/95 drop-shadow-[0_2px_18px_rgba(0,0,0,0.6)]">Para Todos.</span>
         </h1>
         <p class="hero-fb-p">Perfumaria e hair care premium do Grupo Boticário com entrega expressa para <strong style="color:#fff;font-weight:600">BH e regiões</strong>. Peça agora pelo WhatsApp e receba seu pedido em minutos, com segurança e preço justo.</p>
+        <!-- TODO: substituir pelo número real de WhatsApp (mesmo número de lib/whatsapp.ts) -->
         <a class="hero-fb-cta PrimaryWhatsAppCTA" href="https://wa.me/5531900000000?text=Ol%C3%A1%21%20Quero%20fazer%20meu%20pedido%20para%20entrega%20expressa%20em%20BH%2Fregi%C3%A3o.%20Pode%20me%20ajudar%3F" target="_blank" rel="noopener noreferrer">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
           Peça no WhatsApp
