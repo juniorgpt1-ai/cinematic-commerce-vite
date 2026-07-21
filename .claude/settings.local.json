@@ -33,7 +33,9 @@
       "Skill(run)",
       "mcp__plugin_vercel_vercel__list_deployments",
       "mcp__plugin_vercel_vercel__get_project",
-      "Bash(npx tsc *)"
+      "Bash(npx tsc *)",
+      "Bash(claude mcp *)",
+      "Bash(echo \"EXIT:$?\")"
     ]
   },
   "hooks": {
