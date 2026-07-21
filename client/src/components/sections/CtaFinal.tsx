@@ -42,7 +42,7 @@ const CtaFinal = memo(function CtaFinal({ heroImage }: { heroImage: string }) {
               target="_blank"
               rel="noopener noreferrer"
               onClick={triggerSend}
-              className="cta-emphasize wa-pulse inline-flex flex-wrap items-center justify-center gap-3 bg-whatsapp hover:bg-whatsapp-hover text-white font-bold px-5 py-4 md:px-10 md:py-5 text-base md:text-lg tracking-wider uppercase rounded-sm btn-hover-scale wa-glow"
+              className="btn-breathe [--btn-breathe-rest:#25d366] [--btn-breathe-peak:#2ecc71] inline-flex flex-wrap items-center justify-center gap-3 bg-whatsapp hover:bg-whatsapp-hover text-white font-bold px-5 py-4 md:px-10 md:py-5 text-base md:text-lg tracking-wider uppercase rounded-sm btn-hover-scale"
             >
               <SendMorphIcon phase={sendPhase} className="size-6" strokeWidth={2.4} />
               Falar no WhatsApp

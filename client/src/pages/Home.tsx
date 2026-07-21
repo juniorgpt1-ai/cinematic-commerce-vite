@@ -201,7 +201,7 @@ const Hero = memo(function Hero() {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={triggerSend}
-                className="PrimaryWhatsAppCTA cta-emphasize btn-hover-scale group inline-flex items-center justify-center gap-2.5 whitespace-nowrap bg-whatsapp hover:bg-whatsapp-hover text-white font-bold px-6 py-4 md:px-10 md:py-5 text-lg md:text-xl tracking-wide wa-glow shadow-lg shadow-green-500/25 w-[calc(100%-32px)] mx-4 md:w-auto md:mx-0"
+                className="PrimaryWhatsAppCTA btn-hover-scale btn-breathe [--btn-breathe-rest:#25d366] [--btn-breathe-peak:#2ecc71] group inline-flex items-center justify-center gap-2.5 whitespace-nowrap bg-whatsapp hover:bg-whatsapp-hover text-white font-bold px-6 py-4 md:px-10 md:py-5 text-lg md:text-xl tracking-wide shadow-lg shadow-green-500/25 w-[calc(100%-32px)] mx-4 md:w-auto md:mx-0"
               >
                 <SendMorphIcon phase={sendPhase} className="size-6 md:size-7" />
                 <span className="drop-shadow-[0_2px_6px_rgba(0,0,0,0.4)]">Peça no WhatsApp</span>

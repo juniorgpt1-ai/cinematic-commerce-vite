@@ -185,7 +185,7 @@ const EditorialShowcase = memo(function EditorialShowcase({
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={triggerSend}
-                className="group inline-flex flex-wrap items-center justify-center gap-3 bg-luxe-ink hover:bg-whatsapp text-white hover:text-black btn-hover-scale px-6 py-4 md:px-8 md:py-5 text-sm font-semibold tracking-wide shadow-md"
+                className="group inline-flex flex-wrap items-center justify-center gap-3 bg-luxe-ink hover:bg-whatsapp text-white hover:text-black btn-hover-scale btn-breathe [--btn-breathe-rest:#0a0a0a] [--btn-breathe-peak:#25d366] px-6 py-4 md:px-8 md:py-5 text-sm font-semibold tracking-wide shadow-md"
               >
                 <SendMorphIcon phase={sendPhase} className="size-4" />
                 {cta}

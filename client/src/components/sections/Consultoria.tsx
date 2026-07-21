@@ -3,7 +3,6 @@ import { Sparkles } from "lucide-react";
 import { waLink } from "@/lib/whatsapp";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useSendMorph } from "@/hooks/useSendMorph";
-import { useTouchCtaReveal } from "@/hooks/useTouchCtaReveal";
 import FloatingBadge from "@/components/sections/FloatingBadge";
 import SendMorphIcon from "@/components/sections/SendMorphIcon";
 
@@ -11,7 +10,6 @@ const Consultoria = memo(function Consultoria({ image }: { image: string }) {
   const imageRef = useScrollReveal();
   const copyRef = useScrollReveal();
   const { phase: sendPhase, trigger: triggerSend } = useSendMorph();
-  const ctaRef = useTouchCtaReveal();
 
   return (
     <section className="bg-luxe-gradient border-b border-luxe-line/20 relative overflow-hidden">
@@ -63,12 +61,11 @@ const Consultoria = memo(function Consultoria({ image }: { image: string }) {
               </li>
             </ul>
             <a
-              ref={ctaRef}
               href={waLink("Olá, quero falar com a consultora premium para fazer minha seleção personalizada.")}
               target="_blank"
               rel="noopener noreferrer"
               onClick={triggerSend}
-              className="mt-10 inline-flex flex-wrap items-center justify-center gap-3 bg-luxe-ink hover:bg-whatsapp hover:text-black text-white btn-hover-scale px-6 py-4 md:px-8 md:py-5 text-sm font-semibold tracking-wide shadow-md"
+              className="mt-10 inline-flex flex-wrap items-center justify-center gap-3 bg-luxe-ink hover:bg-whatsapp hover:text-black text-white btn-hover-scale btn-breathe [--btn-breathe-rest:#0a0a0a] [--btn-breathe-peak:#25d366] px-6 py-4 md:px-8 md:py-5 text-sm font-semibold tracking-wide shadow-md"
             >
               <SendMorphIcon phase={sendPhase} className="size-4" />
               Falar com a Consultora

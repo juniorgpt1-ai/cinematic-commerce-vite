@@ -3,7 +3,6 @@ import { Timer, Award } from "lucide-react";
 import { waLink } from "@/lib/whatsapp";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useSendMorph } from "@/hooks/useSendMorph";
-import { useTouchCtaReveal } from "@/hooks/useTouchCtaReveal";
 import { useCarouselAutoplay } from "@/hooks/useCarouselAutoplay";
 import FloatingBadge from "@/components/sections/FloatingBadge";
 import SendMorphIcon from "@/components/sections/SendMorphIcon";
@@ -13,7 +12,6 @@ const MalbecShowcase = memo(function MalbecShowcase({ lifestyleImg, collageImg }
   const carouselRef = useScrollReveal();
   const copyRef = useScrollReveal();
   const collageRef = useScrollReveal();
-  const goldCtaRef = useTouchCtaReveal(""); // gold btn — skip bg change
   const { phase: sendPhase, trigger: triggerSend } = useSendMorph();
 
   return (
@@ -147,7 +145,7 @@ const MalbecShowcase = memo(function MalbecShowcase({ lifestyleImg, collageImg }
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={triggerSend}
-                className="group btn-hover-scale inline-flex flex-wrap items-center justify-center gap-3 bg-luxe-ink hover:bg-whatsapp text-white hover:text-black transition-colors px-5 py-3 md:px-8 md:py-4 text-sm font-semibold tracking-wide shadow-md"
+                className="group btn-hover-scale btn-breathe [--btn-breathe-rest:#0a0a0a] [--btn-breathe-peak:#25d366] inline-flex flex-wrap items-center justify-center gap-3 bg-luxe-ink hover:bg-whatsapp text-white hover:text-black transition-colors px-5 py-3 md:px-8 md:py-4 text-sm font-semibold tracking-wide shadow-md"
               >
                 <SendMorphIcon phase={sendPhase} className="size-4" />
                 Garantir meu Malbec
@@ -182,11 +180,10 @@ const MalbecShowcase = memo(function MalbecShowcase({ lifestyleImg, collageImg }
             {/* Gold metallic CTA button */}
             <div className="mt-6 md:mt-8 flex justify-center">
               <a
-                ref={goldCtaRef}
                 href={waLink("Olá! Quero descobrir a fragrância ideal para o meu estilo. Pode me ajudar?")}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-gold-metallic btn-hover-scale inline-flex items-center gap-3 px-6 py-4 text-sm md:text-base font-bold tracking-[0.2em] uppercase rounded-sm hover:brightness-105 hover:shadow-xl [animation:luxe-glow-gold_2.5s_ease-in-out_infinite] whitespace-nowrap"
+                className="btn-gold-metallic btn-hover-scale btn-breathe-no-bg inline-flex items-center gap-3 px-6 py-4 text-sm md:text-base font-bold tracking-[0.2em] uppercase rounded-sm hover:brightness-105 hover:shadow-xl whitespace-nowrap"
               >
                 Encontrar meu perfume
                 <img src="/msg.svg" alt="" className="size-5" />

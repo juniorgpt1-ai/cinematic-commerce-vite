@@ -3,7 +3,6 @@ import { Award, Sparkles, ChevronDown } from "lucide-react";
 import { waLink } from "@/lib/whatsapp";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useSendMorph } from "@/hooks/useSendMorph";
-import { useTouchCtaReveal } from "@/hooks/useTouchCtaReveal";
 import FloatingBadge from "@/components/sections/FloatingBadge";
 import SendMorphIcon from "@/components/sections/SendMorphIcon";
 
@@ -14,7 +13,6 @@ const HairCareSuite = memo(function HairCareSuite({ volumeImg, lisoImg }: { volu
   const { phase: headerSendPhase, trigger: triggerHeaderSend } = useSendMorph();
   const [volumeOpen, setVolumeOpen] = useState(false);
   const [lisoOpen, setLisoOpen] = useState(false);
-  const headerCtaRef = useTouchCtaReveal();
 
   return (
     <section id="haircare" className="relative bg-luxe-bg overflow-hidden border-b border-luxe-line/40">
@@ -29,12 +27,11 @@ const HairCareSuite = memo(function HairCareSuite({ volumeImg, lisoImg }: { volu
             Resultado de salão na sua rotina diária.
           </p>
           <a
-            ref={headerCtaRef}
             href={waLink("Olá! Gostaria de conhecer a linha de cuidados capilares. Pode me ajudar?")}
             target="_blank"
             rel="noopener noreferrer"
             onClick={triggerHeaderSend}
-            className="mt-8 inline-flex flex-wrap items-center justify-center gap-3 border border-luxe-gold/25 bg-luxe-ink hover:bg-whatsapp hover:border-whatsapp text-white hover:text-black btn-hover-scale px-6 py-4 md:px-8 md:py-5 text-sm font-semibold tracking-wide shadow-md"
+            className="mt-8 inline-flex flex-wrap items-center justify-center gap-3 border border-luxe-gold/25 bg-luxe-ink hover:bg-whatsapp hover:border-whatsapp text-white hover:text-black btn-hover-scale btn-breathe [--btn-breathe-rest:#0a0a0a] [--btn-breathe-peak:#25d366] px-6 py-4 md:px-8 md:py-5 text-sm font-semibold tracking-wide shadow-md"
           >
             <SendMorphIcon phase={headerSendPhase} className="size-4" />
             Conhecer a linha capilar completa!
@@ -126,7 +123,7 @@ const HairCareSuite = memo(function HairCareSuite({ volumeImg, lisoImg }: { volu
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={triggerVolumeSend}
-                className="group inline-flex flex-wrap items-center justify-center gap-3 border border-luxe-gold/25 bg-luxe-ink hover:bg-whatsapp hover:border-whatsapp text-white hover:text-black btn-hover-scale px-5 py-3.5 sm:px-6 sm:py-4 md:px-8 md:py-5 text-sm sm:text-base font-semibold tracking-wide shadow-md"
+                className="group inline-flex flex-wrap items-center justify-center gap-3 border border-luxe-gold/25 bg-luxe-ink hover:bg-whatsapp hover:border-whatsapp text-white hover:text-black btn-hover-scale btn-breathe [--btn-breathe-rest:#0a0a0a] [--btn-breathe-peak:#25d366] px-5 py-3.5 sm:px-6 sm:py-4 md:px-8 md:py-5 text-sm sm:text-base font-semibold tracking-wide shadow-md"
               >
                 <SendMorphIcon phase={volumeSendPhase} className="size-4 sm:size-5" />
                 Eu Quero Fios Encorpados
@@ -220,7 +217,7 @@ const HairCareSuite = memo(function HairCareSuite({ volumeImg, lisoImg }: { volu
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={triggerLisoSend}
-                className="group inline-flex items-center justify-center gap-3 border border-luxe-gold/25 bg-luxe-ink hover:bg-whatsapp hover:border-whatsapp text-white hover:text-black btn-hover-scale px-5 py-3.5 sm:px-6 sm:py-4 md:px-8 md:py-5 text-sm sm:text-base font-semibold tracking-wide shadow-md whitespace-nowrap"
+                className="group inline-flex items-center justify-center gap-3 border border-luxe-gold/25 bg-luxe-ink hover:bg-whatsapp hover:border-whatsapp text-white hover:text-black btn-hover-scale btn-breathe [--btn-breathe-rest:#0a0a0a] [--btn-breathe-peak:#25d366] px-5 py-3.5 sm:px-6 sm:py-4 md:px-8 md:py-5 text-sm sm:text-base font-semibold tracking-wide shadow-md whitespace-nowrap"
               >
                 <SendMorphIcon phase={lisoSendPhase} className="size-4 sm:size-5" />
                 Sinta o Poder do Liso Absoluto

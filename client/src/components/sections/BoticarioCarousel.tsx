@@ -208,7 +208,7 @@ const BoticarioCarousel = memo(function BoticarioCarousel() {
                   href={waLink(prod.waMsg)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn-hover-scale inline-flex items-center justify-center gap-1.5 bg-luxe-ink hover:bg-whatsapp text-luxe-gold-soft hover:text-black border border-luxe-gold-soft/30 hover:border-whatsapp px-3 py-2 text-xs font-semibold tracking-wider uppercase transition-all duration-300"
+                  className="btn-hover-scale btn-breathe [--btn-breathe-rest:#0a0a0a] [--btn-breathe-peak:#25d366] inline-flex items-center justify-center gap-1.5 bg-luxe-ink hover:bg-whatsapp text-luxe-gold-soft hover:text-black border border-luxe-gold-soft/30 hover:border-whatsapp px-3 py-2 text-xs font-semibold tracking-wider uppercase transition-all duration-300"
                 >
                   {prod.ctaText} <img src="/msg.svg" alt="" className="size-4 group-hover:translate-x-1 transition-transform" />
                 </a>

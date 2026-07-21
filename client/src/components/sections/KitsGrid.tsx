@@ -3,14 +3,12 @@ import { Timer } from "lucide-react";
 import { waLink } from "@/lib/whatsapp";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useSendMorph } from "@/hooks/useSendMorph";
-import { useTouchCtaReveal } from "@/hooks/useTouchCtaReveal";
 import SendMorphIcon from "@/components/sections/SendMorphIcon";
 
 const KitsGrid = memo(function KitsGrid() {
   const headerRef = useScrollReveal();
   const gridRef = useScrollReveal();
   const { phase: sendPhase, trigger: triggerSend } = useSendMorph();
-  const ctaRef = useTouchCtaReveal();
 
   const kits = [
     {
@@ -48,12 +46,11 @@ const KitsGrid = memo(function KitsGrid() {
             Combinações desenvolvidas por especialistas para presentear com sofisticação ou reabastecer seu estoque de luxo com o melhor custo-benefício.
           </p>
           <a
-            ref={ctaRef}
             href={waLink("Olá! Gostaria de ajuda para escolher um presente especial. Pode me ajudar?")}
             target="_blank"
             rel="noopener noreferrer"
             onClick={triggerSend}
-            className="mt-8 inline-flex flex-wrap items-center justify-center gap-3 border border-luxe-gold-soft/30 bg-luxe-gold/10 hover:bg-whatsapp hover:border-whatsapp text-luxe-gold-soft hover:text-black btn-hover-scale px-6 py-4 md:px-8 md:py-5 text-sm font-semibold tracking-wide shadow-md"
+            className="mt-8 inline-flex flex-wrap items-center justify-center gap-3 border border-luxe-gold-soft/30 bg-luxe-gold/10 hover:bg-whatsapp hover:border-whatsapp text-luxe-gold-soft hover:text-black btn-hover-scale btn-breathe [--btn-breathe-rest:rgba(154,123,80,0.1)] [--btn-breathe-peak:rgba(154,123,80,0.2)] px-6 py-4 md:px-8 md:py-5 text-sm font-semibold tracking-wide shadow-md"
           >
             <SendMorphIcon phase={sendPhase} className="size-4" />
             Escolher um presente
@@ -104,7 +101,7 @@ const KitsGrid = memo(function KitsGrid() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={`Pedir ${k.name} no WhatsApp`}
-                    className="btn-hover-scale inline-flex items-center justify-center gap-2 bg-luxe-ink hover:bg-whatsapp text-luxe-gold-soft hover:text-black border border-luxe-gold-soft/30 hover:border-whatsapp px-4 py-2.5 text-xs font-semibold tracking-wider uppercase transition-all duration-300"
+                    className="btn-hover-scale btn-breathe [--btn-breathe-rest:#0a0a0a] [--btn-breathe-peak:#25d366] inline-flex items-center justify-center gap-2 bg-luxe-ink hover:bg-whatsapp text-luxe-gold-soft hover:text-black border border-luxe-gold-soft/30 hover:border-whatsapp px-4 py-2.5 text-xs font-semibold tracking-wider uppercase transition-all duration-300"
                   >
                     Pedir Combo <img src="/msg.svg" alt="" className="size-4" />
                   </a>
