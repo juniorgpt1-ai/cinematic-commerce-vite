@@ -20,7 +20,7 @@ const FlorattaRedShowcase = memo(function FlorattaRedShowcase({ image }: { image
       imageAlt="Modelo com vestido vermelho segurando frasco Floratta Red em apartamento de luxo com vista da cidade"
       reverse
       sealText="Melhor Custo-Benefício"
-      secondImage="/floratta-mob-2x.webp"
+      secondImage="/floratta.webp"
       secondLabel={`Floratta Red
 Sinta a elegância. Viva o romance.`}
     />

@@ -12,12 +12,12 @@ const AntigravityParticles = lazy(() => import("@/components/AntigravityParticle
 
 // Assets - URLs publicas
 const heroPerfume = "/malbec-signatureA.webp";
-const malbecLifestyleImg = "/malbec-lifestyle-mob.webp";
-const malbecCollageImg = "/malbec-collage-mob-2x.webp";
-const florattaRedImg = "/floratta-red-lifestyle-mob-2x.webp";
-const hairCareVolumeImg = "/hair-care-volume-mob-2x.webp";
-const hairCareLisoImg = "/hair-care-liso-mob-2x.webp";
-const consultoraImg = "/consultora-mob-2x.webp";
+const malbecLifestyleImg = "/malbec-lifestyle.webp";
+const malbecCollageImg = "/malbec-collage.webp";
+const florattaRedImg = "/floratta-red-lifestyle.webp";
+const hairCareVolumeImg = "/hair-care-volume.webp";
+const hairCareLisoImg = "/hair-care-liso.webp";
+const consultoraImg = "/consultora.webp";
 
 // Lazy-loaded section imports
 const TrustBar = lazy(() => import("@/components/sections/TrustBar"));
@@ -192,13 +192,13 @@ const Hero = memo(function Hero() {
           decoding="sync"
           width={1600}
           height={1200}
-          className="absolute inset-0 h-full w-full object-cover object-[65%_center] md:object-center opacity-95"
+          className="absolute inset-0 h-full w-full object-cover object-[55%_center] md:object-center opacity-95"
         />
       </picture>
       <div className="absolute inset-0 bg-gradient-to-r from-black/95 via-black/70 to-transparent" />
       <div className="absolute inset-0 bg-gradient-to-t from-[#070707] via-transparent to-black/50" />
 
-      <div className="relative z-10 mx-auto max-w-7xl w-full px-4 md:px-6 pt-24 md:pt-32 pb-20 md:pb-40 flex flex-col justify-end flex-1 md:grow-0">
+      <div className="relative z-10 mx-auto max-w-7xl w-full px-4 md:px-6 pt-24 md:pt-32 pb-12 md:pb-40 flex flex-col justify-end flex-1 md:grow-0">
         <div className="animate-fade-up max-w-3xl flex flex-col flex-1 md:grow-0 justify-between md:justify-normal gap-y-6">
           <div>
             <div className="mb-2 sm:mb-8 hidden md:flex md:justify-start">
