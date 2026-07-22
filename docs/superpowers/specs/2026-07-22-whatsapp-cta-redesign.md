@@ -107,11 +107,14 @@ Add `@keyframes whatsapp-float-expand` and `.whatsapp-float` utility to `index.c
 ### Step 2 — Component: Simplify WhatsappFloating.tsx
 Strip JS logic, apply CSS class, keep direct `<a>` link.
 
-### Step 3 — CSS: Rewrite CTA breathing keyframes
+### Step 3 — Component: Center FloatingBadge on mobile
+Add `flex justify-center` to the parent `<div>` at `Home.tsx` line 238 for the mobile "Entrega VIP" badge.
+
+### Step 4 — CSS: Rewrite CTA breathing keyframes
 Replace `cta-breathe`, `cta-breathe-vignette`, `cta-breathe-no-bg` with filter-based versions.
 
-### Step 4 — CSS: Update `.btn-breathe` and `.btn-breathe-no-bg`
+### Step 5 — CSS: Update `.btn-breathe` and `.btn-breathe-no-bg`
 Adjust utility classes for the new keyframes, `::after` vignette, and staggered delays.
 
-### Step 5 — Verify
+### Step 6 — Verify
 Test on mobile viewport: WhatsApp float expands/collapses smoothly, all CTAs breathe subtly, clicks go straight to WhatsApp.
