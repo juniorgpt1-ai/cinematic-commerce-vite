@@ -235,7 +235,7 @@ const Hero = memo(function Hero() {
               </div>
             </div>
 
-            <div className="md:hidden mt-4">
+            <div className="md:hidden mt-4 flex justify-center">
               <FloatingBadge className="border-white/30 bg-white/95 px-2.5 py-1">
                 <Timer className="size-3 text-luxe-black" />
                 <span className="text-[11px] tracking-[0.14em] uppercase text-luxe-black font-semibold">
