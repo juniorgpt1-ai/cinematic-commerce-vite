@@ -31,7 +31,7 @@ const HairCareSuite = memo(function HairCareSuite({ volumeImg, lisoImg }: { volu
             target="_blank"
             rel="noopener noreferrer"
             onClick={triggerHeaderSend}
-            className="mt-8 inline-flex flex-wrap items-center justify-center gap-3 border border-luxe-gold/25 bg-luxe-ink hover:bg-whatsapp hover:border-whatsapp text-white hover:text-black btn-hover-scale btn-breathe [--btn-breathe-rest:#0a0a0a] [--btn-breathe-peak:#25d366] px-6 py-4 md:px-8 md:py-5 text-sm font-semibold tracking-wide shadow-md"
+            className="mt-8 inline-flex flex-wrap items-center justify-center gap-3 border border-luxe-gold/25 bg-luxe-ink hover:bg-whatsapp hover:border-whatsapp text-white hover:text-black btn-hover-scale btn-breathe [--btn-breathe-rest:#0a0a0a] [--btn-breathe-peak:#25d366] [--breathe-delay:0s] px-6 py-4 md:px-8 md:py-5 text-sm font-semibold tracking-wide shadow-md"
           >
             <SendMorphIcon phase={headerSendPhase} className="size-4" />
             Conhecer a linha capilar completa!
@@ -123,7 +123,7 @@ const HairCareSuite = memo(function HairCareSuite({ volumeImg, lisoImg }: { volu
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={triggerVolumeSend}
-                className="group inline-flex flex-wrap items-center justify-center gap-3 border border-luxe-gold/25 bg-luxe-ink hover:bg-whatsapp hover:border-whatsapp text-white hover:text-black btn-hover-scale btn-breathe [--btn-breathe-rest:#0a0a0a] [--btn-breathe-peak:#25d366] px-5 py-3.5 sm:px-6 sm:py-4 md:px-8 md:py-5 text-sm sm:text-base font-semibold tracking-wide shadow-md"
+                className="group inline-flex flex-wrap items-center justify-center gap-3 border border-luxe-gold/25 bg-luxe-ink hover:bg-whatsapp hover:border-whatsapp text-white hover:text-black btn-hover-scale btn-breathe [--btn-breathe-rest:#0a0a0a] [--btn-breathe-peak:#25d366] [--breathe-delay:1.6s] px-5 py-3.5 sm:px-6 sm:py-4 md:px-8 md:py-5 text-sm sm:text-base font-semibold tracking-wide shadow-md"
               >
                 <SendMorphIcon phase={volumeSendPhase} className="size-4 sm:size-5" />
                 Eu Quero Fios Encorpados
@@ -217,7 +217,7 @@ const HairCareSuite = memo(function HairCareSuite({ volumeImg, lisoImg }: { volu
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={triggerLisoSend}
-                className="group inline-flex items-center justify-center gap-3 border border-luxe-gold/25 bg-luxe-ink hover:bg-whatsapp hover:border-whatsapp text-white hover:text-black btn-hover-scale btn-breathe [--btn-breathe-rest:#0a0a0a] [--btn-breathe-peak:#25d366] px-5 py-3.5 sm:px-6 sm:py-4 md:px-8 md:py-5 text-sm sm:text-base font-semibold tracking-wide shadow-md whitespace-nowrap"
+                className="group inline-flex items-center justify-center gap-3 border border-luxe-gold/25 bg-luxe-ink hover:bg-whatsapp hover:border-whatsapp text-white hover:text-black btn-hover-scale btn-breathe [--btn-breathe-rest:#0a0a0a] [--btn-breathe-peak:#25d366] [--breathe-delay:3.2s] px-5 py-3.5 sm:px-6 sm:py-4 md:px-8 md:py-5 text-sm sm:text-base font-semibold tracking-wide shadow-md whitespace-nowrap"
               >
                 <SendMorphIcon phase={lisoSendPhase} className="size-4 sm:size-5" />
                 Sinta o Poder do Liso Absoluto
