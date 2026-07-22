@@ -166,39 +166,19 @@
 /* ── WhatsApp floating button auto expand/collapse (CSS-only) ── */
 
 @keyframes whatsapp-float-expand {
-  /* Closed pill: 0%–18% (first 1.8s of 10s cycle) */
-  0%, 15% {
-    max-width: 0;
-    opacity: 0;
-    margin-left: 0;
-    margin-right: 0;
-  }
-  /* Expand from 15%→28% (1.5s → 2.8s): smooth expand */
-  /* Hold expanded: 28%–58% (2.8s → 5.8s) */
-  28%, 55% {
-    max-width: 160px;
-    opacity: 1;
-    margin-left: 10px;
-    margin-right: 4px;
-  }
-  /* Collapse from 55%→68% (5.5s → 6.8s): smooth collapse */
-  /* Closed pill: 68%–100% (6.8s → 10s) */
-  68%, 100% {
-    max-width: 0;
-    opacity: 0;
-    margin-left: 0;
-    margin-right: 0;
-  }
+  /* Closed pill: 0%–15% — only the icon visible (56px = icon 20px + padding) */
+  0%, 15% { max-width: 56px; }
+  /* Expand: 15%→28% — smooth transition to full width */
+  /* Hold expanded: 28%–55% — text fully readable */
+  28%, 55% { max-width: 230px; }
+  /* Collapse: 55%→68% — smooth transition back to pill */
+  /* Closed pill: 68%–100% */
+  68%, 100% { max-width: 56px; }
 }
 
 @utility whatsapp-float-btn {
   animation: whatsapp-float-expand 10s ease-in-out infinite;
-  & span {
-    display: inline-block;
-    overflow: hidden;
-    white-space: nowrap;
-    vertical-align: middle;
-  }
+  span { white-space: nowrap; }
 }
 
 @media (prefers-reduced-motion: reduce) {
