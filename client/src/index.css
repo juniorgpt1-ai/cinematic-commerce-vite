@@ -250,31 +250,57 @@
 /* ── CTA breathing (touch-only hover substitute) ── */
 
 @keyframes cta-breathe {
-  0%, 100% {
+  /* Rest: 0%–58% (3s of 5s cycle) — no change */
+  0%, 55% {
     background-color: var(--btn-breathe-rest);
     transform: scale(1);
-    filter: brightness(1);
+    filter: brightness(1) drop-shadow(0 2px 6px rgba(0,0,0,0.10));
   }
-  50% {
+  /* Inhale: 55%→75% (0.75s) — slow transition to peak */
+  /* Peak: 75%–83% (0.5s) — hold at highlighted state */
+  75%, 82% {
     background-color: var(--btn-breathe-peak);
-    transform: scale(1.025);
-    filter: brightness(1.08);
+    transform: scale(1.015);
+    filter: brightness(1.06) drop-shadow(0 4px 14px rgba(0,0,0,0.18));
+  }
+  /* Exhale: 82%→100% (0.75s) — slow return to rest */
+  100% {
+    background-color: var(--btn-breathe-rest);
+    transform: scale(1);
+    filter: brightness(1) drop-shadow(0 2px 6px rgba(0,0,0,0.10));
+  }
+}
+
+@keyframes cta-breathe-no-bg {
+  0%, 55% {
+    transform: scale(1);
+    filter: brightness(1) drop-shadow(0 2px 6px rgba(0,0,0,0.10));
+  }
+  75%, 82% {
+    transform: scale(1.015);
+    filter: brightness(1.06) drop-shadow(0 4px 14px rgba(0,0,0,0.18));
+  }
+  100% {
+    transform: scale(1);
+    filter: brightness(1) drop-shadow(0 2px 6px rgba(0,0,0,0.10));
   }
 }
 
 @keyframes cta-breathe-vignette {
-  0%, 100% { box-shadow: inset 0 0 20px rgba(0,0,0,0); }
-  50%      { box-shadow: inset 0 0 20px rgba(0,0,0,0.18); }
+  0%, 55% { opacity: 0; }
+  75%, 82% { opacity: 1; }
+  100% { opacity: 0; }
 }
 
 .btn-breathe {
   position: relative;
   isolation: isolate;
   transition:
-    background-color var(--motion-duration-slow) var(--ease-luxe, cubic-bezier(0.22, 1, 0.36, 1)),
-    transform var(--motion-duration-slow) var(--ease-luxe, cubic-bezier(0.22, 1, 0.36, 1)),
-    box-shadow var(--motion-duration-slow) var(--ease-luxe, cubic-bezier(0.22, 1, 0.36, 1)),
-    filter var(--motion-duration-slow) var(--ease-luxe, cubic-bezier(0.22, 1, 0.36, 1));
+    background-color 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  animation-delay: var(--breathe-delay, 0s);
 }
 .btn-breathe::after {
   content: '';
@@ -283,37 +309,28 @@
   border-radius: inherit;
   pointer-events: none;
   z-index: -1;
-}
-
-@keyframes cta-breathe-no-bg {
-  0%, 100% {
-    transform: scale(1);
-    filter: brightness(1);
-  }
-  50% {
-    transform: scale(1.025);
-    filter: brightness(1.06);
-  }
+  background: radial-gradient(ellipse at center, rgba(0,0,0,0.06) 0%, transparent 70%);
+  opacity: 0;
 }
 
 @media (hover: none) and (pointer: coarse) {
   .btn-breathe {
-    animation: cta-breathe 4s ease-in-out infinite;
-    will-change: transform, background-color, box-shadow;
+    animation: cta-breathe 5s ease-in-out infinite;
+    will-change: transform, filter, background-color;
   }
   .btn-breathe::after {
-    animation: cta-breathe-vignette 4s ease-in-out infinite;
+    animation: cta-breathe-vignette 5s ease-in-out infinite;
   }
   .btn-breathe:active {
     animation-play-state: paused;
     filter: brightness(0.95);
   }
   .btn-breathe-no-bg {
-    animation: cta-breathe-no-bg 4s ease-in-out infinite;
+    animation: cta-breathe-no-bg 5s ease-in-out infinite;
     will-change: transform, filter;
   }
   .btn-breathe-no-bg::after {
-    animation: cta-breathe-vignette 4s ease-in-out infinite;
+    animation: cta-breathe-vignette 5s ease-in-out infinite;
   }
   .btn-breathe-no-bg:active {
     animation-play-state: paused;
@@ -322,6 +339,17 @@
   /* Kill desktop glow on gradient buttons when breathing takes over */
   .btn-breathe-no-bg[style*="luxe-glow-gold"] {
     animation-name: cta-breathe-no-bg;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-breathe,
+  .btn-breathe-no-bg {
+    animation: none !important;
+  }
+  .btn-breathe::after,
+  .btn-breathe-no-bg::after {
+    animation: none !important;
   }
 }
 
