@@ -9,7 +9,7 @@ Two effects from the previous implementation are not working as expected:
 
 1. **WhatsApp floating button:** expansion cycle is unreliable (JS timer-driven), and `useSendMorph` adds unwanted intermediate icon states. The button should be a single direct CTA, not a FAB with a menu.
 
-2. **CTA breathing animation:** the current `cta-breathe` keyframe animates `background-color`, which produces a blinking/dimming effect that reads as an error or alert. The vignette `::after` animates `opacity` incorrectly, contributing to the flicker. The goal is a nearly imperceptible premium microinteraction — not a blink.
+2. **CTA breathing animation:** the current `cta-breathe` keyframe animates properties with poor timing — the full cycle is active animation, making the background-color shift read as a blink or error alert. The vignette `::after` animates `opacity` incorrectly, contributing to the flicker. The goal is a nearly imperceptible premium microinteraction where the button spends most of its time at rest, breathing subtly into a highlighted state before returning.
 
 ## Design
 
@@ -43,34 +43,42 @@ Two effects from the previous implementation are not working as expected:
 
 ---
 
-### 2. CTA Breathing Animation — Filter-based microinteraction
+### 2. CTA Breathing Animation — Hybrid approach
 
-**Approach:** Replace the current `cta-breathe` keyframe (which animates `background-color` + `opacity` on vignette, causing blink) with filter-only properties: `brightness()`, `drop-shadow()`, and `transform: scale()`. All run on the compositor thread — zero paint triggers.
+**Approach:** Rewrite the `cta-breathe` keyframe using a combination of compositor-safe properties (`brightness()`, `drop-shadow()`, `transform: scale()`) plus `background-color` for dark buttons that shift toward green at peak. The vignette pseudo-element uses `radial-gradient` with `opacity` animated in lockstep.
 
-The vignette pseudo-element switches from `box-shadow: inset` to `radial-gradient` with `opacity` animated in lockstep.
+The previous implementation failed because `background-color` was animated across the entire cycle with poor timing, creating a blink. The fix is timing: 60% of the cycle is complete rest — the background shift only happens during the slow inhale/exhale phases, making it feel like a natural breath rather than a flicker.
 
 **Keyframe `cta-breathe`** (~5s cycle):
 
-| Phase | % | `brightness` | `drop-shadow` | `scale` |
-|---|---|---|---|---|
-| Rest | 0%–60% | `1` | `drop-shadow(0 2px 6px rgba(0,0,0,0.10))` | `1` |
-| Inhale | 60%–75% | `1 → 1.06` | `→ drop-shadow(0 4px 14px rgba(0,0,0,0.18))` | `1 → 1.015` |
-| Peak | 75%–85% | `1.06` | `drop-shadow(0 4px 14px rgba(0,0,0,0.18))` | `1.015` |
-| Exhale | 85%–100% | `→ 1` | `→ drop-shadow(0 2px 6px rgba(0,0,0,0.10))` | `→ 1` |
+| Phase | % | `background-color` | `brightness` | `drop-shadow` | `scale` |
+|---|---|---|---|---|---|
+| Rest | 0%–60% | `--btn-breathe-rest` | `1` | `drop-shadow(0 2px 6px rgba(0,0,0,0.10))` | `1` |
+| Inhale | 60%–75% | `→ --btn-breathe-peak` | `1 → 1.06` | `→ drop-shadow(0 4px 14px rgba(0,0,0,0.18))` | `1 → 1.015` |
+| Peak | 75%–85% | `--btn-breathe-peak` | `1.06` | `drop-shadow(0 4px 14px rgba(0,0,0,0.18))` | `1.015` |
+| Exhale | 85%–100% | `→ --btn-breathe-rest` | `→ 1` | `→ drop-shadow(0 2px 6px rgba(0,0,0,0.10))` | `→ 1` |
 
 **Easing:** `ease-in-out` for the full cycle — smooth and continuous, no abrupt changes.
 
-**Vignette:** `::after` pseudo-element with `radial-gradient(ellipse at center, rgba(0,0,0,0.06) 0%, transparent 70%)`. `opacity` animated in sync with the cycle: `0` at rest → `1` at peak → `0` on exhale. Nearly imperceptible — exists only for depth perception.
+**Per-button colors via CSS custom properties:**
+
+| Button type | `--btn-breathe-rest` | `--btn-breathe-peak` |
+|---|---|---|
+| Dark buttons (Consulta, Kits, HairCare, Malbec) | `#0a0a0a` | `#25d366` |
+| Green buttons (Hero, CtaFinal, WhatsApp float) | `#25d366` | `#2ecc71` |
+| Gold/gradient buttons (Malbec gold) | `rgba(154,123,80,0.1)` | `rgba(154,123,80,0.2)` |
+
+Dark buttons shift from near-black to WhatsApp green at peak, then return. This is the most visually impactful version — the button "comes alive" with brand color. Green buttons shift to a slightly lighter green. Gold buttons get a subtle boost.
+
+**Vignette:** `::after` pseudo-element with `radial-gradient(ellipse at center, rgba(0,0,0,0.06) 0%, transparent 70%)`. `opacity` animated in sync with the cycle: `0` at rest → `1` at peak → `0` on exhale. Nearly imperceptible — exists only for depth perception. On dark buttons the vignette is invisible (black on black), which is fine — `drop-shadow` and `brightness` carry the depth.
 
 **What does NOT change:**
-- No `background-color` animation (the button's background stays fixed)
 - No `opacity` on the button itself (only on `::after` vignette)
 - No colored glow (`box-shadow` with `currentColor` or spread)
 - No neon, no blink, no alert-like effects
 
-**Per-button variation:**
-- Buttons declare `--btn-breathe-rest` and `--btn-breathe-peak` CSS custom properties for their base colors — but these are no longer used since `background-color` is not animated. They're kept only for the fallback transition on desktop hover.
-- Each button instance gets a staggered `animation-delay` (0s, 1.2s, 2.4s, 3.6s) so they don't all breathe in unison.
+**Per-button stagger:**
+Each button instance gets a staggered `animation-delay` (0s, 1.2s, 2.4s, 3.6s) so they don't all breathe in unison.
 
 **Touch gate:** `@media (hover: none) and (pointer: coarse)` — animation only fires on touch devices. Desktop keeps standard `:hover` via `.btn-hover-scale`.
 
@@ -79,9 +87,11 @@ The vignette pseudo-element switches from `box-shadow: inset` to `radial-gradien
 - `:active` → pause animation, `brightness(0.95)`
 
 **Performance:**
-- `will-change: transform, filter` on the breathing button
-- All animated properties are compositor-only: `transform`, `filter`, `opacity` (on `::after`)
-- Zero layout recalculation, zero paint
+- `will-change: transform, filter, background-color` on the breathing button
+- `transform` and `filter` run on compositor thread
+- `background-color` triggers paint, but only during 25% of the cycle (inhale/exhale) — the remaining 75% is at rest with zero paint
+- `opacity` on `::after` is compositor-only
+- Zero layout recalculation
 
 **Files changed:**
 - `client/src/index.css` — rewrite `@keyframes cta-breathe`, `@keyframes cta-breathe-vignette`, `.btn-breathe`, `.btn-breathe-no-bg`
