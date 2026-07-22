@@ -103,6 +103,12 @@ function vitePluginManusDebugCollector(): Plugin {
     },
 
     configureServer(server: ViteDevServer) {
+      // GET /__manus__/debug-collector.js: serve the collector script
+      server.middlewares.use("/__manus__/debug-collector.js", (_req, res) => {
+        res.writeHead(200, { "Content-Type": "application/javascript" });
+        res.end(`(function(){var L=[];function S(u,b){L.push(JSON.stringify({ts:Date.now(),lv:u,msg:b}));if(L.length>20){var B=L.splice(0,20);try{navigator.sendBeacon("/__manus__/logs",JSON.stringify({consoleLogs:B}))}catch(e){}}};var orig={log:console.log,warn:console.warn,error:console.error};["log","warn","error"].forEach(function(lv){console[lv]=function(){var args=[].slice.call(arguments);S(lv,args.map(function(a){try{return typeof a==="object"?JSON.stringify(a):String(a)}catch(e){return String(a)}}).join(" "));orig[lv].apply(console,arguments)}});window.addEventListener("error",function(e){S("error",e.message+" at "+e.filename+":"+e.lineno)});window.addEventListener("beforeunload",function(){if(L.length>0)try{navigator.sendBeacon("/__manus__/logs",JSON.stringify({consoleLogs:L}))}catch(e){}})}());`);
+      });
+
       // POST /__manus__/logs: Browser sends logs (written directly to files)
       server.middlewares.use("/__manus__/logs", (req, res, next) => {
         if (req.method !== "POST") {
@@ -242,7 +248,7 @@ const plugins = [
   react(),
   tailwindcss(),
   jsxLocPlugin(),
-  ...(isDev ? [vitePluginManusRuntime(), vitePluginManusDebugCollector(), vitePluginStorageProxy()] : []),
+  ...(isDev ? [/* vitePluginManusRuntime(), */ vitePluginManusDebugCollector(), vitePluginStorageProxy()] : []),
   vitePluginCssPreload(),
   visualizer({ filename: "dist/stats.html", open: false, gzipSize: true, brotliSize: true, template: "treemap" }),
 ];

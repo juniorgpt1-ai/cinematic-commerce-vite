@@ -234,7 +234,7 @@
   0%, 55% {
     background-color: var(--btn-breathe-rest);
     transform: scale(1);
-    filter: brightness(1) drop-shadow(0 2px 6px rgba(0,0,0,0.10));
+    filter: drop-shadow(0 2px 6px rgba(0,0,0,0.10));
   }
   /* Inhale: 55%→75% (0.75s) — slow transition to peak */
   /* Peak: 75%–83% (0.5s) — hold at highlighted state */
@@ -247,14 +247,14 @@
   100% {
     background-color: var(--btn-breathe-rest);
     transform: scale(1);
-    filter: brightness(1) drop-shadow(0 2px 6px rgba(0,0,0,0.10));
+    filter: drop-shadow(0 2px 6px rgba(0,0,0,0.10));
   }
 }
 
 @keyframes cta-breathe-no-bg {
   0%, 55% {
     transform: scale(1);
-    filter: brightness(1) drop-shadow(0 2px 6px rgba(0,0,0,0.10));
+    filter: drop-shadow(0 2px 6px rgba(0,0,0,0.10));
   }
   75%, 82% {
     transform: scale(1.015);
@@ -262,7 +262,7 @@
   }
   100% {
     transform: scale(1);
-    filter: brightness(1) drop-shadow(0 2px 6px rgba(0,0,0,0.10));
+    filter: drop-shadow(0 2px 6px rgba(0,0,0,0.10));
   }
 }
 
